@@ -1,0 +1,37 @@
+@use "fonts";
+@use "variables";
+@use "utils";
+@use "reset";
+@use "base";
+
+@use "header";
+@use "header2";
+@use "header3";
+
+@use "post-card";
+@use "sidebar";
+
+@use "home/home-banner";
+@use "home/home-recent";
+@use "home/home-papers";
+@use "home/home-tafseer";
+@use "home/home-about";
+@use "home/home-books";
+@use "home/home-articles";
+@use "home/home-lectures";
+@use "home/home-newsletter";
+@use "home/home";
+
+@use "footer";
+
+// pages styles
+@use "pages/category";
+@use "pages/organization-list";
+@use "pages/blog-detail";
+@use "pages/contact";
+@use "pages/about";
+
+// opt pages
+@use "opt-pages/opt-home";
+@use "opt-pages/opt-lecture";
+@use "opt-pages/opt-profile";

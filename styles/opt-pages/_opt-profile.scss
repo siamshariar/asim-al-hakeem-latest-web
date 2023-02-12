@@ -1,0 +1,347 @@
+.viewport.home-3 {
+  background-color: #f8f8f8;
+}
+
+/* home 3 banner */
+.h3-banner {
+  // background-color: #fff;
+  // padding-bottom: 1rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+.h3-banner .h-banner-text p {
+  margin-bottom: 2rem;
+}
+.h3-banner .h-banner-title h1 {
+  margin-bottom: 1rem;
+  // font-family: "Inter", sans-serif;
+  font-size: 3rem;
+}
+
+.h3-banner .h-banner-title p {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1140px) {
+  .h3-banner .h-banner-title h1 {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+  .h3-banner .h-banner-title p {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .h3-banner .h-banner-title h1 {
+    font-size: 1.625rem;
+  }
+}
+
+/* home 3 book section */
+.h3-books {
+  // background-color: #f8f8f8;
+}
+
+/* home 3 post list 1 */
+.h3-post-1 {
+  padding-bottom: 2rem;
+  // background-color: #fff;
+}
+
+.h3-post-left {
+}
+
+.h3-post-right {
+  padding-left: 2rem;
+  padding-left: 0;
+  height: 100%;
+}
+
+.h3-right-title {
+  font-weight: bold;
+  line-height: 1.33;
+  display: block;
+  margin-bottom: 3rem;
+  font-size: 1.5rem;
+  color: #718096;
+  text-align: center;
+}
+
+.h3-cat-wrap {
+  margin-bottom: 4.25rem;
+  margin-bottom: 0;
+  margin-bottom: -1rem;
+}
+
+.h3-cat-card {
+}
+
+.h3-cat-card .card-r {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  appearance: none;
+  background-color: #fff;
+  background-color: #f0f2fd;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.h3-cat-card .card-r i {
+  font-size: 1.375rem;
+  color: var(--main-color);
+  transition: all 250ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e2e8f0;
+  width: 70px;
+  align-self: stretch;
+}
+
+.h3-cat-card .card-r span {
+  color: #718096;
+  font-weight: bold;
+  line-height: 1.33;
+  display: block;
+  font-size: 1.125rem;
+  white-space: nowrap;
+  padding: 1rem;
+  padding: 1rem 0 1rem 1rem;
+  width: calc(100% - 70px);
+}
+
+.h3-cat-card .card-r:hover i {
+  color: #718096;
+}
+
+.h3-right-text {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: var(--bs11);
+  padding: 2rem;
+  height: 100%;
+}
+
+.h3-right-text p {
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .h3-post-right {
+    padding-left: 0;
+    padding-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .h3-cat-card .card-r span {
+    font-size: 1rem;
+  }
+}
+
+/* home 3 post list 2 */
+.h3-post-2 {
+  // background-color: #fff;
+  position: relative;
+}
+
+.h3-post-2 .page-width {
+  max-width: 2000px;
+  position: relative;
+  z-index: 11;
+  background-color: transparent;
+}
+
+/* home 3 post list 3 */
+.h3-post-3 {
+  // background-color: #f4f4f4;
+  // background-color: #fff;
+}
+
+/* home 3 post list 4 */
+.h3-post-4 {
+  // background-color: #f4f4f4;
+}
+
+/* home 3 post list 5 */
+.h3-post-5 {
+  // background-color: #fff;
+  position: relative;
+}
+
+.h3-post-5 .page-width {
+  // max-width: 2000px;
+  z-index: 11;
+  position: relative;
+  background-color: transparent;
+}
+
+/* home 3 quete section */
+.h3-quote {
+  // background-color: #fff;
+  // background-color: #f4f4f4;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.h3-quote-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.h3-quote-left h2 {
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  line-height: 1.33;
+  display: block;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  text-align: left;
+}
+
+.h3-quote-left h2:nth-child(2) {
+  color: #718096;
+}
+
+.h3-quote-right {
+  // border-left: 5px solid #edf2f7;
+  border-left: 5px solid #e4e9ee;
+  padding-left: 4rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin: 4rem 0;
+}
+
+.h3-quote-right h2 {
+  font-family: "Inter", sans-serif;
+  line-height: 1.33;
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: #718096;
+  font-weight: normal;
+}
+
+.h3-quote-right h3 {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  line-height: 1.33;
+  display: block;
+  font-size: 1rem;
+  color: #718096;
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 992px) {
+  .h3-quote-left h2 {
+    font-size: 2rem;
+  }
+  .h3-quote-right {
+    padding-left: 2rem;
+    margin: 0;
+  }
+  .h3-quote-right h2 {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+  }
+  .h3-quote-right h3 {
+    font-size: 0.875rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .h3-quote-left h2 {
+    font-size: 1.5rem;
+  }
+  .h3-quote-right {
+    padding-left: 1.5rem;
+    border-left-width: 4px;
+  }
+  .h3-quote-right h2 {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+}
+
+// home 3 specific
+.h3-sec-title-2 {
+  text-align: center;
+  margin-bottom: 4rem;
+  font-weight: bold;
+  line-height: 1.33;
+  display: block;
+  font-size: 1.5rem;
+  color: #718096;
+}
+
+.h3-bg-pattern {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("../../public/img/bg/pattern-01.png");
+  background-size: 11rem;
+  opacity: 0.05;
+}
+
+.h3-right-btn {
+  padding-top: 0.5rem;
+}
+.h3-right-btn a {
+  position: relative;
+}
+
+ul.h3-right-social {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+ul.h3-right-social li {
+  display: block;
+  margin-right: 0.5rem;
+}
+
+ul.h3-right-social li:last-child {
+  margin-right: 0;
+}
+
+ul.h3-right-social li a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  font-size: 1.25rem;
+  color: #a0aec0;
+  background-color: #edf2f7;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+
+ul.h3-right-social li a:hover {
+  background-color: #369fae;
+  //background-color: #369fae;
+  color: #fff;
+}
+
+ul.h3-right-social li a i {
+  font-size: inherit;
+}
+
+ul.h3-right-social li a:hover i {
+  color: inherit;
+}

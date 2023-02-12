@@ -1,0 +1,138 @@
+.header-3 {
+  background-color: #fff;
+  box-shadow: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-3.scroll_up {
+  // box-shadow: var(--bs11);
+  transform: unset;
+}
+
+.header-3 .main-menu li {
+  position: relative;
+  margin-right: 2rem;
+}
+
+.header-3 .main-menu li a {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+.header-3 .sub-menu li {
+  padding-bottom: 10px;
+}
+
+.header-3 .sub-menu li a {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
+.header-3 .main-menu li a span {
+}
+
+.main-menu-icon {
+  margin-right: 0.5rem;
+  font-size: 1.375rem;
+  display: flex;
+  align-items: center;
+}
+.header-3 .main-menu svg {
+  font-size: 20px;
+}
+.main-menu-icon.icon-more {
+  margin-right: 0;
+  margin-left: 0.5rem;
+  transition: transform 500ms ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-3 .main-menu li:hover .main-menu-icon.icon-more {
+  transform: rotate(180deg);
+}
+
+.header-3 .main-menu li .sub-menu {
+  transition: all 500ms ease-in-out;
+  position: absolute;
+  top: 73px;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  width: 780px;
+  background-color: #fff;
+  z-index: 100;
+  box-shadow: 0 -7px 25px 0 rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 0;
+  /* border-radius: 1rem; */
+}
+
+.header-3 .main-menu li:hover .sub-menu {
+  top: 53px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.header-3 .main-menu li .sub-menu .sub-menu-wrap {
+  padding: 0 2rem;
+  display: flex;
+  height: 232px;
+  overflow-y: auto;
+}
+
+.header-3 .main-menu li .sub-menu ul {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  font-family: Kalpurush;
+  padding: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.header-3 .main-menu li .sub-menu ul li {
+  text-align: left;
+  padding-right: 20px;
+  line-height: 2.125rem;
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+
+.header-3 .main-menu li .sub-menu ul li a {
+  display: block;
+  color: var(--txt11);
+  transition: color 250ms ease-in-out;
+}
+
+.header-3 .main-menu li .sub-menu ul li a:hover {
+  color: var(--main-color);
+}
+
+// custom scrollbar
+.scrollbar {
+  overflow-y: auto !important;
+  transition: all 250ms ease;
+}
+
+// firefox
+.scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #dddddd transparent;
+}
+
+// chrome
+.scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  box-shadow: none;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #dddddd;
+}

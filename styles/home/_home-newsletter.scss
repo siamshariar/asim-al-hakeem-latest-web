@@ -1,0 +1,68 @@
+.h-newsletter {}
+
+.h-newsletter-ctn {
+	background-color: #fff;
+	border-radius: 1rem;
+	box-shadow: var(--bs11);
+	padding: 3rem 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.h-newsletter form {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	max-width: 500px;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
+.h-newsletter form h2 {
+	margin-bottom: 1.25rem;
+	font-family: Kalpurush;
+	line-height: 1.33;
+	display: block;
+	color: var(--txt12);
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 1.5rem;
+}
+
+.h-newsletter form p {
+	margin-bottom: 2rem;
+	font-family: Kalpurush;
+	color: #718096;
+	font-size: 1rem;
+}
+
+
+.h-newsletter form input {
+	margin-bottom: 1rem !important;
+	display: block;
+	width: 100% !important;
+	padding: 0 0.5rem !important;
+	font-size: inherit !important;
+	line-height: 2.8rem;
+	border-radius: 4px !important;
+	background-color: var(--bg12) !important;
+	color: var(--txt11);
+	max-width: 300px;
+	height: unset !important;
+	box-sizing: border-box !important;
+	font-family: Kalpurush;
+}
+
+.h-newsletter form button {
+	margin: 0 auto;
+	display: block;
+	line-height: 2.5rem;
+}
+
+
+// responsive
+@media only screen and (max-width: 576px) {
+	.h-newsletter form h2 {
+		font-size: 1.25rem;
+	}
+}

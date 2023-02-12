@@ -1,0 +1,11 @@
+export const paper4Content = `
+                                <p>
+                                    The paper presents that the theory of objectives and intents of Islamic Shari'ah, which is termed as Maqasid al- Shari'ah al-Islamiyah, can provide a vision through which present and future changes and development of the Mankind can be proactively defined, negotiated, led and persuaded. It addresses the issue of the objectives of Islamic Shari'ah not only as a tool for the development within the traditional framework of our legal thought and practice, but within a more extended spectrum of thought that brings the concept of the objectives of Islamic Shari'ah to the overall development as well as the reconstruction of the Muslim thought, personality, culture and civilization. The theme showed in the paper is that the Knowledge of the Objectives of Islamic Shari'ah can play an important role as a universal paradigm in enhancing the abilities and qualities of the Ummah to reach a positive change and development from the present situation. But there is a need to review the Framework based on the Knowledge of the Objectives of Islamic Shari'ah in order to ensure its effectiveness in providing the necessary principles, methods and guidelines required in the processes of development strategy. Thus the paper suggests the ways of restoring back the sense of dynamism to the objective approach of Islamic Shari'ah in creating the methodological, social, educational, epistemological and cultural frameworks as a paradigm of development strategies, policies and processes for the betterment of the contemporary Muslim Ummah.
+                                    <a id="heading-1" href="https://www.researchgate.net/publication/315542368_The_Islamic_Shariah_Principles_for_Investment_in_Stock_Market" target="_blank">
+										Read more...
+									</a>
+                                </p>
+								<p>
+									Emerald insight: <a target="_blank" href="https://www.emerald.com/insight/content/doi/10.1108/QRFM-09-2016-0029/full/html">https://www.banglajol.info/index.php/IIUCS/article/view/12496</a>
+								</p>
+                                `

@@ -1,0 +1,134 @@
+.h-about {}
+
+.h-about-ctn {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	position: relative;
+}
+
+.h-about-ctn::before {
+	content: "";
+	width: 100%;
+	position: absolute;
+	top: 3.5rem;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	background: #fff;
+	box-shadow: var(--bs11);
+	border-radius: 1rem;
+}
+
+.h-about-image {
+	width: 400px;
+	z-index: 3;
+	position: absolute;
+	left: 1.5rem;
+	bottom: 0;
+	top: 0;
+}
+
+.h-about-image img {
+	width: 100%;
+}
+
+.h-about-text {
+	padding: 8rem 2rem 4.5rem;
+	z-index: 5;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	width: calc(100% - 400px);
+}
+
+.h-about-text h1 {
+	margin-bottom: 1rem;
+	font-family: Kalpurush;
+	line-height: 1.33;
+	font-weight: bold;
+	font-size: 3rem;
+	color: var(--main-color);
+	letter-spacing: 0;
+	word-spacing: -0.5rem;
+}
+
+.h-about-text p {
+	margin-bottom: 1rem;
+	font-family: Kalpurush;
+	line-height: 1.33;
+	display: block;
+	font-size: 1.25rem;
+	color: var(--txt11);
+	font-weight: normal;
+	letter-spacing: 0;
+	word-spacing: -0.1rem;
+}
+
+.h-about-text span {
+	font-family: Kalpurush;
+	line-height: 1.33;
+	display: block;
+	color: var(--txt12);
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 1.25rem;
+}
+
+
+// responsive
+// @media only screen and (max-width: 1366px) {
+// 	.h-about-text {
+// 		padding: 8rem 2rem 4.5rem;
+// 	}
+// }
+
+@media only screen and (max-width: 992px) {
+	.h-about-ctn {
+		justify-content: flex-start;
+	}
+
+	.h-about-ctn::before {
+		top: 0;
+	}
+
+	.h-about-image {
+		display: none;
+	}
+
+	.h-about-text {
+		padding: 3rem 1.5rem;
+    width: 100%;
+	}
+
+	.h-about-text h1 {
+		margin-bottom: 1rem;
+		font-size: 2.5rem;
+		word-spacing: -0.25rem;
+	}
+
+	.h-about-text p {
+		margin-bottom: 1rem;
+		font-size: 1.25rem;
+	}
+
+	.h-about-text span {
+		font-size: 1.125rem;
+	}
+}
+
+@media only screen and (max-width: 540px) {
+	.h-about-text h1 {
+		font-size: 2rem;
+	}
+
+	.h-about-text p {
+		font-size: 1.2rem;
+	}
+
+	.h-about-text span {
+		font-size: 1rem;
+	}
+}

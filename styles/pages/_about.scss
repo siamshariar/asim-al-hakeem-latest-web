@@ -1,0 +1,122 @@
+.about-page-ctn {
+  // padding: 2rem 0 1rem 0;
+  padding: 2rem 0 0 0;
+}
+
+.about-top {
+  margin-bottom: 2rem;
+}
+
+.about-top h1 {
+  font-family: Kalpurush;
+  font-weight: bold;
+  line-height: 1.33;
+  display: block;
+  color: #2d3748;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  //font-size: 2rem;
+  font-size: 1.5rem;
+  word-spacing: -0.25rem;
+}
+
+.about-top p {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #718096;
+}
+
+.about-banner {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  padding-top: 56.25%;
+  border-radius: 1rem;
+}
+
+.about-banner img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.about-banner a {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.about-title {
+  margin-bottom: 2rem;
+}
+
+.about-left {
+  margin-bottom: 1rem;
+  display: block;
+  align-self: start;
+  position: sticky;
+  top: 7.25rem;
+  z-index: 10;
+}
+
+.about-right {
+  padding-left: 1rem;
+  margin-bottom: -1rem;
+  color: #718096;
+  word-break: break-word;
+}
+
+.about-card {
+  box-shadow: var(--bs11);
+  padding: 2rem;
+  margin-bottom: 0;
+  color: #718096;
+  border-radius: 1rem;
+  background-color: #fff;
+  font-size: 1.15rem;
+}
+
+.about-text {
+  display: block;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+  color: #718096;
+  font-size: 1.15rem;
+}
+
+// responsive
+@media only screen and (max-width: 992px) {
+  .about-left {
+    margin-bottom: 1rem;
+    align-self: start;
+    position: relative;
+    top: 0;
+  }
+
+  .about-right {
+    padding-left: 0;
+  }
+}
+
+.cv-download {
+  padding-top: 0rem;
+}
+.cv-download-link {
+  display: flex;
+}
+.cv-download-link i {
+  font-size: 1rem;
+  line-height: 1;
+}
+.cv-download-link span {
+  color: inherit;
+}

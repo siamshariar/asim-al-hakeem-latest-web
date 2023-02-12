@@ -1,0 +1,44 @@
+/*------- variables -------*/
+:root,
+::after,
+::before {
+  --app-white: #ffffff;
+  --app-black: #000000;
+  --app-success: #28a745;
+  --app-danger: #dc3545;
+  --app-warning: #ffc107;
+
+  // theme color
+  --app-theme-color: #44929c;
+
+  // text color
+  --app-text-color-primary: #555555;
+  --app-text-color-secondary: #111111;
+  //--clr11: #369fae;
+  //--clr11: #3e7474;
+  --clr11: #369fae;
+  --clr11: #44929c;
+
+  --bg11: #f8f8f8;
+  --bg12: #e2e8f0;
+  --bg13: #edf2f7;
+  --bg14: #ffffff;
+
+  --txt11: #718096;
+  --txt12: #2d3748;
+  --txt13: #ffffff;
+
+  --bdr11: #a0aec0;
+
+  --bs11: 1px 1px 5px 0px rgba(1, 1, 1, 0.05);
+  --bs12: 0px 2px 4px rgba(46, 41, 51, 0.08),
+    0px 5px 10px rgba(71, 63, 79, 0.16);
+
+  --mode-light: block;
+  --mode-dark: none;
+
+  //--main-color: #369fae;
+  //--main-color: #3e7474;
+  --main-color: #369fae;
+  --txt11: #525252;
+}

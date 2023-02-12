@@ -1,0 +1,36 @@
+// home sections
+.h-banner,
+.h-papers,
+.h-about,
+.h-articles {
+  // background-color: #f4f4f4;
+}
+
+.h-recent,
+.h-books,
+.h-lectures,
+.h-organization {
+  // background-color: #f8f8f8;
+}
+
+.h-tafseer {
+}
+.h-newsletter {
+}
+
+.h-sec {
+  background-color: #f4f4f4;
+  //background-color: #f8f8f8;
+}
+.h-sec:nth-child(2n) {
+  //background-color: #ffffff;
+   background-color: #f4f4f4;
+}
+
+@media screen and (max-width: 1200px) {
+  .h-sec,
+  .h-sec:nth-child(2n) {
+    //background-color: #f4f4f4;
+    background-color: #f8f8f8;
+  }
+}

@@ -1,0 +1,12 @@
+input[type="text"] {
+  border-bottom: none !important;
+}
+
+input[type="text"]:focus {
+  box-shadow: none !important;
+}
+
+.sidenav.right-aligned {
+  -webkit-transform: translateX(105%);
+  transform: translateX(105%);
+}
