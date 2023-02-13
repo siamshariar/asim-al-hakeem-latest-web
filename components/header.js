@@ -10,191 +10,232 @@ import CorporateFareIcon from "@mui/icons-material/CorporateFareOutlined";
 import InfoIcon from "@mui/icons-material/InfoOutlined";
 import ContactIcon from "@mui/icons-material/ContactPageOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import MobileNav from "./mobile-nav";
 
 export default function Header({ playlists }) {
-  // show hide header on scroll
-  const header = useRef(null);
-  const [scrollTop, setScrollTop] = useState(0);
-  const [didMount, setDidMount] = useState(false);
+	// show hide header on scroll
+	const header = useRef(null);
+	const [scrollTop, setScrollTop] = useState(0);
+	const [didMount, setDidMount] = useState(false);
 
-  const num = Math.ceil(playlists.length / 3);
-  const firstList = playlists.slice(0, num);
-  const secondList = playlists.slice(num, num * 2);
-  const thirdList = playlists.slice(num * 2, playlists.length);
+	const num = Math.ceil(playlists.length / 3);
+	const firstList = playlists.slice(0, num);
+	const secondList = playlists.slice(num, num * 2);
+	const thirdList = playlists.slice(num * 2, playlists.length);
 
-  useEffect(() => {
-    setDidMount(true);
+	useEffect(() => {
+		setDidMount(true);
 
-    window.onscroll = () => {
-      setScrollTop(window.pageYOffset);
-    };
-    if (scrollTop > 20) {
-      header.current.classList.add("scroll_up");
-    } else {
-      header.current.classList.remove("scroll_up");
-    }
-    //setLastScrollTop(scrollTop);
+		window.onscroll = () => {
+			setScrollTop(window.pageYOffset);
+		};
+		if (scrollTop > 20) {
+			header.current.classList.add("scroll_up");
+		} else {
+			header.current.classList.remove("scroll_up");
+		}
+		//setLastScrollTop(scrollTop);
 
-    return () => setDidMount(false);
-  }, [scrollTop]);
+		return () => setDidMount(false);
+	}, [scrollTop]);
 
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const toggleMobileNav = (open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    setMobileNavOpen(open);
-  };
+	const [mobileNavOpen, setMobileNavOpen] = useState(false);
+	const toggleMobileNav = (open) => (event) => {
+		if (
+			event.type === "keydown" &&
+			(event.key === "Tab" || event.key === "Shift")
+		) {
+			return;
+		}
+		setMobileNavOpen(open);
+	};
 
-  return (
-    <>
-      <header className="header header-3" ref={header}>
-        <div className="page-width">
-          <div className="box">
-            <div className="header-ctn">
-              <Link href="/">
-                <a className="header-logo">
-                  <Image
-                    src="/img/dr-saifullah-logo.png"
-                    alt=""
-                    width={100}
-                    height={100}
-                    objectFit="contain"
-                    objectPosition="left center"
-                    loading="eager" unoptimized
-                  />
-                </a>
-              </Link>
+	return (
+		<>
+			<header className="header header-3" ref={header}>
+				<div className="headline row">
+					<div className="page-width">
+						<div className="box">
+							<div className="headline-ctn col s6 m6">
+								<div className="d-flex align-center">
+									<PlayCircleOutlineIcon />
+									<span className="headline-title">Headline:</span>
+									<div className="vwrap">
+										<ul className="vmove">
+											<li className="vitem">
+												Sheikh Assim grew up in Al-Khobar like, as he says, “any
+												other kid down the block”; going to school, having
+												friends, having the
+											</li>
+											<li className="vitem">
+												We feel that time is always a problem for us. When we
+												are young, the only thing we think about is playing and
+												enjoying ourselves, i.e., killing time
+											</li>
+											<li className="vitem">
+												This is all what the youth think about; just wasting
+												time, playing cards, going around the streets, riding
+												bikes, watching movies, listening to music, and doing
+											</li>
+											{/* again 1st item */}
+											<li className="vitem">
+												Sheikh Assim grew up in Al-Khobar like, as he says, “any
+												other kid down the block”; going to school, having
+												friends, having the
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div className="h-socials col s6 m6">
+								<ul>
+									<li>
+										<a
+											href="https://www.facebook.com/drmuhammadsaifullahofficial"
+											target="_blank">
+											<i className=" fab fa-facebook-f"></i>
+										</a>
+									</li>
+									<li>
+										<a
+											href="https://www.facebook.com/drmuhammadsaifullahofficial"
+											target="_blank">
+											<i class=" fab fa-instagram"></i>
+										</a>
+									</li>
+									<li>
+										<a
+											href="https://www.youtube.com/DrMuhammadSaifullah"
+											target="_blank">
+											<i className=" fab fa-twitter"></i>
+										</a>
+									</li>
+									<li>
+										<a
+											href="https://www.youtube.com/DrMuhammadSaifullah"
+											target="_blank">
+											<i className=" fab fa-youtube"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 
-              <ul className="main-menu">
-                <li>
-                  <Link href={`/lectures/${youtube.uploadPlaylistID}`}>
-                    <a>
-                      {/*<span className="main-menu-icon">*/}
-                      {/*  <TvIcon />*/}
-                      {/*</span>*/}
-                      ভিডিও লেকচার
-                      <span className="main-menu-icon icon-more">
-                        <ExpandMoreIcon />
-                      </span>
-                    </a>
-                  </Link>
+				<div className="navbar row">
+					<div className="page-width">
+						<div className="box">
+							<div className="header-ctn">
+								<Link href="/">
+									<a className="header-logo">
+										<Image
+											src="/img/logo.png"
+											alt=""
+											width={150}
+											height={70}
+											objectFit="contain"
+											objectPosition="left center"
+											loading="eager"
+											unoptimized
+										/>
+									</a>
+								</Link>
 
-                  <div className="sub-menu">
-                    <div className="sub-menu-wrap scrollbar">
-                      <ul>
-                        {firstList &&
-                          firstList.map((playlist) => (
-                            <li key={playlist.id}>
-                              <Link href={`/lectures/${playlist.id}`}>
-                                <a>{playlist.title}</a>
-                              </Link>
-                            </li>
-                          ))}
-                      </ul>
+								<ul className="main-menu">
+									<li>
+										<Link href="/">
+											<a>
+												{/*<span className="main-menu-icon">*/}
+												{/*  <BookIcon />*/}
+												{/*</span>*/}
+												Home
+											</a>
+										</Link>
+									</li>
+									<li>
+										<Link href={`/lectures/${youtube.uploadPlaylistID}`}>
+											<a>
+												Lectures
+												<span className="main-menu-icon icon-more">
+													<ExpandMoreIcon />
+												</span>
+											</a>
+										</Link>
 
-                      <ul>
-                        {secondList &&
-                          secondList.map((playlist) => (
-                            <li key={playlist.id}>
-                              <Link href={`/lectures/${playlist.id}`}>
-                                <a>{playlist.title}</a>
-                              </Link>
-                            </li>
-                          ))}
-                      </ul>
+										<div className="sub-menu">
+											<div className="sub-menu-wrap scrollbar">
+												<ul>
+													{firstList &&
+														firstList.map((playlist) => (
+															<li key={playlist.id}>
+																<Link href={`/lectures/${playlist.id}`}>
+																	<a>{playlist.title}</a>
+																</Link>
+															</li>
+														))}
+												</ul>
 
-                      <ul>
-                        {thirdList &&
-                          thirdList.map((playlist) => (
-                            <li key={playlist.id}>
-                              <Link href={`/lectures/${playlist.id}`}>
-                                <a>{playlist.title}</a>
-                              </Link>
-                            </li>
-                          ))}
-                      </ul>
-                    </div>
-                  </div>
-                </li>
+												<ul>
+													{secondList &&
+														secondList.map((playlist) => (
+															<li key={playlist.id}>
+																<Link href={`/lectures/${playlist.id}`}>
+																	<a>{playlist.title}</a>
+																</Link>
+															</li>
+														))}
+												</ul>
 
-                <li>
-                  <Link href="/books/">
-                    <a>
-                      {/*<span className="main-menu-icon">*/}
-                      {/*  <BookIcon />*/}
-                      {/*</span>*/}
-                      বই সমূহ
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/research-papers/">
-                    <a>
-                      {/*<span className="main-menu-icon">*/}
-                      {/*  <DescriptionIcon />*/}
-                      {/*</span>*/}
-                      রিসার্চ পেপারস
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/articles/">
-                    <a>
-                      {/*<span className="main-menu-icon">*/}
-                      {/*  <ArticleIcon />*/}
-                      {/*</span>*/}
-                      প্রবন্ধ সমূহ
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/organizations/">
-                    <a>
-                      {/*<span className="main-menu-icon">*/}
-                      {/*  <CorporateFareIcon />*/}
-                      {/*</span>*/}
-                      অর্গানাইজেশনস
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about">
-                    <a>
-                      {/*<span className="main-menu-icon">*/}
-                      {/*  <InfoIcon />*/}
-                      {/*</span>*/}
-                      <span>জীবন চরিত</span>
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact">
-                    <a>
-                      {/*<span className="main-menu-icon">*/}
-                      {/*  <ContactIcon />*/}
-                      {/*</span>*/}
-                      যোগাযোগ
-                    </a>
-                  </Link>
-                </li>
-              </ul>
+												<ul>
+													{thirdList &&
+														thirdList.map((playlist) => (
+															<li key={playlist.id}>
+																<Link href={`/lectures/${playlist.id}`}>
+																	<a>{playlist.title}</a>
+																</Link>
+															</li>
+														))}
+												</ul>
+											</div>
+										</div>
+									</li>
 
-              <ul className="mobile-icons">
-                <li className="menu-burger" onClick={toggleMobileNav(true)}>
-                  <i className="fas fa-bars"></i>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </header>
+									<li>
+										<Link href="#">
+											<a>Counseling Session</a>
+										</Link>
+									</li>
+									<li>
+										<Link href="#">
+											<a>Ask a Question</a>
+										</Link>
+									</li>
+									<li>
+										<Link href="/contact">
+											<a>Contact/Booking</a>
+										</Link>
+									</li>
+									<li>
+										<Link href="/about">
+											<a>About</a>
+										</Link>
+									</li>
+								</ul>
 
-      <MobileNav navOpen={mobileNavOpen} navControl={toggleMobileNav} />
-    </>
-  );
+								<ul className="mobile-icons">
+									<li className="menu-burger" onClick={toggleMobileNav(true)}>
+										<i className="fas fa-bars"></i>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<MobileNav navOpen={mobileNavOpen} navControl={toggleMobileNav} />
+		</>
+	);
 }
