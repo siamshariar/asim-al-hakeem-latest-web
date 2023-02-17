@@ -1,37 +1,30 @@
-import SectionHeader from "../section-header";
-import PostCard1 from "../card/post1";
-// import PostCard2 from "../card/post2";
+// trending post
+import PostCard from "../card/post-card-tertiary";
 
 export default function HomeBooks({ books }) {
-  return (
-    <section className="h-sec h3-post-3">
-      <div className="page-width">
-        <div className="box">
-          <SectionHeader //
-            title="বই সমূহ"
-            link="/books/"
-          />
-          <div className="row row-r">
-            <div className="col col-r s12 l12">
-              <div className="row row-r">
-                <div className="col col-r s12 l4">
-                  <PostCard1 book={books[0]} />
-                </div>
-                <div className="col col-r s12 l4">
-                  <PostCard1 book={books[1]} />
-                </div>
-                <div className="col col-r s12 l4">
-                  <PostCard1 book={books[2]} />
-                </div>
-              </div>
-            </div>
+	return (
+		<section className="h-sec h3-post-5 h-books">
+			<div className="page-width">
+				<div className="box">
+					<h2 className="h3-sec-title-2">Popular Books</h2>
 
-            {/* <div className="col col-r s12 l4">
-              <PostCard2 post={posts[3]} />
-            </div> */}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+					{/* <div className="title-default">
+            <h2>
+              <span>Popular Books</span>
+            </h2>
+          </div> */}
+
+					<div className="row row-r">
+						<div className="col col-r s12 l6">
+							<PostCard book={books[0]} />
+						</div>
+						<div className="col col-r s12 l6">
+							<PostCard book={books[1]} />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className="h3-bg-pattern"></div>
+		</section>
+	);
 }

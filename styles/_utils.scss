@@ -78,10 +78,16 @@ button {
 iframe {
 	border: none;
 }
-// ======== new ================
+// ======== new =================
 .d-flex {
 	display: flex;
 }
 .align-center {
 	align-items: center;
+}
+.m-auto {
+	margin: auto;
+}
+.d-block {
+	display: block;
 }

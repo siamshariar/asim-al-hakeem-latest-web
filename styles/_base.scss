@@ -134,7 +134,7 @@ html {
 	box-shadow: var(--bs11);
 	margin: 0;
 	background-color: #fff;
-	border-radius: 1rem;
+	border-radius: 0;
 	transition: transform 250ms ease, box-shadow 250ms ease, color 250ms ease;
 	min-height: 100%;
 }
@@ -184,7 +184,7 @@ html {
 	padding-top: 72.2%;
 	padding-top: 55.2%;
 	overflow: hidden;
-	border-radius: 0.5rem;
+	// border-radius: 0.5rem;
 	cursor: pointer;
 }
 
@@ -455,10 +455,10 @@ html {
 	font-weight: bold;
 	text-decoration: none;
 	margin-bottom: 1rem;
-	margin-bottom: 0.75rem;
+	margin-bottom: 6px;
 	font-size: 1.15rem;
 	//font-size: 1.2rem;
-	line-height: 1.375;
+	line-height: 20px;
 	white-space: normal;
 	display: -moz-box;
 	display: -webkit-box;
@@ -466,7 +466,7 @@ html {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	height: 50px;
+	height: auto;
 	// height: 54px; // Hot fix - Tamzid
 	padding: 2px;
 	padding-bottom: 0;
@@ -474,7 +474,7 @@ html {
 }
 
 .heading-b {
-	font-size: 1.5rem;
+	font-size: 16px;
 }
 
 // responsive

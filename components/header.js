@@ -101,7 +101,7 @@ export default function Header({ playlists }) {
 										<a
 											href="https://www.facebook.com/drmuhammadsaifullahofficial"
 											target="_blank">
-											<i class=" fab fa-instagram"></i>
+											<i className=" fab fa-instagram"></i>
 										</a>
 									</li>
 									<li>
