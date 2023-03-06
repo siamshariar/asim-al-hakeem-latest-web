@@ -14,7 +14,7 @@ export default function HomeBanner() {
 								<span>Sheikh Assim Alhakeem</span>
 							</h1>
 						</div>
-						<p style={{ fontSize: "1.15rem;" }}>
+						<p style={{ fontSize: "1.15rem" }}>
 							Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of
 							Al-Khobar, which lies in the east of the Kingdom of Saudi Arabia.
 							He was raised there until the age of 12 before he and his family

@@ -31,9 +31,12 @@ import HomePapers from "../components/home/papers";
 import Image from "next/image";
 import { server } from "../lib/config";
 import HomeQna from "../components/home/qna";
+import TextContent from "../components/home/text-content";
+import HomeQuoteSlider from "../components/home/quote-slider";
 
 export default function Home({
 	lectures,
+	quotes,
 	organizations,
 	articles,
 	papers,
@@ -62,9 +65,10 @@ export default function Home({
 				<HomeBanner />
 				<HomeRecent lectures={lectures} />
 				<HomeArticles articles={articles} />
-				<HomeQna qna={qna} />
 				<HomeBooks books={books} />
-				<HomeQuote />
+				<HomeQna qna={qna} />
+				<TextContent />
+				<HomeQuoteSlider quotes={quotes} />
 				{/*<HomePapers papers={papers} />*/}
 				{/*<HomeOrganizations organizations={organizations} />*/}
 			</div>
