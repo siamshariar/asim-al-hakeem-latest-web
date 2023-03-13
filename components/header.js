@@ -92,28 +92,26 @@ export default function Header({ playlists }) {
 								<ul>
 									<li>
 										<a
-											href="https://www.facebook.com/drmuhammadsaifullahofficial"
+											href="https://www.facebook.com/SheikhAssimAlhakeemTeam/"
 											target="_blank">
 											<i className=" fab fa-facebook-f"></i>
 										</a>
 									</li>
 									<li>
 										<a
-											href="https://www.facebook.com/drmuhammadsaifullahofficial"
+											href="https://instagram.com/assimalhakeem?igshid=1v9psnayget6c"
 											target="_blank">
 											<i className=" fab fa-instagram"></i>
 										</a>
 									</li>
 									<li>
-										<a
-											href="https://www.youtube.com/DrMuhammadSaifullah"
-											target="_blank">
+										<a href="https://twitter.com/Assimalhakeem" target="_blank">
 											<i className=" fab fa-twitter"></i>
 										</a>
 									</li>
 									<li>
 										<a
-											href="https://www.youtube.com/DrMuhammadSaifullah"
+											href="https://www.youtube.com/user/assimalhakeem"
 											target="_blank">
 											<i className=" fab fa-youtube"></i>
 										</a>
@@ -155,7 +153,8 @@ export default function Header({ playlists }) {
 										</Link>
 									</li>
 									<li>
-										<Link href={`/lectures/${youtube.uploadPlaylistID}`}>
+										{/* <Link href={`/lectures/${youtube.uploadPlaylistID}`}> */}
+										<Link href="#">
 											<a>
 												Lectures
 												<span className="main-menu-icon icon-more">
