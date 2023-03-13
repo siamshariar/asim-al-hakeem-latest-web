@@ -1,29 +1,43 @@
+import { useState } from "react";
+import classNames from "classnames";
 import Link from "next/link";
 import Image from "next/image";
 import Drawer from "@material-ui/core/Drawer";
 import { server, youtube } from "../lib/config";
-import HomeIcon from "@mui/icons-material/Home";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import ClassIcon from "@mui/icons-material/Class";
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import { QuestionAnswer } from "@material-ui/icons";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import PersonIcon from "@mui/icons-material/Person";
 import MailIcon from "@mui/icons-material/Mail";
+import Collapse from "@mui/material/Collapse";
 
 export default function MobileNav(props) {
-  return (
-    <Drawer
-      anchor="left"
-      open={props.navOpen}
-      onClose={props.navControl(false)}
-      className="mobile-menu-root"
-    >
-      <div className="mobile-menu">
-        <div className="m-menu-wrap">
-          <div className="m-menu-ctn">
-            <div className="m-menu-top">
-              <Link href="/">
+	// console.log(props.playlists);
+	const [expand, setExpand] = useState(false);
+	const handleClick = () => {
+		setExpand(!expand);
+	};
+
+	const [expand2, setExpand2] = useState(false);
+	const handleClick2 = () => {
+		setExpand2(!expand2);
+	};
+
+	return (
+		<Drawer
+			anchor="left"
+			open={props.navOpen}
+			onClose={props.navControl(false)}
+			className="mobile-menu-root">
+			<div className="mobile-menu">
+				<div className="m-menu-wrap">
+					<div className="m-menu-ctn">
+						<div className="m-menu-top">
+							{/* <Link href="/">
                 <a
                   onClick={(e) => props.navControl(false)(e)}
                   className="m-menu-logo"
@@ -36,122 +50,182 @@ export default function MobileNav(props) {
                     height={67}
                     objectFit="contain"
                     objectPosition="left center"
-                    loading="eager" unoptimized
+                    loading="eager"
+                    unoptimized
                   />
                 </a>
-              </Link>
-            </div>
+              </Link> */}
 
-            <ul className="m-menu">
-              <li>
+							<div
+								className="m-menu-close"
+								onClick={(e) => props.navControl(false)(e)}>
+								<span></span>
+								<span></span>
+							</div>
+						</div>
+
+						<ul className="m-menu">
+							{/* <li>
                 <Link href="/">
                   <a onClick={(e) => props.navControl(false)(e)}>
                     <HomeIcon />
-                    হোম
+                    Home
                   </a>
                 </Link>
-              </li>
-              <li>
-                <Link href={`/lectures/${youtube.uploadPlaylistID}`}>
-                  <a onClick={(e) => props.navControl(false)(e)}>
-                    <VideoLibraryIcon />
-                    ভিডিও লেকচার
-                  </a>
-                </Link>
-              </li>
-              <li>
+              </li> */}
+							<li>
+								{/* <Link href={`/lectures/${youtube.defaultPlaylistID}`}> */}
+								<div className="m-sub-menu-wrap">
+									<button
+										className={classNames(
+											"m-sub-menu-label",
+											expand ? "expand" : ""
+										)}
+										onClick={() => handleClick()}>
+										<div className="d-flex align-center">
+											<VideoLibraryIcon />
+											Lectures
+										</div>
+										<span>
+											<i className="fa-solid fa-chevron-down"></i>
+										</span>
+									</button>
+									<Collapse in={expand} timeout="auto" unmountOnExit>
+										<ul className="m-sub-menu">
+											{props.playlists &&
+												props.playlists.map((item) => (
+													<li key={item.id}>
+														<Link href={`/lectures/${item.id}`}>
+															<a
+																className={
+																	item.id === props.activeId ? "active" : ""
+																}
+																onClick={(e) => props.navControl(false)(e)}>
+																{item.title}
+															</a>
+														</Link>
+													</li>
+												))}
+										</ul>
+									</Collapse>
+								</div>
+								{/* </Link> */}
+							</li>
+							{/* <li>
                 <Link href="/articles">
                   <a onClick={(e) => props.navControl(false)(e)}>
                     <LibraryBooksIcon />
                     প্রবন্ধ সমূহ
                   </a>
                 </Link>
-              </li>
-              <li>
-                <Link href="/books">
-                  <a onClick={(e) => props.navControl(false)(e)}>
-                    <MenuBookIcon />
-                    বই সমূহ
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/research-papers">
-                  <a onClick={(e) => props.navControl(false)(e)}>
-                    <ClassIcon />
-                    রিসার্চ পেপারস
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/organizations">
-                  <a onClick={(e) => props.navControl(false)(e)}>
-                    <CorporateFareIcon />
-                    অর্গানাইজেশনস
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/about">
-                  <a onClick={(e) => props.navControl(false)(e)}>
-                    <PersonIcon />
-                    জীবন চরিত
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact">
-                  <a onClick={(e) => props.navControl(false)(e)}>
-                    <MailIcon />
-                    যোগাযোগ
-                  </a>
-                </Link>
-              </li>
-            </ul>
-          </div>
+              </li> */}
 
-          <div className="m-menu-bottom">
+							<li>
+								<Link href="#">
+									<a onClick={(e) => props.navControl(false)(e)}>
+										{/* <ClassIcon /> */}
+										<AssessmentIcon />
+										Counseling Session
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="#">
+									<a onClick={(e) => props.navControl(false)(e)}>
+										<QuestionAnswer />
+										Ask a Question
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="#">
+									<a onClick={(e) => props.navControl(false)(e)}>
+										<MailIcon />
+										Contact/Booking
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="/about">
+									<a onClick={(e) => props.navControl(false)(e)}>
+										<PersonIcon />
+										About
+									</a>
+								</Link>
+							</li>
+						</ul>
+					</div>
+
+					<div className="m-menu-bottom">
+						<h2>Social</h2>
+						<div className="m-menu-social">
+							<a
+								href="https://www.facebook.com/SheikhAssimAlhakeemTeam/"
+								target="_blank">
+								<i className="facebook fab fa-facebook-f"></i>
+								<span>Facebook</span>
+							</a>
+							<a
+								href="https://instagram.com/assimalhakeem?igshid=1v9psnayget6c"
+								target="_blank">
+								<i className="instagram fab fa-instagram"></i>
+								<span>Instagram</span>
+							</a>
+							<a href="https://twitter.com/Assimalhakeem" target="_blank">
+								<i className="twitter fab fa-twitter"></i>
+								<span>Twitter</span>
+							</a>
+							<a
+								href="https://www.youtube.com/user/assimalhakeem"
+								target="_blank">
+								<i className="youtube fab fa-youtube"></i>
+								<span>YouTube</span>
+							</a>
+							{/* <a
+								href="https://podcasts.apple.com/ca/podcast/hacene-chebbani/id1138416079"
+								target="_blank">
+								<i className="fa fa-podcast"></i>
+								<span>Apple Podcast</span>
+							</a> */}
+						</div>
+						<p
+							className="footer-powered-by"
+							style={{ marginTop: "32px", color: "#fff" }}>
+							Powered By -{" "}
+							<a
+								className="link-r"
+								href="https://www.deeniinfotech.com"
+								target="_blank"
+								style={{ color: "#fff", opacity: "0.7" }}>
+								Deeni Info Tech
+							</a>
+						</p>
+					</div>
+
+					{/*<div className="m-menu-bottom m-menu-address">*/}
+					{/*  <p>Islamic Information Society of Calgary (IISC)</p>*/}
+					{/*  <p>PO Box 64295, Thorncliffe PO</p>*/}
+					{/*  <p>Calgary, AB, T2K 6J7</p>*/}
+					{/*</div>*/}
+
+					{/* <div className="m-menu-bottom">
             <hr className="m-menu-hr" />
+          </div> */}
 
-            <div className="m-menu-social">
-              <a
-                href="https://www.facebook.com/drmuhammadsaifullahofficial"
-                target="_blank"
-              >
-                <i className="facebook fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="https://www.youtube.com/DrMuhammadSaifullah"
-                target="_blank"
-              >
-                <i className="youtube fab fa-youtube"></i>
-              </a>
-              <a href="https://twitter.com/DrSaifullah1971" target="_blank">
-                <i className="twitter fab fa-twitter"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/drsaifullahofficial"
-                target="_blank"
-              >
-                <i className="instagram fab fa-instagram"></i>
-              </a>
-            </div>
-          </div>
-
-          {/*<div className="m-menu-bottom">*/}
-          {/*  <p className="footer-powered-by">*/}
-          {/*    Powered By -{" "}*/}
-          {/*    <a*/}
-          {/*      className="link-r"*/}
-          {/*      href="https://www.deeniinfotech.com"*/}
-          {/*      target="_blank"*/}
-          {/*    >*/}
-          {/*      Deeni Info Tech*/}
-          {/*    </a>*/}
-          {/*  </p>*/}
-          {/*</div>*/}
-        </div>
-      </div>
-    </Drawer>
-  );
+					{/*<div className="m-menu-bottom">*/}
+					{/*  <p className="footer-powered-by">*/}
+					{/*    Powered By -{" "}*/}
+					{/*    <a*/}
+					{/*      className="link-r"*/}
+					{/*      href="https://www.deeniinfotech.com"*/}
+					{/*      target="_blank"*/}
+					{/*    >*/}
+					{/*      Deeni Info Tech*/}
+					{/*    </a>*/}
+					{/*  </p>*/}
+					{/*</div>*/}
+				</div>
+			</div>
+		</Drawer>
+	);
 }

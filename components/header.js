@@ -13,7 +13,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import MobileNav from "./mobile-nav";
 
-export default function Header({ playlists }) {
+export default function Header({ playlists, activePlaylistId }) {
 	// show hide header on scroll
 	const header = useRef(null);
 	const [scrollTop, setScrollTop] = useState(0);
@@ -153,8 +153,8 @@ export default function Header({ playlists }) {
 										</Link>
 									</li>
 									<li>
-										{/* <Link href={`/lectures/${youtube.uploadPlaylistID}`}> */}
-										<Link href="#">
+										<Link href={`/lectures/${youtube.uploadPlaylistID}`}>
+											{/* <Link href="#"> */}
 											<a>
 												Lectures
 												<span className="main-menu-icon icon-more">
@@ -234,7 +234,12 @@ export default function Header({ playlists }) {
 				</div>
 			</header>
 
-			<MobileNav navOpen={mobileNavOpen} navControl={toggleMobileNav} />
+			<MobileNav
+				playlists={playlists}
+				navOpen={mobileNavOpen}
+				navControl={toggleMobileNav}
+				activeId={activePlaylistId}
+			/>
 		</>
 	);
 }

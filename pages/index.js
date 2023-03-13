@@ -87,6 +87,7 @@ export async function getStaticProps(context) {
 	const qna = await getHomeQna();
 	// const articles = await getArticles()
 	const papers = await getHomePapers();
+	// playlists & playlistsTitle
 	const playlists = await getAllPlaylists2();
 	const posts4 = await getHome3Posts4();
 	const organizations2 = await getHomeOrganizations();
