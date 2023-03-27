@@ -51,7 +51,7 @@ export default function BlogDetail({ detail, playlists }) {
 									<a
 										target="_blank"
 										href={`${server}/pdf-viewer/web/viewer.html?file=${detail.pdf}`}>
-										<span>বিস্তারিত পড়ুন</span>
+										<span>Read Details</span>
 									</a>
 								</p>
 							</div>
@@ -107,13 +107,11 @@ export default function BlogDetail({ detail, playlists }) {
 export async function getStaticProps({ params }) {
 	const slug = params.slug;
 	const detail = await getArticleDetails(slug);
-	const articles = await getRelatedArticles();
 	const playlists = await getAllPlaylists2();
 
 	return {
 		props: {
 			detail,
-			articles,
 			playlists: playlists.playlists,
 		},
 	};

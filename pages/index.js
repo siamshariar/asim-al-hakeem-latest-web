@@ -37,12 +37,12 @@ import HomeQuoteSlider from "../components/home/quote-slider";
 export default function Home({
 	lectures,
 	quotes,
-	organizations,
+	// organizations,
 	articles,
-	papers,
+	// papers,
 	playlists,
-	posts4,
-	organizations2,
+	// posts4,
+	// organizations2,
 	books,
 	qna,
 }) {
@@ -82,15 +82,15 @@ export async function getStaticProps(context) {
 	const lectures = await getHomeLectures();
 	const quotes = await getOptHomeQuotes();
 	// const books = await getOptHomeBooks();
-	const organizations = await getHomeOrganizations();
+	// const organizations = await getHomeOrganizations();
 	const articles = await getHomeArticles();
 	const qna = await getHomeQna();
 	// const articles = await getArticles()
-	const papers = await getHomePapers();
+	// const papers = await getHomePapers();
 	// playlists & playlistsTitle
 	const playlists = await getAllPlaylists2();
-	const posts4 = await getHome3Posts4();
-	const organizations2 = await getHomeOrganizations();
+	// const posts4 = await getHome3Posts4();
+	// const organizations2 = await getHomeOrganizations();
 	const books = await getHomeBooks();
 
 	return {
@@ -98,12 +98,12 @@ export async function getStaticProps(context) {
 			images,
 			lectures,
 			quotes,
-			organizations,
+			// organizations,
 			articles,
-			papers,
+			// papers,
 			playlists: playlists.playlists,
-			organizations2,
-			posts4,
+			// organizations2,
+			// posts4,
 			books,
 			qna,
 		},

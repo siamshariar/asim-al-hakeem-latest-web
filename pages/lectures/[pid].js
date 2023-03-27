@@ -101,7 +101,7 @@ export default function LectureList({
 							<h1 ref={catRef}>
 								<div className="cat-page-top-open-btn" onClick={handleCatOpen}>
 									<i className="material-icons select-tag-icon">list</i>
-									<em>ক্যাটাগরি সমূহ</em>
+									<em>Categories</em>
 								</div>
 							</h1>
 						</div>
@@ -204,7 +204,7 @@ export default function LectureList({
 										<div className="opt_lecture_more">
 											<center>
 												<button onClick={() => setSize(size + 1)}>
-													আরও দেখুন
+													See more
 												</button>
 											</center>
 										</div>

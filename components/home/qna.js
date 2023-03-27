@@ -4,7 +4,7 @@ import HomeSection from "./home-section";
 export default function HomeQna({ qna }) {
 	return (
 		<section className="h-sec h3-post-1">
-			<HomeSection title="QnA" link="/questions">
+			<HomeSection title="QnA" link="/questions/all">
 				<div className="row row-r">
 					<div className="col col-r s12 l12">
 						<div className="h3-post-left">

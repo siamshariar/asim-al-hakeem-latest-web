@@ -153,15 +153,14 @@ export default function Header({ playlists, activePlaylistId }) {
 										</Link>
 									</li>
 									<li>
-										<Link href={`/lectures/${youtube.uploadPlaylistID}`}>
-											{/* <Link href="#"> */}
-											<a>
-												Lectures
-												<span className="main-menu-icon icon-more">
-													<ExpandMoreIcon />
-												</span>
-											</a>
-										</Link>
+										{/* <Link href={`/lectures/${youtube.uploadPlaylistID}`}> */}
+										<a>
+											Lectures
+											<span className="main-menu-icon icon-more">
+												<ExpandMoreIcon />
+											</span>
+										</a>
+										{/* </Link> */}
 
 										<div className="sub-menu">
 											<div className="sub-menu-wrap scrollbar">
@@ -202,6 +201,21 @@ export default function Header({ playlists, activePlaylistId }) {
 									</li>
 
 									<li>
+										<Link href="/articles">
+											<a>Articles</a>
+										</Link>
+									</li>
+									<li>
+										<Link href="/books">
+											<a>Books</a>
+										</Link>
+									</li>
+									<li>
+										<Link href="/questions/all">
+											<a>QnA</a>
+										</Link>
+									</li>
+									<li>
 										<Link href="#">
 											<a>Counseling Session</a>
 										</Link>
@@ -213,7 +227,7 @@ export default function Header({ playlists, activePlaylistId }) {
 									</li>
 									<li>
 										<Link href="/contact">
-											<a>Contact/Booking</a>
+											<a>Contact</a>
 										</Link>
 									</li>
 									<li>

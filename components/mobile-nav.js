@@ -13,6 +13,8 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import PersonIcon from "@mui/icons-material/Person";
 import MailIcon from "@mui/icons-material/Mail";
+import HomeIcon from "@mui/icons-material/Home";
+import ArticleIcon from "@mui/icons-material/Article";
 import Collapse from "@mui/material/Collapse";
 
 export default function MobileNav(props) {
@@ -65,14 +67,14 @@ export default function MobileNav(props) {
 						</div>
 
 						<ul className="m-menu">
-							{/* <li>
-                <Link href="/">
-                  <a onClick={(e) => props.navControl(false)(e)}>
-                    <HomeIcon />
-                    Home
-                  </a>
-                </Link>
-              </li> */}
+							<li>
+								<Link href="/">
+									<a onClick={(e) => props.navControl(false)(e)}>
+										<HomeIcon />
+										Home
+									</a>
+								</Link>
+							</li>
 							<li>
 								{/* <Link href={`/lectures/${youtube.defaultPlaylistID}`}> */}
 								<div className="m-sub-menu-wrap">
@@ -111,14 +113,30 @@ export default function MobileNav(props) {
 								</div>
 								{/* </Link> */}
 							</li>
-							{/* <li>
-                <Link href="/articles">
-                  <a onClick={(e) => props.navControl(false)(e)}>
-                    <LibraryBooksIcon />
-                    প্রবন্ধ সমূহ
-                  </a>
-                </Link>
-              </li> */}
+							<li>
+								<Link href="/articles">
+									<a onClick={(e) => props.navControl(false)(e)}>
+										<ArticleIcon />
+										Articles
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="/books">
+									<a onClick={(e) => props.navControl(false)(e)}>
+										<LibraryBooksIcon />
+										Books
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="/questions">
+									<a onClick={(e) => props.navControl(false)(e)}>
+										<QuestionAnswer />
+										Questions
+									</a>
+								</Link>
+							</li>
 
 							<li>
 								<Link href="#">
