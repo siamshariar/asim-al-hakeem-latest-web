@@ -31,7 +31,7 @@ export default function About({ playlists, headerLectures }) {
 									<div className="sidebar-profile sc-1">
 										<div className="s-profile-image">
 											<Image
-												src={`${server}/img/profile-banner.jpeg`}
+												src="/img/profile-banner.jpeg"
 												alt=""
 												layout="fill"
 												objectFit="cover"

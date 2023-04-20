@@ -12,6 +12,7 @@ import Meta from "../../components/meta";
 import Header from "../../components/header";
 import parse from "html-react-parser";
 import Share from "../../components/share";
+import Image from "next/image";
 
 export default function BlogDetail({ detail, playlists, headerLectures }) {
 	return (
@@ -38,11 +39,33 @@ export default function BlogDetail({ detail, playlists, headerLectures }) {
 				</div>
 			</section> */}
 
-			<section className="blog-detail-ctn">
+			<section className="blog-detail-ctn article-detail">
 				<div className="page-width">
 					<div className="box">
 						<div className="blog-area">
 							<a className="heading-r heading-b">{detail.postTitle}</a>
+							{detail.imageSrc ? (
+								<div className="card-image">
+									<Link href={`/articles/${detail.postSlug}`}>
+										<a className="image-r">
+											<Image
+												src={
+													detail.imageSrc
+														? detail.imageSrc
+														: "/img/post/placeholder-image.jpg"
+												}
+												alt=""
+												layout="fill"
+												objectFit="cover"
+												objectPosition="center center"
+												loading="eager"
+												unoptimized
+											/>
+										</a>
+									</Link>
+								</div>
+							) : null}
+
 							<div className="blog-detail">
 								<p>{detail.postExcerpt}</p>
 								<p>

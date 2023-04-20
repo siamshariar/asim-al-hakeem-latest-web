@@ -24,7 +24,7 @@ export default function BookDetail({
 			<Meta
 				title={detail.bookName}
 				url={`${server}/books/${detail.bookSlug}`}
-				image={server + detail.imageSrc}
+				image={detail.imageSrc}
 				description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar, which lies in the east of the Kingdom of Saudi Arabia. He was raised there until the age of 12 before he and his family moved to the Western Province of Saudi Arabia"
 				type="website"
 			/>

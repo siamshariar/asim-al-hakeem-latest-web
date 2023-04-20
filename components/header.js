@@ -67,7 +67,7 @@ export default function Header({ playlists, activePlaylistId, lectures }) {
 									<div className="vwrap">
 										<ul className="vmove">
 											{lectures.videoLists &&
-												lectures.videoLists.map((item) => (
+												lectures.videoLists.map((item, i) => (
 													// <div
 													// 	className="col col-r s12 m6 l4 xl3"
 													// 	key={item.id}>
@@ -76,7 +76,7 @@ export default function Header({ playlists, activePlaylistId, lectures }) {
 													// 		statistics={lectures.videoStats}
 													// 	/>
 													// </div>
-													<li className="vitem">
+													<li className="vitem" key={i}>
 														<Link href={`/lectures/watch/${item.id}`}>
 															<a>{item.title}</a>
 														</Link>
