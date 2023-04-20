@@ -107,7 +107,7 @@
 	padding: 0.5rem 2rem;
 }
 
-.select-tag-list ul li a {
+.select-tag-list:not(.lectures) ul li a {
 	display: block;
 	border: 1.5px solid var(--clr11);
 	text-align: left;
@@ -124,7 +124,7 @@
 	padding-bottom: 0.25rem;
 }
 
-.select-tag-list ul li.selected a {
+.select-tag-list:not(.lectures) ul li.selected a {
 	background: var(--main-color);
 	color: #fff;
 	border-color: var(--main-color);

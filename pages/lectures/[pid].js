@@ -109,7 +109,8 @@ export default function LectureList({
 							</h1>
 						</div>
 					</div>
-					<div className={"select-tag-list" + (catOpen ? " open" : "")}>
+					<div
+						className={"select-tag-list lectures" + (catOpen ? " open" : "")}>
 						<div className="page-width opt_page-width">
 							<div className="box opt_box">
 								<ul>

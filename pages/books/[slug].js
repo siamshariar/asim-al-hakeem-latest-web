@@ -42,7 +42,7 @@ export default function BookDetail({
 											<div className="book-detail-left">
 												<div className="book-detail-left-inner">
 													<Image
-														src={server + detail.imageSrc}
+														src={detail.imageSrc}
 														alt=""
 														layout="fill"
 														objectFit="cover"
