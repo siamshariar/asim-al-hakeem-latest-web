@@ -14,6 +14,7 @@
 	border-radius: 6px;
 	font-weight: 500;
 	color: var(--main-color);
+	text-align: center;
 	// background-color: var(--gray1);
 }
 
@@ -51,7 +52,7 @@
 	outline: none;
 	cursor: pointer;
 	border: none;
-	padding: 0.7rem 2rem;
+	padding: 0.5rem 2rem;
 	margin: 0;
 	font-family: inherit;
 	font-size: inherit;
@@ -64,7 +65,7 @@
 	overflow: hidden;
 	background: #fff;
 	border: 2px solid var(--main-color);
-	color: ghostwhite;
+	color: #f8f8ff;
 }
 
 .button2 span {

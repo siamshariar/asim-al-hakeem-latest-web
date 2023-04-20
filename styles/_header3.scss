@@ -106,7 +106,9 @@
 	color: var(--txt11);
 	transition: color 250ms ease-in-out;
 }
-
+.header-3 .main-menu li .sub-menu ul li a.active {
+	color: var(--main-color);
+}
 .header-3 .main-menu li .sub-menu ul li a:hover {
 	color: var(--main-color);
 }

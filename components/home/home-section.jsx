@@ -12,9 +12,9 @@ export default function HomeSection({ children, title, link }) {
 
 				<div className="section-bottom">
 					<Link href={link} passHref>
-						<button className="button2">
+						<a className="button2">
 							<span>See more</span>
-						</button>
+						</a>
 					</Link>
 				</div>
 			</div>

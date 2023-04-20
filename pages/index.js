@@ -10,6 +10,7 @@ import {
 	getHome3Posts4,
 	getHomeBooks,
 	getHomeQna,
+	getHeaderLectures,
 } from "../lib/fetch";
 
 import Meta from "../components/meta";
@@ -36,6 +37,7 @@ import HomeQuoteSlider from "../components/home/quote-slider";
 
 export default function Home({
 	lectures,
+	headerLectures,
 	quotes,
 	// organizations,
 	articles,
@@ -50,16 +52,13 @@ export default function Home({
 		<>
 			<Meta
 				title=""
-				description="ড. মুহাম্মাদ সাইফুল্লাহ একজন অধ্যাপক, ইসলামিক
-        স্কলার, লেখক, গবেষক এবং দ্বীনের একনিষ্ঠ দা'য়ী।
-        ইসলামের প্রচার-প্রসারে স্বনামধন্য মিডিয়া ব্যক্তিত্বও।
-        ফিকহ শারীআহ, ইসলামি আইন ও আইনশাস্ত্র বিভাগ, মদীনা ইসলামি বিশ্ববিদ্যালয়, কিংডম অফ সৌদি আরব থেকে ব্যাচেলর, মাস্টার্স ও পিএচডি সম্পন্ন করেন।"
-				url="www.muhammadsaifullah.com"
-				image="/img/id/logo.png"
+				description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar, which lies in the east of the Kingdom of Saudi Arabia. He was raised there until the age of 12 before he and his family moved to the Western Province of Saudi Arabia"
+				url={`${server}/contact`}
+				image={`${server}/img/id/default_share.jpeg`}
 				type="website"
 			/>
 
-			<Header playlists={playlists} />
+			<Header playlists={playlists} lectures={headerLectures} />
 
 			<div className="opt_home_ctn">
 				<HomeBanner />
@@ -80,6 +79,7 @@ export async function getStaticProps(context) {
 	const images = await getOptHomeImages();
 	// const blogs = await getOptHomeBlogs();
 	const lectures = await getHomeLectures();
+	const headerLectures = await getHeaderLectures();
 	const quotes = await getOptHomeQuotes();
 	// const books = await getOptHomeBooks();
 	// const organizations = await getHomeOrganizations();
@@ -97,6 +97,7 @@ export async function getStaticProps(context) {
 		props: {
 			images,
 			lectures,
+			headerLectures,
 			quotes,
 			// organizations,
 			articles,

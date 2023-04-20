@@ -130,7 +130,7 @@ export default function MobileNav(props) {
 								</Link>
 							</li>
 							<li>
-								<Link href="/questions">
+								<Link href="/questions/all">
 									<a onClick={(e) => props.navControl(false)(e)}>
 										<QuestionAnswer />
 										Questions
@@ -139,7 +139,7 @@ export default function MobileNav(props) {
 							</li>
 
 							<li>
-								<Link href="#">
+								<Link href="/counselling-session">
 									<a onClick={(e) => props.navControl(false)(e)}>
 										{/* <ClassIcon /> */}
 										<AssessmentIcon />
@@ -148,7 +148,7 @@ export default function MobileNav(props) {
 								</Link>
 							</li>
 							<li>
-								<Link href="#">
+								<Link href="/ask-a-question">
 									<a onClick={(e) => props.navControl(false)(e)}>
 										<QuestionAnswer />
 										Ask a Question
@@ -156,7 +156,7 @@ export default function MobileNav(props) {
 								</Link>
 							</li>
 							<li>
-								<Link href="#">
+								<Link href="/contact">
 									<a onClick={(e) => props.navControl(false)(e)}>
 										<MailIcon />
 										Contact/Booking

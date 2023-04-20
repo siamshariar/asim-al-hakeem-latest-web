@@ -12,9 +12,12 @@ import ContactIcon from "@mui/icons-material/ContactPageOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import MobileNav from "./mobile-nav";
+import { useRouter } from "next/router";
+import { getHomeLectures } from "../lib/fetch";
 
-export default function Header({ playlists, activePlaylistId }) {
+export default function Header({ playlists, activePlaylistId, lectures }) {
 	// show hide header on scroll
+	const router = useRouter();
 	const header = useRef(null);
 	const [scrollTop, setScrollTop] = useState(0);
 	const [didMount, setDidMount] = useState(false);
@@ -63,27 +66,37 @@ export default function Header({ playlists, activePlaylistId }) {
 									<span className="headline-title">Headline:</span>
 									<div className="vwrap">
 										<ul className="vmove">
-											<li className="vitem">
-												Sheikh Assim grew up in Al-Khobar like, as he says, “any
-												other kid down the block”; going to school, having
-												friends, having the
-											</li>
-											<li className="vitem">
-												We feel that time is always a problem for us. When we
-												are young, the only thing we think about is playing and
-												enjoying ourselves, i.e., killing time
-											</li>
-											<li className="vitem">
-												This is all what the youth think about; just wasting
-												time, playing cards, going around the streets, riding
-												bikes, watching movies, listening to music, and doing
-											</li>
+											{lectures.videoLists &&
+												lectures.videoLists.map((item) => (
+													// <div
+													// 	className="col col-r s12 m6 l4 xl3"
+													// 	key={item.id}>
+													// 	<PostCard
+													// 		item={item}
+													// 		statistics={lectures.videoStats}
+													// 	/>
+													// </div>
+													<li className="vitem">
+														<Link href={`/lectures/watch/${item.id}`}>
+															<a>{item.title}</a>
+														</Link>
+													</li>
+												))}
+
 											{/* again 1st item */}
-											<li className="vitem">
-												Sheikh Assim grew up in Al-Khobar like, as he says, “any
-												other kid down the block”; going to school, having
-												friends, having the
-											</li>
+											{
+												<li className="vitem">
+													<Link
+														href={`/lectures/watch/${
+															lectures.videoLists && lectures.videoLists[0].id
+														}`}>
+														<a>
+															{lectures.videoLists &&
+																lectures.videoLists[0].title}
+														</a>
+													</Link>
+												</li>
+											}
 										</ul>
 									</div>
 								</div>
@@ -144,7 +157,7 @@ export default function Header({ playlists, activePlaylistId }) {
 								<ul className="main-menu">
 									<li>
 										<Link href="/">
-											<a>
+											<a className={router.pathname === "/" ? "active" : ""}>
 												{/*<span className="main-menu-icon">*/}
 												{/*  <BookIcon />*/}
 												{/*</span>*/}
@@ -154,7 +167,12 @@ export default function Header({ playlists, activePlaylistId }) {
 									</li>
 									<li>
 										{/* <Link href={`/lectures/${youtube.uploadPlaylistID}`}> */}
-										<a>
+										<a
+											className={
+												router.pathname.startsWith("/lectures")
+													? "menu-active"
+													: ""
+											}>
 											Lectures
 											<span className="main-menu-icon icon-more">
 												<ExpandMoreIcon />
@@ -169,7 +187,15 @@ export default function Header({ playlists, activePlaylistId }) {
 														firstList.map((playlist) => (
 															<li key={playlist.id}>
 																<Link href={`/lectures/${playlist.id}`}>
-																	<a>{playlist.title}</a>
+																	<a
+																		className={
+																			router.asPath ===
+																			`/lectures/${playlist.id}`
+																				? "active"
+																				: ""
+																		}>
+																		{playlist.title}
+																	</a>
 																</Link>
 															</li>
 														))}
@@ -180,7 +206,15 @@ export default function Header({ playlists, activePlaylistId }) {
 														secondList.map((playlist) => (
 															<li key={playlist.id}>
 																<Link href={`/lectures/${playlist.id}`}>
-																	<a>{playlist.title}</a>
+																	<a
+																		className={
+																			router.asPath ===
+																			`/lectures/${playlist.id}`
+																				? "active"
+																				: ""
+																		}>
+																		{playlist.title}
+																	</a>
 																</Link>
 															</li>
 														))}
@@ -191,7 +225,15 @@ export default function Header({ playlists, activePlaylistId }) {
 														thirdList.map((playlist) => (
 															<li key={playlist.id}>
 																<Link href={`/lectures/${playlist.id}`}>
-																	<a>{playlist.title}</a>
+																	<a
+																		className={
+																			router.asPath ===
+																			`/lectures/${playlist.id}`
+																				? "active"
+																				: ""
+																		}>
+																		{playlist.title}
+																	</a>
 																</Link>
 															</li>
 														))}
@@ -202,37 +244,78 @@ export default function Header({ playlists, activePlaylistId }) {
 
 									<li>
 										<Link href="/articles">
-											<a>Articles</a>
+											<a
+												className={
+													router.pathname.startsWith("/articles")
+														? "active"
+														: ""
+												}>
+												Articles
+											</a>
 										</Link>
 									</li>
 									<li>
 										<Link href="/books">
-											<a>Books</a>
+											<a
+												className={
+													router.pathname.startsWith("/books") ? "active" : ""
+												}>
+												Books
+											</a>
 										</Link>
 									</li>
 									<li>
 										<Link href="/questions/all">
-											<a>QnA</a>
+											<a
+												className={
+													router.pathname.startsWith("/questions")
+														? "active"
+														: ""
+												}>
+												QnA
+											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="#">
-											<a>Counseling Session</a>
+										<Link href="/counselling-session">
+											<a
+												className={
+													router.pathname === "/counselling-session"
+														? "active"
+														: ""
+												}>
+												Counselling Session
+											</a>
 										</Link>
 									</li>
 									<li>
-										<Link href="#">
-											<a>Ask a Question</a>
+										<Link href="/ask-a-question">
+											<a
+												className={
+													router.pathname === "/ask-a-question" ? "active" : ""
+												}>
+												Ask a Question
+											</a>
 										</Link>
 									</li>
 									<li>
 										<Link href="/contact">
-											<a>Contact</a>
+											<a
+												className={
+													router.pathname === "/contact" ? "active" : ""
+												}>
+												Contact
+											</a>
 										</Link>
 									</li>
 									<li>
 										<Link href="/about">
-											<a>About</a>
+											<a
+												className={
+													router.pathname === "/about" ? "active" : ""
+												}>
+												About
+											</a>
 										</Link>
 									</li>
 								</ul>

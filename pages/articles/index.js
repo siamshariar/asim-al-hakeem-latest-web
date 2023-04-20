@@ -1,5 +1,9 @@
 import { server } from "../../lib/config";
-import { getArticles, getAllPlaylists2 } from "../../lib/fetch";
+import {
+	getArticles,
+	getAllPlaylists2,
+	getHeaderLectures,
+} from "../../lib/fetch";
 import Layout from "../../components/layout";
 import Meta from "../../components/meta";
 import Header from "../../components/header";
@@ -7,21 +11,18 @@ import PostCardArticle from "../../components/card/post-card-article";
 // import PostCardArticle2 from "../../components/card/post-card-article2";
 import Pagination from "../../components/pagination";
 
-export default function BlogList({ articles, playlists }) {
+export default function BlogList({ articles, playlists, headerLectures }) {
 	return (
 		<>
 			<Meta
-				title="প্রবন্ধ সমূহ | ড. মুহাম্মাদ সাইফুল্লাহ অফিসিয়াল ওয়েবসাইট - Official website of Dr. Muhammad Saifullah"
-				description="ড. মুহাম্মাদ সাইফুল্লাহ একজন অধ্যাপক, ইসলামিক
-        স্কলার, লেখক, গবেষক এবং দ্বীনের একনিষ্ঠ দা'য়ী।
-        ইসলামের প্রচার-প্রসারে স্বনামধন্য মিডিয়া ব্যক্তিত্বও।
-        ফিকহ শারীআহ, ইসলামি আইন ও আইনশাস্ত্র বিভাগ, মদীনা ইসলামি বিশ্ববিদ্যালয়, কিংডম অফ সৌদি আরব থেকে ব্যাচেলর, মাস্টার্স ও পিএচডি সম্পন্ন করেন।"
+				title="Articles"
+				description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar, which lies in the east of the Kingdom of Saudi Arabia. He was raised there until the age of 12 before he and his family moved to the Western Province of Saudi Arabia"
 				url={`${server}/articles`}
-				image={`${server}/img/id/default_share.png`}
+				image={`${server}/img/id/default_share.jpeg`}
 				type="website"
 			/>
 
-			<Header playlists={playlists} />
+			<Header playlists={playlists} lectures={headerLectures} />
 
 			<section className="cat-page-top">
 				<div className="page-width">
@@ -86,11 +87,13 @@ export async function getStaticProps(context) {
 
 	const articles = await getArticles();
 	const playlists = await getAllPlaylists2();
+	const headerLectures = await getHeaderLectures();
 
 	return {
 		props: {
 			articles,
 			playlists: playlists.playlists,
+			headerLectures,
 		},
 	};
 }

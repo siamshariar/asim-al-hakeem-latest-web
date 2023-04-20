@@ -89,7 +89,8 @@ ul.main-menu li a {
 	transition: color 250ms ease !important;
 }
 
-ul.main-menu li a:hover {
+ul.main-menu li a:hover,
+ul.main-menu li a.active {
 	color: var(--main-color);
 }
 
@@ -311,14 +312,17 @@ form.search input[type="text"]::-ms-input-placeholder {
 	0% {
 		bottom: 0;
 	}
-	33.3% {
+	25% {
 		bottom: 30px;
 	}
-	66.6% {
+	50% {
 		bottom: 60px;
 	}
-	100% {
+	75% {
 		bottom: 90px;
+	}
+	100% {
+		bottom: 120px;
 	}
 }
 // @keyframes ticker {
@@ -354,7 +358,7 @@ form.search input[type="text"]::-ms-input-placeholder {
 }
 .header .navbar {
 	background-image: url("/img/bg/header-bg.jpg");
-	background-size: cover;
+	background-size: contain;
 }
 
 // responsive

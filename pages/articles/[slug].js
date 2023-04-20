@@ -4,6 +4,7 @@ import {
 	getArticleDetails,
 	getRelatedArticles,
 	getAllPlaylists2,
+	getHeaderLectures,
 } from "../../lib/fetch";
 import Link from "next/link";
 import Layout from "../../components/layout";
@@ -12,21 +13,18 @@ import Header from "../../components/header";
 import parse from "html-react-parser";
 import Share from "../../components/share";
 
-export default function BlogDetail({ detail, playlists }) {
+export default function BlogDetail({ detail, playlists, headerLectures }) {
 	return (
 		<>
 			<Meta
 				title={detail.postTitle}
-				description="ড. মুহাম্মাদ সাইফুল্লাহ একজন অধ্যাপক, ইসলামিক
-        স্কলার, লেখক, গবেষক এবং দ্বীনের একনিষ্ঠ দা'য়ী।
-        ইসলামের প্রচার-প্রসারে স্বনামধন্য মিডিয়া ব্যক্তিত্বও।
-        ফিকহ শারীআহ, ইসলামি আইন ও আইনশাস্ত্র বিভাগ, মদীনা ইসলামি বিশ্ববিদ্যালয়, কিংডম অফ সৌদি আরব থেকে ব্যাচেলর, মাস্টার্স ও পিএচডি সম্পন্ন করেন।"
+				description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar, which lies in the east of the Kingdom of Saudi Arabia. He was raised there until the age of 12 before he and his family moved to the Western Province of Saudi Arabia"
+				image={`${server}/img/id/default_share.jpeg`}
 				url={`${server}/articles/${detail.postSlug}`}
-				image={`${server}/img/id/default_share.png`}
 				type="article"
 			/>
 
-			<Header playlists={playlists} />
+			<Header playlists={playlists} lectures={headerLectures} />
 
 			{/* <section className="blog-detail-top">
 				<div className="page-width">
@@ -108,11 +106,13 @@ export async function getStaticProps({ params }) {
 	const slug = params.slug;
 	const detail = await getArticleDetails(slug);
 	const playlists = await getAllPlaylists2();
+	const headerLectures = await getHeaderLectures();
 
 	return {
 		props: {
 			detail,
 			playlists: playlists.playlists,
+			headerLectures,
 		},
 	};
 }

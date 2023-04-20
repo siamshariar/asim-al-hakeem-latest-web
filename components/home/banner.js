@@ -36,8 +36,8 @@ export default function HomeBanner() {
 						<div className="row row-r">
 							<div className="col col-r s12 l6">
 								<div className="h3-cat-wrap">
-									<Link href="#" passHref>
-										<button className="button1">See more</button>
+									<Link href="/about" passHref>
+										<a className="button1">See more</a>
 									</Link>
 								</div>
 							</div>

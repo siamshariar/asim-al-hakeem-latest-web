@@ -215,7 +215,7 @@ html {
 	border-style: solid;
 	border-color: var(--clr11);
 	color: var(--txt13);
-	font-family: Kalpurush;
+	// font-family: Kalpurush;
 	background-color: var(--clr11);
 	transition: all 250ms ease 0s;
 	display: flex;
@@ -290,7 +290,7 @@ html {
 // title regular
 .title-r {
 	position: relative;
-	font-family: Kalpurush;
+	// font-family: Kalpurush;
 	line-height: 1.2;
 	display: block;
 	color: var(--txt12);
@@ -333,7 +333,7 @@ html {
 	font-weight: bold;
 	padding: 0 0.75rem;
 	line-height: 1.85rem;
-	font-family: Kalpurush;
+	// font-family: Kalpurush;
 	min-width: 5.625rem;
 	display: block;
 	text-align: center;
@@ -372,7 +372,7 @@ html {
 
 // title small
 .title-s {
-	font-family: Kalpurush;
+	// font-family: Kalpurush;
 	font-weight: bold;
 	line-height: 1.33;
 	display: block;
@@ -440,7 +440,7 @@ html {
 	font-weight: normal;
 	padding: 0;
 	font-size: 1rem;
-	font-family: Kalpurush;
+	// font-family: Kalpurush;
 	transition: color 250ms ease;
 }
 
@@ -458,7 +458,7 @@ html {
 	margin-bottom: 6px;
 	font-size: 1.15rem;
 	//font-size: 1.2rem;
-	line-height: 20px;
+	line-height: 1.375;
 	white-space: normal;
 	display: -moz-box;
 	display: -webkit-box;
@@ -466,7 +466,7 @@ html {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	height: auto;
+	height: 50px;
 	// height: 54px; // Hot fix - Tamzid
 	padding: 2px;
 	padding-bottom: 0;
@@ -474,7 +474,7 @@ html {
 }
 
 .heading-b {
-	font-size: 16px;
+	font-size: 1.5rem;
 }
 
 // responsive
@@ -555,7 +555,7 @@ html {
 	transition: all 250ms ease;
 	background-color: #663399; // default bg
 	color: rgba(255, 255, 255, 0.9); // default color
-	font-family: Kalpurush;
+	// font-family: Kalpurush;
 	font-weight: bold;
 }
 

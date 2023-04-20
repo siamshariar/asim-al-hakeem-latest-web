@@ -1,5 +1,9 @@
-import { youtube, constants } from "../../lib/config";
-import { getAllPlaylists2, getYoutubeVideoListByUrl } from "../../lib/fetch";
+import { youtube, constants, server } from "../../lib/config";
+import {
+	getAllPlaylists2,
+	getHeaderLectures,
+	getYoutubeVideoListByUrl,
+} from "../../lib/fetch";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Meta from "../../components/meta";
@@ -29,6 +33,7 @@ export default function LectureList({
 	initialVideos,
 	initPlaylistId,
 	playlists,
+	headerLectures,
 }) {
 	const ref = useRef();
 	const catRef = useRef();
@@ -79,19 +84,17 @@ export default function LectureList({
 	return (
 		<>
 			<Meta
-				title={`${pageTitle} | ড. মুহাম্মাদ সাইফুল্লাহ অফিসিয়াল ওয়েবসাইট - Official website of Dr. Muhammad Saifullah`}
-				description="ড. মুহাম্মাদ সাইফুল্লাহ একজন অধ্যাপক, ইসলামিক
-        স্কলার, লেখক, গবেষক এবং দ্বীনের একনিষ্ঠ দা'য়ী।
-        ইসলামের প্রচার-প্রসারে স্বনামধন্য মিডিয়া ব্যক্তিত্বও।
-        ফিকহ শারীআহ, ইসলামি আইন ও আইনশাস্ত্র বিভাগ, মদীনা ইসলামি বিশ্ববিদ্যালয়, কিংডম অফ সৌদি আরব থেকে ব্যাচেলর, মাস্টার্স ও পিএচডি সম্পন্ন করেন।"
-				url="www.muhammadsaifullah.com"
-				image="/img/id/logo.png"
+				title={pageTitle}
+				description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar, which lies in the east of the Kingdom of Saudi Arabia. He was raised there until the age of 12 before he and his family moved to the Western Province of Saudi Arabia"
+				image={`${server}/img/id/default_share.jpeg`}
+				url={`${server}/lectures/${youtube.uploadPlaylistID}`}
 				type="website"
 			/>
 
 			<Header
 				playlists={playlists.playlists}
 				activePlaylistId={initPlaylistId}
+				lectures={headerLectures}
 			/>
 
 			<div className="opt_lecture_list">
@@ -226,12 +229,14 @@ export async function getStaticProps({ params }) {
 	const url = `${youtube.url}/playlistItems?key=${youtube.key}&part=snippet&playlistId=${playlistId}&maxResults=${constants.DEFAULT_PAGE_LIMIT}`;
 	const videoLists = await getYoutubeVideoListByUrl(url);
 	const playlists = await getAllPlaylists2();
+	const headerLectures = await getHeaderLectures();
 
 	return {
 		props: {
 			initialVideos: [videoLists],
 			initPlaylistId: playlistId,
 			playlists,
+			headerLectures,
 		},
 		revalidate: 60,
 	};

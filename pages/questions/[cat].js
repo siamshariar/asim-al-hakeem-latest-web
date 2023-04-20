@@ -3,6 +3,7 @@ import {
 	getAllPlaylists2,
 	getAllQnaCategory,
 	getAllQuestions,
+	getHeaderLectures,
 	getQnCatTitle,
 	getYoutubeVideoListByUrl,
 	qaFetcher,
@@ -33,6 +34,7 @@ export default function QnList({
 	categories,
 	catTitle,
 	playlists,
+	headerLectures,
 }) {
 	const ref = useRef();
 	const catRef = useRef();
@@ -89,13 +91,13 @@ export default function QnList({
 		<>
 			<Meta
 				title={pageTitle}
-				description="ড. খোন্দকার আব্দুল্লাহ জাহাঙ্গীর (রাহি.) এর প্রশ্নোত্তর সমূহ"
+				description="Questions and Answer of Assim Alhakeem"
 				url={`${server}/questions/${cat_slug}`}
-				image={`${server}/img/id/default_share.png`}
+				image={`${server}/img/id/default_share.jpeg`}
 				type="website"
 			/>
 
-			<Header playlists={playlists.playlists} />
+			<Header playlists={playlists.playlists} lectures={headerLectures} />
 
 			<section className="cat-page-top cat-page-top-2">
 				<div className="page-width">
@@ -188,6 +190,7 @@ export async function getStaticProps({ params }) {
 	const categories = await getAllQnaCategory();
 	const catTitle = await getQnCatTitle(cat_slug);
 	const playlists = await getAllPlaylists2();
+	const headerLectures = await getHeaderLectures();
 
 	return {
 		props: {
@@ -196,6 +199,7 @@ export async function getStaticProps({ params }) {
 			categories,
 			catTitle,
 			playlists,
+			headerLectures,
 		},
 		revalidate: 60,
 	};

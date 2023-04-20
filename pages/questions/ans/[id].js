@@ -6,22 +6,23 @@ import Share from "../../../components/share";
 import {
 	getAllPlaylists2,
 	getAnsById,
+	getHeaderLectures,
 	getQnaByLimit,
 } from "../../../lib/fetch";
 import Header from "../../../components/header";
 
-export default function BlogDetail({ ans, playlists }) {
+export default function BlogDetail({ ans, playlists, headerLectures }) {
 	return (
 		<>
 			<Meta
 				title={ans[0].qn}
-				description={ans[0].ans}
+				description={ans[0].qn}
 				url={`${server}/questions/ans/${ans[0].id}`}
-				image={`${server}/img/id/default_share.png`}
+				image={`${server}/img/id/default_share.jpeg`}
 				type="website"
 			/>
 
-			<Header playlists={playlists.playlists} />
+			<Header playlists={playlists.playlists} lectures={headerLectures} />
 
 			{/* <section className="blog-detail-top">
 				<div className="page-width">
@@ -103,11 +104,13 @@ export async function getStaticProps({ params }) {
 
 	const ans = await getAnsById(id);
 	const playlists = await getAllPlaylists2();
+	const headerLectures = await getHeaderLectures();
 
 	return {
 		props: {
 			ans,
 			playlists,
+			headerLectures,
 		},
 	};
 }

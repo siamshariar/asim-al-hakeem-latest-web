@@ -3,6 +3,7 @@ import {
 	getRelatedYoutubeVideoListByUrl,
 	getYoutubeVideoDetailsByUrl,
 	getAllPlaylists2,
+	getHeaderLectures,
 } from "../../../lib/fetch";
 import { server, youtube } from "../../../lib/config";
 import { useRef } from "react";
@@ -13,7 +14,7 @@ import Header from "../../../components/header";
 import Share from "../../../components/share";
 import { date } from "../../../lib/format";
 
-export default function VideoDetail({ id, data, playlists }) {
+export default function VideoDetail({ id, data, playlists, headerLectures }) {
 	// const fetcher = (...args) => fetch(...args).then(res => res.json())
 	// const url = `${youtube.url}/videos?key=${youtube.key}&part=snippet,statistics&id=${id}&maxResults=${constants.YOUTUBE_RELATED_VIDEOS_PAGE_LIMIT}`
 	// const {data} = useSWR(url, fetcher, {initialData: detail, revalidateOnMount: true });
@@ -43,7 +44,7 @@ export default function VideoDetail({ id, data, playlists }) {
 				type="article"
 			/>
 
-			<Header playlists={playlists} />
+			<Header playlists={playlists} lectures={headerLectures} />
 
 			<section className="blog-detail-ctn video-blog-detail">
 				<div className="page-width">
@@ -151,6 +152,7 @@ export async function getStaticProps({ params }) {
 	const url = `${youtube.url}/videos?key=${youtube.key}&part=snippet,statistics&id=${id}`;
 	const detail = await getYoutubeVideoDetailsByUrl(url);
 	const playlists = await getAllPlaylists2();
+	const headerLectures = await getHeaderLectures();
 
 	// const relatedVideosUrl = `${youtube.url}/search?key=${youtube.key}&part=snippet&relatedToVideoId=${id}&type=video&maxResults=${constants.YOUTUBE_RELATED_VIDEOS_PAGE_LIMIT}`
 	// const videoLists = await getRelatedYoutubeVideoListByUrl(relatedVideosUrl)
@@ -160,6 +162,7 @@ export async function getStaticProps({ params }) {
 			id,
 			data: detail,
 			playlists: playlists.playlists,
+			headerLectures,
 			// relatedVideos: JSON.parse(JSON.stringify(videoLists))
 		},
 		revalidate: 60,
