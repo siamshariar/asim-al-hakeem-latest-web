@@ -143,7 +143,7 @@ export default function MobileNav(props) {
 									<a onClick={(e) => props.navControl(false)(e)}>
 										{/* <ClassIcon /> */}
 										<AssessmentIcon />
-										Counseling Session
+										Counselling Session
 									</a>
 								</Link>
 							</li>
@@ -159,7 +159,7 @@ export default function MobileNav(props) {
 								<Link href="/contact">
 									<a onClick={(e) => props.navControl(false)(e)}>
 										<MailIcon />
-										Contact/Booking
+										Contact
 									</a>
 								</Link>
 							</li>

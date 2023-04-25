@@ -63,8 +63,8 @@ export default function BlogDetail({ ans, playlists, headerLectures }) {
 
 								<div className="blog-share">
 									<Share
-										urlWeb={`/questions/ans/${ans[0].id}`}
-										urlMobile={`/questions/ans/${ans[0].id}`}
+										urlWeb={`questions/ans/${ans[0].id}`}
+										urlMobile={`questions/ans/${ans[0].id}`}
 										title="প্রশ্নোত্তর"
 									/>
 								</div>

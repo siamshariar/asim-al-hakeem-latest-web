@@ -146,8 +146,8 @@ export default function BlogDetail({ playlists, headerLectures }) {
 							<div className="blog-action">
 								<div className="blog-share">
 									<Share
-										urlWeb="/counselling-session"
-										urlMobile="/counselling-session"
+										urlWeb="counselling-session"
+										urlMobile="counselling-session"
 										title="Counselling Session"
 									/>
 								</div>
