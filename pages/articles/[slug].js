@@ -2,19 +2,22 @@ import { server } from "../../lib/config";
 import {
 	getArticles,
 	getArticleDetails,
-	getRelatedArticles,
 	getAllPlaylists2,
 	getHeaderLectures,
+	getAllQnaCategory,
 } from "../../lib/fetch";
 import Link from "next/link";
-import Layout from "../../components/layout";
 import Meta from "../../components/meta";
 import Header from "../../components/header";
-import parse from "html-react-parser";
 import Share from "../../components/share";
 import Image from "next/image";
 
-export default function BlogDetail({ detail, playlists, headerLectures }) {
+export default function BlogDetail({
+	detail,
+	playlists,
+	headerLectures,
+	qnaCategories,
+}) {
 	return (
 		<>
 			<Meta
@@ -25,7 +28,11 @@ export default function BlogDetail({ detail, playlists, headerLectures }) {
 				type="article"
 			/>
 
-			<Header playlists={playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists}
+				lectures={headerLectures}
+				qna_categories={qnaCategories}
+			/>
 
 			{/* <section className="blog-detail-top">
 				<div className="page-width">
@@ -130,12 +137,14 @@ export async function getStaticProps({ params }) {
 	const detail = await getArticleDetails(slug);
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qnaCategories = await getAllQnaCategory();
 
 	return {
 		props: {
 			detail,
 			playlists: playlists.playlists,
 			headerLectures,
+			qnaCategories,
 		},
 	};
 }

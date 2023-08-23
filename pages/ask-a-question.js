@@ -6,6 +6,7 @@ import {
 	getRelatedArticles,
 	getAllPlaylists2,
 	getHeaderLectures,
+	getAllQnaCategory,
 } from "../lib/fetch";
 import Link from "next/link";
 import Layout from "../components/layout";
@@ -14,7 +15,11 @@ import Header from "../components/header";
 import parse from "html-react-parser";
 import Share from "../components/share";
 
-export default function BlogDetail({ playlists, headerLectures }) {
+export default function BlogDetail({
+	playlists,
+	headerLectures,
+	qna_categories,
+}) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 	};
@@ -28,7 +33,11 @@ export default function BlogDetail({ playlists, headerLectures }) {
 				type="website"
 			/>
 
-			<Header playlists={playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists}
+				lectures={headerLectures}
+				qna_categories={qna_categories}
+			/>
 
 			{/* <section className="blog-detail-top">
 				<div className="page-width">
@@ -133,11 +142,13 @@ export default function BlogDetail({ playlists, headerLectures }) {
 export async function getStaticProps() {
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qna_categories = await getAllQnaCategory();
 
 	return {
 		props: {
 			playlists: playlists.playlists,
 			headerLectures,
+			qna_categories,
 		},
 	};
 }

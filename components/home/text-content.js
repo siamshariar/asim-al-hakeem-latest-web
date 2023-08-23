@@ -6,7 +6,7 @@ export default function TextContent() {
 					<h2 className="h3-sec-title-2">Ask a Question</h2>
 
 					<div className="h-text__wrapper">
-						<div className="container1">
+						<div className="container1 card-r">
 							<div className="inner-content">
 								<p className="text-bold">
 									Assalamu alaikum wa rahmatullahi wa barakatuhu,
@@ -25,7 +25,7 @@ export default function TextContent() {
 								<p>Jazakum Allahu Khairan</p>
 							</div>
 						</div>
-						<div className="container2">
+						<div className="container2 card-r">
 							<div className="inner-content">
 								<p className="text-bold">COUNSELING SESSIONS</p>
 								<p className="text-bold">

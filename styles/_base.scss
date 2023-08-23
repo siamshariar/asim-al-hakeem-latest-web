@@ -15,7 +15,7 @@ html {
 }
 
 body {
-	font-family: "Roboto", sans-serif;
+	font-family: var(--app-font-primary);
 	font-size: 1rem;
 	font-weight: normal;
 	line-height: 1.5;
@@ -43,7 +43,8 @@ html {
 
 .content_without_footer {
 	min-height: 100vh;
-	padding-bottom: 225px;
+	// padding-bottom: 225px;
+	padding-bottom: 64px;
 }
 
 .box {
@@ -70,7 +71,8 @@ html {
 		width: 94%;
 	}
 	.content_without_footer {
-		padding-bottom: 102px;
+		// padding-bottom: 102px;
+		padding-bottom: 140px;
 	}
 }
 
@@ -86,7 +88,7 @@ html {
 }
 
 .viewport.homepage {
-	background-color: #f4f4f4;
+	// background-color: #f4f4f4;
 }
 
 // home sections
@@ -102,10 +104,10 @@ html {
 }
 
 @media screen and (max-width: 1200px) {
-	.h-sec {
-		padding-top: 2rem;
-		padding-bottom: 1rem;
-	}
+	// .h-sec {
+	// 	padding-top: 2rem;
+	// 	padding-bottom: 1rem;
+	// }
 }
 
 // custom row column
@@ -131,17 +133,18 @@ html {
 // custom card
 .card-r {
 	overflow: hidden;
-	box-shadow: var(--bs11);
+	// box-shadow: var(--bs11);
 	margin: 0;
 	background-color: #fff;
-	border-radius: 0;
-	transition: transform 250ms ease, box-shadow 250ms ease, color 250ms ease;
 	min-height: 100%;
+	border-radius: 20px;
+	box-shadow: 10px 10px 25px #bebebe, -10px -10px 25px #ffffff;
+	transition: 0.2s ease-in-out;
 }
 
 .card-r:hover {
-	box-shadow: var(--bs12);
-	transform: translateY(-0.25rem);
+	// cursor: pointer;
+	box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card-r .card-image {
@@ -215,7 +218,6 @@ html {
 	border-style: solid;
 	border-color: var(--clr11);
 	color: var(--txt13);
-	// font-family: Kalpurush;
 	background-color: var(--clr11);
 	transition: all 250ms ease 0s;
 	display: flex;
@@ -290,7 +292,6 @@ html {
 // title regular
 .title-r {
 	position: relative;
-	// font-family: Kalpurush;
 	line-height: 1.2;
 	display: block;
 	color: var(--txt12);
@@ -333,7 +334,6 @@ html {
 	font-weight: bold;
 	padding: 0 0.75rem;
 	line-height: 1.85rem;
-	// font-family: Kalpurush;
 	min-width: 5.625rem;
 	display: block;
 	text-align: center;
@@ -372,7 +372,6 @@ html {
 
 // title small
 .title-s {
-	// font-family: Kalpurush;
 	font-weight: bold;
 	line-height: 1.33;
 	display: block;
@@ -440,7 +439,6 @@ html {
 	font-weight: normal;
 	padding: 0;
 	font-size: 1rem;
-	// font-family: Kalpurush;
 	transition: color 250ms ease;
 }
 
@@ -458,7 +456,7 @@ html {
 	margin-bottom: 6px;
 	font-size: 1.15rem;
 	//font-size: 1.2rem;
-	line-height: 1.375;
+	// line-height: 1.375;
 	white-space: normal;
 	display: -moz-box;
 	display: -webkit-box;
@@ -466,11 +464,12 @@ html {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	height: 50px;
+	// height: 50px;
 	// height: 54px; // Hot fix - Tamzid
 	padding: 2px;
 	padding-bottom: 0;
 	word-break: break-word;
+	font-family: var(--app-font-primary);
 }
 
 .heading-b {
@@ -555,7 +554,6 @@ html {
 	transition: all 250ms ease;
 	background-color: #663399; // default bg
 	color: rgba(255, 255, 255, 0.9); // default color
-	// font-family: Kalpurush;
 	font-weight: bold;
 }
 
@@ -675,6 +673,15 @@ i.instagram {
 }
 @media screen and (max-width: 1024px) {
 	.viewport {
-		padding-top: 5rem;
+		padding-top: 77px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.viewport {
+		padding-top: 67px;
+	}
+
+	.h-sec {
+		padding: 2rem 0;
 	}
 }

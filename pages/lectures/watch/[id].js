@@ -4,6 +4,7 @@ import {
 	getYoutubeVideoDetailsByUrl,
 	getAllPlaylists2,
 	getHeaderLectures,
+	getAllQnaCategory,
 } from "../../../lib/fetch";
 import { server, youtube } from "../../../lib/config";
 import { useRef } from "react";
@@ -14,7 +15,13 @@ import Header from "../../../components/header";
 import Share from "../../../components/share";
 import { date } from "../../../lib/format";
 
-export default function VideoDetail({ id, data, playlists, headerLectures }) {
+export default function VideoDetail({
+	id,
+	data,
+	playlists,
+	headerLectures,
+	qnaCategories,
+}) {
 	// const fetcher = (...args) => fetch(...args).then(res => res.json())
 	// const url = `${youtube.url}/videos?key=${youtube.key}&part=snippet,statistics&id=${id}&maxResults=${constants.YOUTUBE_RELATED_VIDEOS_PAGE_LIMIT}`
 	// const {data} = useSWR(url, fetcher, {initialData: detail, revalidateOnMount: true });
@@ -44,7 +51,11 @@ export default function VideoDetail({ id, data, playlists, headerLectures }) {
 				type="article"
 			/>
 
-			<Header playlists={playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists}
+				lectures={headerLectures}
+				qna_categories={qnaCategories}
+			/>
 
 			<section className="blog-detail-ctn video-blog-detail">
 				<div className="page-width">
@@ -153,6 +164,7 @@ export async function getStaticProps({ params }) {
 	const detail = await getYoutubeVideoDetailsByUrl(url);
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qnaCategories = await getAllQnaCategory();
 
 	// const relatedVideosUrl = `${youtube.url}/search?key=${youtube.key}&part=snippet&relatedToVideoId=${id}&type=video&maxResults=${constants.YOUTUBE_RELATED_VIDEOS_PAGE_LIMIT}`
 	// const videoLists = await getRelatedYoutubeVideoListByUrl(relatedVideosUrl)
@@ -163,6 +175,7 @@ export async function getStaticProps({ params }) {
 			data: detail,
 			playlists: playlists.playlists,
 			headerLectures,
+			qnaCategories,
 			// relatedVideos: JSON.parse(JSON.stringify(videoLists))
 		},
 		revalidate: 60,

@@ -1,15 +1,16 @@
 import { server } from "../lib/config";
 import Image from "next/image";
-import { getAllPlaylists2, getHeaderLectures } from "../lib/fetch";
-import Layout from "../components/layout";
+import {
+	getAllPlaylists2,
+	getAllQnaCategory,
+	getHeaderLectures,
+} from "../lib/fetch";
 import Meta from "../components/meta";
 import Header from "../components/header";
-import Link from "next/link";
-import parse from "html-react-parser";
-import BlogDetailImageSlider from "../components/home/blog-detail-image-slider";
-import Share from "../components/share";
+// import Link from "next/link";
+// import parse from "html-react-parser";
 
-export default function About({ playlists, headerLectures }) {
+export default function About({ playlists, headerLectures, qna_categories }) {
 	return (
 		<>
 			<Meta
@@ -20,7 +21,11 @@ export default function About({ playlists, headerLectures }) {
 				type="website"
 			/>
 
-			<Header playlists={playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists}
+				lectures={headerLectures}
+				qna_categories={qna_categories}
+			/>
 
 			<section className="about-page-ctn">
 				<div className="page-width">
@@ -65,11 +70,7 @@ export default function About({ playlists, headerLectures }) {
 							<div className="col col-r s12 m12 l8 xl9">
 								<div className="about-right">
 									<div className="blog-area">
-										<a
-											style={{ marginBottom: "0px" }}
-											className="heading-r heading-b">
-											Introduction
-										</a>
+										<a className="heading-r heading-b">Introduction</a>
 
 										{/*<div className="about-banner">*/}
 										{/*  <Image*/}
@@ -424,11 +425,13 @@ export default function About({ playlists, headerLectures }) {
 export async function getStaticProps(context) {
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qna_categories = await getAllQnaCategory();
 
 	return {
 		props: {
 			playlists: playlists.playlists,
 			headerLectures,
+			qna_categories,
 		},
 	};
 }

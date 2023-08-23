@@ -5,13 +5,19 @@ import parse from "html-react-parser";
 import Share from "../../../components/share";
 import {
 	getAllPlaylists2,
+	getAllQnaCategory,
 	getAnsById,
 	getHeaderLectures,
 	getQnaByLimit,
 } from "../../../lib/fetch";
 import Header from "../../../components/header";
 
-export default function BlogDetail({ ans, playlists, headerLectures }) {
+export default function BlogDetail({
+	ans,
+	playlists,
+	headerLectures,
+	qna_categories,
+}) {
 	return (
 		<>
 			<Meta
@@ -22,7 +28,11 @@ export default function BlogDetail({ ans, playlists, headerLectures }) {
 				type="website"
 			/>
 
-			<Header playlists={playlists.playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists.playlists}
+				lectures={headerLectures}
+				qna_categories={qna_categories}
+			/>
 
 			{/* <section className="blog-detail-top">
 				<div className="page-width">
@@ -105,12 +115,14 @@ export async function getStaticProps({ params }) {
 	const ans = await getAnsById(id);
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qna_categories = await getAllQnaCategory();
 
 	return {
 		props: {
 			ans,
 			playlists,
 			headerLectures,
+			qna_categories,
 		},
 	};
 }

@@ -72,7 +72,6 @@ ul.main-menu li a {
 	color: var(--txt11);
 	text-decoration: none;
 	user-select: none;
-	font-family: Kalpurush;
 	font-weight: normal;
 	font-size: 1.3rem;
 	transition: color 250ms ease;
@@ -83,7 +82,6 @@ ul.main-menu li a {
 	color: var(--txt11) !important;
 	text-decoration: none !important;
 	user-select: none !important;
-	font-family: Kalpurush !important;
 	font-weight: normal !important;
 	font-size: 1.2rem !important;
 	transition: color 250ms ease !important;
@@ -231,7 +229,6 @@ form.search input[type="text"] {
 	font-weight: bold;
 	color: #252525;
 	background: none;
-	font-family: Kalpurush;
 	line-height: 1.8;
 }
 
@@ -243,7 +240,6 @@ form.search input[type="text"]:focus {
 form.search p {
 	color: #a0a0a0;
 	font-size: 1.2rem;
-	font-family: Kalpurush;
 }
 
 form.search input[type="text"]::placeholder {
@@ -739,7 +735,6 @@ form.search input[type="text"]::-ms-input-placeholder {
 		flex-direction: column;
 	}
 	.m-sub-menu-wrap .m-sub-menu-label {
-		font-family: "Roboto", sans-serif;
 		display: flex;
 		justify-content: space-between;
 	}

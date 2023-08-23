@@ -1,4 +1,5 @@
-.h-newsletter {}
+.h-newsletter {
+}
 
 .h-newsletter-ctn {
 	background-color: #fff;
@@ -20,7 +21,6 @@
 
 .h-newsletter form h2 {
 	margin-bottom: 1.25rem;
-	font-family: Kalpurush;
 	line-height: 1.33;
 	display: block;
 	color: var(--txt12);
@@ -31,11 +31,9 @@
 
 .h-newsletter form p {
 	margin-bottom: 2rem;
-	font-family: Kalpurush;
 	color: #718096;
 	font-size: 1rem;
 }
-
 
 .h-newsletter form input {
 	margin-bottom: 1rem !important;
@@ -50,7 +48,6 @@
 	max-width: 300px;
 	height: unset !important;
 	box-sizing: border-box !important;
-	font-family: Kalpurush;
 }
 
 .h-newsletter form button {
@@ -58,7 +55,6 @@
 	display: block;
 	line-height: 2.5rem;
 }
-
 
 // responsive
 @media only screen and (max-width: 576px) {

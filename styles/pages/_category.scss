@@ -9,7 +9,7 @@
 }
 
 .cat-page-top h1 {
-	font-family: Kalpurush;
+	font-family: var(--app-font-primary);
 	font-weight: bold;
 	line-height: 1.33;
 	color: #2d3748;
@@ -103,7 +103,7 @@
 	overflow: auto;
 	display: flex;
 	flex-wrap: wrap;
-	font-family: Kalpurush;
+	font-family: var(--app-font-primary);
 	padding: 0.5rem 2rem;
 }
 
@@ -151,9 +151,9 @@
 
 .cat-page-articles .col-r {
 }
-.cat-page-books .col-r {
-	margin-bottom: 2rem;
-}
+// .cat-page-books .col-r {
+// 	margin-bottom: 2rem;
+// }
 .cat-page-lectures .col-r {
 }
 .cat-page-papers .col-r {
@@ -165,9 +165,9 @@
 .cat-page-papers {
 	margin-bottom: 1rem;
 }
-.cat-page-books {
-	margin-bottom: 0;
-}
+// .cat-page-books {
+// 	margin-bottom: 0;
+// }
 
 .cat-pagination {
 	display: flex;

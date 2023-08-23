@@ -1,6 +1,7 @@
 import { youtube, constants, server } from "../../lib/config";
 import {
 	getAllPlaylists2,
+	getAllQnaCategory,
 	getHeaderLectures,
 	getYoutubeVideoListByUrl,
 } from "../../lib/fetch";
@@ -8,7 +9,6 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Meta from "../../components/meta";
 import Header from "../../components/header";
-import Footer from "../../components/footer";
 
 import PostCardVideo2 from "../../components/card/post-card-video2";
 import Loader from "../../components/loader";
@@ -34,6 +34,7 @@ export default function LectureList({
 	initPlaylistId,
 	playlists,
 	headerLectures,
+	qnaCategories,
 }) {
 	const ref = useRef();
 	const catRef = useRef();
@@ -57,25 +58,12 @@ export default function LectureList({
 	const isReachingEnd = size === numberOfPages;
 	const isRefreshing = isValidating && data && data.length === size;
 
-	const [catOpen, setCatOpen] = useState(false);
-
-	const handleCatOpen = async () => {
-		catOpen ? setCatOpen(false) : setCatOpen(true);
-	};
-
 	const getCategorizedVideos = async (id, pageTitle) => {
 		setCatOpen(false);
 		setSize(1);
 	};
 
 	useEffect(() => {
-		let handler = (e) => {
-			if (catRef.current != null && !catRef.current.contains(e.target)) {
-				setCatOpen(false);
-			}
-		};
-		document.body.addEventListener("mousedown", handler);
-
 		if (isVisible && !isReachingEnd && !isRefreshing) {
 			setSize(size + 1);
 		}
@@ -95,48 +83,24 @@ export default function LectureList({
 				playlists={playlists.playlists}
 				activePlaylistId={initPlaylistId}
 				lectures={headerLectures}
+				qna_categories={qnaCategories}
 			/>
 
 			<div className="opt_lecture_list">
 				<section className="cat-page-top cat-page-top-2 opt_lecture_cat_page_top">
 					<div className="page-width">
 						<div className="box">
-							<h1 ref={catRef}>
-								<div className="cat-page-top-open-btn" onClick={handleCatOpen}>
+							<h1>
+								<div className="cat-page-top-open-btn">
 									<i className="material-icons select-tag-icon">list</i>
 									<em>Categories</em>
 								</div>
 							</h1>
 						</div>
 					</div>
-					<div
-						className={"select-tag-list lectures" + (catOpen ? " open" : "")}>
-						<div className="page-width opt_page-width">
-							<div className="box opt_box">
-								<ul>
-									{playlists.playlists &&
-										playlists.playlists.map((item, index) => (
-											<li
-												className={initPlaylistId == item.id ? "selected" : ""}
-												key={item.id + index}
-												onClick={() =>
-													getCategorizedVideos(item.id, item.title)
-												}>
-												<Link href={`/lectures/${item.id}`}>
-													<a>{item.title}</a>
-												</Link>
-											</li>
-										))}
-								</ul>
-							</div>
-						</div>
-					</div>
 				</section>
 
-				<section
-					className={
-						"cat-page-ctn cat-page-lectures" + (catOpen ? " open" : "")
-					}>
+				<section className={"cat-page-ctn cat-page-lectures"}>
 					<div className="page-width">
 						<div className="box">
 							<div className="opt_lecture_page">
@@ -231,6 +195,7 @@ export async function getStaticProps({ params }) {
 	const videoLists = await getYoutubeVideoListByUrl(url);
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qnaCategories = await getAllQnaCategory();
 
 	return {
 		props: {
@@ -238,6 +203,7 @@ export async function getStaticProps({ params }) {
 			initPlaylistId: playlistId,
 			playlists,
 			headerLectures,
+			qnaCategories,
 		},
 		revalidate: 60,
 	};

@@ -5,6 +5,7 @@ import {
 	getRelatedBooks,
 	getAllPlaylists2,
 	getHeaderLectures,
+	getAllQnaCategory,
 } from "../../lib/fetch";
 import Image from "next/image";
 import Layout from "../../components/layout";
@@ -15,9 +16,9 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 export default function BookDetail({
 	detail,
-	books,
 	playlists,
 	headerLectures,
+	qnaCategories,
 }) {
 	return (
 		<>
@@ -29,7 +30,11 @@ export default function BookDetail({
 				type="website"
 			/>
 
-			<Header playlists={playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists}
+				lectures={headerLectures}
+				qna_categories={qnaCategories}
+			/>
 
 			<section className="blog-detail-ctn">
 				<div className="page-width">
@@ -160,16 +165,16 @@ export async function getStaticProps({ params }) {
 
 	const slug = params.slug;
 	const detail = await getBookDetails(slug);
-	const books = await getRelatedBooks();
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qnaCategories = await getAllQnaCategory();
 
 	return {
 		props: {
 			detail,
-			books,
 			playlists: playlists.playlists,
 			headerLectures,
+			qnaCategories,
 		},
 	};
 }

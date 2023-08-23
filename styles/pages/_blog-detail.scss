@@ -29,7 +29,7 @@
 }
 
 .blog-detail-ctn {
-	font-family: Kalpurush;
+	font-family: var(--app-font-secondary);
 	margin-top: 2rem;
 }
 
@@ -40,6 +40,7 @@
 	margin-bottom: 4rem;
 	margin-bottom: 2rem;
 	background: #fff;
+	font-family: var(--app-font-secondary);
 }
 
 .blog-detail {
@@ -161,8 +162,6 @@
 
 .blog-detail p.text-ar {
 	text-align: right;
-	font-family: MeQuran;
-	font-family: PDMSIslam;
 	font-size: 1.75rem;
 }
 
@@ -401,6 +400,12 @@
 	}
 }
 
+.books {
+	.col-r {
+		margin-bottom: 2rem;
+	}
+}
+
 .book-detail {
 	display: block;
 }
@@ -439,6 +444,7 @@ h2.book-title {
 	display: block;
 	color: #2d3748;
 	text-decoration: none;
+	font-family: var(--app-font-primary);
 }
 
 .book-writer-area p {

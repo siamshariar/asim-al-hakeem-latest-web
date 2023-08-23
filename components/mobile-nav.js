@@ -1,7 +1,6 @@
 import { useState } from "react";
 import classNames from "classnames";
 import Link from "next/link";
-import Image from "next/image";
 import Drawer from "@material-ui/core/Drawer";
 import { server, youtube } from "../lib/config";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
@@ -18,7 +17,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import Collapse from "@mui/material/Collapse";
 
 export default function MobileNav(props) {
-	// console.log(props.playlists);
+	// console.log(props.qnaCategories);
 	const [expand, setExpand] = useState(false);
 	const handleClick = () => {
 		setExpand(!expand);
@@ -130,12 +129,43 @@ export default function MobileNav(props) {
 								</Link>
 							</li>
 							<li>
-								<Link href="/questions/all">
-									<a onClick={(e) => props.navControl(false)(e)}>
-										<QuestionAnswer />
-										Questions
-									</a>
-								</Link>
+								<div className="m-sub-menu-wrap">
+									<button
+										className={classNames(
+											"m-sub-menu-label",
+											expand2 ? "expand" : ""
+										)}
+										onClick={() => handleClick2()}>
+										<div className="d-flex align-center">
+											<QuestionAnswer />
+											Questions
+										</div>
+										<span>
+											<i className="fa-solid fa-chevron-down"></i>
+										</span>
+									</button>
+									<Collapse in={expand2} timeout="auto" unmountOnExit>
+										<ul className="m-sub-menu">
+											{props.qnaCategories &&
+												props.qnaCategories.map((item, i) => (
+													<li key={i}>
+														<Link href={`/questions/${item.slug}`}>
+															<a
+																className={
+																	item.slug === props.activeCatSlug
+																		? "active"
+																		: ""
+																}
+																onClick={(e) => props.navControl(false)(e)}>
+																{item.title}
+															</a>
+														</Link>
+													</li>
+												))}
+										</ul>
+									</Collapse>
+								</div>
+								{/* </Link> */}
 							</li>
 
 							<li>

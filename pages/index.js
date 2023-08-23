@@ -1,16 +1,12 @@
 import {
-	getOptHomeImages,
 	getHomeLectures,
 	getOptHomeQuotes,
-	getOptHomeBooks,
-	getHomeOrganizations,
 	getHomeArticles,
-	getHomePapers,
 	getAllPlaylists2,
-	getHome3Posts4,
 	getHomeBooks,
 	getHomeQna,
 	getHeaderLectures,
+	getAllQnaCategory,
 } from "../lib/fetch";
 
 import Meta from "../components/meta";
@@ -20,16 +16,12 @@ import HomeRecent from "../components/home/recent";
 // import HomeBookList from "../components/home2/books";
 // import HomeOrganizations from "../components/home/organizations";
 import HomeBanner from "../components/home/banner";
-import HomeQuote from "../components/home/quote";
 import HomeArticles from "../components/home/articles";
 // import HomePostList2 from "../components/home/post-list2";
 import HomeBooks from "../components/home/books";
 // import HomePostList4 from "../components/home/post-list4";
-import HomeOrganizations from "../components/home/organizations2";
 // import HomeBookList from "../components/home/books";
 // import HomeFeatured from "../components/home2/featured";
-import HomePapers from "../components/home/papers";
-import Image from "next/image";
 import { server } from "../lib/config";
 import HomeQna from "../components/home/qna";
 import TextContent from "../components/home/text-content";
@@ -39,14 +31,11 @@ export default function Home({
 	lectures,
 	headerLectures,
 	quotes,
-	// organizations,
 	articles,
-	// papers,
 	playlists,
-	// posts4,
-	// organizations2,
 	books,
 	qna,
+	qna_categories,
 }) {
 	return (
 		<>
@@ -58,7 +47,11 @@ export default function Home({
 				type="website"
 			/>
 
-			<Header playlists={playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists}
+				lectures={headerLectures}
+				qna_categories={qna_categories}
+			/>
 
 			<div className="opt_home_ctn">
 				<HomeBanner />
@@ -68,15 +61,12 @@ export default function Home({
 				<HomeQna qna={qna} />
 				<TextContent />
 				<HomeQuoteSlider quotes={quotes} />
-				{/*<HomePapers papers={papers} />*/}
-				{/*<HomeOrganizations organizations={organizations} />*/}
 			</div>
 		</>
 	);
 }
 
 export async function getStaticProps(context) {
-	const images = await getOptHomeImages();
 	// const blogs = await getOptHomeBlogs();
 	const lectures = await getHomeLectures();
 	const headerLectures = await getHeaderLectures();
@@ -92,21 +82,18 @@ export async function getStaticProps(context) {
 	// const posts4 = await getHome3Posts4();
 	// const organizations2 = await getHomeOrganizations();
 	const books = await getHomeBooks();
+	const qna_categories = await getAllQnaCategory();
 
 	return {
 		props: {
-			images,
 			lectures,
 			headerLectures,
 			quotes,
-			// organizations,
 			articles,
-			// papers,
 			playlists: playlists.playlists,
-			// organizations2,
-			// posts4,
 			books,
 			qna,
+			qna_categories,
 		},
 	};
 }

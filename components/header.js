@@ -13,9 +13,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import MobileNav from "./mobile-nav";
 import { useRouter } from "next/router";
-import { getHomeLectures } from "../lib/fetch";
 
-export default function Header({ playlists, activePlaylistId, lectures }) {
+export default function Header({
+	playlists,
+	activePlaylistId,
+	activeCatSlug,
+	lectures,
+	qna_categories,
+}) {
 	// show hide header on scroll
 	const router = useRouter();
 	const header = useRef(null);
@@ -26,6 +31,11 @@ export default function Header({ playlists, activePlaylistId, lectures }) {
 	const firstList = playlists.slice(0, num);
 	const secondList = playlists.slice(num, num * 2);
 	const thirdList = playlists.slice(num * 2, playlists.length);
+
+	const numQ = Math.ceil(qna_categories.length / 3);
+	const firstListQ = qna_categories.slice(0, numQ);
+	const secondListQ = qna_categories.slice(numQ, numQ * 2);
+	const thirdListQ = qna_categories.slice(numQ * 2, playlists.length);
 
 	useEffect(() => {
 		setDidMount(true);
@@ -241,7 +251,6 @@ export default function Header({ playlists, activePlaylistId, lectures }) {
 											</div>
 										</div>
 									</li>
-
 									<li>
 										<Link href="/articles">
 											<a
@@ -264,7 +273,83 @@ export default function Header({ playlists, activePlaylistId, lectures }) {
 											</a>
 										</Link>
 									</li>
+
 									<li>
+										<a
+											className={
+												router.pathname.startsWith("/questions")
+													? "menu-active"
+													: ""
+											}>
+											QnA
+											<span className="main-menu-icon icon-more">
+												<ExpandMoreIcon />
+											</span>
+										</a>
+
+										<div className="sub-menu sub-menu2">
+											<div className="sub-menu-wrap scrollbar">
+												<ul>
+													{firstListQ &&
+														firstListQ.map((item, i) => (
+															<li key={i}>
+																<Link href={`/questions/${item.slug}`}>
+																	<a
+																		className={
+																			router.asPath ===
+																			`/questions/${item.slug}`
+																				? "active"
+																				: ""
+																		}>
+																		{item.title}
+																	</a>
+																</Link>
+															</li>
+														))}
+												</ul>
+
+												<ul>
+													{secondListQ &&
+														secondListQ.map((item) => (
+															<li key={item.id}>
+																<Link href={`/questions/${item.slug}`}>
+																	<a
+																		className={
+																			router.asPath ===
+																			`/questions/${item.slug}`
+																				? "active"
+																				: ""
+																		}>
+																		{item.title}
+																	</a>
+																</Link>
+															</li>
+														))}
+												</ul>
+
+												<ul>
+													{thirdListQ &&
+														thirdListQ.map((item) => (
+															<li key={item.id}>
+																<Link href={`/questions/${item.slug}`}>
+																	<a
+																		className={
+																			router.asPath ===
+																			`/questions/${item.slug}`
+																				? "active"
+																				: ""
+																		}>
+																		{item.title}
+																	</a>
+																</Link>
+															</li>
+														))}
+												</ul>
+											</div>
+										</div>
+									</li>
+
+									{/* <li>
 										<Link href="/questions/all">
 											<a
 												className={
@@ -275,7 +360,7 @@ export default function Header({ playlists, activePlaylistId, lectures }) {
 												QnA
 											</a>
 										</Link>
-									</li>
+									</li> */}
 									<li>
 										<Link href="/counselling-session">
 											<a
@@ -333,9 +418,11 @@ export default function Header({ playlists, activePlaylistId, lectures }) {
 
 			<MobileNav
 				playlists={playlists}
+				qnaCategories={qna_categories}
 				navOpen={mobileNavOpen}
 				navControl={toggleMobileNav}
 				activeId={activePlaylistId}
+				activeCatSlug={activeCatSlug}
 			/>
 		</>
 	);

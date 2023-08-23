@@ -1,16 +1,18 @@
 import { server, receiverEmail, emailSenderName } from "../lib/config";
 
 import { useState, useRef } from "react";
-import Image from "next/image";
-import { getAllPlaylists2, getHeaderLectures } from "../lib/fetch";
-import Layout from "../components/layout";
+import {
+	getAllPlaylists2,
+	getAllQnaCategory,
+	getHeaderLectures,
+} from "../lib/fetch";
 import Meta from "../components/meta";
 import Header from "../components/header";
 import Snackbar from "@material-ui/core/Snackbar";
 //import Slider from 'react-slick'
 //import 'slick-carousel/slick/slick.css'
 
-export default function Contact({ playlists, headerLectures }) {
+export default function Contact({ playlists, headerLectures, qna_categories }) {
 	//snackbar
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
 
@@ -176,7 +178,11 @@ export default function Contact({ playlists, headerLectures }) {
 				type="website"
 			/>
 
-			<Header playlists={playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists}
+				lectures={headerLectures}
+				qna_categories={qna_categories}
+			/>
 
 			<section className="contact-page-ctn">
 				<div className="page-width">
@@ -387,11 +393,13 @@ export default function Contact({ playlists, headerLectures }) {
 export async function getStaticProps(context) {
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qna_categories = await getAllQnaCategory();
 
 	return {
 		props: {
 			playlists: playlists.playlists,
 			headerLectures,
+			qna_categories,
 		},
 	};
 }

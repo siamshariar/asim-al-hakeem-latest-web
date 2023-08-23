@@ -3,15 +3,19 @@ import {
 	getArticles,
 	getAllPlaylists2,
 	getHeaderLectures,
+	getAllQnaCategory,
 } from "../../lib/fetch";
-import Layout from "../../components/layout";
 import Meta from "../../components/meta";
 import Header from "../../components/header";
 import PostCardArticle from "../../components/card/post-card-article";
 // import PostCardArticle2 from "../../components/card/post-card-article2";
-import Pagination from "../../components/pagination";
 
-export default function BlogList({ articles, playlists, headerLectures }) {
+export default function BlogList({
+	articles,
+	playlists,
+	headerLectures,
+	qnaCategories,
+}) {
 	return (
 		<>
 			<Meta
@@ -22,7 +26,11 @@ export default function BlogList({ articles, playlists, headerLectures }) {
 				type="website"
 			/>
 
-			<Header playlists={playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists}
+				lectures={headerLectures}
+				qna_categories={qnaCategories}
+			/>
 
 			<section className="cat-page-top">
 				<div className="page-width">
@@ -88,12 +96,14 @@ export async function getStaticProps(context) {
 	const articles = await getArticles();
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qnaCategories = await getAllQnaCategory();
 
 	return {
 		props: {
 			articles,
 			playlists: playlists.playlists,
 			headerLectures,
+			qnaCategories,
 		},
 	};
 }

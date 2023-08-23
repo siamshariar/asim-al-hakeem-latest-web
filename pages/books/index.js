@@ -1,12 +1,21 @@
 import { server } from "../../lib/config";
-import { getBooks, getAllPlaylists2, getHeaderLectures } from "../../lib/fetch";
-import Layout from "../../components/layout";
+import {
+	getBooks,
+	getAllPlaylists2,
+	getHeaderLectures,
+	getAllQnaCategory,
+} from "../../lib/fetch";
 import Meta from "../../components/meta";
 import Header from "../../components/header";
-import BookCard from "../../components/card/post-card-book";
-import Pagination from "../../components/pagination";
+// import BookCard from "../../components/card/post-card-book";
+import PostCard from "../../components/card/post-card-tertiary";
 
-export default function BookList({ books, playlists, headerLectures }) {
+export default function BookList({
+	books,
+	playlists,
+	headerLectures,
+	qnaCategories,
+}) {
 	return (
 		<>
 			<Meta
@@ -17,29 +26,30 @@ export default function BookList({ books, playlists, headerLectures }) {
 				type="website"
 			/>
 
-			<Header playlists={playlists} lectures={headerLectures} />
+			<Header
+				playlists={playlists}
+				lectures={headerLectures}
+				qna_categories={qnaCategories}
+			/>
 
 			<section className="cat-page-top">
 				<div className="page-width">
 					<div className="box">
-						<h1>
-							বই সমূহ
-							{/*<span>১২</span>*/}
-						</h1>
-						{/*<p>আমার বাংলা নিয়ে প্রথম কাজ করবার সুযোগ তৈরি হয়েছিল অভ্র নামক এক যুগান্তকারী বাংলা সফ্‌টওয়্যার হাতে পাবার মধ্য দিয়ে।</p>*/}
+						<h1>বই সমূহ</h1>
 					</div>
 				</div>
 			</section>
 
-			<section className="cat-page-books">
+			<section className="books">
 				<div className="page-width">
 					<div className="box">
 						<div className="row row-r">
 							{books &&
 								books.length &&
 								books.map((book) => (
-									<div className="col col-r s12 l4" key={book.id}>
-										<BookCard book={book} />
+									<div className="col col-r s12 l6" key={book.id}>
+										{/* <BookCard book={book} /> */}
+										<PostCard book={book} />
 									</div>
 								))}
 						</div>
@@ -55,25 +65,22 @@ export default function BookList({ books, playlists, headerLectures }) {
 					</div>
 				</div>
 			</section>
-
-			{/*<Pagination />*/}
 		</>
 	);
 }
 
 export async function getStaticProps(context) {
-	//const res = await fetch(`${server}/api/books/listpage`)
-	//const books = await res.json()
-
 	const books = await getBooks();
 	const playlists = await getAllPlaylists2();
 	const headerLectures = await getHeaderLectures();
+	const qnaCategories = await getAllQnaCategory();
 
 	return {
 		props: {
 			books,
 			playlists: playlists.playlists,
 			headerLectures,
+			qnaCategories,
 		},
 	};
 }

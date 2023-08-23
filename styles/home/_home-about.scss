@@ -1,4 +1,5 @@
-.h-about {}
+.h-about {
+}
 
 .h-about-ctn {
 	display: flex;
@@ -46,7 +47,6 @@
 
 .h-about-text h1 {
 	margin-bottom: 1rem;
-	font-family: Kalpurush;
 	line-height: 1.33;
 	font-weight: bold;
 	font-size: 3rem;
@@ -57,7 +57,6 @@
 
 .h-about-text p {
 	margin-bottom: 1rem;
-	font-family: Kalpurush;
 	line-height: 1.33;
 	display: block;
 	font-size: 1.25rem;
@@ -68,7 +67,6 @@
 }
 
 .h-about-text span {
-	font-family: Kalpurush;
 	line-height: 1.33;
 	display: block;
 	color: var(--txt12);
@@ -76,7 +74,6 @@
 	text-decoration: none;
 	font-size: 1.25rem;
 }
-
 
 // responsive
 // @media only screen and (max-width: 1366px) {
@@ -100,7 +97,7 @@
 
 	.h-about-text {
 		padding: 3rem 1.5rem;
-    width: 100%;
+		width: 100%;
 	}
 
 	.h-about-text h1 {
