@@ -29,8 +29,8 @@ export default function Header({
 
 	const num = Math.ceil(playlists.length / 3);
 	const firstList = playlists.slice(0, num);
-	const secondList = playlists.slice(num, num * 2);
-	const thirdList = playlists.slice(num * 2, playlists.length);
+	const secondList = playlists.slice(num, num * 2.1);
+	const thirdList = playlists.slice(num * 1.7, playlists.length);
 
 	const numQ = Math.ceil(qna_categories.length / 3);
 	const firstListQ = qna_categories.slice(0, numQ);
