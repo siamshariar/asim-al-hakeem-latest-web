@@ -6,6 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "materialize-css/dist/css/materialize.min.css";
 import "slick-carousel/slick/slick.css";
 import "../styles/style.scss";
+import  '../styles/500.scss'
 
 import Layout from "../components/layout";
 

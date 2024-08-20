@@ -1,0 +1,135 @@
+
+.view {
+    padding-top: 2.25rem;
+    
+  }
+  .error {
+    padding-top: 2.25rem;
+    max-width: 80rem;
+    padding: 2rem 6rem;
+    margin: auto;
+    margin-bottom: 0;
+    position: relative;
+  }
+ 
+.container-error {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+main p {
+    color: #333;
+}
+.error-title-guilty {
+    border-left: 2px solid #ed367f;
+}
+.error-title {
+    font-size: 1.3rem;
+    padding-left: 22px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+stronger{
+    font-weight: bolder;
+}
+.error-title-innocent {
+    border-left: 2px solid #59b89c;
+}
+.devinfo-container {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+.error-code {
+    margin: 0;
+      margin-bottom: 0px;
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 1.6rem;
+  }
+.devinfo-error:not(:last-child) {
+    margin-bottom: 8px;
+  }
+  .devinfo-error {
+    color: #333;
+  }
+  .devinfo-error code, code, li {
+   
+  }
+  
+  code::before, code::after {
+    content: '`';
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .error ul {
+    margin-bottom: 32px;
+  }
+  .error ul {
+    padding: 0;
+    margin-left: 1.5em;
+    list-style-type: none;
+  }
+  .error li {
+    color: #000;
+  }
+  .error li {
+    margin-bottom: 10px;
+  }
+  .error ul li::before {
+    content: '\02013';
+  }
+  
+  .error li::before {
+    display: inline-block;
+    color: #ccc;
+    position: absolute;
+    margin-left: -18px;
+    transition: color .2s ease;
+  }
+  .error a {
+    cursor: pointer;
+    color: #0070f3;
+    text-decoration: none;
+    transition: all .2s ease;
+    border-bottom: 1px solid #0000;
+  }
+  .error p {
+    line-height: unset;
+  }
+  .no-scroll {
+    overflow: hidden;
+  }
