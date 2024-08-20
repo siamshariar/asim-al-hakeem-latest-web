@@ -14,6 +14,9 @@ import Loader from "../../components/loader";
 import fetcher from "../../lib/lecturesFetcher";
 import useOnScreen from "../../hooks/useOnScreen";
 import { useSWRInfinite } from "swr";
+import { getYoutubeVideoDetailsByUrl } from "../../lib/fetch";
+
+import ErrorPage from "../500";
 
 const getKey = (pageIndex, previousPageData, playlistId) => {
 	let pageToken = "";
@@ -161,33 +164,41 @@ export async function getStaticProps({ params }) {
 	const url = `${youtube.url}/playlistItems?key=${youtube.key}&part=snippet&playlistId=${playlistId}&maxResults=${constants.DEFAULT_PAGE_LIMIT}`;
   
 	try {
-		const videoLists = await getYoutubeVideoListByUrl(url);
-		const playlists = await getAllPlaylists2();
-		const headerLectures = await getHeaderLectures();
-		const qnaCategories = await getAllQnaCategory();
+	  const videoLists = await getYoutubeVideoListByUrl(url);
+  
 
+	  if (!videoLists || !videoLists.videoLists || !videoLists.videoLists.videos) {
 		return {
-			props: {
-				initialVideos: [videoLists],
-				initPlaylistId: playlistId,
-				playlists,
-				headerLectures,
-				qnaCategories,
-			},
-			revalidate: 60,
+		  notFound: true,
 		};
+	  }
+  
+	  const playlists = await getAllPlaylists2();
+	  const headerLectures = await getHeaderLectures();
+	  const qnaCategories = await getAllQnaCategory();
+  
+	  return {
+		props: {
+		  initialVideos: [videoLists],
+		  initPlaylistId: playlistId,
+		  playlists,
+		  headerLectures,
+		  qnaCategories,
+		},
+		revalidate: 60,
+	  };
 	} catch (error) {
-		console.error("Error in getStaticProps:", error);
-
-		return {
-			redirect: {
-				destination: '/500',
-				permanent: false,
-			},
-		};
+	  console.error("Error in getStaticProps:", error);
+  
+	  return {
+		redirect: {
+		  destination: '/500',
+		  permanent: false,
+		},
+	  };
 	}
-}
-
+  }
+  
 export async function getStaticPaths() {
 	const playlists = await getAllPlaylists2();
 
@@ -200,4 +211,5 @@ export async function getStaticPaths() {
 		fallback: "blocking",
 	};
 }
+
 
