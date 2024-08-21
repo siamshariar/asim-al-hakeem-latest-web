@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-
+import Footer from '../components/footer';
 const Custom500 = () => {
   
   return (
@@ -10,7 +10,7 @@ const Custom500 = () => {
         <link rel="icon" href="data:," />
 
     </Head>
-    <main class="view-port">
+    <main class="view-port" >
         <div class="container-error">
             <div class="view-port error">
                     <div>

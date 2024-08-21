@@ -159,28 +159,51 @@ export default function VideoDetail({
 
 export async function getStaticProps({ params }) {
 	const id = params.id;
-
-	const url = `${youtube.url}/videos?key=${youtube.key}&part=snippet,statistics&id=${id}`;
-	const detail = await getYoutubeVideoDetailsByUrl(url);
-	const playlists = await getAllPlaylists2();
-	const headerLectures = await getHeaderLectures();
-	const qnaCategories = await getAllQnaCategory();
-
-	// const relatedVideosUrl = `${youtube.url}/search?key=${youtube.key}&part=snippet&relatedToVideoId=${id}&type=video&maxResults=${constants.YOUTUBE_RELATED_VIDEOS_PAGE_LIMIT}`
-	// const videoLists = await getRelatedYoutubeVideoListByUrl(relatedVideosUrl)
-
-	return {
+  
+	try {
+	  const url = `${youtube.url}/videos?key=${youtube.key}&part=snippet,statistics&id=${id}`;
+	  const detail = await getYoutubeVideoDetailsByUrl(url);
+  
+	  // Check if the video data is returned
+	  if (!detail || Object.keys(detail).length === 0) {
+		// Redirect to the custom 500 error page if no video data
+		return {
+		  redirect: {
+			destination: "/500",
+			permanent: false,
+		  },
+		};
+	  }
+  
+	  const playlists = await getAllPlaylists2();
+	  const headerLectures = await getHeaderLectures();
+	  const qnaCategories = await getAllQnaCategory();
+  
+	  return {
 		props: {
-			id,
-			data: detail,
-			playlists: playlists.playlists,
-			headerLectures,
-			qnaCategories,
-			// relatedVideos: JSON.parse(JSON.stringify(videoLists))
+		  id,
+		  data: detail,
+		  playlists: playlists.playlists,
+		  headerLectures,
+		  qnaCategories,
 		},
 		revalidate: 60,
-	};
-}
+	  };
+	} catch (error) {
+	  // Log the error for debugging
+	  console.error("Error fetching video details:", error);
+  
+	  // Redirect to the custom 500 error page if an error occurs
+	  return {
+		redirect: {
+		  destination: "/500",
+		  permanent: false,
+		},
+	  };
+	}
+  }
+  
+  
 
 export async function getStaticPaths() {
 	const data = await getUploadPlaylistVideos();

@@ -9,14 +9,13 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Meta from "../../components/meta";
 import Header from "../../components/header";
+
 import PostCardVideo2 from "../../components/card/post-card-video2";
 import Loader from "../../components/loader";
+
 import fetcher from "../../lib/lecturesFetcher";
 import useOnScreen from "../../hooks/useOnScreen";
 import { useSWRInfinite } from "swr";
-import { getYoutubeVideoDetailsByUrl } from "../../lib/fetch";
-
-import ErrorPage from "../500";
 
 const getKey = (pageIndex, previousPageData, playlistId) => {
 	let pageToken = "";
@@ -38,6 +37,7 @@ export default function LectureList({
 	qnaCategories,
 }) {
 	const ref = useRef();
+	const catRef = useRef();
 	const isVisible = useOnScreen(ref);
 	const pageTitle = playlists.playlistsTitle[initPlaylistId];
 
@@ -52,12 +52,14 @@ export default function LectureList({
 	const isLoadingMore =
 		isLoadingInitialData ||
 		(size > 0 && data && typeof data[size - 1] === "undefined");
+	// const isEmpty = data?.[0]?.length === 0
 	const numberOfPages =
 		data?.[0]?.length !== 0 ? data[0].videoLists.numberOfPages : 0;
 	const isReachingEnd = size === numberOfPages;
 	const isRefreshing = isValidating && data && data.length === size;
 
 	const getCategorizedVideos = async (id, pageTitle) => {
+		setCatOpen(false);
 		setSize(1);
 	};
 
@@ -102,11 +104,39 @@ export default function LectureList({
 					<div className="page-width">
 						<div className="box">
 							<div className="opt_lecture_page">
+								{/* <div className="opt_lecture_left">
+
+                  <div className="opt_lecture_left_cat_list">
+                    <div className="opt_lecture_cat_list_title">
+                      ক্যাটাগরি সমূহ
+                    </div>
+                    <ul style={{ paddingTop: "10px" }}>
+                      {playlists.playlists &&
+                        playlists.playlists.map((item, index) => (
+                          <li
+                            className={
+                              initPlaylistId == item.id ? "selected" : ""
+                            }
+                            key={item.id + index}
+                            onClick={() =>
+                              getCategorizedVideos(item.id, item.title)
+                            }
+                          >
+                            <Link href={`/lectures/${item.id}`}>
+                              <a>{item.title}</a>
+                            </Link>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                </div> */}
+
 								<div className="opt_lecture_right">
 									<div className="opt_lecture_title">{pageTitle}</div>
 
 									<div className="opt_lectures_wrapper">
 										<div className="row row-r">
+											{/*{isEmpty ? <p>No records found!</p> : null}*/}
 											{datas &&
 												datas.map((data) => {
 													return (
@@ -162,43 +192,23 @@ export default function LectureList({
 export async function getStaticProps({ params }) {
 	const playlistId = params.pid;
 	const url = `${youtube.url}/playlistItems?key=${youtube.key}&part=snippet&playlistId=${playlistId}&maxResults=${constants.DEFAULT_PAGE_LIMIT}`;
-  
-	try {
-	  const videoLists = await getYoutubeVideoListByUrl(url);
-  
+	const videoLists = await getYoutubeVideoListByUrl(url);
+	const playlists = await getAllPlaylists2();
+	const headerLectures = await getHeaderLectures();
+	const qnaCategories = await getAllQnaCategory();
 
-	  if (!videoLists || !videoLists.videoLists || !videoLists.videoLists.videos) {
-		return {
-		  notFound: true,
-		};
-	  }
-  
-	  const playlists = await getAllPlaylists2();
-	  const headerLectures = await getHeaderLectures();
-	  const qnaCategories = await getAllQnaCategory();
-  
-	  return {
+	return {
 		props: {
-		  initialVideos: [videoLists],
-		  initPlaylistId: playlistId,
-		  playlists,
-		  headerLectures,
-		  qnaCategories,
+			initialVideos: [videoLists],
+			initPlaylistId: playlistId,
+			playlists,
+			headerLectures,
+			qnaCategories,
 		},
 		revalidate: 60,
-	  };
-	} catch (error) {
-	  console.error("Error in getStaticProps:", error);
-  
-	  return {
-		redirect: {
-		  destination: '/500',
-		  permanent: false,
-		},
-	  };
-	}
-  }
-  
+	};
+}
+
 export async function getStaticPaths() {
 	const playlists = await getAllPlaylists2();
 
@@ -211,5 +221,3 @@ export async function getStaticPaths() {
 		fallback: "blocking",
 	};
 }
-
-
