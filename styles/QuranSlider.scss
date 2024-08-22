@@ -1,0 +1,177 @@
+.quran-slider {
+    .slide-content {
+      display: flex;
+      align-items: center;
+      font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+    }
+  
+    .left-image {
+      width: 30%;
+      margin-left: 200px;
+    }
+  
+    .right-content {
+      width: 50%;
+      padding: 20px;
+      margin-left: 20px;
+    }
+    .slide-conten{
+        display: flex;
+    }
+    .right-content h3{
+      font-size: 24px;
+    }
+
+    
+    .slider-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 50px auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      
+  }
+  .slider-image {
+      width: 45%;
+      position: relative;
+  }
+  .slider-image img {
+      width: 100%;
+      border-radius: 10px;
+  }
+  .slider-content {
+      width: 55%;
+      padding-left: 20px;
+  }
+  .slider-content h1 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+  }
+  .slider-content p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+  }
+  .slider-content .announcement-btn {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      font-size: 14px;
+  }
+  .slider-content .announcement-btn:hover {
+      background-color: #555;
+  }
+  .slider-navigation {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+  }
+  .slider-navigation .nav-arrow {
+      background-color: #333;
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+  }
+  .slider-navigation .nav-arrow:hover {
+      background-color: #555;
+  }
+    /* Add the rest of your SCSS */
+  }
+  
+  .opt_home_quote_slider_arrow {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+  }
+
+ 
+  .opt_slider_arrow button {
+    width: 2.875rem;
+    height: 2.875rem;
+    background-color: #fff;
+    box-shadow: var(--bs12);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 250ms ease 0s;
+    z-index: 3;
+    color: var(--txt11);
+  }
+  .opt_slider_arrow button i {
+    font-size: 2.25rem;
+    opacity: 0.7;
+    color: #718096;
+  }
+  .opt_slider_arrow button:hover {
+    background-color: var(--main-color);
+    color: #fff;
+  }
+  .opt_slider_arrow button:hover i {
+    color: #fff;
+    opacity: 1;
+  }
+  .slick-arrow {
+    display: none;
+  }
+  .quran-slider .opt_home_quote_slider_arrow {
+    width: calc(90% + 155px);
+    height: 0;
+    max-width: 1280px;
+    top: 50%;
+    bottom: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .quran-slider h1{
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .quran-slider p::before {
+    content: '\02013';
+  }
+
+  .quran-slider p{
+    margin-left: 25px;
+    font-size: 20px;
+  }
+  .quran-slider .slider-content p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  p::before {
+    display: inline-block;
+    color: #ccc;
+    position: absolute;
+    margin-left: -15px;
+    transition: color .2s ease;
+    width: 15px;
+  }
+  .quran-slider .slider-content .announcement-btn {
+    font-size: 20px;
+  }

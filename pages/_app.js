@@ -7,6 +7,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import "slick-carousel/slick/slick.css";
 import "../styles/style.scss";
 import  '../styles/500.scss'
+import "../styles/QuranSlider.scss"
 
 import Layout from "../components/layout";
 

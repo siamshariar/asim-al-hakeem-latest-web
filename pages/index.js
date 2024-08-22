@@ -26,6 +26,7 @@ import { server } from "../lib/config";
 import HomeQna from "../components/home/qna";
 import TextContent from "../components/home/text-content";
 import HomeQuoteSlider from "../components/home/quote-slider";
+import QuranSlider from "../components/Slider";
 
 export default function Home({
 	lectures,
@@ -61,6 +62,7 @@ export default function Home({
 				<HomeQna qna={qna} />
 				<TextContent />
 				<HomeQuoteSlider quotes={quotes} />
+				<QuranSlider />
 			</div>
 		</>
 	);
