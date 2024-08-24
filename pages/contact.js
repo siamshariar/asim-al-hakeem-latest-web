@@ -8,7 +8,7 @@ import {
 } from "../lib/fetch";
 import Meta from "../components/meta";
 import Header from "../components/header";
-import Snackbar from "@material-ui/core/Snackbar";
+import Snackbar from "@mui/material/Snackbar";
 //import Slider from 'react-slick'
 //import 'slick-carousel/slick/slick.css'
 

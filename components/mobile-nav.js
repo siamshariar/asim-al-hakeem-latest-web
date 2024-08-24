@@ -1,12 +1,13 @@
 import { useState } from "react";
 import classNames from "classnames";
 import Link from "next/link";
-import Drawer from "@material-ui/core/Drawer";
+
 import { server, youtube } from "../lib/config";
-import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
+
 import ClassIcon from "@mui/icons-material/Class";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import { QuestionAnswer } from "@material-ui/icons";
+
+import QuestionAnswer from '@mui/icons-material/QuestionAnswer';
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
@@ -15,6 +16,10 @@ import MailIcon from "@mui/icons-material/Mail";
 import HomeIcon from "@mui/icons-material/Home";
 import ArticleIcon from "@mui/icons-material/Article";
 import Collapse from "@mui/material/Collapse";
+
+import Drawer from "@mui/material/Drawer"; // Updated import
+import VideoLibraryIcon from "@mui/icons-material/VideoLibrary"; // Updated import
+ // Updated import
 
 export default function MobileNav(props) {
 	// console.log(props.qnaCategories);
