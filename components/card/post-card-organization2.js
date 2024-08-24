@@ -13,7 +13,7 @@ export default function PostCardOrganization({
 } = {}) {
   return (
     <div className="recent-item">
-      <Link href={`/organizations/${orgSlug}`}>
+      <Link href={`/organizations/${orgSlug}`} legacyBehavior>
         <div className="recent-ctn">
           <Image
             src={

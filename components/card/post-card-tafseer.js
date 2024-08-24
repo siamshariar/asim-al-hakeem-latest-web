@@ -15,27 +15,27 @@ export default function PostCardTafseer({
   return (
     <div className="card card-r pc-2">
       <div className="card-image">
-        <Link href={`/tafseer/${postSlug}`}>
-          <a className="image-r">
-            <Image
-              src={server + imageSrc}
-              alt=""
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center center"
-              loading="eager" unoptimized
-            />
-          </a>
+        <Link href={`/tafseer/${postSlug}`} className="image-r">
+
+          <Image
+            src={server + imageSrc}
+            alt=""
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center center"
+            loading="eager" unoptimized
+          />
+
         </Link>
       </div>
 
       <div className="card-content">
-        <Link href={catURL}>
-          <a className="cat-r">{catText}</a>
+        <Link href={catURL} className="cat-r">
+          {catText}
         </Link>
 
-        <Link href={`/tafseer/${postSlug}`}>
-          <a className="heading-r">{postTitle}</a>
+        <Link href={`/tafseer/${postSlug}`} className="heading-r">
+          {postTitle}
         </Link>
         <span className="date-r">{postDate}</span>
       </div>

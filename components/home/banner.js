@@ -4,7 +4,7 @@ import { youtube } from "../../lib/config";
 
 export default function HomeBanner() {
 	return (
-		<section className="h-sec h-banner h3-banner h-banner-1">
+        <section className="h-sec h-banner h3-banner h-banner-1">
 			<div className="page-width">
 				<div className="box h-banner-ctn">
 					<div className="h-banner-text">
@@ -36,8 +36,8 @@ export default function HomeBanner() {
 						<div className="row row-r">
 							<div className="col col-r s12 l6">
 								<div className="h3-cat-wrap">
-									<Link href="/about" passHref>
-										<a className="button1">See more</a>
+									<Link href="/about" passHref className="button1">
+										See more
 									</Link>
 								</div>
 							</div>
@@ -73,5 +73,5 @@ export default function HomeBanner() {
 				</div>
 			</div>
 		</section>
-	);
+    );
 }

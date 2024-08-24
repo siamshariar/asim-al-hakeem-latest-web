@@ -13,12 +13,12 @@ export default function PostCard({
   return (
     <div className="card card-r pc-5">
       <div className="card-content">
-        <Link href={catURL}>
-          <a className="cat-r">{catText}</a>
+        <Link href={catURL} className="cat-r">
+          {catText}
         </Link>
 
-        <Link href={`/tafseer/${postSlug}`}>
-          <a className="heading-r">{postTitle}</a>
+        <Link href={`/tafseer/${postSlug}`} className="heading-r">
+          {postTitle}
         </Link>
 
         <p>{postExcerpt}</p>

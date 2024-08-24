@@ -12,22 +12,22 @@ export default function PostCard({
   return (
     <div className="card card-r pc-4">
       <div className="card-image">
-        <Link href={`/tafseer/${postSlug}`}>
-          <a className="image-r">
-            <Image
-              src={imageSrc}
-              alt=""
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center center"
-              loading="eager" unoptimized
-            />
-          </a>
+        <Link href={`/tafseer/${postSlug}`} className="image-r">
+
+          <Image
+            src={imageSrc}
+            alt=""
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center center"
+            loading="eager" unoptimized
+          />
+
         </Link>
 
         <div className="card-content">
-          <Link href={`/tafseer/${postSlug}`}>
-            <a className="heading-r">{postTitle}</a>
+          <Link href={`/tafseer/${postSlug}`} className="heading-r">
+            {postTitle}
           </Link>
 
           <span className="date-r">{postDate}</span>

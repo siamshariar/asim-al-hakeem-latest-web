@@ -12,45 +12,43 @@ export default function PDFViewer() {
 
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
-  return (
-    <>
-      <Meta
-        title={file || "File"}
-        description="ইসলামিক ব্লগ"
-        url="http://deeniit.com/"
-        image="/img/id/profile-01.png"
-        type="website"
-      />
+  return <>
+    <Meta
+      title={file || "File"}
+      description="ইসলামিক ব্লগ"
+      url="http://deeniit.com/"
+      image="/img/id/profile-01.png"
+      type="website"
+    />
 
-      <section>
-        <div>
-          <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-            <Viewer
-              fileUrl={decodeURIComponent((file + "").replace(/\+/g, "%20"))}
-              plugins={[defaultLayoutPluginInstance]}
-            />
-          </Worker>
-        </div>
+    <section>
+      <div>
+        <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
+          <Viewer
+            fileUrl={decodeURIComponent((file + "").replace(/\+/g, "%20"))}
+            plugins={[defaultLayoutPluginInstance]}
+          />
+        </Worker>
+      </div>
 
-        <style jsx>{`
+      <style jsx>{`
+        section {
+          padding: 1rem;
+          width: 100vw;
+          height: 100vh;
+        }
+        div {
+          width: 100%;
+          max-width: 1140px;
+          height: 100%;
+          margin: 0 auto;
+        }
+        @media only screen and (max-width: 600px) {
           section {
-            padding: 1rem;
-            width: 100vw;
-            height: 100vh;
+            padding: 0;
           }
-          div {
-            width: 100%;
-            max-width: 1140px;
-            height: 100%;
-            margin: 0 auto;
-          }
-          @media only screen and (max-width: 600px) {
-            section {
-              padding: 0;
-            }
-          }
-        `}</style>
-      </section>
-    </>
-  );
+        }
+      `}</style>
+    </section>
+  </>;
 }

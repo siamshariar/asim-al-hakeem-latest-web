@@ -15,17 +15,17 @@ export default function PostCard({
   return (
     <div className="card card-r pc-6">
       <div className="card-image">
-        <Link href={`/organizations/${orgSlug}`}>
-          <a className="image-r">
-            <Image
-              src={imageSrc}
-              alt=""
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center center"
-              loading="eager" unoptimized
-            />
-          </a>
+        <Link href={`/organizations/${orgSlug}`} className="image-r">
+
+          <Image
+            src={imageSrc}
+            alt=""
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center center"
+            loading="eager" unoptimized
+          />
+
         </Link>
       </div>
 
@@ -34,8 +34,8 @@ export default function PostCard({
           <a className="cat-r">{catText}</a>
         </Link> */}
 
-        <Link href={`/organizations/${orgSlug}`}>
-          <a className="heading-r">{orgName}</a>
+        <Link href={`/organizations/${orgSlug}`} className="heading-r">
+          {orgName}
         </Link>
 
         <p>{orgExcerpt}</p>

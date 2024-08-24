@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
 	return (
-		<footer className="footer">
+        <footer className="footer">
 			<div className="page-width">
 				<div className="box">
 					<div className="simple-footer">
@@ -12,13 +12,13 @@ export default function Footer() {
 						</p>
 						<div className="link-content">
 							<Link href="/about">
-								<a>About Us</a>
+								About Us
 							</Link>
 							<Link href="/counselling-session">
-								<a>Counselling Session</a>
+								Counselling Session
 							</Link>
 							<Link href="/contact">
-								<a>Contact</a>
+								Contact
 							</Link>
 						</div>
 						<p className="footer-powered-by">
@@ -141,5 +141,5 @@ export default function Footer() {
 				</div>
 			</div>
 		</footer>
-	);
+    );
 }

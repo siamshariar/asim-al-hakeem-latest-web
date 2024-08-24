@@ -13,25 +13,25 @@ export default function BookCard({
     <div className="books-item pc-3 bc-2">
       <div className="books-image">
         <Link href={`/books/${bookSlug}`}>
-          <a>
-            <Image
-              src={imageSrc}
-              alt=""
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center center"
-              loading="eager" unoptimized
-            />
-            <div className="book-layer">
-              <span>বিস্তারিত দেখুন</span>
-            </div>
-          </a>
+
+          <Image
+            src={imageSrc}
+            alt=""
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center center"
+            loading="eager" unoptimized
+          />
+          <div className="book-layer">
+            <span>বিস্তারিত দেখুন</span>
+          </div>
+
         </Link>
       </div>
 
       <div className="books-detail">
-        <Link href={`/books/${bookSlug}`}>
-          <a className="books-name">{bookName}</a>
+        <Link href={`/books/${bookSlug}`} className="books-name">
+          {bookName}
         </Link>
         {/*<p className="books-text">{bookText}</p>*/}
       </div>

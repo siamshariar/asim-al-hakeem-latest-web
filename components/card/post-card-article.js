@@ -11,30 +11,30 @@ export default function PostCardArticle({
 	},
 } = {}) {
 	return (
-		<div className="card card-r pc-0">
+        <div className="card card-r pc-0">
 			<div className="card-image">
-				<Link href={`/articles/${postSlug}`}>
-					<a className="image-r">
-						<Image
-							src={imageSrc ? imageSrc : "/img/post/placeholder-image.jpg"}
-							alt=""
-							layout="fill"
-							objectFit="cover"
-							objectPosition="center center"
-							loading="eager"
-							unoptimized
-						/>
-					</a>
-				</Link>
+				<Link href={`/articles/${postSlug}`} className="image-r">
+
+                    <Image
+                        src={imageSrc ? imageSrc : "/img/post/placeholder-image.jpg"}
+                        alt=""
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="center center"
+                        loading="eager"
+                        unoptimized
+                    />
+
+                </Link>
 			</div>
 			<div className="card-content">
-				<Link href={`/articles/${postSlug}`}>
-					<a className="heading-r">{postTitle}</a>
+				<Link href={`/articles/${postSlug}`} className="heading-r">
+					{postTitle}
 				</Link>
 
 				<p className="paragraph-r">{postExcerpt}</p>
 				{/*<span className="date-r">{postDate}</span>*/}
 			</div>
 		</div>
-	);
+    );
 }

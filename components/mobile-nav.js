@@ -29,7 +29,7 @@ export default function MobileNav(props) {
 	};
 
 	return (
-		<Drawer
+        <Drawer
 			anchor="left"
 			open={props.navOpen}
 			onClose={props.navControl(false)}
@@ -67,12 +67,10 @@ export default function MobileNav(props) {
 
 						<ul className="m-menu">
 							<li>
-								<Link href="/">
-									<a onClick={(e) => props.navControl(false)(e)}>
-										<HomeIcon />
-										Home
-									</a>
-								</Link>
+								<Link href="/" onClick={(e) => props.navControl(false)(e)}>
+
+                                    <HomeIcon />Home
+                                </Link>
 							</li>
 							<li>
 								{/* <Link href={`/lectures/${youtube.defaultPlaylistID}`}> */}
@@ -96,15 +94,16 @@ export default function MobileNav(props) {
 											{props.playlists &&
 												props.playlists.map((item) => (
 													<li key={item.id}>
-														<Link href={`/lectures/${item.id}`}>
-															<a
-																className={
-																	item.id === props.activeId ? "active" : ""
-																}
-																onClick={(e) => props.navControl(false)(e)}>
-																{item.title}
-															</a>
-														</Link>
+														<Link
+                                                            href={`/lectures/${item.id}`}
+                                                            className={
+                                                                item.id === props.activeId ? "active" : ""
+                                                            }
+                                                            onClick={(e) => props.navControl(false)(e)}>
+
+                                                            {item.title}
+
+                                                        </Link>
 													</li>
 												))}
 										</ul>
@@ -113,20 +112,16 @@ export default function MobileNav(props) {
 								{/* </Link> */}
 							</li>
 							<li>
-								<Link href="/articles">
-									<a onClick={(e) => props.navControl(false)(e)}>
-										<ArticleIcon />
-										Articles
-									</a>
-								</Link>
+								<Link href="/articles" onClick={(e) => props.navControl(false)(e)}>
+
+                                    <ArticleIcon />Articles
+                                </Link>
 							</li>
 							<li>
-								<Link href="/books">
-									<a onClick={(e) => props.navControl(false)(e)}>
-										<LibraryBooksIcon />
-										Books
-									</a>
-								</Link>
+								<Link href="/books" onClick={(e) => props.navControl(false)(e)}>
+
+                                    <LibraryBooksIcon />Books
+                                </Link>
 							</li>
 							<li>
 								<div className="m-sub-menu-wrap">
@@ -149,17 +144,18 @@ export default function MobileNav(props) {
 											{props.qnaCategories &&
 												props.qnaCategories.map((item, i) => (
 													<li key={i}>
-														<Link href={`/questions/${item.slug}`}>
-															<a
-																className={
-																	item.slug === props.activeCatSlug
-																		? "active"
-																		: ""
-																}
-																onClick={(e) => props.navControl(false)(e)}>
-																{item.title}
-															</a>
-														</Link>
+														<Link
+                                                            href={`/questions/${item.slug}`}
+                                                            className={
+                                                                item.slug === props.activeCatSlug
+                                                                    ? "active"
+                                                                    : ""
+                                                            }
+                                                            onClick={(e) => props.navControl(false)(e)}>
+
+                                                            {item.title}
+
+                                                        </Link>
 													</li>
 												))}
 										</ul>
@@ -169,37 +165,29 @@ export default function MobileNav(props) {
 							</li>
 
 							<li>
-								<Link href="/counselling-session">
-									<a onClick={(e) => props.navControl(false)(e)}>
-										{/* <ClassIcon /> */}
-										<AssessmentIcon />
-										Counselling Session
-									</a>
-								</Link>
+								<Link href="/counselling-session" onClick={(e) => props.navControl(false)(e)}>
+
+                                    {/* <ClassIcon /> */}
+                                    <AssessmentIcon />Counselling Session
+                                </Link>
 							</li>
 							<li>
-								<Link href="/ask-a-question">
-									<a onClick={(e) => props.navControl(false)(e)}>
-										<QuestionAnswer />
-										Ask a Question
-									</a>
-								</Link>
+								<Link href="/ask-a-question" onClick={(e) => props.navControl(false)(e)}>
+
+                                    <QuestionAnswer />Ask a Question
+                                </Link>
 							</li>
 							<li>
-								<Link href="/contact">
-									<a onClick={(e) => props.navControl(false)(e)}>
-										<MailIcon />
-										Contact
-									</a>
-								</Link>
+								<Link href="/contact" onClick={(e) => props.navControl(false)(e)}>
+
+                                    <MailIcon />Contact
+                                </Link>
 							</li>
 							<li>
-								<Link href="/about">
-									<a onClick={(e) => props.navControl(false)(e)}>
-										<PersonIcon />
-										About
-									</a>
-								</Link>
+								<Link href="/about" onClick={(e) => props.navControl(false)(e)}>
+
+                                    <PersonIcon />About
+                                </Link>
 							</li>
 						</ul>
 					</div>
@@ -275,5 +263,5 @@ export default function MobileNav(props) {
 				</div>
 			</div>
 		</Drawer>
-	);
+    );
 }

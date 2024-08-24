@@ -11,16 +11,16 @@ export default function PostCardVideo({ lecture, statistics }) {
   return (
     <div className="card card-r pc-0">
       <div className="card-image">
-        <Link href={`/lectures?v=${id}`}>
-          <a className="image-r">
-            <img src={image} alt="" />
-          </a>
+        <Link href={`/lectures?v=${id}`} className="image-r">
+
+          <img src={image} alt="" />
+
         </Link>
       </div>
 
       <div className="card-content">
-        <Link href={`/lectures?v=${id}`}>
-          <a className="heading-r">{title}</a>
+        <Link href={`/lectures?v=${id}`} className="heading-r">
+          {title}
         </Link>
 
         <div className="data-line">

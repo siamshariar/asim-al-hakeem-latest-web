@@ -64,366 +64,374 @@ export default function Header({
 		setMobileNavOpen(open);
 	};
 
-	return (
-		<>
-			<header className="header header-3" ref={header}>
-				<div className="headline row">
-					<div className="page-width">
-						<div className="box">
-							<div className="headline-ctn col s6 m6">
-								<div className="d-flex align-center">
-									<PlayCircleOutlineIcon />
-									<span className="headline-title">Headline:</span>
-									<div className="vwrap">
-										<ul className="vmove">
-											{lectures.videoLists &&
-												lectures.videoLists.map((item, i) => (
-													// <div
-													// 	className="col col-r s12 m6 l4 xl3"
-													// 	key={item.id}>
-													// 	<PostCard
-													// 		item={item}
-													// 		statistics={lectures.videoStats}
-													// 	/>
-													// </div>
-													<li className="vitem" key={i}>
-														<Link href={`/lectures/watch/${item.id}`}>
-															<a>{item.title}</a>
-														</Link>
-													</li>
-												))}
+	return <>
+        <header className="header header-3" ref={header}>
+            <div className="headline row">
+                <div className="page-width">
+                    <div className="box">
+                        <div className="headline-ctn col s6 m6">
+                            <div className="d-flex align-center">
+                                <PlayCircleOutlineIcon />
+                                <span className="headline-title">Headline:</span>
+                                <div className="vwrap">
+                                    <ul className="vmove">
+                                        {lectures.videoLists &&
+                                            lectures.videoLists.map((item, i) => (
+                                                // <div
+                                                // 	className="col col-r s12 m6 l4 xl3"
+                                                // 	key={item.id}>
+                                                // 	<PostCard
+                                                // 		item={item}
+                                                // 		statistics={lectures.videoStats}
+                                                // 	/>
+                                                // </div>
+                                                <li className="vitem" key={i}>
+                                                    <Link href={`/lectures/watch/${item.id}`}>
+                                                        {item.title}
+                                                    </Link>
+                                                </li>
+                                            ))}
 
-											{/* again 1st item */}
-											{
-												<li className="vitem">
-													<Link
-														href={`/lectures/watch/${
-															lectures.videoLists && lectures.videoLists[0].id
-														}`}>
-														<a>
-															{lectures.videoLists &&
-																lectures.videoLists[0].title}
-														</a>
-													</Link>
-												</li>
-											}
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div className="h-socials col s6 m6">
-								<ul>
-									<li>
-										<a
-											href="https://www.facebook.com/SheikhAssimAlhakeemTeam/"
-											target="_blank">
-											<i className=" fab fa-facebook-f"></i>
-										</a>
-									</li>
-									<li>
-										<a
-											href="https://instagram.com/assimalhakeem?igshid=1v9psnayget6c"
-											target="_blank">
-											<i className=" fab fa-instagram"></i>
-										</a>
-									</li>
-									<li>
-										<a href="https://twitter.com/Assimalhakeem" target="_blank">
-											<i className=" fab fa-twitter"></i>
-										</a>
-									</li>
-									<li>
-										<a
-											href="https://www.youtube.com/user/assimalhakeem"
-											target="_blank">
-											<i className=" fab fa-youtube"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+                                        {/* again 1st item */}
+                                        {
+                                            <li className="vitem">
+                                                <Link
+                                                    href={`/lectures/watch/${
+                                                        lectures.videoLists && lectures.videoLists[0].id
+                                                    }`}>
 
-				<div className="navbar row">
-					<div className="page-width">
-						<div className="box">
-							<div className="header-ctn">
-								<Link href="/">
-									<a className="header-logo">
-										<Image
-											src="/img/logo.png"
-											alt=""
-											width={150}
-											height={70}
-											objectFit="contain"
-											objectPosition="left center"
-											loading="eager"
-											unoptimized
-										/>
-									</a>
-								</Link>
+                                                    {lectures.videoLists &&
+                                                        lectures.videoLists[0].title}
 
-								<ul className="main-menu">
-									<li>
-										<Link href="/">
-											<a className={router.pathname === "/" ? "active" : ""}>
-												{/*<span className="main-menu-icon">*/}
-												{/*  <BookIcon />*/}
-												{/*</span>*/}
-												Home
-											</a>
-										</Link>
-									</li>
-									<li>
-										{/* <Link href={`/lectures/${youtube.uploadPlaylistID}`}> */}
-										<a
-											className={
-												router.pathname.startsWith("/lectures")
-													? "menu-active"
-													: ""
-											}>
-											Lectures
-											<span className="main-menu-icon icon-more">
-												<ExpandMoreIcon />
-											</span>
-										</a>
-										{/* </Link> */}
+                                                </Link>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="h-socials col s6 m6">
+                            <ul>
+                                <li>
+                                    <a
+                                        href="https://www.facebook.com/SheikhAssimAlhakeemTeam/"
+                                        target="_blank">
+                                        <i className=" fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://instagram.com/assimalhakeem?igshid=1v9psnayget6c"
+                                        target="_blank">
+                                        <i className=" fab fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/Assimalhakeem" target="_blank">
+                                        <i className=" fab fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://www.youtube.com/user/assimalhakeem"
+                                        target="_blank">
+                                        <i className=" fab fa-youtube"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-										<div className="sub-menu">
-											<div className="sub-menu-wrap scrollbar">
-												<ul>
-													{firstList &&
-														firstList.map((playlist) => (
-															<li key={playlist.id}>
-																<Link href={`/lectures/${playlist.id}`}>
-																	<a
-																		className={
-																			router.asPath ===
-																			`/lectures/${playlist.id}`
-																				? "active"
-																				: ""
-																		}>
-																		{playlist.title}
-																	</a>
-																</Link>
-															</li>
-														))}
-												</ul>
+            <div className="navbar row">
+                <div className="page-width">
+                    <div className="box">
+                        <div className="header-ctn">
+                            <Link href="/" className="header-logo">
 
-												<ul>
-													{secondList &&
-														secondList.map((playlist) => (
-															<li key={playlist.id}>
-																<Link href={`/lectures/${playlist.id}`}>
-																	<a
-																		className={
-																			router.asPath ===
-																			`/lectures/${playlist.id}`
-																				? "active"
-																				: ""
-																		}>
-																		{playlist.title}
-																	</a>
-																</Link>
-															</li>
-														))}
-												</ul>
+                                <Image
+                                    src="/img/logo.png"
+                                    alt=""
+                                    width={150}
+                                    height={70}
+                                    objectFit="contain"
+                                    objectPosition="left center"
+                                    loading="eager"
+                                    unoptimized
+                                />
 
-												<ul>
-													{thirdList &&
-														thirdList.map((playlist) => (
-															<li key={playlist.id}>
-																<Link href={`/lectures/${playlist.id}`}>
-																	<a
-																		className={
-																			router.asPath ===
-																			`/lectures/${playlist.id}`
-																				? "active"
-																				: ""
-																		}>
-																		{playlist.title}
-																	</a>
-																</Link>
-															</li>
-														))}
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li>
-										<Link href="/articles">
-											<a
-												className={
-													router.pathname.startsWith("/articles")
-														? "active"
-														: ""
-												}>
-												Articles
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href="/books">
-											<a
-												className={
-													router.pathname.startsWith("/books") ? "active" : ""
-												}>
-												Books
-											</a>
-										</Link>
-									</li>
+                            </Link>
 
-									<li>
-										<a
-											className={
-												router.pathname.startsWith("/questions")
-													? "menu-active"
-													: ""
-											}>
-											QnA
-											<span className="main-menu-icon icon-more">
-												<ExpandMoreIcon />
-											</span>
-										</a>
+                            <ul className="main-menu">
+                                <li>
+                                    <Link href="/" className={router.pathname === "/" ? "active" : ""}>
 
-										<div className="sub-menu sub-menu2">
-											<div className="sub-menu-wrap scrollbar">
-												<ul>
-													{firstListQ &&
-														firstListQ.map((item, i) => (
-															<li key={i}>
-																<Link href={`/questions/${item.slug}`}>
-																	<a
-																		className={
-																			router.asPath ===
-																			`/questions/${item.slug}`
-																				? "active"
-																				: ""
-																		}>
-																		{item.title}
-																	</a>
-																</Link>
-															</li>
-														))}
-												</ul>
+                                        {/*<span className="main-menu-icon">*/}
+                                        {/*  <BookIcon />*/}
+                                        {/*</span>*/}Home
+                                    </Link>
+                                </li>
+                                <li>
+                                    {/* <Link href={`/lectures/${youtube.uploadPlaylistID}`}> */}
+                                    <a
+                                        className={
+                                            router.pathname.startsWith("/lectures")
+                                                ? "menu-active"
+                                                : ""
+                                        }>
+                                        Lectures
+                                        <span className="main-menu-icon icon-more">
+                                            <ExpandMoreIcon />
+                                        </span>
+                                    </a>
+                                    {/* </Link> */}
 
-												<ul>
-													{secondListQ &&
-														secondListQ.map((item) => (
-															<li key={item.id}>
-																<Link href={`/questions/${item.slug}`}>
-																	<a
-																		className={
-																			router.asPath ===
-																			`/questions/${item.slug}`
-																				? "active"
-																				: ""
-																		}>
-																		{item.title}
-																	</a>
-																</Link>
-															</li>
-														))}
-												</ul>
+                                    <div className="sub-menu">
+                                        <div className="sub-menu-wrap scrollbar">
+                                            <ul>
+                                                {firstList &&
+                                                    firstList.map((playlist) => (
+                                                        <li key={playlist.id}>
+                                                            <Link
+                                                                href={`/lectures/${playlist.id}`}
+                                                                className={
+                                                                    router.asPath ===
+                                                                    `/lectures/${playlist.id}`
+                                                                        ? "active"
+                                                                        : ""
+                                                                }>
 
-												<ul>
-													{thirdListQ &&
-														thirdListQ.map((item) => (
-															<li key={item.id}>
-																<Link href={`/questions/${item.slug}`}>
-																	<a
-																		className={
-																			router.asPath ===
-																			`/questions/${item.slug}`
-																				? "active"
-																				: ""
-																		}>
-																		{item.title}
-																	</a>
-																</Link>
-															</li>
-														))}
-												</ul>
-											</div>
-										</div>
-									</li>
+                                                                {playlist.title}
 
-									{/* <li>
-										<Link href="/questions/all">
-											<a
-												className={
-													router.pathname.startsWith("/questions")
-														? "active"
-														: ""
-												}>
-												QnA
-											</a>
-										</Link>
-									</li> */}
-									<li>
-										<Link href="/counselling-session">
-											<a
-												className={
-													router.pathname === "/counselling-session"
-														? "active"
-														: ""
-												}>
-												Counselling Session
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href="/ask-a-question">
-											<a
-												className={
-													router.pathname === "/ask-a-question" ? "active" : ""
-												}>
-												Ask a Question
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href="/contact">
-											<a
-												className={
-													router.pathname === "/contact" ? "active" : ""
-												}>
-												Contact
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href="/about">
-											<a
-												className={
-													router.pathname === "/about" ? "active" : ""
-												}>
-												About
-											</a>
-										</Link>
-									</li>
-								</ul>
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                            </ul>
 
-								<ul className="mobile-icons">
-									<li className="menu-burger" onClick={toggleMobileNav(true)}>
-										<i className="fas fa-bars"></i>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</header>
+                                            <ul>
+                                                {secondList &&
+                                                    secondList.map((playlist) => (
+                                                        <li key={playlist.id}>
+                                                            <Link
+                                                                href={`/lectures/${playlist.id}`}
+                                                                className={
+                                                                    router.asPath ===
+                                                                    `/lectures/${playlist.id}`
+                                                                        ? "active"
+                                                                        : ""
+                                                                }>
 
-			<MobileNav
-				playlists={playlists}
-				qnaCategories={qna_categories}
-				navOpen={mobileNavOpen}
-				navControl={toggleMobileNav}
-				activeId={activePlaylistId}
-				activeCatSlug={activeCatSlug}
-			/>
-		</>
-	);
+                                                                {playlist.title}
+
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                            </ul>
+
+                                            <ul>
+                                                {thirdList &&
+                                                    thirdList.map((playlist) => (
+                                                        <li key={playlist.id}>
+                                                            <Link
+                                                                href={`/lectures/${playlist.id}`}
+                                                                className={
+                                                                    router.asPath ===
+                                                                    `/lectures/${playlist.id}`
+                                                                        ? "active"
+                                                                        : ""
+                                                                }>
+
+                                                                {playlist.title}
+
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/articles"
+                                        className={
+                                            router.pathname.startsWith("/articles")
+                                                ? "active"
+                                                : ""
+                                        }>
+                                        
+                                            Articles
+                                        
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/books"
+                                        className={
+                                            router.pathname.startsWith("/books") ? "active" : ""
+                                        }>
+                                        
+                                            Books
+                                        
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <a
+                                        className={
+                                            router.pathname.startsWith("/questions")
+                                                ? "menu-active"
+                                                : ""
+                                        }>
+                                        QnA
+                                        <span className="main-menu-icon icon-more">
+                                            <ExpandMoreIcon />
+                                        </span>
+                                    </a>
+
+                                    <div className="sub-menu sub-menu2">
+                                        <div className="sub-menu-wrap scrollbar">
+                                            <ul>
+                                                {firstListQ &&
+                                                    firstListQ.map((item, i) => (
+                                                        <li key={i}>
+                                                            <Link
+                                                                href={`/questions/${item.slug}`}
+                                                                className={
+                                                                    router.asPath ===
+                                                                    `/questions/${item.slug}`
+                                                                        ? "active"
+                                                                        : ""
+                                                                }>
+
+                                                                {item.title}
+
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                            </ul>
+
+                                            <ul>
+                                                {secondListQ &&
+                                                    secondListQ.map((item) => (
+                                                        <li key={item.id}>
+                                                            <Link
+                                                                href={`/questions/${item.slug}`}
+                                                                className={
+                                                                    router.asPath ===
+                                                                    `/questions/${item.slug}`
+                                                                        ? "active"
+                                                                        : ""
+                                                                }>
+
+                                                                {item.title}
+
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                            </ul>
+
+                                            <ul>
+                                                {thirdListQ &&
+                                                    thirdListQ.map((item) => (
+                                                        <li key={item.id}>
+                                                            <Link
+                                                                href={`/questions/${item.slug}`}
+                                                                className={
+                                                                    router.asPath ===
+                                                                    `/questions/${item.slug}`
+                                                                        ? "active"
+                                                                        : ""
+                                                                }>
+
+                                                                {item.title}
+
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                {/* <li>
+                                    <Link href="/questions/all">
+                                        <a
+                                            className={
+                                                router.pathname.startsWith("/questions")
+                                                    ? "active"
+                                                    : ""
+                                            }>
+                                            QnA
+                                        </a>
+                                    </Link>
+                                </li> */}
+                                <li>
+                                    <Link
+                                        href="/counselling-session"
+                                        className={
+                                            router.pathname === "/counselling-session"
+                                                ? "active"
+                                                : ""
+                                        }>
+                                        
+                                            Counselling Session
+                                        
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/ask-a-question"
+                                        className={
+                                            router.pathname === "/ask-a-question" ? "active" : ""
+                                        }>
+                                        
+                                            Ask a Question
+                                        
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/contact"
+                                        className={
+                                            router.pathname === "/contact" ? "active" : ""
+                                        }>
+                                        
+                                            Contact
+                                        
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/about"
+                                        className={
+                                            router.pathname === "/about" ? "active" : ""
+                                        }>
+                                        
+                                            About
+                                        
+                                    </Link>
+                                </li>
+                            </ul>
+
+                            <ul className="mobile-icons">
+                                <li className="menu-burger" onClick={toggleMobileNav(true)}>
+                                    <i className="fas fa-bars"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <MobileNav
+            playlists={playlists}
+            qnaCategories={qna_categories}
+            navOpen={mobileNavOpen}
+            navControl={toggleMobileNav}
+            activeId={activePlaylistId}
+            activeCatSlug={activeCatSlug}
+        />
+    </>;
 }

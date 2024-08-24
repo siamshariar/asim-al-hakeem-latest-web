@@ -13,21 +13,21 @@ export default function PostCard({
 	},
 } = {}) {
 	return (
-		<div className="card card-r pc-6">
+        <div className="card card-r pc-6">
 			<div className="card-image">
-				<Link href={`/books/${bookSlug}`}>
-					<a className="image-r">
-						<Image
-							src={imageSrc}
-							alt=""
-							layout="fill"
-							objectFit="cover"
-							objectPosition="center center"
-							loading="eager"
-							unoptimized
-						/>
-					</a>
-				</Link>
+				<Link href={`/books/${bookSlug}`} className="image-r">
+
+                    <Image
+                        src={imageSrc}
+                        alt=""
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="center center"
+                        loading="eager"
+                        unoptimized
+                    />
+
+                </Link>
 			</div>
 
 			<div className="card-content">
@@ -35,8 +35,8 @@ export default function PostCard({
           <a className="cat-r">{catText}</a>
         </Link> */}
 
-				<Link href={`/books/${bookSlug}`}>
-					<a className="heading-r heading-b">{bookName}</a>
+				<Link href={`/books/${bookSlug}`} className="heading-r heading-b">
+					{bookName}
 				</Link>
 
 				<h2>{writer}</h2>
@@ -46,5 +46,5 @@ export default function PostCard({
 				{/* <span className="date-r">{postDate}</span> */}
 			</div>
 		</div>
-	);
+    );
 }

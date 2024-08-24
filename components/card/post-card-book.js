@@ -13,17 +13,17 @@ export default function BookCard({
   return (
       <div className="card card-r pc-2">
           <div className="card-image card-image-b">
-              <Link href={`/books/${bookSlug}`}>
-                  <a className="image-r">
-                      <Image
-                          src={imageSrc}
-                          alt=""
-                          layout="fill"
-                          objectFit="cover"
-                          objectPosition="center center"
-                          loading="eager" unoptimized
-                      />
-                  </a>
+              <Link href={`/books/${bookSlug}`} className="image-r">
+
+                  <Image
+                      src={imageSrc}
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="center center"
+                      loading="eager" unoptimized
+                  />
+
               </Link>
           </div>
 
@@ -32,8 +32,8 @@ export default function BookCard({
           <a className="cat-r">{catText}</a>
         </Link> */}
 
-              <Link href={`/books/${bookSlug}`}>
-                  <a className="heading-r">{bookName}</a>
+              <Link href={`/books/${bookSlug}`} className="heading-r">
+                  {bookName}
               </Link>
 
               {/*<p>{postExcerpt}</p>*/}

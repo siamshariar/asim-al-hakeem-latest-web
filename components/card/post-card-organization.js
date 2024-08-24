@@ -12,29 +12,29 @@ export default function PostCardOrganization({
   },
 } = {}) {
   return (
-      <div className="card card-r pc-0">
-        <div className="card-image">
-          <Link href={`/organizations/${orgSlug}`}>
-            <a className="image-r">
-              <Image
-                  src={imageSrc}
-                  alt=""
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="center center"
-                  loading="eager" unoptimized
-              />
-            </a>
-          </Link>
-        </div>
+    <div className="card card-r pc-0">
+      <div className="card-image">
+        <Link href={`/organizations/${orgSlug}`} className="image-r">
 
-        <div className="card-content">
-          <Link href={`/articles/${orgSlug}`}>
-            <a className="heading-r">{orgName}</a>
-          </Link>
+          <Image
+              src={imageSrc}
+              alt=""
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center center"
+              loading="eager" unoptimized
+          />
 
-          {/*<p className="paragraph-r">{postExcerpt}</p>*/}
-        </div>
+        </Link>
       </div>
+
+      <div className="card-content">
+        <Link href={`/articles/${orgSlug}`} className="heading-r">
+          {orgName}
+        </Link>
+
+        {/*<p className="paragraph-r">{postExcerpt}</p>*/}
+      </div>
+    </div>
   );
 }

@@ -11,32 +11,32 @@ export default function PostCardVideo2({ item, statistics }) {
 	const viewCount = statistics ? statistics[id] : "";
 
 	return (
-		<div className="card card-r pc-video">
+        <div className="card card-r pc-video">
 			<div className="card-image">
 				{/*TODO: Consider prefetch*/}
-				<Link href={`/lectures/watch/${id}`}>
-					<a className="image-r">
-						{/* <img src={image} alt="" /> */}
-						<Image
-							src={
-								image
-									? `http://i.ytimg.com/vi/${id}/mqdefault.jpg`
-									: "/img/post/youtube-default.jpg"
-							}
-							alt=""
-							layout="fill"
-							objectFit="cover"
-							objectPosition="center center"
-							loading="eager"
-							unoptimized
-						/>
-					</a>
-				</Link>
+				<Link href={`/lectures/watch/${id}`} className="image-r">
+
+                    {/* <img src={image} alt="" /> */}
+                    <Image
+                        src={
+                            image
+                                ? `http://i.ytimg.com/vi/${id}/mqdefault.jpg`
+                                : "/img/post/youtube-default.jpg"
+                        }
+                        alt=""
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="center center"
+                        loading="eager"
+                        unoptimized
+                    />
+
+                </Link>
 			</div>
 
 			<div className="card-content">
-				<Link href={`/lectures/watch/${id}`}>
-					<a className="heading-r">{title}</a>
+				<Link href={`/lectures/watch/${id}`} className="heading-r">
+					{title}
 				</Link>
 
 				<div className="data-line">
@@ -45,5 +45,5 @@ export default function PostCardVideo2({ item, statistics }) {
 				</div>
 			</div>
 		</div>
-	);
+    );
 }

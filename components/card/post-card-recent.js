@@ -15,7 +15,7 @@ export default function PostCardRecent({
 } = {}) {
   return (
     <div className="recent-item">
-      <Link href={`/lectures/watch/${id}`}>
+      <Link href={`/lectures/watch/${id}`} legacyBehavior>
         <div className="recent-ctn">
           {/* <img src={image} alt="" /> */}
           <Image
