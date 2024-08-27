@@ -8,8 +8,9 @@ import "slick-carousel/slick/slick.css";
 import "../styles/style.scss";
 import  '../styles/500.scss'
 import "../styles/QuranSlider.scss"
-
+import '../styles/globals.css'; // Adjust the path if needed
 import Layout from "../components/layout";
+
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter();

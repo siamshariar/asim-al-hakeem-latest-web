@@ -4,7 +4,7 @@ import { youtube } from "../../lib/config";
 
 export default function HomeBanner() {
 	return (
-        <section className="h-sec h-banner h3-banner h-banner-1">
+        <section className="bg-gray  h-sec h-banner h3-banner h-banner-1">
 			<div className="page-width">
 				<div className="box h-banner-ctn">
 					<div className="h-banner-text">

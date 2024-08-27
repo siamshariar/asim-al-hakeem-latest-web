@@ -27,6 +27,7 @@ import HomeQna from "../components/home/qna";
 import TextContent from "../components/home/text-content";
 import HomeQuoteSlider from "../components/home/quote-slider";
 import QuranSlider from "../components/Slider";
+import Banner from "../components/home/banner1";
 
 export default function Home({
 	lectures,
@@ -56,6 +57,7 @@ export default function Home({
 
 			<div className="opt_home_ctn">
 				<HomeBanner />
+				<Banner />
 				<HomeRecent lectures={lectures} />
 				<HomeArticles articles={articles} />
 				<HomeBooks books={books} />
