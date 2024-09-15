@@ -11,7 +11,7 @@ export default function Layout({ children }) {
   return (
     <>
       <div className="content_without_footer">
-        <main className={`viewport homepage home-3`}>{children}</main>
+        <main className={`homepage home-3`}>{children}</main>
       </div>
       {shouldShowFooter && <Footer />}
     </>

@@ -1,145 +1,93 @@
-import Link from "next/link";
-// import Image from "next/image";
+export default function Footer1() {
+    return (
+        <footer class="Footer pt-12 xl:pt-[150px]">
+            <div class="container mx-auto pb-12 xl:pb-[100px]">
+                <div class="flex flex-col xl:flex-row gap-x-5 gap-y-10">
+                    <div class="footer__item flex-1">
+                        <a href="">
+                            <img class="mb-[30px] w-[250px]" src="/img/id/logo.png" alt="" />
+                        </a>
+                        <div class="flex flex-col gap-y-3 mb-10">
+                            <div class="flex items-center gap-x-[60px]">
+                                <i class="ri-map-pin-fill text-[24px] text-accent"></i>
+                                <div>123 Arling, Miola, NY</div>
+                            </div>
+                            <div class="flex items-center gap-x-[60px]">
+                                <i class="ri-mail-fill text-[24px] text-accent"></i>
+                                <div>assimalhakeem@email.com</div>
+                            </div>
+                            <div class="flex items-center gap-x-[60px]">
+                                <i class="ri-phone-fill text-[24px] text-accent"></i>
+                                <div>(+123 456 78910)</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-[14px] text-[30px]">
+                            <div class="p-[10px] rounded-[10px] shadow-custom2 text-accent-tertiary hover:text-accent cursor-pointer transition-all">
+                                <i class="ri-facebook-circle-fill"></i>
+                            </div>
+                            <div class="p-[10px] rounded-[10px] shadow-custom2 text-accent-tertiary hover:text-accent cursor-pointer transition-all">
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                            <div class="p-[10px] rounded-[10px] shadow-custom2 text-accent-tertiary hover:text-accent cursor-pointer transition-all">
+                                <i class="ri-twitter-fill"></i>
+                            </div>
+                            <div class="p-[10px] rounded-[10px] shadow-custom2 text-accent-tertiary hover:text-accent cursor-pointer transition-all">
+                                <i class="ri-linkedin-box-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer__item flex-1">
+                        <h4 class="text-[22px] font-bold mb-5">Quick Links</h4>
+                        <div class="flex gap-x-5">
+                            <ul class="flex-1 flex flex-col text-[20px] gap-y-5">
+                                <li><a href="#" class="hover:text-accent transition-all">Home</a></li>
+                                <li><a href="#" class="hover:text-accent transition-all">Lectures</a></li>
+                                <li><a href="#" class="hover:text-accent transition-all">Articles</a></li>
+                                <li><a href="#" class="hover:text-accent transition-all">Books</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer__item flex-1">
+                        <h4 class="footer__item flex-1 text-[22px] font-bold mb-5">Opening Hours</h4>
+                        <div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center border-b pb-[10px]">
+                                    <div>Monday - Thursday</div>
+                                    <div class="text-accent font-medium">8:00 Am - 6:00 Pm</div>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center border-b pb-[10px]">
+                                    <div>Friday - Saturday</div>
+                                    <div class="text-accent font-medium">10:00 Am - 5:00 Pm</div>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center border-b pb-[10px]">
+                                    <div>Wednessday - Thursday</div>
+                                    <div class="text-accent font-medium">11:00 Am - 8:00 Pm</div>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center border-b pb-[10px]">
+                                    <div>Monday - Thursday</div>
+                                    <div class="text-accent font-medium">8:00 Am - 6:00 Pm</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-x-5">
+                            <ul class="flex-1 flex flex-col gap-y-5"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-export default function Footer() {
-	return (
-        <footer className="footer">
-			<div className="page-width">
-				<div className="box">
-					<div className="simple-footer">
-						<p className="footer-copyright">
-							&copy; 2023, All rights reserved.
-						</p>
-						<div className="link-content">
-							<Link href="/about">
-								About Us
-							</Link>
-							<Link href="/counselling-session">
-								Counselling Session
-							</Link>
-							<Link href="/contact">
-								Contact
-							</Link>
-						</div>
-						<p className="footer-powered-by">
-							Powered By -{" "}
-							<a
-								className="link-r"
-								href="https://deeniinfotech.com"
-								target="_blank">
-								Deeni Info Tech
-							</a>
-						</p>
-					</div>
-					{/* <div className="footer-ctn">
-						<div className="foot-col">
-							<p className="footer-copyright">
-								&copy; 2023, All rights reserved.
-							</p>
-							<p className="footer-powered-by">
-								Powered By -{" "}
-								<a
-									className="link-r"
-									href="https://www.deeniinfotech.com"
-									target="_blank">
-									Deeni Info Tech
-								</a>
-							</p>
-						</div>
-
-						<div className="foot-col">
-							<Link href="/">
-								<a className="footer-logo">
-									<Image
-										// src={`${server}/img/id/logo_english.png`}
-										src="/img/logo.png"
-										alt=""
-										width={132}
-										height={117}
-										objectFit="contain"
-										objectPosition="center center"
-										loading="eager"
-										unoptimized
-									/>
-								</a>
-							</Link>
-						</div>
-
-						<div className="foot-col">
-							<div className="opt_footer_social">
-								<h3 className="title-s">Social Media</h3>
-								<ul>
-									<li>
-										<a
-											href="https://www.facebook.com/SheikhAssimAlhakeemTeam/"
-											target="_blank">
-											<i className="fab fa-facebook-f"></i>
-										</a>
-									</li>
-									<li>
-										<a
-											href="https://instagram.com/assimalhakeem?igshid=1v9psnayget6c"
-											target="_blank">
-											<i className="fab fa-instagram"></i>
-										</a>
-									</li>
-									<li>
-										<a href="https://twitter.com/Assimalhakeem" target="_blank">
-											<i className="fab fa-twitter"></i>
-										</a>
-									</li>
-									<li>
-										<a
-											href="https://www.youtube.com/user/assimalhakeem"
-											target="_blank">
-											<i className="fab fa-youtube"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div> */}
-
-					{/* <div className="mobile-footer">
-						<div className="row row-r">
-							<div className="col col-r s12 l12">
-								<div className="center-align">
-									<Link href="/">
-										<a className="footer-logo center-align">
-											<Image
-												src="/img/logo.png"
-												alt=""
-												width={92}
-												height={82}
-												objectFit="contain"
-												objectPosition="center center"
-												loading="eager"
-												unoptimized
-											/>
-										</a>
-									</Link>
-								</div>
-								<div>
-									<p className="footer-copyright center-align">
-										<span>&copy; 2023, All rights reserved.</span>
-									</p>
-								</div>
-								<div>
-									<p className="footer-powered-by center-align">
-										Powered By -{" "}
-										<a
-											className="link-r"
-											href="https://www.deeniinfotech.com"
-											target="_blank">
-											Deeni Info Tech
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div> */}
-				</div>
-			</div>
-		</footer>
-    );
+            <div class="py-[30px] border-t">
+                <div class="container mx-auto text-center">
+                    <div class="font-light text-base">&copy; 2024 deeniinfotech - All rights reserved.</div>
+                </div>
+            </div>
+        </footer>
+    )
+    
 }

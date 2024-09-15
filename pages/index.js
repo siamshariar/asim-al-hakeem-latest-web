@@ -28,6 +28,16 @@ import TextContent from "../components/home/text-content";
 import HomeQuoteSlider from "../components/home/quote-slider";
 import QuranSlider from "../components/Slider";
 import Banner from "../components/home/banner1";
+import Header2 from "../components/header1";
+import Articles from "./articles";
+import BookSlider from "./book";
+import TestimonialSlider from "../components/verce";
+import Question from "../components/home/question";
+import BookAppointment from "../components/home/appoinment";
+import Banner2 from "../components/home/banner2";
+import RecentLecture from "../components/home/recent-lectures";
+
+
 
 export default function Home({
 	lectures,
@@ -49,22 +59,21 @@ export default function Home({
 				type="website"
 			/>
 
-			<Header
+			<Header2
 				playlists={playlists}
 				lectures={headerLectures}
 				qna_categories={qna_categories}
 			/>
 
 			<div className="opt_home_ctn">
-				<HomeBanner />
-				<Banner />
-				<HomeRecent lectures={lectures} />
-				<HomeArticles articles={articles} />
-				<HomeBooks books={books} />
-				<HomeQna qna={qna} />
-				<TextContent />
-				<HomeQuoteSlider quotes={quotes} />
-				<QuranSlider />
+				<Banner2 />
+				<RecentLecture />
+				<Articles />
+				<TestimonialSlider />
+				<BookSlider />
+				<Question />
+				<BookAppointment />
+				
 			</div>
 		</>
 	);

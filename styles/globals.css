@@ -1,3 +1,104 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply text-secondary font-primary text-[17px] leading-8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @apply text-primary leading-[120%];
+}
+
+.h1 {
+    @apply text-[36px] xl:text-[64px] font-semibold;
+}
+
+.h2 {
+    @apply text-[30px] xl:text-[44px] font-semibold capitalize tracking-[0.44px];
+}
+
+.h3 {
+    @apply text-[20px] xl:text-[26px] font-semibold;
+}
+.h4 {
+    @apply text-[20px] xl:text-[26px] font-semibold capitalize;
+}
+.btn {
+    @apply rounded-full uppercase tracking-[1.02px] flex items-center justify-center transition-all;
+}
+
+.btn-sm {
+    @apply h-14 px-10;
+}
+
+.btn-lg {
+    @apply h-16 px-[50px];
+}
+
+.btn-accent {
+    @apply bg-accent text-white hover:bg-accent-secondary;
+}
+
+.btn-white {
+    @apply bg-white text-secondary hover:bg-white/90;
+}
+
+.btn-outline {
+    @apply bg-transparent border border-[#1CBCCF] text-secondary hover:bg-accent hover:border-transparent hover:text-white;
+}
+
+.input, .select {
+    @apply w-full rounded-[10px] h-[66px] outline-none border border-[#dbdfdf] text-secondary font-light placeholder:font-light placeholder:text-secondary;
+}
+
+.input {
+    @apply px-4;
+}
+
+.section {
+    @apply py-12 xl:py-[150px];
+}
+
+/* Regular CSS for Swiper Pagination Styles */
+/* For advanced styles */
+.swiper-pagination-bullet-active {
+    opacity: 0.8;
+    background: linear-gradient(to right, #ff5733, #1cbccf); /* Gradient background */
+}
+
+@layer utilities {
+    .scrollbar-thin {
+      scrollbar-width: thin; /* For Firefox */
+    }
+  
+    .scrollbar-thumb-rounded {
+      scrollbar-color: #c1c1c1 transparent; /* Thumb color and track background for Firefox */
+    }
+  
+    .scrollbar-thin::-webkit-scrollbar {
+      height: 6px; /* Horizontal scrollbar height */
+      width: 6px; /* Vertical scrollbar width */
+    }
+  
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background-color: #c1c1c1; /* Scrollbar thumb color */
+      border-radius: 3px; /* Optional: Rounded corners */
+    }
+  
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background-color: #f1f1f1; /* Scrollbar track color */
+    }
+  }
+  
+
+.button {
+    border: 2px solid #1CBCCF;
+    padding: 10px 45px;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    border: 2px solid black;
+}

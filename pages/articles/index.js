@@ -1,109 +1,57 @@
-import { server } from "../../lib/config";
-import {
-	getArticles,
-	getAllPlaylists2,
-	getHeaderLectures,
-	getAllQnaCategory,
-} from "../../lib/fetch";
-import Meta from "../../components/meta";
-import Header from "../../components/header";
-import PostCardArticle from "../../components/card/post-card-article";
-// import PostCardArticle2 from "../../components/card/post-card-article2";
+import React from 'react';
 
-export default function BlogList({
-	articles,
-	playlists,
-	headerLectures,
-	qnaCategories,
-}) {
-	return (
-		<>
-			<Meta
-				title="Articles"
-				description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar, which lies in the east of the Kingdom of Saudi Arabia. He was raised there until the age of 12 before he and his family moved to the Western Province of Saudi Arabia"
-				url={`${server}/articles`}
-				image={`${server}/img/id/default_share.jpeg`}
-				type="website"
-			/>
+const Articles = () => {
+  const lectures = [
+    {
+      id: 1,
+      date: "Jan 2, 2023",
+      title: "গণমাধ্যমে দা‘ওয়াতঃসমস্যা ও সমাধান",
+      description:
+        "আল-কুরআনুল কারীম মহানবী সাল্লাল্লাহু ‘আলাইহি ওয়াসাল্লামের উপর আল্লাহ সুবহানাহু ওয়া তা‘আলার পক্ষ থেকে নাযিলকৃত সর্বশ্রেষ্ঠ ও চিরন্তন মু‘জিযা, বিশ্ব মানবতার মুক্তিসনদ। এতে রয়েছে মানব জীবনের সকল...",
+      imageUrl: "/img/post/001.jpg",
+    },
+    {
+      id: 2,
+      date: "Jan 3, 2023",
+      title: "আসহাবে রাসূলের (ﷺ) উপাধি ও সম্মানজনক লকব সমূহ",
+      description:
+        "মুমিন মাত্রই রাসূলুল্লাহ সাল্লাল্লাহু ‘আলাইহি ওয়াসাল্লামের প্রতি মহব্বত পোষণ করে। কেননা রাসূলুল্লাহ সাল্লাল্লাহু ‘আলাইহি ওয়াসাল্লামের প্রতি মহব্বত রাখা ঈমানের এক অপরিহার্য অংশ। পরম শ্রদ্ধা, গভীর ভালোবাসা আর...",
+      imageUrl:"/img/post/002.jpg",
+    },
+    {
+      id: 3,
+      date: "Jan 4, 2023",
+      title: "উশর ও খারাজের বিধান",
+      description:
+        "একটা সুষম, কল্যাণমুখী ও সর্বাত্মক ব্যবস্থা ছাড়া মানুষের পক্ষে সুস্থ স্বাভাবিক সমাজ-জীবন যাপন করা কোনমতেই সম্ভবপর নয়। এজন্যই আল্লাহ সুবহানাহু ওয়া তা‘আলা মানবজাতির প্রতি রহমত স্বরূপ নাযিল করেছেন এক মহান শরী‘আহ তথা সার্বিক আইন ও বিধান...",
+      imageUrl: "/img/post/005.jpg",
+    },
+  ];
 
-			<Header
-				playlists={playlists}
-				lectures={headerLectures}
-				qna_categories={qnaCategories}
-			/>
+  return (
+    <section className="px-10 py-16 bg-whit h-sec h-banner h3-banner h-banner-1">
+      <h2 className="text-3xl font-bold text-center mb-8">Articles</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 page-width">
+        {lectures.map((lecture) => (
+          <div key={lecture.id} className="bg-white rounded-lg shadow-lg overflow-hidden box">
+            <div className="relative">
+              <img src={lecture.imageUrl} alt={lecture.title} className="w-full h-48 object-cover" />
+            </div>
+            <div className="p-6">
+              <p className="text-gray-500 text-sm mb-2">{lecture.date}</p>
+              <h3 className="text-xl font-semibold mb-4">{lecture.title}</h3>
+              <p className="text-gray-700 mb-4">{lecture.description} <a href="#" className="text-teal-500">Read more</a></p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center mt-8">
+		<button className="px-10 py-3 text-lg bg-[#46B3C0] tracking-normal text-white text-[20px] rounded-3xl mx-auto xl:mx-0 hover:bg-blue-600 transition">
+			SEE MORE
+		</button>
+      </div>
+    </section>
+  );
+};
 
-			<section className="cat-page-top">
-				<div className="page-width">
-					<div className="box">
-						<h1>
-							Articles
-							{/*<span>৯</span>*/}
-						</h1>
-					</div>
-				</div>
-			</section>
-
-			<section className="cat-page-articles">
-				<div className="page-width">
-					<div className="box">
-						<div className="row row-r">
-							{articles &&
-								articles.length &&
-								articles.map((article) => (
-									<div className="col col-r s12 m6 l6 xl4" key={article.id}>
-										<PostCardArticle article={article} />
-									</div>
-								))}
-						</div>
-						{/*<p style={{ margin: "10px 0 30px 0" }}>*/}
-						{/*  আরও দেখুন:{" "}*/}
-						{/*  <a*/}
-						{/*    href="https://islamhouse.com/bn/author/25506/articles/showall/1"*/}
-						{/*    target="_blank"*/}
-						{/*  >*/}
-						{/*    https://islamhouse.com/bn/author/25506/articles/showall/1*/}
-						{/*  </a>*/}
-						{/*</p>*/}
-					</div>
-				</div>
-			</section>
-
-			{/*<section className="cat-page-articles">*/}
-			{/*		<div className="page-width">*/}
-			{/*			<div className="box">*/}
-			{/*				<div className="row row-r">*/}
-			{/*				{*/}
-			{/*					articles && articles.length && articles.map(article =>*/}
-			{/*						<div className="col col-r s12 xl4" key={article.id}>*/}
-			{/*							<PostCardArticle2 article={article} />*/}
-			{/*						</div>*/}
-			{/*					)*/}
-			{/*				}*/}
-			{/*				</div>*/}
-			{/*			</div>*/}
-			{/*		</div>*/}
-			{/*	</section>*/}
-
-			{/*<Pagination />*/}
-		</>
-	);
-}
-
-export async function getStaticProps(context) {
-	//const res = await fetch(`${server}/api/articles/listpage`)
-	//const articles = await res.json()
-
-	const articles = await getArticles();
-	const playlists = await getAllPlaylists2();
-	const headerLectures = await getHeaderLectures();
-	const qnaCategories = await getAllQnaCategory();
-
-	return {
-		props: {
-			articles,
-			playlists: playlists.playlists,
-			headerLectures,
-			qnaCategories,
-		},
-	};
-}
+export default Articles;
