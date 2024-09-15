@@ -1,9 +1,9 @@
 export default function Footer1() {
     return (
-        <footer class="Footer pt-12 xl:pt-[150px]">
+        <footer class="Footer pt-6 ">
             <div class="container mx-auto pb-12 xl:pb-[100px]">
                 <div class="flex flex-col xl:flex-row gap-x-5 gap-y-10">
-                    <div class="footer__item flex-1">
+                    <div class="footer__item  flex-1">
                         <a href="">
                             <img class="mb-[30px] w-[250px]" src="/img/id/logo.png" alt="" />
                         </a>
@@ -45,44 +45,49 @@ export default function Footer1() {
                                 <li><a href="#" class="hover:text-accent transition-all">Articles</a></li>
                                 <li><a href="#" class="hover:text-accent transition-all">Books</a></li>
                             </ul>
+                            <ul class="flex-1 flex flex-col text-[20px] gap-y-5">
+                                <li><a href="#" class="hover:text-accent transition-all">Qna</a></li>
+                                <li><a href="#" class="hover:text-accent transition-all">Contact</a></li>
+                                <li><a href="#" class="hover:text-accent transition-all">About</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="footer__item flex-1">
                         <h4 class="footer__item flex-1 text-[22px] font-bold mb-5">Opening Hours</h4>
                         <div>
                             <div class="flex-1">
-                                <div class="flex justify-between items-center border-b pb-[10px]">
+                                <div class="flex justify-between border-b-[1px] border-[#DCDCDC] items-center border-b pb-[10px]">
                                     <div>Monday - Thursday</div>
                                     <div class="text-accent font-medium">8:00 Am - 6:00 Pm</div>
                                 </div>
                             </div>
                             <div class="flex-1">
-                                <div class="flex justify-between items-center border-b pb-[10px]">
+                                <div class="flex justify-between border-b-[1px] border-[#DCDCDC] items-center border-b pb-[10px]">
                                     <div>Friday - Saturday</div>
                                     <div class="text-accent font-medium">10:00 Am - 5:00 Pm</div>
                                 </div>
                             </div>
                             <div class="flex-1">
-                                <div class="flex justify-between items-center border-b pb-[10px]">
+                                <div class="flex justify-between border-b-[1px] border-[#DCDCDC] items-center border-b pb-[10px]">
                                     <div>Wednessday - Thursday</div>
                                     <div class="text-accent font-medium">11:00 Am - 8:00 Pm</div>
                                 </div>
                             </div>
                             <div class="flex-1">
-                                <div class="flex justify-between items-center border-b pb-[10px]">
+                                <div class="flex justify-between border-b-[1px] border-[#DCDCDC] items-center border-b pb-[10px]">
                                     <div>Monday - Thursday</div>
-                                    <div class="text-accent font-medium">8:00 Am - 6:00 Pm</div>
+                                    <div class="text-accent  font-medium">8:00 Am - 6:00 Pm</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex gap-x-5">
+                        <div class="flex gap-x-5 ">
                             <ul class="flex-1 flex flex-col gap-y-5"></ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="py-[30px] border-t">
+            <div class="py-[30px] border-t-[1px] border-[#DCDCDC]">
                 <div class="container mx-auto text-center">
                     <div class="font-light text-base">&copy; 2024 deeniinfotech - All rights reserved.</div>
                 </div>

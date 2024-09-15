@@ -46,7 +46,7 @@ const TestimonialSlider = () => {
       <div className="testimonial__container container mx-auto">
         <div className="flex flex-col items-center gap-x-14 xl:flex-row w-full">
           <div className="hidden xl:flex">
-            <img src="/img/quran.png" alt="Quran" />
+            <img src="/img/verse/quran.png" alt="Quran" />
           </div>
 
           <div className="max-w-[98%] xl:max-w-[710px]">
