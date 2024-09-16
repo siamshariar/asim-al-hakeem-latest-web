@@ -17,15 +17,17 @@ export default function Header2({
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [lecturesSubmenuOpen, setLecturesSubmenuOpen] = useState(false); // Added for submenu
 
-  const num = Math.ceil(playlists.length / 3);
-  const firstList = playlists.slice(0, num);
-  const secondList = playlists.slice(num, num * 2.1);
-  const thirdList = playlists.slice(num * 1.7, playlists.length);
+  const num = playlists && playlists.length ? Math.ceil(playlists.length / 3) : 0;
+  const firstList = playlists ? playlists.slice(0, num) : [];
+  const secondList = playlists ? playlists.slice(num, num * 2.1) : [];
+  const thirdList = playlists ? playlists.slice(num * 1.7, playlists.length) : [];
 
-  const numQ = Math.ceil(qna_categories.length / 3);
-  const firstListQ = qna_categories.slice(0, numQ);
-  const secondListQ = qna_categories.slice(numQ, numQ * 2);
-  const thirdListQ = qna_categories.slice(numQ * 2, qna_categories.length);
+
+  const numQ = qna_categories && qna_categories.length ? Math.ceil(qna_categories.length / 3) : 0;
+  const firstListQ = qna_categories ? qna_categories.slice(0, numQ) : [];
+  const secondListQ = qna_categories ? qna_categories.slice(numQ, numQ * 2) : [];
+  const thirdListQ = qna_categories ? qna_categories.slice(numQ * 2, qna_categories.length) : [];
+
 
   const router = useRouter();
 
@@ -196,7 +198,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-article-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="#" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/articles" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
                         Articles
                       </Link>
                     </li>
@@ -310,12 +312,12 @@ export default function Header2({
                   </div>
                 </li>
                 <li>
-                  <Link href="#" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/articles" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
                     Articles
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/book" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
                     Books
                   </Link>
                 </li>
@@ -324,16 +326,13 @@ export default function Header2({
                     Qna
                   </Link>
                 </li>
-                
-                
-                
                 <li>
-                  <Link href="#" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/contact" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
                     Contact
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/about" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
                     About
                   </Link>
                 </li>
