@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -53,28 +54,20 @@ const TeamSlider = ({ playlists, headerLectures, qnaCategories }) => {
   ];
 
   useEffect(() => {
-    // Initialize Swiper after the component is mounted
     const swiper = new Swiper('.swiper', {
       direction: 'horizontal',
       loop: true,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
-        bulletClass: 'swiper-pagination-bullet',
-        bulletActiveClass: 'swiper-pagination-bullet-active',
       },
     });
-
-    // Clean up Swiper instance on unmount
-    return () => {
-      swiper?.destroy(true, true);
-    };
   }, [router.pathname]); // Re-initialize Swiper on route change
 
   return (
     <>
       <Meta
-        title="Team Slider"
+        title=""
         description="Meet our team members"
         url="/team-slider"
         image="/img/default_share.jpeg"
@@ -101,76 +94,56 @@ const TeamSlider = ({ playlists, headerLectures, qnaCategories }) => {
                       <div className="flex flex-col md:flex-row gap-9">
                         <div className="flex-1 flex flex-col xl:flex-row items-center gap-[30px]">
                           <div className="flex-1">
-                            <img
-                              src={teamMembers[index].image}
-                              alt={teamMembers[index].name}
-                              className="w-full h-auto rounded-lg"
-                              width={teamMembers[index].width || 'auto'}
-                              height={teamMembers[index].height || 'auto'}
-                            />
+                            <Link href={`/book/${teamMembers[index].id}`}>
+                              <img
+                                src={teamMembers[index].image}
+                                alt={teamMembers[index].name}
+                                className="w-full h-auto rounded-lg cursor-pointer"
+                                width={teamMembers[index].width || 'auto'}
+                                height={teamMembers[index].height || 'auto'}
+                              />
+                            </Link>
                           </div>
                           <div className="flex-1 flex flex-col">
-                            <h4 className="h4 text-[#4C5354] font-bold text-2xl mb-[8px]">
-                              {teamMembers[index].name}
-                            </h4>
+                            <Link href={`/book/${teamMembers[index].id}`}>
+                              <h4 className="h4 text-[#4C5354] font-bold text-2xl mb-[8px] cursor-pointer">
+                                {teamMembers[index].name}
+                              </h4>
+                            </Link>
                             <div className="text-[#9AB4B7] text-[22px] mb-[12px] max-w-[320px]">
                               {teamMembers[index].position}
                             </div>
                             <p className="font-light text-[#777F81] text-[20px] mb-[26px] max-w-[320px]">
                               {teamMembers[index].description}
                             </p>
-                            <div className="flex items-center text-[30px] gap-x-5 text-accent-tertiary">
-                              <a href="#" className="cursor-pointer hover:text-accent transition-all">
-                                <i className="ri-youtube-fill"></i>
-                              </a>
-                              <a href="#" className="cursor-pointer hover:text-accent transition-all">
-                                <i className="ri-facebook-circle-fill"></i>
-                              </a>
-                              <a href="#" className="cursor-pointer hover:text-accent transition-all">
-                                <i className="ri-instagram-fill"></i>
-                              </a>
-                              <a href="#" className="cursor-pointer hover:text-accent transition-all">
-                                <i className="ri-pinterest-fill"></i>
-                              </a>
-                            </div>
                           </div>
                         </div>
 
                         {teamMembers[index + 1] && (
                           <div className="flex-1 flex flex-col xl:flex-row items-center gap-[30px]">
                             <div className="flex-1">
-                              <img
-                                src={teamMembers[index + 1].image}
-                                alt={teamMembers[index + 1].name}
-                                className="w-full h-auto rounded-lg"
-                                width={teamMembers[index + 1].width || 'auto'}
-                                height={teamMembers[index + 1].height || 'auto'}
-                              />
+                              <Link href={`/book/${teamMembers[index + 1].id}`}>
+                                <img
+                                  src={teamMembers[index + 1].image}
+                                  alt={teamMembers[index + 1].name}
+                                  className="w-full h-auto rounded-lg cursor-pointer"
+                                  width={teamMembers[index + 1].width || 'auto'}
+                                  height={teamMembers[index + 1].height || 'auto'}
+                                />
+                              </Link>
                             </div>
                             <div className="flex-1 flex flex-col">
-                              <h4 className="h4 text-[#4C5354] font-bold text-2xl mb-[8px]">
-                                {teamMembers[index + 1].name}
-                              </h4>
+                              <Link href={`/book/${teamMembers[index + 1].id}`}>
+                                <h4 className="h4 text-[#4C5354] font-bold text-2xl mb-[8px] cursor-pointer">
+                                  {teamMembers[index + 1].name}
+                                </h4>
+                              </Link>
                               <div className="text-[#9AB4B7] text-[22px] mb-[12px] max-w-[320px]">
                                 {teamMembers[index + 1].position}
                               </div>
                               <p className="font-light text-[#777F81] text-[20px] mb-[26px] max-w-[320px]">
                                 {teamMembers[index + 1].description}
                               </p>
-                              <div className="flex items-center text-[30px] gap-x-5 text-accent-tertiary">
-                                <a href="#" className="cursor-pointer hover:text-accent transition-all">
-                                  <i className="ri-youtube-fill"></i>
-                                </a>
-                                <a href="#" className="cursor-pointer hover:text-accent transition-all">
-                                  <i className="ri-facebook-circle-fill"></i>
-                                </a>
-                                <a href="#" className="cursor-pointer hover:text-accent transition-all">
-                                  <i className="ri-instagram-fill"></i>
-                                </a>
-                                <a href="#" className="cursor-pointer hover:text-accent transition-all">
-                                  <i className="ri-pinterest-fill"></i>
-                                </a>
-                              </div>
                             </div>
                           </div>
                         )}

@@ -1,20 +1,38 @@
 import { useRouter } from 'next/router';
 import { server } from "../../lib/config";
-import {
-  getArticles,
-  getAllPlaylists2,
-  getHeaderLectures,
-  getAllQnaCategory,
-} from "../../lib/fetch";
+import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../../lib/fetch";
 import Meta from "../../components/meta";
 import Header2 from "../../components/header1";
 
-export default function Articles({
-  articles,
-  playlists,
-  headerLectures,
-  qnaCategories,
-}) {
+// Static articles data
+const articles = [
+  {
+    id: '1',
+    slug: 'dawah-in-the-media-problems-and-solutions',
+    title: "Da'wah in the media: problems and solutions",
+    date: 'Sep 5, 2024',
+    description: 'Al-Qur\'anul Kareem is the greatest and eternal miracle revealed by Allah...',
+    image: 'img/articles/01.jpg',
+  },
+  {
+    id: '2',
+    slug: 'titles-and-honorific-titles-of-the-companions',
+    title: 'Titles and honorific titles of the Companions of the Prophet (ﷺ)',
+    date: 'May 18, 2024',
+    description: 'Only the believer has love for the Messenger of Allah, peace and blessings be upon him...',
+    image: 'img/articles/02.jpg',
+  },
+  {
+    id: '3',
+    slug: 'provisions-of-ushar-and-kharaj',
+    title: 'Provisions of Ushar and Kharaj',
+    date: 'Feb 22, 2024',
+    description: 'Without a balanced, welfare oriented and comprehensive system it is not at all possible...',
+    image: 'img/articles/05.jpg',
+  },
+];
+
+export default function Articles({ playlists, headerLectures, qnaCategories }) {
   const router = useRouter();
   const isArticlesPage = router.pathname === '/articles';
 
@@ -22,7 +40,7 @@ export default function Articles({
     <>
       <Meta
         title="Articles"
-        description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar, which lies in the east of the Kingdom of Saudi Arabia. He was raised there until the age of 12 before he and his family moved to the Western Province of Saudi Arabia"
+        description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar..."
         url={`${server}/articles`}
         image={`${server}/img/id/default_share.jpeg`}
         type="website"
@@ -40,52 +58,24 @@ export default function Articles({
         <div className='container mx-auto'>
           <h2 className='blog__title h2 mb-[50px] text-center xl:text-left'>Articles</h2>
 
-          <div className='flex flex-col xl:flex-row gap-y-6 xl:gap-y-0 items-center xl:justify-between mb-[50px]'>
-          <div className='blog__post max-w-[420px] shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
-            <div className='relative overflow-hidden'>
-              <img className='group-hover:scale-110 transition-all duration-500' src="img/articles/01.jpg" alt=""/>
-            </div>
+          <div className='flex flex-col xl:flex-row gap-y-6 xl:gap-y-0 xl:justify-between mb-[50px]'>
+            {articles.map(article => (
+              <div key={article.id} className='blog__post max-w-[420px] shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
+                <div className='relative overflow-hidden'>
+                  <img className='group-hover:scale-110 transition-all duration-500' src={article.image} alt={article.title}/>
+                </div>
 
-            <div className='px-5 py-6'>
-              <div className='mb-4'>Sep 5, 2024</div>
-              <h4 className='h4 mb-[10px]'>Da'wah in the media: problems and solutions</h4>
-              <p className='font-light text-[#777F81]'>Al-Qur'anul Kareem is the greatest and eternal miracle revealed by Allah subhanahu wa ta'ala to the Holy Prophet, peace and blessings be upon him...
-
-                <a href='' className='italic underline text-[#4c5354]'>Read more</a>
-              </p>
-            </div>
+                <div className='px-5 py-6'>
+                  <div className='mb-4'>{article.date}</div>
+                  <h4 className='h4 mb-[10px]'>{article.title}</h4>
+                  <p className='font-light text-[#777F81]'>
+                    {article.description}
+                    <a href={`/articles/${article.slug}`} className='italic underline text-[#4c5354]'>Read more</a>
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className='blog__post max-w-[420px] shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
-            <div className='relative overflow-hidden'>
-              <img className='group-hover:scale-110 transition-all duration-500' src="img/articles/02.jpg" alt=""/>
-            </div>
-
-            <div className='px-5 py-6'>
-              <div className='mb-4'>May 18, 2024</div>
-              <h4 className='h4 mb-[10px]'>Titles and honorific titles of the Companions of the Prophet (ﷺ).</h4>
-              <p className='font-light text-[#777F81]'>Only the believer has love for the Messenger of Allah, peace and blessings be upon him. Because Rasulullah SAW...
-
-                <a href='' className='italic underline text-[#4c5354]'>Read more</a>
-              </p>
-            </div>
-          </div>
-          <div className='blog__post max-w-[420px] shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
-            <div className='relative overflow-hidden'>
-              <img className='group-hover:scale-110 transition-all duration-500' src="img/articles/05.jpg" alt=""/>
-            </div>
-
-            <div className='px-5 py-6'>
-              <div className='mb-4'>Feb 22, 2024</div>
-              <h4 className='h4 mb-[10px]'>Provisions of Ushar and Kharaj</h4>
-              <p className='font-light text-[#777F81]'>Without a balanced, welfare oriented and comprehensive system it is not at all possible for people to lead a healthy and normal social life...
-
-                <a href='' className='italic underline text-[#4c5354]'>Read more</a>
-              </p>
-            </div>
-          </div>
-        </div>
-
- 
 
         </div>
       </section>
@@ -94,14 +84,12 @@ export default function Articles({
 }
 
 export async function getStaticProps(context) {
-  const articles = await getArticles();
   const playlists = await getAllPlaylists2();
   const headerLectures = await getHeaderLectures();
   const qnaCategories = await getAllQnaCategory();
 
   return {
     props: {
-      articles,
       playlists: playlists.playlists,
       headerLectures,
       qnaCategories,
