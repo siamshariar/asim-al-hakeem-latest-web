@@ -322,7 +322,7 @@ export default function Header2({
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/questions" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
                     Qna
                   </Link>
                 </li>

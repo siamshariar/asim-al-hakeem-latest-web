@@ -39,9 +39,9 @@ export default function PostCardVideo2({ item, statistics }) {
 					{title}
 				</Link>
 
-				<div className="data-line">
-					<span className="view-r">{viewCount} views</span>
-					<span className="date-r">{publishedAt}</span>
+				<div className="flex justify-between w-full mt-6 text-sm text-gray-500">
+					<span className="text-[15px] text-[#808080]">{viewCount} views</span>
+					<span className="text-[15px] text-[#808080]">{publishedAt}</span>
 				</div>
 			</div>
 		</div>

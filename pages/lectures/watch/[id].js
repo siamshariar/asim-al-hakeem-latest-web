@@ -1,205 +1,177 @@
-import {
-	getUploadPlaylistVideos,
-	getRelatedYoutubeVideoListByUrl,
-	getYoutubeVideoDetailsByUrl,
-	getAllPlaylists2,
-	getHeaderLectures,
-	getAllQnaCategory,
-} from "../../../lib/fetch";
-import { server, youtube } from "../../../lib/config";
-import { useRef } from "react";
-import Image from "next/image";
-import Layout from "../../../components/layout";
-import Meta from "../../../components/meta";
-import Header from "../../../components/header";
-import Share from "../../../components/share";
-import { date } from "../../../lib/format";
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Share } from 'lucide-react';
+import Header2 from '../../../components/header1';
+import { getAllPlaylists2, getAllQnaCategory, getHeaderLectures } from '../../../lib/fetch'; 
 
-export default function VideoDetail({
-	id,
-	data,
-	playlists,
-	headerLectures,
-	qnaCategories,
-}) {
-	// const fetcher = (...args) => fetch(...args).then(res => res.json())
-	// const url = `${youtube.url}/videos?key=${youtube.key}&part=snippet,statistics&id=${id}&maxResults=${constants.YOUTUBE_RELATED_VIDEOS_PAGE_LIMIT}`
-	// const {data} = useSWR(url, fetcher, {initialData: detail, revalidateOnMount: true });
-	// if (!data) return <div>Loading...</div>
+const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 
-	const preImage = useRef(null);
-	const iframe = useRef(null);
+export default function LectureVideo({ playlists, headerLectures, qna_categories, videoData }) {
+  const router = useRouter();
+  const { id } = router.query;
+  const [video, setVideo] = useState(videoData);
+  const [loading, setLoading] = useState(!videoData);
 
-	const title = data.title;
-	const description = data.description;
-	const publishedDate = date(data.publishedDate);
-	const image = data.image;
-	const viewCount = data.viewCount;
+  useEffect(() => {
+    if (!videoData && id) {
+      const fetchVideoData = async () => {
+        try {
+          const videoResponse = await axios.get(`https://www.googleapis.com/youtube/v3/videos`, {
+            params: {
+              part: 'snippet,statistics',
+              id,
+              key: API_KEY,
+            },
+          });
 
-	const handleLoadIframe = () => {
-		preImage.current.style.display = "none";
-		iframe.current.src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=0`;
-	};
+          const video = videoResponse.data.items[0];
+          const channelId = video.snippet.channelId;
 
-	return (
-		<>
-			<Meta
-				title={title}
-				description={description}
-				url={`${server}/lectures/watch/${id}`}
-				image={image}
-				type="article"
-			/>
+          const channelResponse = await axios.get(`https://www.googleapis.com/youtube/v3/channels`, {
+            params: {
+              part: 'snippet',
+              id: channelId,
+              key: API_KEY,
+            },
+          });
 
-			<Header
-				playlists={playlists}
-				lectures={headerLectures}
-				qna_categories={qnaCategories}
-			/>
+          const channel = channelResponse.data.items[0];
+          setVideo({
+            title: video.snippet.title,
+            views: video.statistics.viewCount,
+            likes: video.statistics.likeCount,
+            channelTitle: video.snippet.channelTitle,
+            description: video.snippet.description,
+            channelImage: channel.snippet.thumbnails.default.url,
+          });
+        } catch (error) {
+          console.error('Error fetching video data:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
 
-			<section className="blog-detail-ctn video-blog-detail">
-				<div className="page-width">
-					<div className="box">
-						<div className="blog-area">
-							<div className="video-wrap-outer">
-								<div className="video-wrap">
-									<div className="video-wrap-image" ref={preImage}>
-										<button onClick={handleLoadIframe}>
-											<PlayIcon />
-										</button>
-										<Image
-											//src={image ? image : '/img/post/youtube-default.jpg'}
-											src={
-												image
-													? `http://i.ytimg.com/vi/${id}/maxresdefault.jpg`
-													: `/img/post/youtube-default.jpg`
-											}
-											alt=""
-											layout="fill"
-											objectFit="cover"
-											objectPosition="center center"
-											loading="eager"
-											unoptimized
-										/>
-									</div>
-									<iframe
-										//src={`https://www.youtube.com/embed/${id}?autoplay=0&mute=0`}
-										ref={iframe}
-										allow="autoplay; fullscreen;"></iframe>
-								</div>
-							</div>
+      fetchVideoData();
+    }
+  }, [id, videoData]);
 
-							<div className="blog-detail">
-								<div className="row row-r video-title-area">
-									<div className="col col-r s12 l9">
-										<div>
-											<h2 className="margin-bottom-0">{title}</h2>
-										</div>
-										<div className="data-line-left">
-											<span className="view-r">{viewCount} views</span>
-											<span className="dot"></span>
-											<span className="date-r">{publishedDate}</span>
-										</div>
-									</div>
-									<div className="col col-r s12 l3">
-										<div className="blog-share">
-											<Share
-												urlWeb={`lectures/watch/${id}`}
-												urlMobile={id}
-												title={title}
-											/>
-										</div>
-									</div>
-								</div>
-								<div className="video-description-area">
-									<p>
-										{description &&
-											description.split("\n").map(function (item, idx) {
-												return (
-													<span key={idx}>
-														{item}
-														<br />
-													</span>
-												);
-											})}
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-			{/*TODO: Getting other's channel videos in related videos*/}
-			{/*<section className="blog-page-related">*/}
-			{/*    <div className="page-width">*/}
-			{/*        <div className="box">*/}
-			{/*            <h1 className="title-r">*/}
-			{/*                <span>সম্পর্কিত পোস্ট</span>*/}
-			{/*            </h1>*/}
+  if (!video) {
+    return <p>Video data not found.</p>;
+  }
 
-			{/*            <div className="row row-r">*/}
-			{/*                {*/}
-			{/*                    relatedVideos.videoLists.videos && relatedVideos.videoLists.videos.map((item) =>*/}
-			{/*                             <div className="col col-r s12 m6 xl3" key={item.id}>*/}
-			{/*                            <PostCardVideo2*/}
-			{/*                                item={item}*/}
-			{/*                                statistics={relatedVideos.videoLists.videoStats}*/}
-			{/*                            />*/}
-			{/*                        </div>*/}
-			{/*                    )*/}
-			{/*                }*/}
-			{/*            </div>*/}
-			{/*        </div>*/}
-			{/*    </div>*/}
-			{/*</section>*/}
-		</>
-	);
+  return (
+    <>
+      <Header2 playlists={playlists} headerLectures={headerLectures} qna_categories={qna_categories} />
+      <div className="max-w-5xl mt-12 p-6 bg-white rounded-xl shadow-xl mx-auto">
+        <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden">
+          <iframe
+            width="100%"
+            height="500"
+            src={`https://www.youtube.com/embed/${id}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="YouTube video player"
+            className="w-full h-full object-cover"
+          ></iframe>
+        </div>
+        <div className="mt-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl mr-8 font-semibold">{video.title}</h1>
+            <span className="text-lg text-gray-500 mb-6 whitespace-nowrap">{`${video.views} views`}</span>
+          </div>
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center space-x-2 mt-2">
+              <img src={video.channelImage} alt="Channel avatar" className="w-12 h-12 rounded-full" />
+              <div>
+                <p className="font-medium text-xl">{video.channelTitle}</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4 text-lg text-gray-700">
+              <button className="flex items-center space-x-1">
+                <Share className="w-5 h-5" />
+                <span>Share</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-6 border-t-[2px] border-[#DCDCDC] pt-4">
+          <h2 className="font-bold mt-6">Description</h2>
+          <p className="text-lg text-gray-600 mt-5">
+            {video.description}
+          </p>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export async function getStaticProps({ params }) {
-	const id = params.id;
 
-	const url = `${youtube.url}/videos?key=${youtube.key}&part=snippet,statistics&id=${id}`;
-	const detail = await getYoutubeVideoDetailsByUrl(url);
-	const playlists = await getAllPlaylists2();
-	const headerLectures = await getHeaderLectures();
-	const qnaCategories = await getAllQnaCategory();
 
-	// const relatedVideosUrl = `${youtube.url}/search?key=${youtube.key}&part=snippet&relatedToVideoId=${id}&type=video&maxResults=${constants.YOUTUBE_RELATED_VIDEOS_PAGE_LIMIT}`
-	// const videoLists = await getRelatedYoutubeVideoListByUrl(relatedVideosUrl)
+export const getStaticPaths = async () => {
 
-	return {
-		props: {
-			id,
-			data: detail,
-			playlists: playlists.playlists,
-			headerLectures,
-			qnaCategories,
-			// relatedVideos: JSON.parse(JSON.stringify(videoLists))
-		},
-		revalidate: 60,
-	};
-}
+  const videoIds = []; 
+  return {
+    paths: videoIds.map(id => ({ params: { id } })),
+    fallback: 'blocking', 
+  };
+};
 
-export async function getStaticPaths() {
-	const data = await getUploadPlaylistVideos();
+export const getStaticProps = async ({ params }) => {
+  const playlists = await getAllPlaylists2();
+  const headerLectures = await getHeaderLectures();
+  const qna_categories = await getAllQnaCategory();
 
-	const paths = data.videoIdList.map((video) => ({
-		params: { id: video.id },
-	}));
+  const { id } = params;
 
-	return {
-		paths,
-		fallback: "blocking",
-	};
-}
+  let videoData = null;
+  if (id) {
+    try {
+      const videoResponse = await axios.get(`https://www.googleapis.com/youtube/v3/videos`, {
+        params: {
+          part: 'snippet,statistics',
+          id,
+          key: API_KEY,
+        },
+      });
 
-const PlayIcon = () => {
-	return (
-		<svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%">
-			<path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"></path>
-			<path d="M 45,24 27,14 27,34" fill="#fff"></path>
-		</svg>
-	);
+      const video = videoResponse.data.items[0];
+      const channelId = video.snippet.channelId;
+
+      const channelResponse = await axios.get(`https://www.googleapis.com/youtube/v3/channels`, {
+        params: {
+          part: 'snippet',
+          id: channelId,
+          key: API_KEY,
+        },
+      });
+
+      const channel = channelResponse.data.items[0];
+      videoData = {
+        title: video.snippet.title,
+        views: video.statistics.viewCount,
+        likes: video.statistics.likeCount,
+        channelTitle: video.snippet.channelTitle,
+        description: video.snippet.description,
+        channelImage: channel.snippet.thumbnails.default.url,
+      };
+    } catch (error) {
+      console.error('Error fetching video data:', error);
+    }
+  }
+
+  return {
+    props: {
+      playlists: playlists.playlists,
+      headerLectures,
+      qna_categories,
+      videoData,
+    },
+  };
 };

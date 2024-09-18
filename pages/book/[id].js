@@ -1,4 +1,4 @@
-import { Download, Share2 } from 'lucide-react'; // Lucide Icons
+import { Download, Share2 } from 'lucide-react'; 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Meta from '../../components/meta';
@@ -11,39 +11,39 @@ const bookData = {
     name: 'The Islamic Faith',
     writer: 'Assim Alhakeem',
     translator: 'Adil Salhi',
-    image: '/img/books/book-1.jpg', // Replace with the appropriate image path
+    image: '/img/books/book-1.jpg', 
     description: `Here is a very interesting book on the fundamentals of belief. Its author wrote it in response to the question: "What will the servant be questioned on the day of judgment?`,
     quote: '',
     rating: 3.94,
     totalRatings: '2,637,456',
     totalReviews: '53,272',
-    downloadLink: '/path/to/download', // Example download link
+    downloadLink: '/path/to/download', 
   },
   2: {
     id: 2,
     name: 'Rulings of Islamic Law - A Simplified Presentation',
     writer: 'Assim Alhakeem',
     translator: 'Adil Salhi',
-    image: '/img/books/book-2.jpg', // Replace with the appropriate image path
+    image: '/img/books/book-2.jpg', 
     description: `This book, Rulings of Islamic Law: A Simplified Presentation is the first of a series which aims to provide Islamic knowledge covering all the areas of life in which a person needs authentic Islamic knowledge from validated sources.`,
     quote: '',
     rating: 3.94,
     totalRatings: '2,637,456',
     totalReviews: '53,272',
-    downloadLink: '/path/to/download', // Example download link
+    downloadLink: '/path/to/download', 
   },
   3: {
     id: 3,
     name: 'Rulings of Islamic Law - A Simplified Presentation',
     writer: 'Assim Alhakeem',
     translator: 'Adil Salhi',
-    image: '/img/books/book-3.jpg', // Replace with the appropriate image path
+    image: '/img/books/book-3.jpg', 
     description: `This book, Rulings of Islamic Law: A Simplified Presentation is the first of a series which aims to provide Islamic knowledge covering all the areas of life in which a person needs authentic Islamic knowledge from validated sources.`,
     quote: '',
     rating: 3.94,
     totalRatings: '2,637,456',
     totalReviews: '53,272',
-    downloadLink: '/path/to/download', // Example download link
+    downloadLink: '/path/to/download', 
   },
   4: {
     id: 4,
@@ -56,20 +56,19 @@ const bookData = {
     rating: 3.94,
     totalRatings: '2,637,456',
     totalReviews: '53,272',
-    downloadLink: '/path/to/download', // Example download link
+    downloadLink: '/path/to/download', 
   },
-  // Add more book data as necessary
 };
 
 const BookDetail = ({ playlists, headerLectures, qnaCategories }) => {
   const router = useRouter();
   const { id } = router.query;
-  const book = bookData[id]; // Get book data based on the ID
+  const book = bookData[id]; 
 
   const [showMore, setShowMore] = useState(false);
 
   if (!book) {
-    return <div>Loading...</div>; // Handle case where book data is not yet available
+    return <div>Loading...</div>;
   }
 
   return (

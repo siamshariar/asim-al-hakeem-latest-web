@@ -7,6 +7,7 @@ const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 
 export default function RecentLecture() {
   const [lectures, setLectures] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
   const router = useRouter(); // Initialize router
   
   useEffect(() => {
@@ -16,10 +17,10 @@ export default function RecentLecture() {
   const fetchLatestVideos = async () => {
     try {
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=4`
+        `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&type=video&maxResults=4`
       );
       const data = await response.json();
-      if (data.items.length > 0) {
+      if (data?.items?.length > 0) {
         const videoData = data.items.map((item) => ({
           id: item.id.videoId,
           title: item.snippet.title,
@@ -28,9 +29,13 @@ export default function RecentLecture() {
           views: 0, // Views will be fetched later
         }));
         fetchVideoViews(videoData);
+      } else {
+        console.error('No videos found');
       }
     } catch (error) {
       console.error('Error fetching the latest videos:', error);
+    } finally {
+      setLoading(false); // Loading complete
     }
   };
 
@@ -55,8 +60,12 @@ export default function RecentLecture() {
 
   // Function to handle when a video is clicked, navigating to a new page
   const handleVideoClick = (videoId) => {
-    router.push(`/lectures/${videoId}`); // Navigate to the lecture video page
+    router.push(`/lectures/watch/${videoId}`); // Navigate to the lecture video page
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Optional loading indicator
+  }
 
   return (
     <section className="services">
@@ -75,23 +84,22 @@ export default function RecentLecture() {
 
       <div className="container mx-auto mt-8 xl:-mt-[144px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 shadow-custom1 gap-4">
-          {lectures.map((lecture, index) => (
+          {lectures.map((lecture) => (
             <div
-              key={index}
-              className="services__item bg-white rounded-[10px] shadow-xl transition duration-500 ease-in-out hover:shadow-custom1 min-h-[320px] flex flex-col justify-between items-center"
+              key={lecture.id}
+              className="bg-white rounded-[20px] shadow-xl transition duration-500 ease-in-out hover:shadow-custom1 min-h-[320px] flex flex-col justify-between items-center"
             >
-              {/* Use Link component to ensure proper navigation */}
-              <Link href={`/lectures/${lecture.id}`}>
+              <Link href={`/lectures/watch/${lecture.id}`}>
                 <div className="w-full cursor-pointer">
                   <img
                     src={lecture.image}
                     alt={lecture.title}
-                    className="w-full rounded-t-lg h-auto object-cover"
+                    className="w-full rounded-t-xl h-auto object-cover"
                   />
                 </div>
               </Link>
-              <Link href={`/lectures/${lecture.id}`}>
-                <span className="relative text-[20px] cursor-pointer font-bold mt-4 mb-6 px-4 line-clamp-2">
+              <Link href={`/lectures/watch/${lecture.id}`}>
+                <span className="relative text-[20px] text-black hover:text-[#525252] cursor-pointer font-bold mt-4 mb-6 px-5 line-clamp-2">
                   {lecture.title}
                 </span>
               </Link>

@@ -6,7 +6,7 @@ import Meta from "../../components/meta";
 import Header2 from "../../components/header1";
 import { server } from "../../lib/config";
 
-// Static articles data
+
 const articles = [
   {
     id: '1',
@@ -142,9 +142,9 @@ export default function ArticleDetail({ article, playlists, headerLectures, qnaC
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const article = articles.find(article => article.slug === slug);
-  const playlists = []; // Include static playlists data or fetch it
-  const headerLectures = []; // Same for headerLectures
-  const qnaCategories = []; // Same for qnaCategories
+  const playlists = [];
+  const headerLectures = []; 
+  const qnaCategories = []; 
 
   return {
     props: {
