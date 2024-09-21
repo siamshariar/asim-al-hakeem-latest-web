@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Button } from "antd";
-import "antd/dist/reset.css"; // Import Ant Design styles
 import Header2 from "../../components/header1";
+import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../../lib/fetch";
+import Meta from "../../components/Meta"; // Meta component for SEO
 
-// Define your Meta component or import it if you have it elsewhere
-import Meta from "../../components/Meta"; // Assuming the Meta component is imported from this path
-
-const Question = () => {
+const Question = ({ playlists, headerLectures, qnaCategories }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("All Questions");
 
@@ -102,7 +99,8 @@ const Question = () => {
       category: "Fasting",
     },
   ];
-  // Filter FAQs based on selected category
+
+  // Filter FAQs based on the selected category
   const filteredFaqs =
     selectedCategory === "All Questions"
       ? faqs
@@ -110,7 +108,7 @@ const Question = () => {
 
   return (
     <>
-      {/* Meta Component */}
+      {/* Meta Component for SEO */}
       <Meta
         title="Frequently Asked Questions"
         description="Find answers to commonly asked questions on a variety of topics, including Hajj, Fasting, Prayer, and more."
@@ -119,34 +117,28 @@ const Question = () => {
         type="website"
       />
 
-      {/* Header2 Component */}
-      <Header2
-        playlists={[]} // Provide the correct playlists data or remove this prop if not used
-        lectures={[]} // Provide the correct lectures data or remove this prop if not used
-        qna_categories={categories} // Use the categories array for qna_categories if needed
-      />
+      {/* Header2 Component with passed data */}
+      <Header2 playlists={playlists} lectures={headerLectures} qna_categories={qnaCategories} />
 
       <section className="faq">
-        <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto py-4 mt-2 px-4 sm:px-6 lg:px-4">
           {/* Category Filter */}
           <div className="flex flex-wrap justify-center mb-6 space-y-4 sm:space-y-4 sm:space-x-3">
             {categories.map((category) => (
-              <Button
+              <button
                 key={category}
                 type={selectedCategory === category ? "primary" : "default"}
                 style={{ padding: "1rem" }} // Inline padding style
-                className={`mx-1 text-lg custom-button ${
+                className={`mx-1 text-xl rounded-xl custom-button ${
                   selectedCategory === category ? "active" : ""
-                } ${
-                  category === "All Questions" ? "mt-4" : ""
-                }`}
+                } ${category === "All Questions" ? "mt-4" : ""}`}
                 onClick={() => {
                   setSelectedCategory(category);
-                  setActiveIndex(null); // Reset activeIndex to collapse FAQ when category changes
+                  setActiveIndex(null); // Reset activeIndex when category changes
                 }}
               >
                 {category}
-              </Button>
+              </button>
             ))}
           </div>
 
@@ -170,9 +162,7 @@ const Question = () => {
                     <div className="ml-4 text-accent">
                       <i
                         className={`${
-                          activeIndex === index
-                            ? "ri-subtract-fill"
-                            : "ri-add-fill"
+                          activeIndex === index ? "ri-subtract-fill" : "ri-add-fill"
                         } text-2xl`}
                       ></i>
                     </div>
@@ -187,9 +177,7 @@ const Question = () => {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-600">
-                No questions found for this category.
-              </p>
+              <p className="text-center text-gray-600">No questions found for this category.</p>
             )}
           </div>
         </div>
@@ -199,3 +187,19 @@ const Question = () => {
 };
 
 export default Question;
+
+
+export async function getStaticProps() {
+  const playlists = await getAllPlaylists2();
+  const headerLectures = await getHeaderLectures();
+  const qnaCategories = await getAllQnaCategory();
+
+  return {
+    props: {
+      playlists: playlists.playlists, // Assuming playlists is an object with a playlists property
+      headerLectures,
+      qnaCategories,
+    },
+    revalidate: 10, // ISR: Revalidate the data every 10 seconds
+  };
+}

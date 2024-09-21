@@ -8,15 +8,12 @@ import {
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Meta from "../../components/meta";
-import Header from "../../components/header";
-
+import Header2 from "../../components/header1";
 import PostCardVideo2 from "../../components/card/post-card-video2";
 import Loader from "../../components/loader";
-
 import fetcher from "../../lib/lecturesFetcher";
 import useOnScreen from "../../hooks/useOnScreen";
 import { useSWRInfinite } from "swr";
-import Header2 from "../../components/header1";
 
 const getKey = (pageIndex, previousPageData, playlistId) => {
 	let pageToken = "";
@@ -38,7 +35,6 @@ export default function LectureList({
 	qnaCategories,
 }) {
 	const ref = useRef();
-	const catRef = useRef();
 	const isVisible = useOnScreen(ref);
 	const pageTitle = playlists.playlistsTitle[initPlaylistId];
 
@@ -53,16 +49,10 @@ export default function LectureList({
 	const isLoadingMore =
 		isLoadingInitialData ||
 		(size > 0 && data && typeof data[size - 1] === "undefined");
-	// const isEmpty = data?.[0]?.length === 0
 	const numberOfPages =
 		data?.[0]?.length !== 0 ? data[0].videoLists.numberOfPages : 0;
 	const isReachingEnd = size === numberOfPages;
 	const isRefreshing = isValidating && data && data.length === size;
-
-	const getCategorizedVideos = async (id, pageTitle) => {
-		setCatOpen(false);
-		setSize(1);
-	};
 
 	useEffect(() => {
 		if (isVisible && !isReachingEnd && !isRefreshing) {
@@ -87,105 +77,52 @@ export default function LectureList({
 				qna_categories={qnaCategories}
 			/>
 
-			<div className="opt_lecture_list mt-12">
-				<section className="cat-page-top cat-page-top-2 opt_lecture_cat_page_top">
-					<div className="page-width">
-						<div className="box">
-							<h1>
-								<div className="cat-page-top-open-btn">
-									<i className="material-icons select-tag-icon">list</i>
-									<em>Categories</em>
+			<div className="mt-12">
+				<section className="bg-gray-100 p-4 sm:p-6">
+					<div className="container mx-auto">
+						<div className="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+							<div className="flex flex-col">
+								<div className="text-xl sm:text-2xl text-black font-bold mb-4">{pageTitle}</div>
+
+								<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+									{datas &&
+										datas.map((data) => (
+											data.videoLists.videos &&
+											data.videoLists.videos.map((item, index) => (
+												<div
+													className="bg-white p-3 sm:p-4 rounded-lg shadow-sm"
+													key={item.id + index}>
+													<PostCardVideo2
+														item={item}
+														statistics={data.videoLists.videoStats}
+													/>
+												</div>
+											))
+										))}
 								</div>
-							</h1>
-						</div>
-					</div>
-				</section>
 
-				<section className={"cat-page-ctn cat-page-lectures"}>
-					<div className="page-width">
-						<div className="box">
-							<div className="opt_lecture_page">
-								{/* <div className="opt_lecture_left">
-
-                  <div className="opt_lecture_left_cat_list">
-                    <div className="opt_lecture_cat_list_title">
-                      ক্যাটাগরি সমূহ
-                    </div>
-                    <ul style={{ paddingTop: "10px" }}>
-                      {playlists.playlists &&
-                        playlists.playlists.map((item, index) => (
-                          <li
-                            className={
-                              initPlaylistId == item.id ? "selected" : ""
-                            }
-                            key={item.id + index}
-                            onClick={() =>
-                              getCategorizedVideos(item.id, item.title)
-                            }
-                          >
-                            <Link href={`/lectures/${item.id}`}>
-                              <a>{item.title}</a>
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
-                </div> */}
-
-								<div className="opt_lecture_right">
-									<div className="opt_lecture_title">{pageTitle}</div>
-
-									<div className="opt_lectures_wrapper">
-										<div className="row row-r">
-											{/*{isEmpty ? <p>No records found!</p> : null}*/}
-											{datas &&
-												datas.map((data) => {
-													return (
-														data.videoLists.videos &&
-														data.videoLists.videos.map((item, index) => (
-															<div
-																className="col col-r s12 m6 l4 xl4"
-																key={item.id + index}>
-																<PostCardVideo2
-																	item={item}
-																	statistics={data.videoLists.videoStats}
-																/>
-															</div>
-														))
-													);
-												})}
-										</div>
-									</div>
-
-									<div className="opt_lecture_loader" ref={ref}>
-										{isLoadingMore ? (
-											<div className="loader">
-												<Loader />
-											</div>
-										) : (
-											""
-										)}
-									</div>
-
-									{isReachingEnd ? (
-										""
-									) : (
-										<div className="opt_lecture_more">
-											<center>
-												<button onClick={() => setSize(size + 1)}>
-													See more
-												</button>
-											</center>
+								<div className="mt-6" ref={ref}>
+									{isLoadingMore && (
+										<div className="flex justify-center">
+											<Loader />
 										</div>
 									)}
 								</div>
+
+								{!isReachingEnd && (
+									<div className="mt-6 text-center">
+										<button
+											
+											onClick={() => setSize(size + 1)}>
+											See more
+										</button>
+									</div>
+								)}
 							</div>
 						</div>
 					</div>
 				</section>
 			</div>
-
-			{/* <Footer /> */}
 		</>
 	);
 }

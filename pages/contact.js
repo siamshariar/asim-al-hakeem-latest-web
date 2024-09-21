@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { GetStaticProps } from 'next';
 import { getAllPlaylists2, getAllQnaCategory, getHeaderLectures } from '../lib/fetch';
 import Meta from '../components/meta';
-import Header from '../components/header';
 import Header2 from '../components/header1';
 
 export default function Contact({ playlists, headerLectures, qna_categories }) {
   const [formData, setFormData] = useState({
     firstName: '',
-    lastName: '',
+    subject: '', // Renamed from lastName to subject
     email: '',
+    phone: '', // Added phone number to form data
     message: '',
     services: {
       websiteDesign: false,
@@ -22,9 +22,8 @@ export default function Contact({ playlists, headerLectures, qna_categories }) {
   });
 
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value, type, checked } = e.target;
     if (type === 'checkbox') {
-      const { checked } = e.target;
       setFormData(prev => ({
         ...prev,
         services: {
@@ -52,7 +51,7 @@ export default function Contact({ playlists, headerLectures, qna_categories }) {
           <div className="md:w-1/2 relative">
             <div 
               className="absolute inset-0 bg-cover bg-center z-0" 
-              style={{backgroundImage: 'url(/img/contact/contact-img.png)'}}
+              style={{ backgroundImage: 'url(/img/contact/contact-img.png)' }}
             ></div>
             <div className="absolute inset-0 bg-black opacity-20 z-10"></div>
             <div className="relative z-20 p-8 text-white">
@@ -78,55 +77,55 @@ export default function Contact({ playlists, headerLectures, qna_categories }) {
                   />
                 </div>
                 <div className="flex-1">
-                  <label htmlFor="lastName" className="block text-xl font-medium text-gray-700">Subject</label>
+                  <label htmlFor="subject" className="block text-xl font-medium text-gray-700">Subject</label>
                   <input
                     type="text"
                     id="subject"
                     name="subject"
-                    value={formData.lastName}
+                    value={formData.subject} // Updated to subject
                     onChange={handleChange}
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     required
                   />
                 </div>
               </div>
-			  <div className='flex space-x-4'>
-				<div className='flex-1'>
-					<label htmlFor="email" className="block text-xl font-medium text-gray-700">Email</label>
-					<input
-					type="email"
-					id="email"
-					name="email"
-					placeholder='email@example.com'
-					value={formData.email}
-					onChange={handleChange}
-					className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					required
-					/>
-				</div>
-				<div className='flex-1'>
-					<label htmlFor="phone" className="block text-xl font-medium text-gray-700">Phone</label>
-					<input
-					type="number"
-					id="Phone"
-					name="phone"
-					value={formData.phone}
-					onChange={handleChange}
-					className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-					required
-					/>
-				</div>
-			  </div>
+              <div className="flex space-x-4">
+                <div className="flex-1">
+                  <label htmlFor="email" className="block text-xl font-medium text-gray-700">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="email@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    required
+                  />
+                </div>
+                <div className="flex-1">
+                  <label htmlFor="phone" className="block text-xl font-medium text-gray-700">Phone</label>
+                  <input
+                    type="tel" // Changed type to tel for better validation
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    required
+                  />
+                </div>
+              </div>
               <div>
-			  <label for="message" class="block text-xl font-medium text-gray-700">Message</label>
-              <textarea
-				id="message"
-				name="message"
-				rows="4"
-				class="mt-1 block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-				style={{ border: '2px solid #E7E7E7' }}  
-				required
-				></textarea>
+                <label htmlFor="message" className="block text-xl font-medium text-gray-700">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  className="mt-1 block w-full h-[150px] rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  style={{ border: '2px solid #E7E7E7' }}  
+                  required
+                ></textarea>
               </div>
               <div>
                 <button

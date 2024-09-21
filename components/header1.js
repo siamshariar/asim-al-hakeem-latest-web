@@ -83,7 +83,7 @@ export default function Header2({
   return (
     <>
       <header ref={headerRef} className="py-4 bg-white lg:pt-6 lg:pb-[55px]">
-        <div className="container mx-auto lg:relative flex flex-col lg:flex-row lg:justify-between gap-y-4 lg:gap-y-0">
+        <div className="container mx-auto z-30 lg:relative flex flex-col lg:flex-row lg:justify-between gap-y-4 lg:gap-y-0">
           <div className="flex justify-center lg:justify-normal">
             <Link href="/">
               <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
@@ -134,7 +134,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-home-4-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="#" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
                         Home
                       </Link>
                     </li>
@@ -206,7 +206,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-book-read-line text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="#" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/book" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
                         Books
                       </Link>
                     </li>
@@ -222,7 +222,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-contacts-book-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="#" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/contact" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
                       Contact
                       </Link>
                     </li>
@@ -230,31 +230,20 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-contacts-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                    <Link href="#" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                    <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
                       About
                     </Link>
                   </li>
                   </div>
                 </ul>
               </div>
-              <form className="relative w-[250px] pb-2 ml-2 md:ml-12 mt-5 flex gap-x-[10px]">
-                <label for="mnav-search-input">
-                  <i className="ri-search-line mt-4 text-2xl text-accent"></i>
-                </label>
-                <input
-                  type="text"
-                  id="mnav-search-input"
-                  placeholder="Search..."
-                  className="outline-none w-[160px] border-b-2 focus:border-b-2 focus:border-accent placeholder:italic"
-                />
-              </form>
             </nav>
 
             {/* Desktop Navigation */}
             <nav className="bg-white absolute w-full left-0 -bottom-[86px] shadow-custom1 h-16 rounded-[10px] hidden lg:flex lg:items-center lg:justify-between lg:px-[40px]">
               <ul className="flex text-[20px]">
                 <li>
-                  <Link href="#" className="border-r-[1px] border-[#DCDCDC] pr-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/" className="border-r-[1px] border-[#DCDCDC] pr-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
                     Home
                   </Link>
                 </li>
@@ -270,7 +259,7 @@ export default function Header2({
                       <ExpandMoreIcon />
                     </span>
                   </Link>
-                  <div className="sub-menu absolute bg-white shadow-lg hidden group-hover:block mt-2 w-[900px] h-[500px]">
+                  <div className="sub-menu absolute bg-white shadow-lg hidden group-hover:block w-[800px] h-[320px]">
                     <div className="sub-menu-wrap scrollbar px-4 py-2 overflow-y-auto h-full flex gap-x-8">
                       <ul className="flex flex-col w-1/3 p-0 justify-start items-start submenu-links text-[#525252]">
                         {firstList.map((playlist) => (
@@ -317,7 +306,7 @@ export default function Header2({
                   </Link>
                 </li>
                 <li>
-                  <Link href="/book" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/book" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent ">
                     Books
                   </Link>
                 </li>
@@ -337,18 +326,6 @@ export default function Header2({
                   </Link>
                 </li>
               </ul>
-
-              <form className="relative w-[250px] pb-2 ml-4 mt-2 flex gap-x-[10px]">
-                <label for="mnav-search-input">
-                  <i className="ri-search-line mt-4 text-2xl text-accent"></i>
-                </label>
-                <input
-                  type="text"
-                  id="mnav-search-input"
-                  placeholder="Search..."
-                  className="outline-none w-[160px] border-b-2 focus:border-b-2 focus:border-accent placeholder:italic"
-                />
-              </form>
             </nav>
           </div>
         </div>

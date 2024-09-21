@@ -58,9 +58,11 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
         <div className='container mx-auto'>
           <h2 className='blog__title h2 mb-[50px] text-center xl:text-left'>Articles</h2>
 
-          <div className='flex flex-col xl:flex-row gap-y-6 xl:gap-y-0 xl:justify-between mb-[50px]'>
+          <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-[50px]'>
+
+
             {articles.map(article => (
-              <div key={article.id} className='blog__post max-w-[420px] shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
+              <div key={article.id} className='blog__post max-w-[650px] sm-w-[500px] shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
                 <div className='relative overflow-hidden'>
                   <img className='group-hover:scale-110 transition-all duration-500' src={article.image} alt={article.title}/>
                 </div>
