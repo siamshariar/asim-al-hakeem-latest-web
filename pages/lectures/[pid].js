@@ -13,7 +13,8 @@ import PostCardVideo2 from "../../components/card/post-card-video2";
 import Loader from "../../components/loader";
 import fetcher from "../../lib/lecturesFetcher";
 import useOnScreen from "../../hooks/useOnScreen";
-import { useSWRInfinite } from "swr";
+import useSWRInfinite from 'swr/infinite';
+
 
 const getKey = (pageIndex, previousPageData, playlistId) => {
 	let pageToken = "";
@@ -49,8 +50,8 @@ export default function LectureList({
 	const isLoadingMore =
 		isLoadingInitialData ||
 		(size > 0 && data && typeof data[size - 1] === "undefined");
-	const numberOfPages =
-		data?.[0]?.length !== 0 ? data[0].videoLists.numberOfPages : 0;
+	const numberOfPages = data?.length > 0 && data[0]?.videoLists ? data[0].videoLists.numberOfPages : 0;
+
 	const isReachingEnd = size === numberOfPages;
 	const isRefreshing = isValidating && data && data.length === size;
 
