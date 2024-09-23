@@ -83,7 +83,7 @@ export default function RecentLecture() {
       </div>
 
       <div className="container mx-auto mt-8 xl:-mt-[144px]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 shadow-custom1 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {lectures.map((lecture) => (
             <div
               key={lecture.id}

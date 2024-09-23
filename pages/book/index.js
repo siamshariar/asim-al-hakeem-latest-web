@@ -92,7 +92,7 @@ const BookSlider = ({ playlists, headerLectures, qnaCategories }) => {
       {isHomePage && (
        <section className="books pb-100 py-12 section pb-[100px]">
        <div className="container mx-auto">
-         <h2 className="books__title text-4xl font-bold mb-[50px] text-center md:text-left">Books</h2>
+         <h2 className="books__title text-4xl font-bold mb-[50px]  text-center md:text-left">Books</h2>
          <div className="books__slider swiper min-h-[430px]">
            <div className="swiper-wrapper">
              {books.map((book, index) => {
@@ -101,7 +101,7 @@ const BookSlider = ({ playlists, headerLectures, qnaCategories }) => {
                    <div key={index} className="swiper-slide pb-24">
                      <div className="flex flex-col md:flex-col lg:flex-row  gap-9">
                        {/* First Book */}
-                       <div className="flex-1 flex flex-col sm:flex-row md:flex-row items-center gap-[30px]">
+                       <div className="flex-1 flex flex-row sm:flex-row md:flex-row lg:flex-row items-center gap-[30px]">
                          <div className="flex-1">
                            <Link href={`/book/${books[index].id}`}>
                              <img
@@ -130,7 +130,7 @@ const BookSlider = ({ playlists, headerLectures, qnaCategories }) => {
      
                        {/* Second Book (if available) */}
                        {books[index + 1] && (
-                         <div className="flex-1 flex flex-col sm:flex-row md:flex-row items-center gap-[30px]">
+                         <div className="flex-1 flex flex-row sm:flex-row md:flex-row items-center gap-[30px]">
                            <div className="flex-1">
                              <Link href={`/book/${books[index + 1].id}`}>
                                <img

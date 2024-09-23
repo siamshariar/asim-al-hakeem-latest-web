@@ -30,6 +30,14 @@ const articles = [
     description: 'Without a balanced, welfare oriented and comprehensive system it is not at all possible...',
     image: 'img/articles/05.jpg',
   },
+  {
+    id: '4',
+    slug: 'provisions-of-ushar-and-kharaj',
+    title: 'Provisions of Ushar and Kharaj',
+    date: 'Feb 22, 2024',
+    description: 'Without a balanced, welfare oriented and comprehensive system it is not at all possible...',
+    image: 'img/articles/01.jpg',
+  },
 ];
 
 export default function Articles({ playlists, headerLectures, qnaCategories }) {
@@ -58,21 +66,25 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
         <div className='container mx-auto'>
           <h2 className='blog__title h2 mb-[50px] text-center xl:text-left'>Articles</h2>
 
-          <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-[50px]'>
+          <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-[50px]'>
 
 
             {articles.map(article => (
-              <div key={article.id} className='blog__post max-w-[650px] sm-w-[500px] shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
+              <div key={article.id} className='blog__post max-w-auto sm-w-auto shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
                 <div className='relative overflow-hidden'>
                   <img className='group-hover:scale-110 transition-all duration-500' src={article.image} alt={article.title}/>
                 </div>
 
-                <div className='px-5 py-6'>
-                  <div className='mb-4'>{article.date}</div>
-                  <h4 className='h4 mb-[10px]'>{article.title}</h4>
+                <div className='px-5 py-6 lg:py-4 '>
+                  <div className='mb-2'>{article.date}</div>
+                  <h4 className='h4 mb-[10px] lg:text-xl line-clamp-2'>{article.title}</h4>
                   <p className='font-light text-[#777F81]'>
-                    {article.description}
-                    <a href={`/articles/${article.slug}`} className='italic underline text-[#4c5354]'>Read more</a>
+                    <span >
+                      {article.description}
+                    </span>
+                    <a href={`/articles/${article.slug}`} className='italic underline text-[#4c5354]'>
+                      Read more
+                    </a>
                   </p>
                 </div>
               </div>

@@ -79,8 +79,8 @@ export default function LectureList({
 			/>
 
 			<div className="mt-12">
-				<section className="bg-gray-100 p-4 sm:p-6">
-					<div className="container mx-auto">
+				<section className="bg-gray-100 ">
+					<div className="container mx-auto px-0">
 						<div className="bg-white p-4 sm:p-6 rounded-xl shadow-md">
 							<div className="flex flex-col">
 								<div className="text-xl sm:text-2xl text-black font-bold mb-4">{pageTitle}</div>

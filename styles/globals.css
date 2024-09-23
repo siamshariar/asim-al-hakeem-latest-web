@@ -136,7 +136,60 @@ h1, h2, h3, h4, h5, h6 {
       line-height: 20px;
     }
   }
+  @media (min-width: 1330px) {
+    .container {
+      width: 1280px;
+    }
+  }
 
+
+  @media (min-width: 960px) {
+    .container {
+      max-width: 1260px;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .header-fixed {
+      display: none; /* Hide the regular header */
+    }
+  
+    .mobile-header {
+      display: flex; /* Show the mobile header */
+    }
+  }
+  
   .custom-button {
     padding: 25px 25px !important; /* Adjust as needed */
   }
+
+  /* Styles for header and navigation */
+.header-fixed {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.mobile-header {
+  display: none; 
+}
+
+@media (max-width: 1280px) {
+  .header-fixed {
+    display: none; 
+  }
+
+  .mobile-header {
+    display: flex; 
+    flex-direction: column;
+  }
+
+  .mobile-nav {
+    display: none; 
+  }
+
+  .mobile-nav.open {
+    display: block; 
+  }
+}

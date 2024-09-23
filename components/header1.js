@@ -77,7 +77,7 @@ export default function Header2({
   };
 
   const toggleLecturesSubmenu = () => {
-    setLecturesSubmenuOpen((prev) => !prev); // Toggles the lectures submenu
+    setLecturesSubmenuOpen((prev) => !prev);
   };
 
   return (
@@ -128,9 +128,9 @@ export default function Header2({
 
               <div className="px-2 md:px-6 flex flex-col gap-y-12 h-full">
                 <a href="#">
-                  <img src="/img/id/logo.png" className="w-[200px]   md:w-[300px] mx-auto " alt="Logo" />
+                  <img src="/img/id/logo.png" className="w-[200px] md:w-[300px] mx-auto " alt="Logo" />
                 </a>
-                <ul className="flex  overflow-x-auto scrollbar-thin flex-col text-[22px]">
+                <ul className="flex  overflow-x-auto scrollbar-thin scrollbar-thumb-gray-900 flex-col text-[22px]">
                   <div className="flex">
                     <i class="ri-home-4-fill text-[28px] text-[#44929C]"></i>
                     <li>
@@ -214,9 +214,25 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-question-answer-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                        <Link href="#" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
-                        Ask a Questions
+                        <Link href="/question" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                        Qna
                         </Link>
+                    </li>
+                  </div>
+                  <div className="flex">
+                    <i class="ri-bar-chart-box-line text-[28px] text-[#44929C]"></i>
+                    <li>
+                      <Link href="" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                        Counselling
+                      </Link>
+                    </li>
+                  </div>
+                  <div className="flex">
+                    <i class="ri-question-fill text-[28px] text-[#44929C]"></i>
+                    <li>
+                      <Link href="" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                        Questions
+                      </Link>
                     </li>
                   </div>
                   <div className="flex">
@@ -240,7 +256,7 @@ export default function Header2({
             </nav>
 
             {/* Desktop Navigation */}
-            <nav className="bg-white absolute w-full left-0 -bottom-[86px] shadow-custom1 h-16 rounded-[10px] hidden lg:flex lg:items-center lg:justify-between lg:px-[40px]">
+            <nav className="bg-white absolute px-[300px] w-full left-0 -bottom-[86px] shadow-custom1 h-16 rounded-[10px] hidden lg:flex lg:items-center lg:justify-between lg:px-[40px]">
               <ul className="flex text-[20px]">
                 <li>
                   <Link href="/" className="border-r-[1px] border-[#DCDCDC] pr-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
@@ -313,6 +329,16 @@ export default function Header2({
                 <li>
                   <Link href="/questions" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
                     Qna
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/questions" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                    Counselling
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/questions" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                    Questions
                   </Link>
                 </li>
                 <li>
