@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header2 from "../../components/header1";
 import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../../lib/fetch";
-import Meta from "../../components/Meta"; // Meta component for SEO
+import Meta from "../../components/meta"; // Meta component for SEO
 
 const Question = ({ playlists, headerLectures, qnaCategories }) => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -110,7 +110,7 @@ const Question = ({ playlists, headerLectures, qnaCategories }) => {
     <>
       {/* Meta Component for SEO */}
       <Meta
-        title="Frequently Asked Questions"
+        title="Questions"
         description="Find answers to commonly asked questions on a variety of topics, including Hajj, Fasting, Prayer, and more."
         url="/faq"
         image="/img/faq-banner.jpg"

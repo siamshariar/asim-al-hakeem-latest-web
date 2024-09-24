@@ -222,7 +222,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-bar-chart-box-line text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/counselling" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
                         Counselling
                       </Link>
                     </li>
@@ -230,7 +230,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-question-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/question" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
                         Questions
                       </Link>
                     </li>
@@ -332,12 +332,12 @@ export default function Header2({
                   </Link>
                 </li>
                 <li>
-                  <Link href="/questions" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/counselling" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
                     Counselling
                   </Link>
                 </li>
                 <li>
-                  <Link href="/questions" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/ask-question" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
                     Questions
                   </Link>
                 </li>

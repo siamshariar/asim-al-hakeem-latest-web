@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useRouter } from 'next/router';
 import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../../lib/fetch";
-import Meta from "../../components/meta";
+import Meta from "../../components/meta"; // Meta component for SEO
 import Header2 from "../../components/header1";
 
 const BookSlider = ({ playlists, headerLectures, qnaCategories }) => {
@@ -72,10 +72,10 @@ const BookSlider = ({ playlists, headerLectures, qnaCategories }) => {
   return (
     <>
       <Meta
-        title="Book Collection"
+        title=""
         description="Explore our collection of medical books."
-        url="/book-slider"
-        image="/img/default_share.jpeg"
+        image="/img/id/default_share.jpeg"
+        url="/counselling-session"
         type="website"
       />
   

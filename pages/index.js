@@ -37,6 +37,8 @@ import BookAppointment from "../components/home/appoinment";
 import Banner2 from "../components/home/banner2";
 import RecentLecture from "../components/home/recent-lectures";
 import BooksSlider from "./book";
+import AskQuestion from "../components/home/askquestion-counselling";
+import AskQuestionCounselling from "../components/home/askquestion-counselling";
 
 
 
@@ -72,6 +74,7 @@ export default function Home({
 				<Articles />
 				<TestimonialSlider />
 				<BooksSlider />
+				<AskQuestionCounselling />
 				<Question />
 				<BookAppointment />
 				
