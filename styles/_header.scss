@@ -27,6 +27,31 @@
 	transform: translateY(-100%);
 }
 
+
+
+.header-fixed {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+  }
+  
+  .header-scroll {
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hide-header {
+	transform: translateY(-100%);
+	transition: transform 0.5s ease;
+  }
+  
+  .hide-desktop-nav {
+	transform: translateY(100%);
+	transition: transform 0.5s ease;
+  }
+  
+
 .header.scrolled {
 	height: 5.25rem;
 	box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.15);

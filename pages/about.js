@@ -317,7 +317,7 @@ export default function About({ playlists, headerLectures, qna_categories }) {
             />
 
             <section className="min-h-screen py-12 px-4 mt-6 sm:px-6 lg:px-8 bg-gray-100">
-                <div className="max-w-5xl mx-auto">
+                <div className="max-w-[1250px] mx-auto">
                     <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                         <div className="md:flex">
                             <div className="md:flex-shrink-0">

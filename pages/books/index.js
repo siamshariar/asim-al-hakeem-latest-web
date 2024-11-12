@@ -9,6 +9,7 @@ import Meta from "../../components/meta";
 import Header from "../../components/header";
 // import BookCard from "../../components/card/post-card-book";
 import PostCard from "../../components/card/post-card-tertiary";
+import Header2 from "../../components/header1";
 
 export default function BookList({
 	books,
@@ -26,7 +27,7 @@ export default function BookList({
 				type="website"
 			/>
 
-			<Header
+			<Header2
 				playlists={playlists}
 				lectures={headerLectures}
 				qna_categories={qnaCategories}
@@ -34,8 +35,8 @@ export default function BookList({
 
 			<section className="cat-page-top">
 				<div className="page-width">
-					<div className="box">
-						<h1>বই সমূহ</h1>
+					<div className="box mt-10">
+						<h1>Books</h1>
 					</div>
 				</div>
 			</section>

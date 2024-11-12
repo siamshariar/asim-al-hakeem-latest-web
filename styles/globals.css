@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section {
-    @apply py-12 xl:py-[150px];
+    @apply py-12 xl:py-[100px];
 }
 
 /* Regular CSS for Swiper Pagination Styles */

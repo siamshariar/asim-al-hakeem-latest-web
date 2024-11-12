@@ -13,6 +13,7 @@ import Meta from "../../components/meta";
 import Header from "../../components/header";
 import Share from "../../components/share";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import Header2 from "../../components/header1";
 
 export default function BookDetail({
 	detail,
@@ -30,7 +31,7 @@ export default function BookDetail({
 				type="website"
 			/>
 
-			<Header
+			<Header2
 				playlists={playlists}
 				lectures={headerLectures}
 				qna_categories={qnaCategories}

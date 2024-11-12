@@ -39,6 +39,7 @@ import RecentLecture from "../components/home/recent-lectures";
 import BooksSlider from "./book";
 import AskQuestion from "../components/home/askquestion-counselling";
 import AskQuestionCounselling from "../components/home/askquestion-counselling";
+import BookList from "./books";
 
 
 
@@ -73,7 +74,7 @@ export default function Home({
 				<RecentLecture />
 				<Articles />
 				<TestimonialSlider />
-				<BooksSlider />
+				<HomeBooks books={books} />
 				<AskQuestionCounselling />
 				<Question />
 				<BookAppointment />

@@ -34,25 +34,7 @@ const BookSlider = ({ playlists, headerLectures, qnaCategories }) => {
       description: 'Insights into cardiology and heart health.',
       width: 250,
       height: 350,
-    },
-    {
-      id: 3,
-      title: 'Women\'s Health: A Guide',
-      author: 'Dr. Isabella Davies',
-      image: '/img/books/book-3.jpg',
-      description: 'An in-depth look at women\'s health and gynecology.',
-      width: 200,
-      height: 300,
-    },
-    {
-      id: 4,
-      title: 'Neurology Simplified',
-      author: 'Dr. John Doe',
-      image: '/img/books/book-4.jpg',
-      description: 'An accessible introduction to neurology.',
-      width: 250,
-      height: 350,
-    },
+    }
   ];
 
   useEffect(() => {
@@ -90,7 +72,7 @@ const BookSlider = ({ playlists, headerLectures, qnaCategories }) => {
   
       {/* Conditionally show the slider on the home page */}
       {isHomePage && (
-       <section className="books pb-100 py-12 section pb-[100px]">
+       <section className="books pb-100 py-6 section pb-[100px]">
        <div className="container mx-auto">
          <h2 className="books__title text-4xl font-bold mb-[50px]  text-center md:text-left">Books</h2>
          <div className="books__slider swiper min-h-[430px]">

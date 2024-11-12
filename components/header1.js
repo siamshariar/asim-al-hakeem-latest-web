@@ -165,7 +165,7 @@ export default function Header2({
                   </Link>
                 </li>
                 <li>
-                  <Link href="/book" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent ">
+                  <Link href="/books" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent ">
                     Books
                   </Link>
                 </li>
@@ -189,6 +189,11 @@ export default function Header2({
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <Link href="/about" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                    About
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
@@ -210,7 +215,7 @@ export default function Header2({
 
             {/* Mobile Navigation */}
             <nav
-              className={`bg-white fixed w-[270px] md:w-[680px] pb-[150px] top-0 h-screen shadow-2xl lg:hidden transition-all z-20 ${
+              className={`bg-white fixed w-[300px] md:w-[680px] pb-[150px] top-0 h-screen shadow-2xl lg:hidden transition-all z-20 ${
                 mobileNavOpen ? 'left-0' : '-left-[300px] md:-left-[680px]'
               }`}
             >
@@ -227,9 +232,10 @@ export default function Header2({
                       </Link>
                     </li>
                   </div>
+                  <div>
                   <li className="relative group">
                     <div className="flex">
-                      <i className="ri-file-video-line text-[28px] text-[#44929C]"></i>
+                      <i className="ri-file-video-fill text-[28px] text-[#44929C]"></i>
                       <div
                         onClick={toggleLecturesSubmenu}
                         className={`flex items-center ml-[15px] text-[20px] cursor-pointer ${
@@ -283,6 +289,7 @@ export default function Header2({
                       </div>
                     )}
                   </li>
+                  </div>
                   <div className="flex">
                     <i className="ri-article-fill text-[28px] text-[#44929C]"></i>
                     <li>
@@ -292,10 +299,50 @@ export default function Header2({
                     </li>
                   </div>
                   <div className="flex">
-                    <i className="ri-team-fill text-[28px] text-[#44929C]"></i>
+                    <i class="ri-book-shelf-line text-[28px] text-[#44929C]"></i>
                     <li>
                       <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
-                        About Us
+                        Books
+                      </Link>
+                    </li>
+                  </div>
+                  <div className="flex">
+                    <i class="ri-question-answer-fill text-[28px] text-[#44929C]"></i>
+                    <li>
+                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                        Qna
+                      </Link>
+                    </li>
+                  </div>
+                  <div className="flex">
+                    <i class="ri-group-fill text-[28px] text-[#44929C]"></i>
+                    <li>
+                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                        Counselling 
+                      </Link>
+                    </li>
+                  </div>
+                  <div className="flex">
+                    <i class="ri-questionnaire-fill text-[28px] text-[#44929C]"></i>
+                    <li>
+                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                        Questions 
+                      </Link>
+                    </li>
+                  </div>
+                  <div className="flex">
+                    <i class="ri-contacts-fill text-[28px] text-[#44929C]"></i>
+                    <li>
+                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                        Contact 
+                      </Link>
+                    </li>
+                  </div>
+                  <div className="flex">
+                    <i class="ri-profile-fill text-[28px] text-[#44929C]"></i>
+                    <li>
+                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                        About 
                       </Link>
                     </li>
                   </div>
