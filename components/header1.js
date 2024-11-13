@@ -80,13 +80,13 @@ export default function Header2({
 
   return (
     <>
-      <header ref={headerRef} className="py-4 bg-white lg:pt-6 lg:pb-[40px] transition-all duration-500">
+      <header ref={headerRef} className=" bg-white lg:pt-6 lg:pb-[40px] transition-all duration-500">
         <div className="lg:hidden flex justify-end mr-2  mt-4">
           <button onClick={toggleMobileNav} className="text-3xl focus:outline-none">
             <i className={mobileNavOpen ? "ri-close-line" : "ri-menu-line"}></i>
           </button>
         </div>
-        <div className="container mx-auto z-30 lg:relative flex flex-col lg:flex-row justify-between gap-y-4 lg:gap-y-0">
+        <div className="container mx-auto z-30 lg:relative flex flex-col lg:flex-row justify-between gap-y-2 lg:gap-y-0">
           <div className="flex justify-center mr-[545px] items-center w-full lg:w-auto">
             <Link href="/">
               <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
