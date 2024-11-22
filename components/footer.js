@@ -1,12 +1,12 @@
-export default function Footer1() {
+export default function Footer() {
     return (
-        <footer class="Footer pt-6 ">
-            <div class="container mx-auto pb-12 xl:pb-[100px]">
+        <footer class="Footer bg-white pt-8 px-4 ">
+            <div class="container mx-auto pb-12 hidden md:block xl:pb-[100px]">
                 <div class="flex flex-col xl:flex-row gap-x-5 gap-y-10">
                     <div class="footer__item  flex-1">
-                        <a href="">
+                        {/* <a href="">
                             <img class="mb-[30px] w-[250px]" src="/img/id/logo.png" alt="" />
-                        </a>
+                        </a> */}
                         <div class="flex flex-col gap-y-3 mb-10">
                             <div class="flex items-center gap-x-[60px]">
                                 <i class="ri-map-pin-fill text-[24px] text-accent"></i>
@@ -87,7 +87,7 @@ export default function Footer1() {
                 </div>
             </div>
 
-            <div class="py-[30px] border-t-[1px] border-[#DCDCDC]">
+            <div class="py-[30px]  border-t-[1px] border-[#DCDCDC]">
                 <div class="container mx-auto text-center">
                     <div class="font-light text-base">&copy; 2024 deeniinfotech - All rights reserved.</div>
                 </div>

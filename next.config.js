@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: "/lectures",
-        destination: "/lectures/UUjTCGZUzqlNSCnFxHJBGCoQ",
+        destination: "/lectures/UUWsdcrre0WbCWML_PnuzoAg",
         permanent: true,
       },
     ];

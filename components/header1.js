@@ -80,13 +80,13 @@ export default function Header2({
 
   return (
     <>
-      <header ref={headerRef} className=" bg-white lg:pt-6 lg:pb-[40px] transition-all duration-500">
-        <div className="lg:hidden flex justify-end mr-2  mt-4">
+      <header ref={headerRef} className="py-2 bg-white lg:pt-6 lg:pb-[40px] transition-all duration-500">
+        <div className="lg:hidden flex justify-end mr-2">
           <button onClick={toggleMobileNav} className="text-3xl focus:outline-none">
             <i className={mobileNavOpen ? "ri-close-line" : "ri-menu-line"}></i>
           </button>
         </div>
-        <div className="container mx-auto z-30 lg:relative flex flex-col lg:flex-row justify-between gap-y-2 lg:gap-y-0">
+        <div className="container mx-auto z-30 lg:relative flex flex-col lg:flex-row justify-between gap-y-1 lg:gap-y-0">
           <div className="flex justify-center mr-[545px] items-center w-full lg:w-auto">
             <Link href="/">
               <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
@@ -100,7 +100,7 @@ export default function Header2({
             <i className="ri-phone-fill text-2xl text-accent"></i>
             <div className="text-secondary">(+487 384 9452)</div>
           </div>
-          <button className="button w-[200px] mt-2 lg:w-auto mx-auto mb-5 lg:mx-0">
+          <button className="button w-[200px] mt-2 lg:w-auto mx-auto lg:mx-0">
             Book now
           </button>
 
@@ -226,13 +226,12 @@ export default function Header2({
                 <ul className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-900 flex-col text-[22px]">
                   <div className="flex">
                     <i className="ri-home-4-fill text-[28px] text-[#44929C]"></i>
-                    <li>
+                    <div>
                       <Link href="/" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
                         Home
                       </Link>
-                    </li>
+                    </div>
                   </div>
-                  <div>
                   <li className="relative group">
                     <div className="flex">
                       <i className="ri-file-video-fill text-[28px] text-[#44929C]"></i>
@@ -289,11 +288,10 @@ export default function Header2({
                       </div>
                     )}
                   </li>
-                  </div>
                   <div className="flex">
                     <i className="ri-article-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/articles" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/articles" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
                         Articles
                       </Link>
                     </li>
@@ -301,7 +299,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-book-shelf-line text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/books" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
                         Books
                       </Link>
                     </li>
@@ -309,7 +307,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-question-answer-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/questions" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
                         Qna
                       </Link>
                     </li>
@@ -317,7 +315,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-group-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/counselling" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
                         Counselling 
                       </Link>
                     </li>
@@ -325,7 +323,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-questionnaire-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/ask-question" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
                         Questions 
                       </Link>
                     </li>
@@ -333,7 +331,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-contacts-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/contact" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
                         Contact 
                       </Link>
                     </li>
@@ -341,7 +339,7 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-profile-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
                         About 
                       </Link>
                     </li>

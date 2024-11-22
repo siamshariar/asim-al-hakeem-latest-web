@@ -34,7 +34,7 @@ const BookAppointment = () => {
   }, []);
 
   return (
-    <section className='appointment section'>
+    <section className='appointment section px-4'>
       <div className='container mx-auto'>
         <h2 className='appointment__title h2 mb-5 xl:mb-[50px] text-center xl:text-left'>
           Book Appointment or call:

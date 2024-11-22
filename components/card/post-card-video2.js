@@ -1,49 +1,40 @@
-import { server } from "../../lib/config";
-import Link from "next/link";
-import Image from "next/image";
-import { date } from "../../lib/format";
+import Image from 'next/image';
+import { date } from '../../lib/format';
 
-export default function PostCardVideo2({ item, statistics }) {
-	const id = item.id;
-	const image = item.image;
-	const title = item.title;
-	const publishedAt = date(item.date);
-	const viewCount = statistics ? statistics[id] : "";
+export default function PostCardVideo2({ item, statistics, onClick }) {
+    const id = item.id;
+    const image = item.image;
+    const title = item.title;
+    const publishedAt = date(item.date);
+    const viewCount = statistics ? statistics[id] : '';
 
-	return (
-        <div className="card card-r pc-video">
-			<div className="card-image">
-				{/*TODO: Consider prefetch*/}
-				<Link href={`/lectures/watch/${id}`} className="image-r">
+    return (
+        <div className="card card-r pc-video" onClick={() => onClick(id, title)}>
+            <div className="card-image">
+                <div className="image-r">
+                <Image
+                    src={image ? `https://i.ytimg.com/vi/${id}/mqdefault.jpg` : `/img/post/youtube-default.jpg`}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{
+                        objectFit: 'cover',
+                        objectPosition: 'center center',
+                    }}
+                    loading="eager"
+                />
 
-                    {/* <img src={image} alt="" /> */}
-                    <Image
-                        src={
-                            image
-                                ? `http://i.ytimg.com/vi/${id}/mqdefault.jpg`
-                                : "/img/post/youtube-default.jpg"
-                        }
-                        alt=""
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition="center center"
-                        loading="eager"
-                        unoptimized
-                    />
 
-                </Link>
-			</div>
+                </div>
+            </div>
 
-			<div className="card-content">
-				<Link href={`/lectures/watch/${id}`} className="heading-r">
-					{title}
-				</Link>
-
-				<div className="flex justify-between w-full mt-6 text-sm text-gray-500">
-					<span className="text-[15px] text-[#808080]">{viewCount} views</span>
-					<span className="text-[15px] text-[#808080]">{publishedAt}</span>
-				</div>
-			</div>
-		</div>
+            <div className="card-content">
+                <div className="heading-r">{title}</div>
+                <div className="data-line">
+                    <span className="view-r">{viewCount} views</span>
+                    <span className="date-r">{publishedAt}</span>
+                </div>
+            </div>
+        </div>
     );
 }
