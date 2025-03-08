@@ -6,37 +6,7 @@ import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../../li
 import Meta from "../../components/meta";
 import Header2 from "../../components/header1";
 import { server } from "../../lib/config";
-
-// Simulating fetched articles for demo purposes
-const articles = [
-  {
-    id: '1',
-    slug: 'dawah-in-the-media-problems-and-solutions',
-    title: "Da'wah in the media: problems and solutions",
-    date: 'Sep 5, 2024',
-    description: 'Al-Qur\'anul Kareem is the greatest and eternal miracle revealed by Allah...',
-    image: '/img/articles/01.jpg', // Updated path
-    content: '<p>The Quran is the greatest and eternal miracle revealed by Allah (subhanahu wa taala)...</p>',
-  },
-  {
-    id: '2',
-    slug: 'titles-and-honorific-titles-of-the-companions',
-    title: 'Titles and honorific titles of the Companions of the Prophet (ﷺ)',
-    date: 'May 18, 2024',
-    description: 'Only the believer has love for the Messenger of Allah...',
-    image: '/img/articles/02.jpg',
-    content: '<p>Only the believer has love for the Messenger of Allah, peace and blessings...</p>',
-  },
-  {
-    id: '3',
-    slug: 'provisions-of-ushar-and-kharaj',
-    title: 'Provisions of Ushar and Kharaj',
-    date: 'Feb 22, 2024',
-    description: 'Without a balanced, welfare-oriented and comprehensive system...',
-    image: '/img/articles/05.jpg',
-    content: '<p>Without a balanced, welfare-oriented and comprehensive system...</p>',
-  },
-];
+import articles from '../../data/airticles-data';
 
 export default function ArticleDetail({ article, playlists, headerLectures, qnaCategories }) {
   const router = useRouter();
@@ -64,7 +34,7 @@ export default function ArticleDetail({ article, playlists, headerLectures, qnaC
         qna_categories={qnaCategories}
       />
 
-      <section className='article-detail py-[100px]'>
+      <section className='article-detail py-[50px]'>
         <div className='container p-6 bg-white rounded-xl shadow-xl mx-auto'>
           <h1 className='text-3xl font-bold mb-6'>{article.title}</h1>
           <p className='text-lg text-[#0D9488] mb-6'>Published on {article.date}</p>

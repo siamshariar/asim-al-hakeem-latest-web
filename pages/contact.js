@@ -46,7 +46,7 @@ export default function Contact({ playlists, headerLectures, qna_categories }) {
     <>
       <Meta title="Contact" description="Get in touch with our experts" />
       <Header2 playlists={playlists} headerLectures={headerLectures} qna_categories={qna_categories} />
-      <main className="container mt-10 mx-auto py-8">
+      <main className="container mt-4 mx-auto py-8">
         <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="md:w-1/2 relative">
             <div 

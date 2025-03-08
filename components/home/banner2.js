@@ -2,7 +2,7 @@ import React from "react";
 
 const Banner2 = () => {
   return (
-    <section className="bg-[#F4F4F4] py-12  xl:pt-12 xl:pb-0 overflow-hidden">
+    <section className="bg-[#F4F4F4] py-12 px-6 xl:pt-12 xl:pb-0 overflow-hidden">
       <div className="container mx-auto flex pt-[30px] flex-col-reverse lg:flex-row items-center">
         {/* Left Section */}
         <div className="lg:w-1/2 text-center lg:text-left">

@@ -56,10 +56,6 @@ export default function LectureVideo({ playlists, headerLectures, qna_categories
     }
   }, [id, videoData]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   if (!video) {
     return <p>Video data not found.</p>;
   }

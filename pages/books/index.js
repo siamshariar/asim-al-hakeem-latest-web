@@ -35,7 +35,7 @@ export default function BookList({
 
 			<section className="cat-page-top">
 				<div className="page-width">
-					<div className="box mt-10">
+					<div className="box mt-4">
 						<h1>Books</h1>
 					</div>
 				</div>

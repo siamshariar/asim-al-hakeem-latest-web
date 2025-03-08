@@ -141,14 +141,12 @@ export default function LectureList({ initialVideos, initPlaylistId, headerLectu
 		lectures={headerLectures}
 	/>
 
-	<div className="mt-12">
+	<div className="mt-14">
 		<section className="bg-gray-100 ">
-			<div className="container mx-auto px-0">
-				<div className="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+			<div className="container2 mx-auto w-sm-0 px-0 py-0">
 					<div className="flex flex-col">
-						<div className="text-xl sm:text-2xl text-black font-bold mb-4">{pageTitle}</div>
-
-						<div className="grid grid-cols-1 py-4 px-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+						<div className="text-xl sm:text-2xl text-black font-bold ml-4 mb-4">{pageTitle}</div>
+						<div className="grid grid-cols-1 py-4 px-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0">
 						{datas &&
 							datas.map((data) =>
 							data.videoLists.videos.map((video) => (
@@ -176,7 +174,6 @@ export default function LectureList({ initialVideos, initPlaylistId, headerLectu
 							</button>
 							</center>
 						)}
-					</div>
 				</div>
 			</div>
 		</section>

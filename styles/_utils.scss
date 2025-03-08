@@ -39,11 +39,15 @@ li {
 }
 
 a,
-a:focus,
 a:hover {
 	outline: none;
 	text-decoration: none;
 	color: inherit;
+}
+
+a:focus{
+	outline: none;
+	text-decoration: none;
 }
 
 img {
@@ -94,3 +98,64 @@ iframe {
 .text-bold {
 	font-weight: bold;
 }
+
+
+.faq .category-item {
+  transition: all 0.2s ease;
+}
+
+.faq .category-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.faq .category-item.active {
+  background-color: rgba(0, 0, 0, 0.08);
+  font-weight: 500;
+}
+
+.faq .question-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq .question-card:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .faq .categories-container {
+    margin-bottom: 2rem;
+  }
+}
+
+.faq .grid {
+  display: grid;
+  grid-auto-rows: auto;
+}
+
+.faq .grid > div {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  position: relative;
+  display: block;
+}
+
+.faq .answer-container {
+  position: relative;
+  z-index: 1;
+}
+
+.faq .sticky {
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+
+.faq .grid {
+  align-items: start;
+}
+
+

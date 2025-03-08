@@ -37,7 +37,7 @@ export default function BookDetail({
 				qna_categories={qnaCategories}
 			/>
 
-			<section className="blog-detail-ctn">
+			<section className="blog-detail-ctn mt-12">
 				<div className="page-width">
 					<div className="box">
 						<div className="blog-area">

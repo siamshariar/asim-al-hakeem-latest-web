@@ -40,48 +40,16 @@ export default function Footer() {
                         <h4 class="text-[22px] font-bold mb-5">Quick Links</h4>
                         <div class="flex gap-x-5">
                             <ul class="flex-1 flex flex-col text-[20px] gap-y-5">
-                                <li><a href="#" class="hover:text-accent transition-all">Home</a></li>
-                                <li><a href="#" class="hover:text-accent transition-all">Lectures</a></li>
-                                <li><a href="#" class="hover:text-accent transition-all">Articles</a></li>
-                                <li><a href="#" class="hover:text-accent transition-all">Books</a></li>
+                                <li><a href="/" class="hover:text-accent transition-all">Home</a></li>
+                                <li><a href="/lectures" class="hover:text-accent transition-all">Lectures</a></li>
+                                <li><a href="/articles" class="hover:text-accent transition-all">Articles</a></li>
+                                <li><a href="/books" class="hover:text-accent transition-all">Books</a></li>
                             </ul>
                             <ul class="flex-1 flex flex-col text-[20px] gap-y-5">
-                                <li><a href="#" class="hover:text-accent transition-all">Qna</a></li>
-                                <li><a href="#" class="hover:text-accent transition-all">Contact</a></li>
-                                <li><a href="#" class="hover:text-accent transition-all">About</a></li>
+                                <li><a href="/questions" class="hover:text-accent transition-all">Qna</a></li>
+                                <li><a href="/contact" class="hover:text-accent transition-all">Contact</a></li>
+                                <li><a href="/about" class="hover:text-accent transition-all">About</a></li>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="footer__item flex-1">
-                        <h4 class="footer__item flex-1 text-[22px] font-bold mb-5">Opening Hours</h4>
-                        <div>
-                            <div class="flex-1">
-                                <div class="flex justify-between border-b-[1px] border-[#DCDCDC] items-center border-b pb-[10px]">
-                                    <div>Monday - Thursday</div>
-                                    <div class="text-accent font-medium">8:00 Am - 6:00 Pm</div>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex justify-between border-b-[1px] border-[#DCDCDC] items-center border-b pb-[10px]">
-                                    <div>Friday - Saturday</div>
-                                    <div class="text-accent font-medium">10:00 Am - 5:00 Pm</div>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex justify-between border-b-[1px] border-[#DCDCDC] items-center border-b pb-[10px]">
-                                    <div>Wednessday - Thursday</div>
-                                    <div class="text-accent font-medium">11:00 Am - 8:00 Pm</div>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex justify-between border-b-[1px] border-[#DCDCDC] items-center border-b pb-[10px]">
-                                    <div>Monday - Thursday</div>
-                                    <div class="text-accent  font-medium">8:00 Am - 6:00 Pm</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex gap-x-5 ">
-                            <ul class="flex-1 flex flex-col gap-y-5"></ul>
                         </div>
                     </div>
                 </div>

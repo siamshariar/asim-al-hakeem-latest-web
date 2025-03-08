@@ -45,7 +45,7 @@ export default function VideoModal({ isOpen, onClose, videoId, title, id, descri
                         onClick={(e) => e.stopPropagation()} // Prevent modal from closing when content is clicked
                     >
                         {/* Close icon button with direct onClick */}
-                        <button className={styles.closeButton} onClick={handleCloseModal}>×</button>
+                        <span className={styles.close} onClick={onClose}></span>
                         
                         <div className={styles.iframeContainer}>
                             <iframe

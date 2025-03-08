@@ -129,38 +129,34 @@ export default function RecentLecture() {
     return () => document.body.removeEventListener('mousedown', handler);
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>; // Optional loading indicator
-  }
-
   return (
     <section className="services">
-      <div className="bg-services bg-cover bg-no-repeat max-w-[1466px] mx-4 xl:mx-auto rounded-[20px] xl:pt-[70px] px-6 xl:px-0 relative h-[368px] flex items-center xl:items-start -z-10">
+      <div className="bg-services bg-cover bg-no-repeat max-w-[1466px] mx-4 xl:mx-auto rounded-[20px] xl:pt-[70px] px-6 xl:px-0 relative h-[368px] flex items-center xl:items-start z-10">
         <div className="container mx-auto">
           <div className="services__top flex items-center flex-col xl:flex-row xl:mb-[60px]">
             <h2 className="h2 text-white flex-1 mb-4 xl:mb-0 text-center xl:text-left">
               Recent Lectures
             </h2>
-            <p className="text-white flex-1 text-center xl:text-left max-w-2xl xl:max-w-none">
-              Here are the latest uploaded videos from YouTube to the website...
-            </p>
+            <Link href="/lectures" className="text-white xl:text-right underline">
+              View All
+            </Link>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto mt-8 xl:-mt-[144px]">
+      <div className="container mx-auto mt-8  xl:-mt-[144px] relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {lectures.map((lecture) => (
             <div
               key={lecture.id}
-              className="bg-white rounded-[20px] shadow-xl transition duration-500 ease-in-out hover:shadow-custom1 min-h-[320px] flex flex-col justify-between items-center"
+              className="bg-white mx-4 rounded-[20px] shadow-xl transition duration-500 ease-in-out hover:shadow-custom1 min-h-[320px] flex flex-col justify-between items-center"
             >
               <div className="w-full cursor-pointer" onClick={() => handleVideoClick(lecture)}>
-                <img
-                  src={lecture.image}
-                  alt={lecture.title}
-                  className="w-full rounded-t-xl h-auto object-cover"
-                />
+              <img
+                src={lecture.image ? `https://i.ytimg.com/vi/${lecture.id}/mqdefault.jpg` : `/img/post/youtube-default.jpg`}
+                alt={lecture.title || "Default Youtube Thumbnail"}
+                className="w-full rounded-t-xl h-auto object-cover"
+              />
               </div>
               <span className="relative text-[20px] text-black hover:text-[#525252] cursor-pointer font-bold mt-4 mb-6 px-5 line-clamp-2">
                 {lecture.title}

@@ -14,6 +14,7 @@ export default function Header2({
 }) {
   const headerRef = useRef(null);
   const desktopNavRef = useRef(null);
+  const mobileNavRef = useRef(null);
   const [scrollTop, setScrollTop] = useState(0);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -23,7 +24,7 @@ export default function Header2({
   const num = playlists && playlists.length ? Math.ceil(playlists.length / 3) : 0;
   const firstList = playlists ? playlists.slice(0, num) : [];
   const secondList = playlists ? playlists.slice(num, num * 2.1) : [];
-  const thirdList = playlists ? playlists.slice(num * 1.7, playlists.length) : [];
+  const thirdList = playlists ? playlists.slice(num * 1.8, playlists.length) : [];
 
   const numQ = qna_categories && qna_categories.length ? Math.ceil(qna_categories.length / 3) : 0;
   const firstListQ = qna_categories ? qna_categories.slice(0, numQ) : [];
@@ -31,6 +32,8 @@ export default function Header2({
   const thirdListQ = qna_categories ? qna_categories.slice(numQ * 2, qna_categories.length) : [];
 
   const router = useRouter();
+
+  const isActive = (path) => router.pathname === path;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,12 +81,30 @@ export default function Header2({
     setLecturesSubmenuOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileNavRef.current && !mobileNavRef.current.contains(event.target)) {
+        setMobileNavOpen(false);
+      }
+    };
+
+    if (mobileNavOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [mobileNavOpen]);
+
   return (
     <>
-      <header ref={headerRef} className="py-2 bg-white lg:pt-6 lg:pb-[40px] transition-all duration-500">
-        <div className="lg:hidden flex justify-end mr-2">
-          <button onClick={toggleMobileNav} className="text-3xl focus:outline-none">
-            <i className={mobileNavOpen ? "ri-close-line" : "ri-menu-line"}></i>
+      <header ref={headerRef} className="py-2 bg-white lg:pt-4 lg:pb-[40px] transition-all duration-500">
+        <div className="lg:hidden flex justify-start ml-2">
+          <button onClick={toggleMobileNav} className="text-3xl p-4 focus:outline-none">
+            <i className={mobileNavOpen ? "ri-menu-line" : "ri-menu-line"}></i>
           </button>
         </div>
         <div className="container mx-auto z-30 lg:relative flex flex-col lg:flex-row justify-between gap-y-1 lg:gap-y-0">
@@ -92,34 +113,37 @@ export default function Header2({
               <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
             </Link>
           </div>
-          <div className="flex justify-center mr-4 items-center ml-[00px] gap-x-4 lg:justify-normal">
-            <i className="ri-map-pin-2-fill text-2xl text-accent"></i>
-            <div className="text-secondary">123 Arling, Miola</div>
-          </div>
           <div className="flex justify-center mr-4 items-center gap-x-2 lg:justify-normal">
-            <i className="ri-phone-fill text-2xl text-accent"></i>
-            <div className="text-secondary">(+487 384 9452)</div>
+            <i className="ri-mail-fill text-2xl text-accent"></i>
+            <div className="text-secondary">sheikhassim.bookings@gmail.com</div>
           </div>
-          <button className="button w-[200px] mt-2 lg:w-auto mx-auto lg:mx-0">
-            Book now
+          <button
+              onClick={() => window.location.href = '/counselling'}
+              className="button w-[200px] h-[48px] mb-4 lg:w-auto mx-auto lg:mx-0"
+            >
+            Counselling
           </button>
-
           <div className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-10 lg:gap-y-0">
             <nav
               ref={desktopNavRef}
-              className="bg-white absolute px-[300px] scroll-down w-full left-0 -bottom-[68px] shadow-custom1 h-16 rounded-[10px] hidden lg:flex lg:items-center lg:justify-between lg:px-[40px] transition-all duration-500"
+              className="bg-white absolute px-[300px] scroll-down w-full left-0 -bottom-[68px] shadow-custom1 h-16 rounded-[10px] hidden lg:flex lg:items-center lg:justify-center transition-all duration-500"
             >
               <ul className="flex text-[20px]">
                 <li>
-                  <Link href="/" className="border-r-[1px] border-[#DCDCDC] pr-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
-                    Home
-                  </Link>
+                  <Link
+                href="/"
+                className={`border-r-[1px] border-[#DCDCDC] pr-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
+                  isActive("/") ? "text-accent font-bold" : ""
+                }`}
+                >
+                Home
+              </Link>
                 </li>
                 <li className="relative group">
                   <Link
                     href="#"
                     className={`border-r-[1px] border-[#DCDCDC] flex items-center text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
-                      router.pathname.startsWith("/lectures") ? "menu-active" : ""
+                      router.pathname.startsWith("/lectures") ? "text-accent font-bold" : ""
                     }`}
                   >
                     Lectures
@@ -127,12 +151,15 @@ export default function Header2({
                       <ExpandMoreIcon />
                     </span>
                   </Link>
-                  <div className="sub-menu absolute bg-white shadow-lg hidden group-hover:block w-[800px] h-[320px]">
-                    <div className="sub-menu-wrap scrollbar px-4 py-2 overflow-y-auto h-full flex gap-x-8">
+                  <div className="sub-menu absolute bg-white mb-4 p-4 shadow-lg hidden group-hover:block w-[1000px] h-[350px]">
+                    <div className="sub-menu-wrap scrollbar p-0 px-4 py-4 overflow-y-auto h-full flex gap-x-8">
                       <ul className="flex flex-col w-1/3 p-0 justify-start items-start submenu-links text-[#525252]">
                         {firstList.map((playlist) => (
-                          <li key={playlist.id}>
-                            <Link href={`/lectures/${playlist.id}`} className="text-[#525252] hover:text-black transition-all duration-300">
+                          <li className="mb-4 p-0" key={playlist.id}>
+                           <Link
+                              href={`/lectures/${playlist.id}`}
+                              className="text-[#525252] hover:bg-transparent hover:text-black transition-all duration-300 text-[1.1rem] leading-[2rem] p-0 w-full"
+                            >
                               {playlist.title}
                             </Link>
                           </li>
@@ -140,17 +167,23 @@ export default function Header2({
                       </ul>
                       <ul className="flex flex-col w-1/3 p-0 justify-start items-start submenu-links text-[#525252]">
                         {secondList.map((playlist) => (
-                          <li key={playlist.id}>
-                            <Link href={`/lectures/${playlist.id}`} className="text-[#525252] hover:text-black transition-all duration-300">
+                          <li className="mb-4" key={playlist.id}>
+                           <Link
+                              href={`/lectures/${playlist.id}`}
+                              className="text-[#525252] hover:bg-transparent hover:text-black transition-all duration-300 text-[1.1rem] leading-[2rem] p-0 w-full"
+                            >
                               {playlist.title}
                             </Link>
                           </li>
                         ))}
                       </ul>
-                      <ul className="flex flex-col w-1/3 p-0 justify-start items-start submenu-links text-[#525252]">
+                      <ul className="flex flex-col w-1/3 p-0 justify-start submenu-links text-[#525252]">
                         {thirdList.map((playlist) => (
-                          <li key={playlist.id}>
-                            <Link href={`/lectures/${playlist.id}`} className="text-[#525252] hover:text-black transition-all duration-300">
+                          <li className="mb-4" key={playlist.id}>
+                           <Link
+                              href={`/lectures/${playlist.id}`}
+                              className="text-[#525252] hover:bg-transparent hover:text-black transition-all duration-300 text-[1.1rem] leading-[2rem] p-0 w-full"
+                            >
                               {playlist.title}
                             </Link>
                           </li>
@@ -160,37 +193,60 @@ export default function Header2({
                   </div>
                 </li>
                 <li>
-                  <Link href="/articles" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/articles" className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
+                  isActive("/articles") ? "text-accent font-bold" : ""
+                  }`}
+                  >
                     Articles
                   </Link>
                 </li>
                 <li>
-                  <Link href="/books" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent ">
+                  <Link href="/books" className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
+                  isActive("/books") ? "text-accent font-bold" : ""
+                  }`}
+                  >
                     Books
                   </Link>
                 </li>
                 <li>
-                  <Link href="/questions" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/questions" className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
+                  isActive("/questions") ? "text-accent font-bold" : ""
+                  }`}
+                  >
                     Qna
                   </Link>
                 </li>
                 <li>
-                  <Link href="/counselling" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
-                    Counselling
-                  </Link>
+                <Link
+                  href="/counselling"
+                  className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
+                    isActive("/counselling") ? "text-accent font-bold" : ""
+                  }`}
+                >
+                  Counselling
+                </Link>
                 </li>
                 <li>
-                  <Link href="/ask-question" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/ask-question" className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
+                  isActive("/ask-question") ? "text-accent font-bold" : ""
+                  }`}
+                  >
                     Questions
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/contact" className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
+                  isActive("/contact") ? "text-accent font-bold" : ""
+                  }`}
+                  >
                     Contact
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300">
+                  <Link href="/about" className={`border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
+                  isActive("/about") ? "text-accent font-bold" : ""
+                  }`}
+                  >
                     About
                   </Link>
                 </li>
@@ -209,12 +265,10 @@ export default function Header2({
               <i className="ri-phone-fill text-2xl text-accent"></i>
               <div className="text-secondary">(+487 384 9452)</div>
             </div>
-            <button className="button w-[200px] mt-2 hide lg:w-auto mx-auto lg:mx-0">
-              Book nw
-            </button>
 
             {/* Mobile Navigation */}
             <nav
+              ref={mobileNavRef}
               className={`bg-white fixed w-[300px] md:w-[680px] pb-[150px] top-0 h-screen shadow-2xl lg:hidden transition-all z-20 ${
                 mobileNavOpen ? 'left-0' : '-left-[300px] md:-left-[680px]'
               }`}
