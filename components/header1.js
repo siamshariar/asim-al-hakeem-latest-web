@@ -269,20 +269,22 @@ export default function Header2({
             {/* Mobile Navigation */}
             <nav
               ref={mobileNavRef}
-              className={`bg-white fixed w-[300px] md:w-[680px] pb-[150px] top-0 h-screen shadow-2xl lg:hidden transition-all z-20 ${
-                mobileNavOpen ? 'left-0' : '-left-[300px] md:-left-[680px]'
+              className={`bg-white fixed w-[320px] sm:w-[480px] md:w-[680px] pb-[150px] top-0 h-screen shadow-2xl lg:hidden transition-all z-20 ${
+                mobileNavOpen ? 'left-0' : '-left-[600px] sm:w-[480px] md:-left-[680px]'
               }`}
             >
               <div className="px-2 md:px-6 flex flex-col gap-y-12 h-full">
                 <a href="#">
-                  <img src="/img/id/logo.png" className="w-[200px] md:w-[300px] mx-auto " alt="Logo" />
+                  <img src="/img/id/logo.png" className="w-[150px] md:w-[200px] mx-auto " alt="Logo" />
                 </a>
-                <ul className="flex overflow-x-auto scrollbar-thin scrollbar-thumb-gray-900 flex-col text-[22px]">
+                <ul className="flex scrollbar-thin scrollbar-thumb-gray-900 flex-col text-[22px]">
                   <div className="flex">
                     <i className="ri-home-4-fill text-[28px] text-[#44929C]"></i>
                     <div>
-                      <Link href="/" className="text-secondary text-[20px] hover:text-accent transition-all duration-300">
-                        Home
+                      <Link href="/" className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
+                        isActive("/") ? "text-accent font-bold" : ""
+                        }`}>
+                        Home 
                       </Link>
                     </div>
                   </div>
@@ -291,21 +293,21 @@ export default function Header2({
                       <i className="ri-file-video-fill text-[28px] text-[#44929C]"></i>
                       <div
                         onClick={toggleLecturesSubmenu}
-                        className={`flex items-center ml-[15px] text-[20px] cursor-pointer ${
+                        className={`flex w-full items-center ml-[15px] justify-between text-[20px] cursor-pointer ${
                           lecturesSubmenuOpen ? "text-accent" : "text-secondary"
                         } hover:text-accent transition-all duration-1000`}
                       >
                         Lectures
-                        <span className={`ml-[120px] md:ml-[450px] transition-transform duration-1000 ${lecturesSubmenuOpen ? "rotate-180" : ""}`}>
+                        <span className={`transition-transform duration-1000 ${lecturesSubmenuOpen ? "rotate-180" : ""}`}>
                           <ExpandMoreIcon />
                         </span>
                       </div>
                     </div>
                     {lecturesSubmenuOpen && (
-                      <div className="sub-menu bg-white mt-2 h-32">
+                      <div className="sub-menu overflow-x-auto bg-white mt-2 h-[430px] sm-h-[400px]">
                         <ul className="submenu-links  ml-2 text-[#525252]">
                           {firstList.map((playlist) => (
-                            <li key={playlist.id} className="w-full">
+                            <li key={playlist.id} className="w-full leading-[1.75] mb-4">
                               <Link
                                 href={`/lectures/${playlist.id}`}
                                 className="text-[#525252] underline text-[17px] hover:text-black transition-all duration-300"
@@ -317,7 +319,7 @@ export default function Header2({
                         </ul>
                         <ul className="submenu-links ml-2 text-[#525252]">
                           {secondList.map((playlist) => (
-                            <li key={playlist.id} className="w-full">
+                            <li key={playlist.id} className="w-full leading-[1.75] mb-4">
                               <Link
                                 href={`/lectures/${playlist.id}`}
                                 className="text-[#525252] underline text-[17px] hover:text-black transition-all duration-300"
@@ -329,7 +331,7 @@ export default function Header2({
                         </ul>
                         <ul className="submenu-links ml-2 text-[#525252]">
                           {thirdList.map((playlist) => (
-                            <li key={playlist.id} className="w-full">
+                            <li key={playlist.id} className="w-full leading-[1.75] mb-4">
                               <Link
                                 href={`/lectures/${playlist.id}`}
                                 className="text-[#525252] underline text-[17px] hover:text-black transition-all duration-300"
@@ -345,31 +347,39 @@ export default function Header2({
                   <div className="flex">
                     <i className="ri-article-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/articles" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
-                        Articles
+                      <Link href="/articles" className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
+                        isActive("/articles") ? "text-accent font-bold" : ""
+                        }`}>
+                        Articles 
                       </Link>
                     </li>
                   </div>
                   <div className="flex">
                     <i class="ri-book-shelf-line text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/books" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
-                        Books
+                      <Link href="/books" className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
+                        isActive("/books") ? "text-accent font-bold" : ""
+                        }`}>
+                        Books 
                       </Link>
                     </li>
                   </div>
                   <div className="flex">
                     <i class="ri-question-answer-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/questions" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
-                        Qna
+                      <Link href="/questions" className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
+                        isActive("/questions") ? "text-accent font-bold" : ""
+                        }`}>
+                        Qna 
                       </Link>
                     </li>
                   </div>
                   <div className="flex">
                     <i class="ri-group-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/counselling" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
+                      <Link href="/counselling" className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
+                        isActive("/counselling") ? "text-accent font-bold" : ""
+                        }`}>
                         Counselling 
                       </Link>
                     </li>
@@ -377,7 +387,9 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-questionnaire-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/ask-question" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
+                      <Link href="/ask-question" className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
+                        isActive("/ask-question") ? "text-accent font-bold" : ""
+                        }`}>
                         Questions 
                       </Link>
                     </li>
@@ -385,7 +397,9 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-contacts-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/contact" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
+                      <Link href="/contact" className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
+                        isActive("/contact") ? "text-accent font-bold" : ""
+                        }`}>
                         Contact 
                       </Link>
                     </li>
@@ -393,7 +407,9 @@ export default function Header2({
                   <div className="flex">
                     <i class="ri-profile-fill text-[28px] text-[#44929C]"></i>
                     <li>
-                      <Link href="/about" className="text-secondary text-[20px] hover:text-accent rounded-lg transition-all duration-300">
+                      <Link href="/about" className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
+                        isActive("/about") ? "text-accent font-bold" : ""
+                        }`}>
                         About 
                       </Link>
                     </li>

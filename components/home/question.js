@@ -37,11 +37,11 @@ const Question = () => {
       <div className="container mx-auto py-10">
         <h2 className="faq__title h2 text-[#4C5354] text-center mb-[50px]">We've got answers</h2>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="mx-auto">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`faq__item px-[30px] pt-7 pb-4 accordion-item border-b-[1px] border-[#DCDCDC] cursor-pointer select-none ${
+              className={`faq__item pt-7 pb-4 accordion-item border-b-[1px] border-[#DCDCDC] cursor-pointer select-none ${
                 activeIndex === index ? "open" : ""
               }`}
               onClick={() => toggleFAQ(index)}

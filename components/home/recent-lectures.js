@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router'; // Import useRouter to handle navigation
 import Link from 'next/link'; // Import Link for navigation
 import VideoModal from '../modal/VideoModal'; 
+import { date as formatDate } from '../../lib/format'; // Import the date function
 
 const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
@@ -33,7 +34,7 @@ export default function RecentLecture() {
           id: item.id.videoId,
           title: item.snippet.title,
           image: item.snippet.thumbnails.high.url,
-          date: new Date(item.snippet.publishedAt).toLocaleDateString(),
+          date: formatDate(item.snippet.publishedAt), // Format the date using the imported function
           views: 0, // Views will be fetched later
           description: item.snippet.description, // Adding description to the video data
         }));
@@ -133,13 +134,13 @@ export default function RecentLecture() {
     <section className="services">
       <div className="bg-services bg-cover bg-no-repeat max-w-[1466px] mx-4 xl:mx-auto rounded-[20px] xl:pt-[70px] px-6 xl:px-0 relative h-[368px] flex items-center xl:items-start z-10">
         <div className="container mx-auto">
-          <div className="services__top flex items-center flex-col xl:flex-row xl:mb-[60px]">
-            <h2 className="h2 text-white flex-1 mb-4 xl:mb-0 text-center xl:text-left">
+          <div className="services__top flex items-center flex-row justify-between xl:flex-row xl:mb-[60px]">
+            <h2 className="h2 text-white flex-1 xl:mb-0 xl:text-left">
               Recent Lectures
             </h2>
-            <Link href="/lectures" className="text-white xl:text-right underline">
+            <button href="/lectures" className="text-white xl:text-right underline">
               View All
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -149,7 +150,7 @@ export default function RecentLecture() {
           {lectures.map((lecture) => (
             <div
               key={lecture.id}
-              className="bg-white mx-4 rounded-[20px] shadow-xl transition duration-500 ease-in-out hover:shadow-custom1 min-h-[320px] flex flex-col justify-between items-center"
+              className="bg-white rounded-[20px] shadow-xl transition duration-500 ease-in-out hover:shadow-custom1 min-h-[320px] flex flex-col justify-between items-center"
             >
               <div className="w-full cursor-pointer" onClick={() => handleVideoClick(lecture)}>
               <img
@@ -162,8 +163,8 @@ export default function RecentLecture() {
                 {lecture.title}
               </span>
               <div className="flex justify-between w-full px-4 mb-4 mt-2 text-sm text-gray-500">
-                <p className="text-[15px] text-[#808080]">{lecture.date}</p>
                 <p className="text-[15px] text-[#808080]">{lecture.views} views</p>
+                <p className="text-[15px] text-[#808080]">{lecture.date}</p>
               </div>
             </div>
           ))}

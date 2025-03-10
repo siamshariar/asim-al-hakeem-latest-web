@@ -11,6 +11,7 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
 
   return (
     <>
+     {isArticlesPage && (
       <Meta
         title="Articles"
         description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar..."
@@ -18,6 +19,7 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
         image={`${server}/img/id/default_share.jpeg`}
         type="website"
       />
+     )}
 
       {isArticlesPage && (
         <Header2
@@ -40,7 +42,7 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
 
           <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-[50px]'>
             {articles.map(article => (
-              <div key={article.id} className='blog__post mx-4 max-w-auto sm-w-auto shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
+              <div key={article.id} className='blog__post mx-2 max-w-auto sm-w-auto shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
                 <div className='relative overflow-hidden'>
                   <img className='group-hover:scale-110 transition-all duration-500' src={article.image} alt={article.title} />
                 </div>
