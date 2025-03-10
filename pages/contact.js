@@ -54,7 +54,7 @@ export default function Contact({ playlists, headerLectures, qna_categories }) {
               style={{ backgroundImage: 'url(/img/contact/contact-img.png)' }}
             ></div>
             <div className="absolute inset-0 bg-black opacity-20 z-10"></div>
-            <div className="relative z-20 p-8 text-white">
+            <div className="relative z-10 p-8 text-white">
               <div className="mt-[520px]">
                 <p className="mt-2 text-white text-lg font-semibold">- Asim Al Hakeem</p>
                 <p className="text-sm text-white">Islamic scholar, Jeddah</p>
