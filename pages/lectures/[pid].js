@@ -22,6 +22,17 @@ const getKey = (pageIndex, previousPageData, playlistId) => {
   return `${youtube.url}/playlistItems?key=${youtube.key}&part=snippet&playlistId=${playlistId}&maxResults=${constants.DEFAULT_PAGE_LIMIT}${pageToken}`;
 };
 
+export const generateVParam = (videoID, title) => {
+  const formattedTitle = encodeURIComponent((title || "").split(" ").join("=$"));
+  return `${videoID}=$$=${formattedTitle}`;
+};
+
+const parseVParam = (slug) => {
+  const [videoID, encodedTitle] = slug.split("=$$=");
+  const videoTitle = decodeURIComponent(encodedTitle).split("=$").join(" ");
+  return { videoID, videoTitle };
+};
+
 export default function LectureList({ initialVideos, initPlaylistId, headerLectures, playlists }) {
   const ref = useRef();
   const catRef = useRef();
@@ -67,23 +78,35 @@ export default function LectureList({ initialVideos, initPlaylistId, headerLectu
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const id = params.get("v");
+    const v = params.get("v");
 
-    if (id) {
-      openModal({ id });
-      fetchIframeTitle(id).then((title) => {
-        setModalTitle(title);
-      });
+    if (v) {
+      const { videoID, videoTitle } = parseVParam(v);
+      setModalTitle(videoTitle);
+      openModal({ id: videoID, title: videoTitle });
     }
   }, []);
 
-  const openModal = ({ id, title, description }) => {
-    setSelectedVideo({ id, title, description });
+  const openModal = (item) => {
+    const id = item?.snippet?.resourceId?.videoId || item?.id;
+    const title = item?.snippet?.title || item?.title || "Untitled";
+    const description = item?.snippet?.description || item?.description || "No description available";
+  
+    const playlistId = initPlaylistId;
+  
+    if (!id) {
+      console.error("Invalid item structure, missing video ID:", item);
+      return;
+    }
+  
+    setSelectedVideo({ id, title, description, playlistId });
     setModalTitle(title);
-
+  
     const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set("v", id);
-    const updatedUrl = `${window.location.pathname}?${urlParams.toString()}`;
+    urlParams.set("v", generateVParam(id, title));
+  
+    const basePath = window.location.pathname.split('?')[0]; 
+    const updatedUrl = `${basePath}?${urlParams.toString()}`;
     window.history.replaceState(null, "", updatedUrl);
   };
 
@@ -94,7 +117,9 @@ export default function LectureList({ initialVideos, initPlaylistId, headerLectu
 
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete("v");
-    const updatedUrl = `${window.location.pathname}${urlParams.toString() ? `?${urlParams.toString()}` : ""}`;
+    const basePath = window.location.pathname.split('?')[0];
+    const updatedUrl = `${basePath}${urlParams.toString() ? `?${urlParams.toString()}` : ''}`;
+    console.log(`URL after closing modal: ${updatedUrl}`);
     window.history.replaceState(null, "", updatedUrl);
   };
 
@@ -153,9 +178,9 @@ export default function LectureList({ initialVideos, initPlaylistId, headerLectu
 								<div
 								className="col col-r s12 m6 xl3"
 								key={video.id}
-								onClick={() => openModal(video)} // Trigger modal on click
+								onClick={() => openModal(video, initPlaylistId)} // Trigger modal on click
 								>
-								<PostCardVideo2 item={video} statistics={data.videoLists.videoStats} onClick={() => openModal(video)}/>
+								<PostCardVideo2 item={video} statistics={data.videoLists.videoStats} playlistId={initPlaylistId} onClick={() => openModal(video, initPlaylistId)}/>
 								</div>
 								))
 							)}
@@ -188,6 +213,7 @@ export default function LectureList({ initialVideos, initPlaylistId, headerLectu
 			videoId={selectedVideo.id}
 			title={modalTitle}
 			description={selectedVideo.description}
+      playlistId={selectedVideo.playlistId}
 			/>
 		)}
 		</>

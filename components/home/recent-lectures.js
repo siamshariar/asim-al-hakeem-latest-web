@@ -1,11 +1,23 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router'; // Import useRouter to handle navigation
 import Link from 'next/link'; // Import Link for navigation
-import VideoModal from '../modal/VideoModal'; 
+import VideoModal from '../modal/VideoModalRecent';
 import { date as formatDate } from '../../lib/format'; // Import the date function
+import PostCardRecent from '../card/post-card-recent';
 
 const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
+
+export const generateVParam = (videoID, title) => {
+  const formattedTitle = encodeURIComponent((title || "").split(" ").join("=$"));
+  return `${videoID}=$$=${formattedTitle}`;
+};
+
+const parseVParam = (slug) => {
+  const [videoID, encodedTitle] = slug.split("=$$=");
+  const videoTitle = decodeURIComponent(encodedTitle).split("=$").join(" ");
+  return { videoID, videoTitle };
+};
 
 export default function RecentLecture() {
   const [lectures, setLectures] = useState([]);
@@ -68,43 +80,42 @@ export default function RecentLecture() {
     }
   };
 
-  // Function to handle when a video is clicked, open the modal with selected video data
-  const handleVideoClick = (video) => {
-    setSelectedVideo(video); // Set selected video data
-    setModalTitle(video.title); // Set the modal title
-    
-    // Fetch the video title if necessary
-    fetchIframeTitle(video.id).then((title) => {
-      setModalTitle(title); // Update the modal title with fetched title
-    });
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const v = params.get("v");
 
+    if (v) {
+      const { videoID, videoTitle } = parseVParam(v);
+      setModalTitle(videoTitle);
+      openModal({ id: videoID, title: videoTitle });
+    }
+  }, []);
+
+  // Function to handle when a video is clicked, open the modal with selected video data
+  const openModal = ({ id, title, description }) => {
+    setSelectedVideo({ id, title, description });
+      setModalTitle(title); // Update the modal title with fetched title
     setIsModalOpen(true); // Open the modal
 
     const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set('v', video.id); // Update the URL with video ID
-    const updatedUrl = `/lectures${window.location.pathname}?${urlParams.toString()}`;
-    window.history.replaceState(null, '', updatedUrl); // Update URL without reloading the page
-  };
-
-  const fetchIframeTitle = async (id) => {
-    try {
-      const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${id}&part=snippet`);
-      const data = await response.json();
-      return data.items[0]?.snippet?.title || 'Video Title Not Found';
-    } catch (error) {
-      console.error('Failed to fetch video title:', error);
-      return 'Video Title Not Found';
-    }
+    urlParams.set("v", generateVParam(id, title));
+    const basePath = window.location.pathname.startsWith("/lectures")
+      ? window.location.pathname
+      : `/lectures${window.location.pathname}`;
+    const updatedUrl = `${basePath}?${urlParams.toString()}`;
+    window.history.replaceState(null, "", updatedUrl);
   };
 
   const closeModal = () => {
     setSelectedVideo(null);
     setModalTitle("");
+    setIsModalOpen(false);
 
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete("v"); // Remove video ID from URL when closing the modal
-    const updatedUrl = `${window.location.pathname.replace('/lectures', '')}${
-      urlParams.toString() ? `?${urlParams.toString()}` : ''
+    const basePath = window.location.pathname.replace("/lectures", "");
+    const updatedUrl = `${basePath}${
+      urlParams.toString() ? `?${urlParams.toString()}` : ""
     }`;
     window.history.replaceState(null, "", updatedUrl); // Update URL without video ID
     setIsModalOpen(false); // Close the modal
@@ -148,25 +159,14 @@ export default function RecentLecture() {
       <div className="container mx-auto mt-8  xl:-mt-[144px] relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {lectures.map((lecture) => (
-            <div
+            <PostCardRecent
               key={lecture.id}
-              className="bg-white rounded-[20px] shadow-xl transition duration-500 ease-in-out hover:shadow-custom1 min-h-[320px] flex flex-col justify-between items-center"
-            >
-              <div className="w-full cursor-pointer" onClick={() => handleVideoClick(lecture)}>
-              <img
-                src={lecture.image ? `https://i.ytimg.com/vi/${lecture.id}/mqdefault.jpg` : `/img/post/youtube-default.jpg`}
-                alt={lecture.title || "Default Youtube Thumbnail"}
-                className="w-full rounded-t-xl h-auto object-cover"
-              />
-              </div>
-              <span className="relative text-[20px] text-black hover:text-[#525252] cursor-pointer font-bold mt-4 mb-6 px-5 line-clamp-2">
-                {lecture.title}
-              </span>
-              <div className="flex justify-between w-full px-4 mb-4 mt-2 text-sm text-gray-500">
-                <p className="text-[15px] text-[#808080]">{lecture.views} views</p>
-                <p className="text-[15px] text-[#808080]">{lecture.date}</p>
-              </div>
-            </div>
+              item={lecture}
+              statistics={{ [lecture.id]: lecture.views }}
+              videoId={lecture.id}
+              playlistId="recent"
+              onClick={openModal}
+            />
           ))}
         </div>
       </div>

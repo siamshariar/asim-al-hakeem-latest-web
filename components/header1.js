@@ -101,9 +101,9 @@ export default function Header2({
 
   return (
     <>
-      <header ref={headerRef} className="py-2 bg-white lg:pt-4 lg:pb-[40px] transition-all duration-500">
+      <header ref={headerRef} className="bg-white lg:pt-4 lg:pb-[40px] transition-all duration-500">
         <div className="lg:hidden flex justify-start ml-2">
-          <button onClick={toggleMobileNav} className="text-3xl p-4 focus:outline-none">
+          <button onClick={toggleMobileNav} className="text-2xl p-3 focus:outline-none">
             <i className={mobileNavOpen ? "ri-menu-line" : "ri-menu-line"}></i>
           </button>
         </div>
@@ -141,7 +141,7 @@ export default function Header2({
                 </li>
                 <li className="relative group">
                   <Link
-                    href="#"
+                    href=""
                     className={`border-r-[1px] border-[#DCDCDC] flex items-center text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
                       router.pathname.startsWith("/lectures") ? "text-accent font-bold" : ""
                     }`}

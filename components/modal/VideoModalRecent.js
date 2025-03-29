@@ -1,53 +1,41 @@
 import { useEffect } from 'react';
 import styles from './Video.module.css';
 import { server } from '../../lib/config';
-import Share from '../../components/share';
+import Share from '../share';
 import Meta from '../meta';
 import { generateVParam } from '../../pages/lectures/[pid]';
 
-export default function VideoModal({ isOpen, onClose, videoId, title, playlistId, description }) {
+export default function VideoModal({ isOpen, onClose, videoId, title, description, playlistId }) {
     useEffect(() => {
-        // Disable background scrolling when the modal is open
         if (isOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'auto';
         }
-
         return () => {
-            document.body.style.overflow = 'auto'; // Cleanup scroll behavior
+            document.body.style.overflow = 'auto';
         };
     }, [isOpen]);
 
-    if (!isOpen) return null; // Render nothing if the modal is closed
+    if (!isOpen) return null;
 
-    const handleCloseModal = (e) => {
-        // Prevent the modal from closing if the content is clicked
-        e.stopPropagation();
-        onClose(); // Close modal when close button is clicked
-    };
-
-    const videoUrl = `/lectures/${playlistId}?v=${generateVParam(videoId, title)}`;
+    const videoUrl = `/lectures/UUWsdcrre0WbCWML_PnuzoAg?v=${generateVParam(videoId, title)}`;
 
     return (
         <>
             <Meta
                 title={title || 'Video Modal'}
                 description={description || 'Watch this amazing video.'}
-                url={`${server}/videos?v=${videoId}`}
+                url={videoUrl}
                 type="article"
             />
-            
             <section className={styles.modalWrapper}>
-                {/* Removed onClick from the overlay to prevent modal close on overlay click */}
                 <div className={styles.overlay}>
                     <div
                         className={styles.content}
-                        onClick={(e) => e.stopPropagation()} // Prevent modal from closing when content is clicked
+                        onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Close icon button with direct onClick */}
                         <span className={styles.close} onClick={onClose}></span>
-                        
                         <div className={styles.iframeContainer}>
                             <iframe
                                 className={styles.iframe}
@@ -62,8 +50,8 @@ export default function VideoModal({ isOpen, onClose, videoId, title, playlistId
                             <h2 className={styles.title}>{title}</h2>
                             <div className={styles.share}>
                                 <Share
-                                    urlWeb={videoUrl}
-                                    urlMobile={videoUrl} // Share URL for mobile
+                                    urlWeb={videoUrl} // Dynamic playlist-based URL
+                                    urlMobile={videoUrl}
                                     title={title}
                                 />
                             </div>

@@ -45,7 +45,7 @@ export default function ArticleDetail({ article, playlists, headerLectures, qnaC
             height={400}
             className='w-full h-auto object-cover mb-6'
           />
-          <div className='text-xl' dangerouslySetInnerHTML={{ __html: article.content }} />
+          <div className='text-xl' >{article.description}</div>
 
           <div className="mt-8">
             <h3 className="text-xl font-semibold mb-4">Share this article</h3>
