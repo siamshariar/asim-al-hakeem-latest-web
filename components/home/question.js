@@ -34,7 +34,7 @@ const Question = () => {
 
   return (
     <section className="faq bg-white">
-      <div className="container mx-auto px-4 pb-20">
+      <div className="container mx-auto px-4 md:px:0 lg:px-0 pb-20">
         <h2 className="faq__title h2 text-[#4C5354] pt-6 text-center mb-[50px]">We've got answers</h2>
 
         <div className="mx-auto">
