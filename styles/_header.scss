@@ -9,8 +9,16 @@
 	left: 0;
 	background: var(--bg11);
 	z-index: 9;
-	transition: height 250ms ease, box-shadow 250ms ease, background 250ms ease;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease;
 	// padding-top: 5px;
+}
+
+.header-hidden {
+  transform: translateY(-100%);
+}
+
+.header-scrolled {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
 .header {

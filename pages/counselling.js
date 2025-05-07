@@ -74,7 +74,7 @@ useEffect(() => {
         qna_categories={qna_categories}
       />
 
-      <div className="container py-12">
+      <div className="container py-0 mt-72 md:mt-72 lg:mt-48">
         <div className=" mx-auto space-y-12">
           <section className="bg-white rounded-2xl shadow-xl p-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-6">Counselling Session</h1>

@@ -29,8 +29,8 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
         />
       )}
 
-      <section className='articles py-[50px]'>
-        <div className='container mx-auto'>
+      <section className='articles'>
+      <div className={`container mx-auto py-0 ${isArticlesPage ? ' py-0 mt-72 md:mt-72 lg:mt-48' : ''}`}>
           <div className='flex justify-between mx-4 items-center mb-[30px]'>
             <h2 className='blog__title text-[1.5rem] md:ml-0 lg:ml-0 font-bold text-center xl:text-left'>Articles</h2>
             {!isArticlesPage && (

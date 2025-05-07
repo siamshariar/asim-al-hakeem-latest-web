@@ -42,8 +42,8 @@ export default function BookList({
 			</section>
 
 			<section className="books">
-				<div className="page-width">
-					<div className="box">
+				<div className="page-width py-0 px-0 lg:px-9 mt-52 md:mt-52 lg:mt-28">
+					<div className="box ">
 						<div className="row row-r">
 							{books &&
 								books.length &&

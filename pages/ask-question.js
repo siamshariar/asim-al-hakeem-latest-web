@@ -19,8 +19,8 @@ export default function AskAQuestion({ playlists, headerLectures, qna_categories
 
       <Header2 playlists={playlists} lectures={headerLectures} qna_categories={qna_categories} />
 
-      <section className="bg-gray-50 min-h-screen py-12">
-        <div className="container mx-auto pb-10">
+      <section className="bg-gray-50 min-h-screen py-0">
+        <div className="container mx-auto pb-10 py-0 mt-72 md:mt-72 lg:mt-48">
           <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
             <div className="p-6 sm:p-10">
               <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Ask a Question</h1>

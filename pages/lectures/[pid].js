@@ -168,10 +168,10 @@ export default function LectureList({ initialVideos, initPlaylistId, headerLectu
 
 	<div className="mt-14">
 		<section className="bg-gray-100 ">
-			<div className="container2 mx-auto w-sm-0 px-0 py-0">
+			<div className="container2 mx-auto w-sm-0 px-0 py-0 py-0 mt-72 md:mt-72 lg:mt-48">
 					<div className="flex flex-col">
-						<div className="text-xl sm:text-2xl text-black font-bold ml-4 mb-4">{pageTitle}</div>
-						<div className="grid grid-cols-1 py-4 px-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0">
+						<div className="text-xl sm:text-2xl text-black font-bold ml-2 mb-4">{pageTitle}</div>
+						<div className="grid grid-cols-1 py-4 px-0 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0">
 						{datas &&
 							datas.map((data) =>
 							data.videoLists.videos.map((video) => (

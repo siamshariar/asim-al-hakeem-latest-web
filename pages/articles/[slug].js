@@ -34,9 +34,9 @@ export default function ArticleDetail({ article, playlists, headerLectures, qnaC
         qna_categories={qnaCategories}
       />
 
-      <section className='article-detail py-[50px]'>
-        <div className='container p-6 bg-white rounded-xl shadow-xl mx-auto'>
-          <h1 className='text-3xl font-bold mb-6'>{article.title}</h1>
+      <section className='article-detail'>
+        <div className='container p-6 bg-white rounded-xl shadow-xl mx-auto py-0 mt-72 md:mt-72 lg:mt-48'>
+          <h1 className='text-3xl pt-4 font-bold mb-6'>{article.title}</h1>
           <p className='text-lg text-[#0D9488] mb-6'>Published on {article.date}</p>
           <Image
             src={article.image}

@@ -156,7 +156,7 @@ export default function RecentLecture() {
         </div>
       </div>
 
-      <div className="container mx-auto mt-8  xl:-mt-[144px] relative z-10">
+      <div className="container mx-auto mt-8  xl:-mt-[144px] relative z-10 mb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {lectures.map((lecture) => (
             <PostCardRecent

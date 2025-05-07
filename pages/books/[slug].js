@@ -38,7 +38,7 @@ export default function BookDetail({
 			/>
 
 			<section className="blog-detail-ctn mt-12">
-				<div className="page-width">
+				<div className="page-width py-0 px-0 lg:px-9 mt-72 md:mt-72 lg:mt-48">
 					<div className="box">
 						<div className="blog-area">
 							<div className="blog-detail book-detail">

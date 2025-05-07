@@ -33,9 +33,9 @@ const Question = () => {
   ];
 
   return (
-    <section className="faq">
-      <div className="container mx-auto px-4 py-10">
-        <h2 className="faq__title h2 text-[#4C5354] text-center mb-[50px]">We've got answers</h2>
+    <section className="faq bg-white">
+      <div className="container mx-auto px-4 pb-20">
+        <h2 className="faq__title h2 text-[#4C5354] pt-6 text-center mb-[50px]">We've got answers</h2>
 
         <div className="mx-auto">
           {faqs.map((faq, index) => (
