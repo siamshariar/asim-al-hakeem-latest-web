@@ -717,3 +717,26 @@ i.instagram {
 		padding: 2rem 0;
 	}
 }
+
+
+.swiper-pagination-bullet {
+  background-color: gray !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #1CBCCF !important;
+}
+
+.swiper-pagination-bullet {
+  width: 12px !important;       
+  height: 12px !important;
+  background-color: gray !important;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  width: 12px !important;     
+  height: 12px !important;
+  background-color: #25b5c5 !important;
+  opacity: 1;
+}

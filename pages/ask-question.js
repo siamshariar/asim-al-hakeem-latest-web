@@ -4,7 +4,8 @@ import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../lib/f
 import Layout from "../components/layout";
 import Meta from "../components/meta";
 import Header2 from "../components/header1";
-import { Share2, Mail, DollarSign, Calendar } from 'lucide-react';
+import Share from "../components/share2";
+import { Mail, DollarSign, Calendar } from 'lucide-react';
 
 export default function AskAQuestion({ playlists, headerLectures, qna_categories }) {
   return (
@@ -86,8 +87,7 @@ export default function AskAQuestion({ playlists, headerLectures, qna_categories
 
               <div className="mt-10 flex justify-center">
                 <button className="flex items-center space-x-2 text-[#44929C] hover:text-black px-2 py-2">
-                  <Share2 size={24} />
-                  <span className='text-xl'>Share</span>
+                  <Share size={24} />
                 </button>
               </div>
             </div>

@@ -35,7 +35,7 @@ const Question = () => {
   return (
     <section className="faq bg-white">
       <div className="container mx-auto px-4 md:px:0 lg:px-0 pb-20">
-        <h2 className="faq__title h2 text-[#4C5354] pt-6 text-center mb-[50px]">We've got answers</h2>
+        <h2 className="faq__title h2 text-[#4C5354] pt-12 text-center mb-[50px]">We've got answers</h2>
 
         <div className="mx-auto">
           {faqs.map((faq, index) => (
@@ -47,21 +47,21 @@ const Question = () => {
               onClick={() => toggleFAQ(index)}
             >
               <div className="flex items-center justify-between mb-[10px]">
-                <h4 className="h4 text-[#4C5354]">{faq.question}</h4>
+                <h3 className="h4 text-[#4C5354] mr-4">{faq.question}</h3>
                 <div className="faq__btn text-accent">
                   <i
                     className={`${
                       activeIndex === index ? "ri-subtract-fill" : "ri-add-fill"
-                    } text-2xl`}
+                    } text-3xl`}
                   ></i>
                 </div>
               </div>
               <div
-                className={`faq__answer ${
-                  activeIndex === index ? "max-h-full" : "h-0 overflow-hidden"
+                className={`faq__answer transition-all duration-1000 ease-in-out overflow-hidden ${
+                  activeIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <p className="font-light">{faq.answer}</p>
+                <p className="font-light transition-opacity duration-500 ease-in-out">{faq.answer}</p>
               </div>
             </div>
           ))}
