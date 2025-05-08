@@ -3,7 +3,8 @@ import { server } from "../lib/config";
 import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../lib/fetch";
 import Meta from "../components/meta";
 import Header2 from "../components/header1";
-import { Share2, Mail, Send } from 'lucide-react';
+import Share from '../components/share2';
+import { Mail, Send } from 'lucide-react';
 
 export default function CounsellingSession({ playlists, headerLectures, qna_categories }) {
 
@@ -74,7 +75,7 @@ useEffect(() => {
         qna_categories={qna_categories}
       />
 
-      <div className="container py-0 mt-72 md:mt-72 lg:mt-48">
+      <div className="container py-6 lg:py-12">
         <div className=" mx-auto space-y-12">
           <section className="bg-white rounded-2xl shadow-xl p-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-6">Counselling Session</h1>
@@ -169,8 +170,7 @@ useEffect(() => {
             <h3 className="text-2xl font-bold text-gray-800 mb-4">Share</h3>
             <div className="flex items-center space-x-4">
               <button className="flex items-center space-x-2 text-[#44929C] hover:text-black px-2 py-2  ">
-                <Share2 size={24} />
-                <span className='text-xl'>Share</span>
+                <Share size={24} />
               </button>
             </div>
           </section>

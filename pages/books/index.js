@@ -33,7 +33,7 @@ export default function BookList({
 				qna_categories={qnaCategories}
 			/>
 
-			<section className="cat-page-top">
+			<section className="cat-page-top py-2 lg:pt-10 mb-2">
 				<div className="page-width">
 					<div className="box mt-4">
 						<h1>Books</h1>
@@ -42,7 +42,7 @@ export default function BookList({
 			</section>
 
 			<section className="books">
-				<div className="page-width py-0 px-0 lg:px-9 mt-52 md:mt-52 lg:mt-28">
+				<div className="page-width py-2 lg:py-2">
 					<div className="box ">
 						<div className="row row-r">
 							{books &&

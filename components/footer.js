@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
-        <footer class="Footer bg-white pt-8 px-4 ">
-            <div class="container mx-auto pb-12 hidden md:block xl:pb-[100px]">
+        <footer class="Footer bg-white pt-10 px-4 ">
+            <div class="container mx-auto pb-12 hidden md:block">
                 <div class="flex flex-col xl:flex-row gap-x-5 gap-y-10">
                     <div class="footer__item  flex-1">
                         {/* <a href="">

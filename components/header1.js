@@ -4,7 +4,7 @@ import Image from "next/image";
 import 'remixicon/fonts/remixicon.css';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { useRouter } from "next/router";
-
+import { Mail } from "lucide-react";
 export default function Header2({
   playlists,
   activePlaylistId,
@@ -15,9 +15,11 @@ export default function Header2({
   const headerRef = useRef(null);
   const desktopNavRef = useRef(null);
   const mobileNavRef = useRef(null);
+  const [scrollTop, setScrollTop] = useState(0);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [lecturesSubmenuOpen, setLecturesSubmenuOpen] = useState(false);
-  const lastScrollRef = useRef(0);
+  const [isScrollingUp, setIsScrollingUp] = useState(false);
 
   const num = playlists && playlists.length ? Math.ceil(playlists.length / 3) : 0;
   const firstList = playlists ? playlists.slice(0, num) : [];
@@ -34,31 +36,41 @@ export default function Header2({
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScroll = window.pageYOffset;
-      
-      if (currentScroll <= 0) {
-        // At top of page
-        headerRef.current?.classList.remove("header-hidden");
-        headerRef.current?.classList.remove("header-scrolled");
-        return;
+      const currentScrollTop = window.pageYOffset;
+      setScrollTop(currentScrollTop);
+
+      if (currentScrollTop > lastScrollTop) {
+        setIsScrollingUp(false);
+      } else if (currentScrollTop < lastScrollTop) {
+        setIsScrollingUp(true);
       }
 
-      if (currentScroll > lastScrollRef.current && !headerRef.current?.classList.contains("header-hidden")) {
-        // Scrolling down
-        headerRef.current?.classList.add("header-hidden");
-        headerRef.current?.classList.add("header-scrolled");
-      } else if (currentScroll < lastScrollRef.current && headerRef.current?.classList.contains("header-hidden")) {
-        // Scrolling up
-        headerRef.current?.classList.remove("header-hidden");
-        headerRef.current?.classList.add("header-scrolled");
-      }
-
-      lastScrollRef.current = currentScroll;
+      setLastScrollTop(currentScrollTop);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      if (scrollTop > 20) {
+        headerRef.current.classList.add("header-fixed", "header-scroll");
+      } else {
+        headerRef.current.classList.remove("header-fixed", "header-scroll");
+      }
+
+      if (!isScrollingUp && scrollTop > 100) {
+        headerRef.current.classList.add("hide-header");
+        desktopNavRef.current?.classList.add("hide-desktop-nav");
+      } else {
+        headerRef.current.classList.remove("hide-header");
+        desktopNavRef.current?.classList.remove("hide-desktop-nav");
+      }
+    }
+  }, [scrollTop, isScrollingUp]);
 
   const toggleMobileNav = () => {
     setMobileNavOpen((prev) => !prev);
@@ -90,7 +102,7 @@ export default function Header2({
     <>
       <header 
         ref={headerRef} 
-        className="bg-white lg:pt-4 lg:pb-[70px] fixed w-full top-0 z-50 transition-transform duration-300 ease-out shadow-none"
+        className="bg-white lg:pt-4 lg:pb-[40px] transition-all duration-500"
       >
         <div className="lg:hidden flex justify-start ml-2">
           <button onClick={toggleMobileNav} className="text-2xl p-3 focus:outline-none">
@@ -99,14 +111,14 @@ export default function Header2({
         </div>
         
         <div className="container mx-auto z-30 lg:relative flex flex-col lg:flex-row justify-between gap-y-1 lg:gap-y-0">
-          <div className="flex justify-center mb-2 mr-[545px] items-center w-full lg:w-auto">
+          <div className="flex justify-center mr-[545px] items-center w-full lg:w-auto">
             <Link href="/">
               <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
             </Link>
           </div>
           
           <div className="flex justify-center mr-4 mb-4 items-center gap-x-2 lg:justify-normal">
-            <i className="ri-mail-line text-2xl text-accent"></i>
+          <Mail className="w-6 h-6 text-accent" />
             <div className="text-secondary">sheikhassim.bookings@gmail.com</div>
           </div>
           
@@ -120,7 +132,7 @@ export default function Header2({
           <div className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-10 lg:gap-y-0">
             <nav
               ref={desktopNavRef}
-              className="bg-white absolute px-[300px] w-full left-0 -bottom-[68px] h-16 rounded-[10px] hidden lg:flex lg:items-center lg:justify-center"
+              className="bg-white absolute px-[300px] scroll-down w-full left-0 -bottom-[68px] shadow-custom1 h-16 rounded-[10px] hidden lg:flex lg:items-center lg:justify-center transition-all duration-500"
             >
               <ul className="flex text-[20px]">
                 <li>
