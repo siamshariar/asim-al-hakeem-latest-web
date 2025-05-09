@@ -23,16 +23,16 @@ export default function Footer() {
                         </div>
                         <div class="flex gap-[14px] text-[30px]">
                             <div class="p-[10px] rounded-[10px] shadow-custom2 text-accent-tertiary hover:text-accent cursor-pointer transition-all">
-                                <i class="ri-facebook-circle-fill"></i>
+                                <a href="https://www.facebook.com/SheikhAssimAlhakeemTeam/" target="_blank"><i class="ri-facebook-circle-fill"></i></a>
                             </div>
                             <div class="p-[10px] rounded-[10px] shadow-custom2 text-accent-tertiary hover:text-accent cursor-pointer transition-all">
-                                <i class="ri-instagram-fill"></i>
+                                <a href="https://www.instagram.com/assimalhakeem/?hl=en" target="_blank"><i class="ri-instagram-fill"></i></a>
                             </div>
                             <div class="p-[10px] rounded-[10px] shadow-custom2 text-accent-tertiary hover:text-accent cursor-pointer transition-all">
-                                <i class="ri-twitter-fill"></i>
+                                <a href="https://x.com/Assimalhakeem" target="_blank"><i class="ri-twitter-fill"></i></a>
                             </div>
                             <div class="p-[10px] rounded-[10px] shadow-custom2 text-accent-tertiary hover:text-accent cursor-pointer transition-all">
-                                <i class="ri-linkedin-box-fill"></i>
+                                <a href="https://www.linkedin.com/in/assim-alhakeem-49470810/" target="_blank"><i class="ri-linkedin-box-fill"></i></a>
                             </div>
                         </div>
                     </div>
@@ -44,9 +44,11 @@ export default function Footer() {
                                 <li><a href="/lectures" class="hover:text-accent transition-all">Lectures</a></li>
                                 <li><a href="/articles" class="hover:text-accent transition-all">Articles</a></li>
                                 <li><a href="/books" class="hover:text-accent transition-all">Books</a></li>
-                            </ul>
-                            <ul class="flex-1 flex flex-col text-[20px] gap-y-5">
                                 <li><a href="/questions" class="hover:text-accent transition-all">Qna</a></li>
+                            </ul>
+                            <ul class="flex-1 flex flex-col text-[20px] gap-y-5">                                
+                                <li><a href="/counselling" class="hover:text-accent transition-all">Counselling</a></li>
+                                <li><a href="/ask-question" class="hover:text-accent transition-all">Questions</a></li>
                                 <li><a href="/contact" class="hover:text-accent transition-all">Contact</a></li>
                                 <li><a href="/about" class="hover:text-accent transition-all">About</a></li>
                             </ul>

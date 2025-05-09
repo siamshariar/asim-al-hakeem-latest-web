@@ -169,9 +169,9 @@ useEffect(() => {
           <section className="bg-white rounded-2xl shadow-xl p-8">
             <h3 className="text-2xl font-bold text-gray-800 mb-4">Share</h3>
             <div className="flex items-center space-x-4">
-              <button className="flex items-center space-x-2 text-[#44929C] hover:text-black px-2 py-2  ">
+              <div className="flex items-center space-x-2 text-[#44929C] hover:text-black px-2 py-2  ">
                 <Share size={24} />
-              </button>
+              </div>
             </div>
           </section>
         </div>

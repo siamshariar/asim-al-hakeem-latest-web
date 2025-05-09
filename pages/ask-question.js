@@ -86,9 +86,9 @@ export default function AskAQuestion({ playlists, headerLectures, qna_categories
               </div>
 
               <div className="mt-10 flex justify-center">
-                <button className="flex items-center space-x-2 text-[#44929C] hover:text-black px-2 py-2">
+                <div className="flex items-center space-x-2 text-[#44929C] hover:text-black px-2 py-2">
                   <Share size={24} />
-                </button>
+                </div>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 // Import Swiper and modules styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -31,12 +31,17 @@ const TestimonialSlider = () => {
     const swiperElement = document.querySelector('.swiper');
     if (swiperElement) {
       new Swiper(swiperElement, {
+        modules: [Pagination, Autoplay],
         direction: 'horizontal',
         loop: true,
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
-        }
+        },
+        autoplay: {
+          delay: 7000,
+          disableOnInteraction: false,
+        },
       });
     }
   }, []); // Empty dependency array ensures this runs once on mount

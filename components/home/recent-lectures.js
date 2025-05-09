@@ -149,9 +149,11 @@ export default function RecentLecture() {
             <h2 className="h2 text-white flex-1 xl:mb-0 xl:text-left">
               Recent Lectures
             </h2>
-            <button href="/lectures" className="text-white xl:text-right underline">
-              View All
-            </button>
+            <Link href="/lectures/UUWsdcrre0WbCWML_PnuzoAg">
+              <button  className="text-white xl:text-right underline">
+                View All
+              </button>
+           </Link>
           </div>
         </div>
       </div>

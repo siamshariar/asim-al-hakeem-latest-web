@@ -30,16 +30,28 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
       )}
 
       <section className='articles'>
-      <div className="container mx-auto py-8 lg:py-14">
-          <div className='flex justify-between mx-2 items-center mb-[30px]'>
-            <h2 className='blog__title text-[1.5rem] md:ml-0 lg:mr-0 font-bold text-center xl:text-left'>Articles</h2>
-            {!isArticlesPage && (
-              <a href="/articles" className="text-[#4c5354] underline">
-                View All
-              </a>
-            )}
-          </div>
-
+      <div className="container mx-auto py-4">
+          {isArticlesPage ? (
+            <div className="container mx-auto pt-8 lg:pt-12">
+              <div className='flex justify-between mx-2 items-center mb-[30px]'>
+                <h2 className='blog__title text-[1.5rem] md:ml-0 lg:mr-0 font-bold text-center xl:text-left'>Articles</h2>
+                {!isArticlesPage && (
+                  <a href="/articles" className="text-[#4c5354] underline">
+                    View All
+                  </a>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className='flex justify-between mx-2 items-center mb-[30px]'>
+              <h2 className='blog__title text-[1.5rem] md:ml-0 lg:mr-0 font-bold text-center xl:text-left'>Articles</h2>
+              {!isArticlesPage && (
+                <a href="/articles" className="text-[#4c5354] underline">
+                  View All
+                </a>
+              )}
+            </div>
+          )}
           <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-[50px]'>
             {articles.map(article => (
               <div key={article.id} className='blog__post mx-2 max-w-auto sm-w-auto shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>

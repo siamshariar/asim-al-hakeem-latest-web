@@ -110,25 +110,25 @@ export default function Header2({
           </button>
         </div>
         
-        <div className="container mx-auto z-30 lg:relative flex flex-col lg:flex-row justify-between gap-y-1 lg:gap-y-0">
-          <div className="flex justify-center mr-[545px] items-center w-full lg:w-auto">
+        <div className="container mx-auto z-30 lg:relative items-center flex flex-col lg:flex-row justify-between gap-y-1 lg:gap-y-0">
+          <div className="flex justify-center mb-2 md:mb-2 lg:mb-5 items-center w-full lg:w-auto">
             <Link href="/">
               <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
             </Link>
           </div>
-          
-          <div className="flex justify-center mr-4 mb-4 items-center gap-x-2 lg:justify-normal">
-          <Mail className="w-6 h-6 text-accent" />
+          <div className="flex flex-col items-center justify-center w-full lg:flex-row lg:justify-end">
+          <div className="flex justify-center mb-4 items-center gap-x-2 lg:justify-normal lg:mr-4 lg:mb-4">
+            <Mail className="w-6 h-6 text-accent" />
             <div className="text-secondary">sheikhassim.bookings@gmail.com</div>
           </div>
-          
           <button
             onClick={() => window.location.href = '/counselling'}
-            className="button w-[200px] h-[48px] mb-4 lg:w-auto mx-auto lg:mx-0"
+            className="button w-[200px] h-[48px] mb-4 lg:w-auto lg:mb-4 mx-auto lg:mx-0"
           >
             Counselling
           </button>
-          
+        </div>
+
           <div className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-10 lg:gap-y-0">
             <nav
               ref={desktopNavRef}
