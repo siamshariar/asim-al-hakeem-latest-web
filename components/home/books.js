@@ -3,9 +3,9 @@ import PostCard from "../card/post-card-tertiary";
 
 export default function HomeBooks({ books }) {
 	return (
-		<section className="h-sec h3-post-5 h-books">
-			<div className="page-width">
-				<div className="box">
+		<section className="h-sec  h3-post-5 h-books">
+			<div className=" max-w-[1260px] mx-auto">
+				<div className="mx-4 lg:mx-0">
 					<h2 className="h3-sec-title-2">Popular Books</h2>
 
 					{/* <div className="title-default">
@@ -14,7 +14,7 @@ export default function HomeBooks({ books }) {
             </h2>
           </div> */}
 
-					<div className="row row-r">
+					<div className=" row row-r">
 						<div className="col col-r s12 l6">
 							<PostCard book={books[0]} />
 						</div>

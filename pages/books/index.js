@@ -34,8 +34,8 @@ export default function BookList({
 			/>
 
 			<section className="cat-page-top py-2 lg:pt-10 mb-2">
-				<div className="page-width">
-					<div className="box mt-4">
+				<div className="max-w-[1260px] page-width">
+					<div className=" mx-4 lg:mx-0 mt-4">
 						<h1>Books</h1>
 					</div>
 				</div>
@@ -43,8 +43,8 @@ export default function BookList({
 
 			<section className="books">
 				<div className="page-width py-2 lg:py-2">
-					<div className="box ">
-						<div className="row row-r">
+					<div className=" max-w-[1260px] mx-auto px-4 lg:px-0">
+						<div className="row row-r ">
 							{books &&
 								books.length &&
 								books.map((book) => (

@@ -316,7 +316,7 @@ export default function About({ playlists, headerLectures, qna_categories }) {
                 qna_categories={qna_categories}
             />
 
-            <section className="min-h-screen py-6 lg:py-12 bg-gray-100">
+            <section className="min-h-screen py-6 lg:py-12 mx-4 bg-gray-100">
                 <div className="max-w-[1250px] mx-auto">
                     <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                         <div className="md:flex">
@@ -367,10 +367,10 @@ export default function About({ playlists, headerLectures, qna_categories }) {
                         </div>
                         
                         <div className="px-8 py-8">
-                            <h2 className="text-[26px] font-bold mb-4">Introduction</h2>
+                            <h2 className="text-[26px] text-[#4a5568] font-bold mb-4">Introduction</h2>
                             <div className="space-y-4">
                                 {profile.about.map((para, index) => (
-                                    <p className="text-xl text-[#4A5568]" key={index}>{para}</p>
+                                    <p style={{ fontFamily: "'Inter', Arial, sans-serif" }} className="text-[1rem] text-[#4a5568 !important] mb-4" key={index}>{para}</p>
                                 ))}
                             </div>
                         </div>

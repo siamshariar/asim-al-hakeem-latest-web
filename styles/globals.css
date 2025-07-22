@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .h2 {
-    @apply text-[30px] xl:text-[44px] font-semibold capitalize tracking-[0.44px];
+    @apply text-[1.5rem] xl:text-[2rem] font-semibold capitalize tracking-[0.44px];
 }
 
 .h3 {

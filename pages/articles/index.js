@@ -29,12 +29,12 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
         />
       )}
 
-      <section className='articles'>
-      <div className="container mx-auto py-4">
+      <section className='articles mx-4 lg:mx-0'>
+      <div className=" max-w-[1260px] mx-auto py-4">
           {isArticlesPage ? (
-            <div className="container mx-auto pt-8 lg:pt-12">
-              <div className='flex justify-between mx-2 items-center mb-[30px]'>
-                <h2 className='blog__title text-[1.5rem] md:ml-0 lg:mr-0 font-bold text-center xl:text-left'>Articles</h2>
+            <div className=" max-w-[1260px] mx-auto pt-8 lg:pt-12">
+              <div className='flex justify-between items-center mb-[30px]'>
+                <h2 className='blog__title mx-2 text-[1.5rem] md:ml-0 lg:mr-0 font-bold text-center xl:text-left'>Articles</h2>
                 {!isArticlesPage && (
                   <a href="/articles" className="text-[#4c5354] underline">
                     View All
@@ -43,7 +43,7 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
               </div>
             </div>
           ) : (
-            <div className='flex justify-between mx-2 items-center mb-[30px]'>
+            <div className='flex max-w-[1260px] justify-between mx-4 items-center mb-[30px]'>
               <h2 className='blog__title text-[1.5rem] md:ml-0 lg:mr-0 font-bold text-center xl:text-left'>Articles</h2>
               {!isArticlesPage && (
                 <a href="/articles" className="text-[#4c5354] underline">
@@ -52,9 +52,9 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
               )}
             </div>
           )}
-          <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-[50px]'>
+          <div className='grid grid-cols-1 max-w-[1260px] mx-auto sm:grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mb-[50px]'>
             {articles.map(article => (
-              <div key={article.id} className='blog__post mx-2 max-w-auto sm-w-auto shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
+              <div key={article.id} className='blog__post max-w-auto  sm-w-auto shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
                 <div className='relative overflow-hidden'>
                   <img className='group-hover:scale-110 transition-all duration-500' src={article.image} alt={article.title} />
                 </div>

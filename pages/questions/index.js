@@ -54,9 +54,9 @@ const Question = ({ playlists, headerLectures, qnaCategories }) => {
       <Header2 playlists={playlists} lectures={headerLectures} qna_categories={qnaCategories} />
 
       <section className="faq">
-        <div className="container mx-auto py-6 lg:py-12 ">
+        <div className="container max-w-[1260px] mx-auto py-6 lg:py-12 ">
           {/* Category Filter */}
-          <div className="flex flex-col md:flex-row">
+          <div className="flex flex-col mx-4 lg:mx-0 md:flex-row">
             {/* Left Side Categories */}
             <div className="w-full md:w-1/4 pr-0 md:pr-6 mb-6 md:mb-0">
               <div className="bg-white rounded-lg shadow-sm p-4 sticky top-20">

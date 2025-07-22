@@ -37,10 +37,10 @@ export default function BookDetail({
 				qna_categories={qnaCategories}
 			/>
 
-			<section className="blog-detail-ctn mt-0">
-				<div className="page-width py-6 lg:py-12">
-					<div className="box">
-						<div className="blog-area">
+			<section className=" blog-detail-ctn mt-0">
+				<div className=" py-6 lg:py-12">
+					<div className="container max-w-[1260px] mx-auto">
+						<div className="blog-area mx-4 lg:mx-0">
 							<div className="blog-detail book-detail">
 								<div className="row margin-bottom-0">
 									<div className="col s12 l5">

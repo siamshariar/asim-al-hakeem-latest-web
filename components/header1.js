@@ -108,22 +108,29 @@ export default function Header2({
           <button onClick={toggleMobileNav} className="text-2xl p-3 focus:outline-none">
             <i className={mobileNavOpen ? "ri-menu-line" : "ri-menu-line"}></i>
           </button>
+          <div className="flex justify-end mr-6 mb-2 md:mb-2 lg:mb-5 items-center w-full lg:w-auto">
+            <Link href="/">
+              <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
+            </Link>
+          </div>
         </div>
         
         <div className="container mx-auto z-30 lg:relative items-center flex flex-col lg:flex-row justify-between gap-y-1 lg:gap-y-0">
-          <div className="flex justify-center mb-2 md:mb-2 lg:mb-5 items-center w-full lg:w-auto">
+          <div className="flex justify-center sm:hidden lg:block hidden mb-2 md:mb-2 lg:mb-5 items-center w-full lg:w-auto">
             <Link href="/">
               <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
             </Link>
           </div>
           <div className="flex flex-col items-center justify-center w-full lg:flex-row lg:justify-end">
-          <div className="flex justify-center mb-4 items-center gap-x-2 lg:justify-normal lg:mr-4 lg:mb-4">
+          <div className="flex justify-center mb-4 sm:hidden lg:block hidden items-center gap-x-2 lg:justify-normal lg:mr-4 lg:mb-4">
+            <div className="flex items-center gap-x-2">
             <Mail className="w-6 h-6 text-accent" />
             <div className="text-secondary">sheikhassim.bookings@gmail.com</div>
+            </div>
           </div>
           <button
             onClick={() => window.location.href = '/counselling'}
-            className="button w-[200px] h-[48px] mb-4 lg:w-auto lg:mb-4 mx-auto lg:mx-0"
+            className="button w-[200px] sm:hidden lg:block hidden h-[48px] mb-4 lg:w-auto lg:mb-4 mx-auto lg:mx-0"
           >
             Counselling
           </button>
@@ -132,14 +139,16 @@ export default function Header2({
           <div className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-10 lg:gap-y-0">
             <nav
               ref={desktopNavRef}
+              
               className="bg-white absolute px-[300px] scroll-down w-full left-0 -bottom-[68px] shadow-custom1 h-16 rounded-[10px] hidden lg:flex lg:items-center lg:justify-center transition-all duration-500"
             >
               <ul className="flex text-[20px]">
                 <li>
                   <Link
                     href="/"
-                    className={`border-r-[1px] border-[#DCDCDC] pr-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
-                      isActive("/") ? "text-accent font-bold" : ""
+                    style={{ fontFamily: "'Inter', Arial, sans-serif" }}
+                    className={`border-r-[1px] border-[#DCDCDC] pr-8 text-[#525252] hover:text-[#665BCB] text-[1.2rem] transition-all duration-300 ${
+                      isActive("/") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     Home
@@ -149,7 +158,7 @@ export default function Header2({
                 <li className="relative group">
                   <Link
                     href=""
-                    className={`border-r-[1px] border-[#DCDCDC] flex items-center text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
+                    className={`border-r-[1px] border-[#DCDCDC] flex items-center text-secondary text-[20px] hover:text-[#665BCB] transition-all duration-300 ${
                       router.pathname.startsWith("/lectures") ? "text-accent font-bold" : ""
                     }`}
                   >
@@ -206,19 +215,20 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/articles" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
-                      isActive("/articles") ? "text-accent font-bold" : ""
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                      isActive("/articles") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     Articles
                   </Link>
                 </li>
+
                 
                 <li>
                   <Link 
                     href="/books" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
-                      isActive("/books") ? "text-accent font-bold" : ""
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                      isActive("/books") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     Books
@@ -228,8 +238,8 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/questions" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
-                      isActive("/questions") ? "text-accent font-bold" : ""
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                      isActive("/questions") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     Qna
@@ -239,8 +249,8 @@ export default function Header2({
                 <li>
                   <Link
                     href="/counselling"
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
-                      isActive("/counselling") ? "text-accent font-bold" : ""
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                      isActive("/counselling") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     Counselling
@@ -250,8 +260,8 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/ask-question" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
-                      isActive("/ask-question") ? "text-accent font-bold" : ""
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                      isActive("/ask-question") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     Questions
@@ -261,8 +271,8 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/contact" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
-                      isActive("/contact") ? "text-accent font-bold" : ""
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                      isActive("/contact") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     Contact
@@ -272,8 +282,8 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/about" 
-                    className={`border-[#DCDCDC] px-8 text-secondary text-[20px] hover:text-accent transition-all duration-300 ${
-                      isActive("/about") ? "text-accent font-bold" : ""
+                    className={`border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                      isActive("/about") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     About
@@ -310,32 +320,36 @@ export default function Header2({
             
             <ul className="flex scrollbar-thin scrollbar-thumb-gray-900 flex-col text-[22px]">
               <div className="flex">
-                <i className="ri-home-4-fill text-[28px] text-[#44929C]"></i>
-                <div>
-                  <Link 
-                    href="/" 
-                    className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
-                      isActive("/") ? "text-accent font-bold" : ""
-                    }`}
-                  >
-                    Home 
-                  </Link>
+                <div className="flex items-center">
+                  <i className="ri-home-4-fill text-[28px] text-[#44929C]"></i>
+                  <div>
+                    <Link 
+                      href="/" 
+                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
+                        isActive("/") ? "text-[#665BCB]" : ""
+                      }`}
+                    >
+                      Home 
+                    </Link>
+                  </div>
                 </div>
               </div>
               
               <li className="relative group">
                 <div className="flex">
-                  <i className="ri-file-video-fill text-[28px] text-[#44929C]"></i>
-                  <div
-                    onClick={toggleLecturesSubmenu}
-                    className={`flex w-full items-center ml-[15px] justify-between text-[20px] cursor-pointer ${
-                      lecturesSubmenuOpen ? "text-accent" : "text-secondary"
-                    } hover:text-accent transition-all duration-1000`}
-                  >
-                    Lectures
-                    <span className={`transition-transform duration-1000 ${lecturesSubmenuOpen ? "rotate-180" : ""}`}>
-                      <ExpandMoreIcon />
-                    </span>
+                  <div className="flex w-full items-center">
+                    <i className="ri-file-video-fill text-[28px] text-[#44929C]"></i>
+                    <div
+                      onClick={toggleLecturesSubmenu}
+                      className={`flex w-full items-center ml-[15px] justify-between text-[1.2rem] cursor-pointer ${
+                        lecturesSubmenuOpen ? "text-accent" : "text-secondary"
+                      } hover:text-[#665BCB] transition-all duration-1000`}
+                    >
+                      Lectures
+                      <span className={`transition-transform duration-1000 ${lecturesSubmenuOpen ? "rotate-180" : ""}`}>
+                        <ExpandMoreIcon />
+                      </span>
+                    </div>
                   </div>
                 </div>
                 
@@ -372,7 +386,7 @@ export default function Header2({
                         <li key={playlist.id} className="w-full leading-[1.75] mb-4">
                           <Link
                             href={`/lectures/${playlist.id}`}
-                            className="text-[#525252] underline text-[17px] hover:text-black transition-all duration-300"
+                            className="text-[#525252] underline text-[1.2rem] hover:text-black transition-all duration-300"
                           >
                             {playlist.title}
                           </Link>
@@ -385,101 +399,115 @@ export default function Header2({
               
               {/* Rest of mobile navigation links */}
               <div className="flex">
-                <i className="ri-article-fill text-[28px] text-[#44929C]"></i>
-                <li>
-                  <Link 
-                    href="/articles" 
-                    className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
-                      isActive("/articles") ? "text-accent font-bold" : ""
-                    }`}
-                  >
-                    Articles 
-                  </Link>
-                </li>
+                <div className="flex items-center">
+                  <i className="ri-article-fill text-[28px] text-[#44929C]"></i>
+                  <li>
+                    <Link 
+                      href="/articles" 
+                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
+                        isActive("/articles") ? "text-[#665BCB]" : ""
+                      }`}
+                    >
+                      Articles 
+                    </Link>
+                  </li>
+                </div>
               </div>
               
               <div className="flex">
-                <i className="ri-book-shelf-line text-[28px] text-[#44929C]"></i>
-                <li>
-                  <Link 
-                    href="/books" 
-                    className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
-                      isActive("/books") ? "text-accent font-bold" : ""
-                    }`}
-                  >
-                    Books 
-                  </Link>
-                </li>
+                <div className="flex items-center">
+                  <i className="ri-book-shelf-line text-[28px] text-[#44929C]"></i>
+                  <li>
+                    <Link 
+                      href="/books" 
+                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
+                        isActive("/books") ? "text-[#665BCB]" : ""
+                      }`}
+                    >
+                      Books 
+                    </Link>
+                  </li>
+                </div>
               </div>
               
               <div className="flex">
-                <i className="ri-question-answer-fill text-[28px] text-[#44929C]"></i>
-                <li>
-                  <Link 
-                    href="/questions" 
-                    className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
-                      isActive("/questions") ? "text-accent font-bold" : ""
-                    }`}
-                  >
-                    Qna 
-                  </Link>
-                </li>
+                <div className="flex items-center">
+                  <i className="ri-question-answer-fill text-[28px] text-[#44929C]"></i>
+                  <li>
+                    <Link 
+                      href="/questions" 
+                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
+                        isActive("/questions") ? "text-[#665BCB]" : ""
+                      }`}
+                    >
+                      Qna 
+                    </Link>
+                  </li>
+                </div>
               </div>
               
               <div className="flex">
-                <i className="ri-group-fill text-[28px] text-[#44929C]"></i>
-                <li>
-                  <Link 
-                    href="/counselling" 
-                    className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
-                      isActive("/counselling") ? "text-accent font-bold" : ""
-                    }`}
-                  >
-                    Counselling 
-                  </Link>
-                </li>
+                <div className="flex items-center">
+                  <i className="ri-group-fill text-[28px] text-[#44929C]"></i>
+                  <li>
+                    <Link 
+                      href="/counselling" 
+                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
+                        isActive("/counselling") ? "text-[#665BCB]" : ""
+                      }`}
+                    >
+                      Counselling 
+                    </Link>
+                  </li>
+                </div>
               </div>
               
               <div className="flex">
+                <div className="flex items-center">
                 <i className="ri-questionnaire-fill text-[28px] text-[#44929C]"></i>
                 <li>
                   <Link 
                     href="/ask-question" 
-                    className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
-                      isActive("/ask-question") ? "text-accent font-bold" : ""
+                    className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
+                      isActive("/ask-question") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     Questions 
                   </Link>
                 </li>
+                </div>
               </div>
               
               <div className="flex">
-                <i className="ri-contacts-fill text-[28px] text-[#44929C]"></i>
-                <li>
-                  <Link 
-                    href="/contact" 
-                    className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
-                      isActive("/contact") ? "text-accent font-bold" : ""
-                    }`}
-                  >
-                    Contact 
-                  </Link>
-                </li>
+                <div className="flex items-center">
+                  <i className="ri-contacts-fill text-[28px] text-[#44929C]"></i>
+                  <li>
+                    <Link 
+                      href="/contact" 
+                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
+                        isActive("/contact") ? "text-[#665BCB]" : ""
+                      }`}
+                    >
+                      Contact 
+                    </Link>
+                  </li>
+                </div>
               </div>
               
               <div className="flex">
+                <div className="flex items-center">
                 <i className="ri-profile-fill text-[28px] text-[#44929C]"></i>
                 <li>
                   <Link 
                     href="/about" 
-                    className={`text-secondary transparent text-[20px] hover:text-accent rounded-lg transition-all duration-300 ${
-                      isActive("/about") ? "text-accent font-bold" : ""
+                    className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
+                      isActive("/about") ? "text-[#665BCB]" : ""
                     }`}
                   >
                     About 
                   </Link>
                 </li>
+                </div>
               </div>
             </ul>
           </div>
