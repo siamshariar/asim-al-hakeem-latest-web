@@ -108,7 +108,7 @@ export default function Header2({
           <button onClick={toggleMobileNav} className="text-2xl p-3 focus:outline-none">
             <i className={mobileNavOpen ? "ri-menu-line" : "ri-menu-line"}></i>
           </button>
-          <div className="flex justify-end mr-6 mb-2 md:mb-2 lg:mb-5 items-center w-full lg:w-auto">
+          <div className="flex justify-end mr-6 mb-2 mt-2 md:mb-2 lg:mb-5 items-center w-full lg:w-auto">
             <Link href="/">
               <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
             </Link>
@@ -147,7 +147,7 @@ export default function Header2({
                   <Link
                     href="/"
                     style={{ fontFamily: "'Inter', Arial, sans-serif" }}
-                    className={`border-r-[1px] border-[#DCDCDC] pr-8 text-[#525252] hover:text-[#665BCB] text-[1.2rem] transition-all duration-300 ${
+                    className={`border-r-[1px] border-[#DCDCDC] pr-8 text-[#525252] !bg-transparent hover:text-[#665BCB] text-[1.2rem] transition-all duration-300 ${
                       isActive("/") ? "text-[#665BCB]" : ""
                     }`}
                   >
@@ -158,7 +158,7 @@ export default function Header2({
                 <li className="relative group">
                   <Link
                     href=""
-                    className={`border-r-[1px] border-[#DCDCDC] flex items-center text-secondary text-[20px] hover:text-[#665BCB] transition-all duration-300 ${
+                    className={`border-r-[1px] border-[#DCDCDC] !bg-transparent flex items-center text-[#525252] text-[20px] hover:text-[#665BCB] transition-all duration-300 ${
                       router.pathname.startsWith("/lectures") ? "text-accent font-bold" : ""
                     }`}
                   >
@@ -168,14 +168,14 @@ export default function Header2({
                     </span>
                   </Link>
                   
-                  <div className="sub-menu absolute bg-white mb-4 p-4 shadow-lg hidden group-hover:block w-[1000px] h-[350px]">
-                    <div className="sub-menu-wrap scrollbar p-0 px-4 py-4 overflow-y-auto h-full flex gap-x-8">
+                  <div className="sub-menu absolute bg-white mb-4 p-4 shadow-lg hidden group-hover:block w-[1100px] h-[400px]">
+                    <div className="sub-menu-wrap scrollbar p-0 px-4 py-4 overflow-y-auto h-full flex gap-x-10">
                       <ul className="flex flex-col w-1/3 p-0 justify-start items-start submenu-links text-[#525252]">
                         {firstList.map((playlist) => (
-                          <li className="mb-4 p-0" key={playlist.id}>
+                          <li className="pb-[12px] p-0 tracking-wide" key={playlist.id}>
                             <Link
                               href={`/lectures/${playlist.id}`}
-                              className="text-[#525252] hover:bg-transparent hover:text-black transition-all duration-300 text-[1.1rem] leading-[2rem] p-0 w-full"
+                              className="text-[#525252] hover:bg-transparent underline hover:text-black transition-all duration-300 text-[16px] leading-[2rem] p-0 w-full"
                             >
                               {playlist.title}
                             </Link>
@@ -185,10 +185,10 @@ export default function Header2({
                       
                       <ul className="flex flex-col w-1/3 p-0 justify-start items-start submenu-links text-[#525252]">
                         {secondList.map((playlist) => (
-                          <li className="mb-4" key={playlist.id}>
+                          <li className="mb-3 tracking-wide" key={playlist.id}>
                             <Link
                               href={`/lectures/${playlist.id}`}
-                              className="text-[#525252] hover:bg-transparent hover:text-black transition-all duration-300 text-[1.1rem] leading-[2rem] p-0 w-full"
+                              className="text-[#525252] hover:bg-transparent underline hover:text-black transition-all duration-300 text-[16px] leading-[2rem] p-0 w-full"
                             >
                               {playlist.title}
                             </Link>
@@ -198,10 +198,10 @@ export default function Header2({
                       
                       <ul className="flex flex-col w-1/3 p-0 justify-start submenu-links text-[#525252]">
                         {thirdList.map((playlist) => (
-                          <li className="mb-4" key={playlist.id}>
+                          <li className="mb-3 tracking-wide" key={playlist.id}>
                             <Link
                               href={`/lectures/${playlist.id}`}
-                              className="text-[#525252] hover:bg-transparent hover:text-black transition-all duration-300 text-[1.1rem] leading-[2rem] p-0 w-full"
+                              className="text-[#525252] hover:bg-transparent hover:text-black underline transition-all duration-300 text-[18px] leading-[2rem] p-0 w-full"
                             >
                               {playlist.title}
                             </Link>
@@ -215,7 +215,7 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/articles" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                    className={`border-r-[1px] text-[#525252] !bg-transparent border-[#DCDCDC] px-8 text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
                       isActive("/articles") ? "text-[#665BCB]" : ""
                     }`}
                   >
@@ -227,7 +227,7 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/books" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
                       isActive("/books") ? "text-[#665BCB]" : ""
                     }`}
                   >
@@ -238,7 +238,7 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/questions" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
                       isActive("/questions") ? "text-[#665BCB]" : ""
                     }`}
                   >
@@ -249,7 +249,7 @@ export default function Header2({
                 <li>
                   <Link
                     href="/counselling"
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent  text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
                       isActive("/counselling") ? "text-[#665BCB]" : ""
                     }`}
                   >
@@ -260,7 +260,7 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/ask-question" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
                       isActive("/ask-question") ? "text-[#665BCB]" : ""
                     }`}
                   >
@@ -271,7 +271,7 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/contact" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
                       isActive("/contact") ? "text-[#665BCB]" : ""
                     }`}
                   >
@@ -282,7 +282,7 @@ export default function Header2({
                 <li>
                   <Link 
                     href="/about" 
-                    className={`border-[#DCDCDC] px-8 text-secondary text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
+                     className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
                       isActive("/about") ? "text-[#665BCB]" : ""
                     }`}
                   >

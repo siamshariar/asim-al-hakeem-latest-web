@@ -14,6 +14,7 @@ module.exports = {
       "blog-dev1dit.vercel.app",
       "muhammadsaifullah.com",
       "www.muhammadsaifullah.com",
+      "img.youtube.com",
       "i.ytimg.com",
     ],
   },

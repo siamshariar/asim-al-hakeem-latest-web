@@ -16,7 +16,7 @@ export default function Banner() {
               Jeddah. The city of Jeddah is the gateway to the two Holy Mosques,
               with Makkah being about 85-90 kilometers away and Madinah.
             </p>
-            <button className="btn btn-lg btn-accent mx-auto xl:mx-0">
+            <button className="btn  btn-lg btn-accent mx-auto xl:mx-0">
               SEE MORE
             </button>
 

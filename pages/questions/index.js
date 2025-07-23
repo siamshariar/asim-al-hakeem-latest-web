@@ -1,15 +1,17 @@
-import { useState } from "react";
-import Header2 from "../../components/header1";
-import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../../lib/fetch";
-import Meta from "../../components/meta";
+"use client"
+
+import { useState } from "react"
+import Header2 from "../../components/header1"
+import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../../lib/fetch"
+import Meta from "../../components/meta"
 import { categories, faqs } from "../../data/questions"
+import Link from "next/link"
 
 const Question = ({ playlists, headerLectures, qnaCategories }) => {
   const [expandedFaqs, setExpandedFaqs] = useState({})
-
   const [selectedCategory, setSelectedCategory] = useState("All Questions")
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedFaq, setSelectedFaq] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedFaq, setSelectedFaq] = useState(null)
 
   const toggleFAQ = (index) => {
     setExpandedFaqs((prev) => ({
@@ -86,27 +88,25 @@ const Question = ({ playlists, headerLectures, qnaCategories }) => {
                     // Create a unique key for each FAQ
                     const faqKey = `${selectedCategory}-${index}`
                     const isExpanded = expandedFaqs[faqKey]
-
                     return (
-                      <div
-                        key={faqKey}
-                        className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 cursor-pointer"
-                        style={{ height: "fit-content", position: "relative" }}
-                        onClick={() => openModal(faq)}
-                      >
-                        <div className="p-5">
-                          <h4 className="text-lg font-medium mb-3 line-clamp-2">{faq.question}</h4>
-                          <div className="flex justify-between items-center text-sm text-gray-500">
-                            <span>{faq.category}</span>
-                          </div>
-
-                          {isExpanded && (
-                            <div className="mt-4 pt-4 border-t text-gray-700">
-                              <p>{faq.answer}</p>
+                      <Link href={`/questions/watch/${faq.id}`} key={faqKey}>
+                        <div
+                          className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 cursor-pointer"
+                          style={{ height: "fit-content", position: "relative" }}
+                        >
+                          <div className="p-5">
+                            <h4 className="text-lg font-medium mb-3 line-clamp-2">{faq.question}</h4>
+                            <div className="flex justify-between items-center text-sm text-gray-500">
+                              <span>{faq.category}</span>
                             </div>
-                          )}
+                            {isExpanded && (
+                              <div className="mt-4 pt-4 border-t text-gray-700">
+                                <p>{faq.answer}</p>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     )
                   })
                 ) : (
@@ -119,6 +119,7 @@ const Question = ({ playlists, headerLectures, qnaCategories }) => {
           </div>
         </div>
       </section>
+
       {modalOpen && selectedFaq && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity">
           <div
@@ -128,7 +129,6 @@ const Question = ({ playlists, headerLectures, qnaCategories }) => {
             <div className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-xl font-semibold pr-8">{selectedFaq.question}</h3>
-                
               </div>
               <div className="text-sm text-gray-500 mb-4">Category: {selectedFaq.category}</div>
               <div className="pt-4 border-t border-gray-200">
@@ -150,13 +150,12 @@ const Question = ({ playlists, headerLectures, qnaCategories }) => {
   )
 }
 
-export default Question;
-
+export default Question
 
 export async function getStaticProps() {
-  const playlists = await getAllPlaylists2();
-  const headerLectures = await getHeaderLectures();
-  const qnaCategories = await getAllQnaCategory();
+  const playlists = await getAllPlaylists2()
+  const headerLectures = await getHeaderLectures()
+  const qnaCategories = await getAllQnaCategory()
 
   return {
     props: {
@@ -165,5 +164,5 @@ export async function getStaticProps() {
       qnaCategories,
     },
     revalidate: 60, // ISR: Revalidate the data every 60 seconds
-  };
+  }
 }

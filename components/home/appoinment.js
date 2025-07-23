@@ -88,7 +88,7 @@ const BookAppointment = () => {
   }
 
   return (
-    <section className='appointment px-4 py-12 '>
+    <section className='appointment px-4 pt-12 sm:pb-8 '>
       <div className='container mx-auto'>
         <h2 className='appointment__title h2 mb-5 xl:mb-[50px] text-center xl:text-left'>
           Book Appointment or call:
@@ -149,7 +149,7 @@ const BookAppointment = () => {
             </div>
           </div>
 
-          <button type="submit" className="btn mt-8 btn-lg btn-accent self-start mt-2">
+          <button type="submit" className="btn mt-8 btn-sm btn-accent self-start mt-2">
             Book an appointment
           </button>
         </form>

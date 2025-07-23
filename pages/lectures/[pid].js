@@ -168,7 +168,7 @@ export default function LectureList({ initialVideos, initPlaylistId, headerLectu
 
 	<div className="mt-10">
 		<section className="bg-gray-100 ">
-			<div className="container2 mx-auto w-sm-0 px-0 py-4 lg:py-8">
+			<div className="container2 mx-auto w-sm-0 px-0 py-0 lg:py-8">
 					<div className="flex sm:mx-4 md:mx-4 sm:mx-4 lg:mx-0 flex-col">
 						<div className="text-xl ml-4 sm:ml-4 lg:ml-0 sm:text-2xl text-black font-bold mb-6">{pageTitle}</div>
 						<div className="grid grid-cols-1 px-0 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0">

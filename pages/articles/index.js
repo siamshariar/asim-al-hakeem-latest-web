@@ -29,12 +29,12 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
         />
       )}
 
-      <section className='articles mx-4 lg:mx-0'>
-      <div className=" max-w-[1260px] mx-auto py-4">
+      <section className='articles mx-4  lg:mx-0'>
+      <div className=" max-w-[1260px] mx-auto py-0 mb-12 lg:mb-14">
           {isArticlesPage ? (
             <div className=" max-w-[1260px] mx-auto pt-8 lg:pt-12">
               <div className='flex justify-between items-center mb-[30px]'>
-                <h2 className='blog__title mx-2 text-[1.5rem] md:ml-0 lg:mr-0 font-bold text-center xl:text-left'>Articles</h2>
+                <h2 className='blog__title mx-0 text-[1.5rem] md:ml-0 lg:mr-0 font-bold text-center xl:text-left'>Articles</h2>
                 {!isArticlesPage && (
                   <a href="/articles" className="text-[#4c5354] underline">
                     View All
@@ -43,8 +43,8 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
               </div>
             </div>
           ) : (
-            <div className='flex max-w-[1260px] justify-between mx-4 items-center mb-[30px]'>
-              <h2 className='blog__title text-[1.5rem] md:ml-0 lg:mr-0 font-bold text-center xl:text-left'>Articles</h2>
+            <div className='flex max-w-[1260px] justify-between items-center mb-[30px]'>
+              <h2 className='blog__title text-[1.5rem]  sm:px-4 lg:mr-0 font-bold text-center xl:text-left '>Articles</h2>
               {!isArticlesPage && (
                 <a href="/articles" className="text-[#4c5354] underline">
                   View All
@@ -56,12 +56,14 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
             {articles.map(article => (
               <div key={article.id} className='blog__post max-w-auto  sm-w-auto shadow-custom2 rounded-[10px] overflow-hidden cursor-pointer group'>
                 <div className='relative overflow-hidden'>
-                  <img className='group-hover:scale-110 transition-all duration-500' src={article.image} alt={article.title} />
+                   <a href={`/articles/${article.slug}`} >
+                      <img className='group-hover:scale-110 transition-all duration-500' src={article.image} alt={article.title} />
+                    </a>
                 </div>
 
                 <div className='px-5 py-6 lg:py-4'>
                   <div className='mb-2'>{article.date}</div>
-                  <h4 className='h4 mb-[10px] lg:text-xl line-clamp-2'>{article.title}</h4>
+                  <h4 className='h4 mb-[10px] lg:text-xl line-clamp-2'><a href={`/articles/${article.slug}`}>{article.title}</a></h4>
                   <p className='font-light text-[#777F81]'>
                     <span>
                       {article.description}

@@ -18,7 +18,7 @@ const Banner2 = () => {
               Jeddah.
             </p>
             <Link href="/about" passHref>
-              <button className="btn btn-lg btn-accent text-xl mx-auto xl:mx-0">
+              <button className="btn btn-sm btn-accent text-xl mx-auto xl:mx-0">
                 SEE MORE
               </button>
             </Link>

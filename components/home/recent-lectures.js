@@ -158,8 +158,8 @@ export default function RecentLecture() {
         </div>
       </div>
 
-      <div className="container max-w-[1260px] mx-auto mt-8  xl:-mt-[144px] relative z-10 mb-20">
-        <div className="grid grid-cols-1 mx-4 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="container max-w-[1260px] mx-auto mt-8  xl:-mt-[144px] relative z-10 mb-12 lg:mb-14">
+        <div className="grid grid-cols-1 mx-4 lg:mx-0 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {lectures.map((lecture) => (
             <PostCardRecent
               key={lecture.id}

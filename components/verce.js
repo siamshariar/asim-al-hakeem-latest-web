@@ -63,7 +63,7 @@ const TestimonialSlider = () => {
                       <div className="max-w-[680px] mx-auto text-center xl:text-left">
                         <p
                           id={`quote-${testimonial.id}`}
-                          className="font-light relative text-[34px] text-[#777F81] leading-[190%] text-center xl:text-left mb-7"
+                          className="font-light relative text-[34px] text-[#777F81] leading-[140%] lg:leading-[190%] text-center xl:text-left mb-7"
                         >
                           {/* Image Before Quote */}
                           <img
@@ -72,7 +72,7 @@ const TestimonialSlider = () => {
                             className="inline-block mb-3 w-10 h-6"
                           />
 
-                          <span className="mx-2 text:3xl sm:text-3xl md:text-3xl lg:text-3xl">{testimonial.quote}</span>
+                          <span className="mx-2 text-2xl  sm:text-3xl md:text-3xl text-center lg:text-3xl">{testimonial.quote}</span>
 
                           {/* Image After Quote */}
                           <img
@@ -81,7 +81,7 @@ const TestimonialSlider = () => {
                             className="inline-block mb-3 w-8 h-6"
                           />
                         </p>
-                        <div className="text-2xl center text-[#4c5354] font-semibold">{testimonial.name}</div>
+                        <div className="text-xl md:text-2xl lg:text-2xl center text-[#4c5354] font-semibold">{testimonial.name}</div>
                       </div>
                     </div>
                   </div>

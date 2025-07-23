@@ -85,7 +85,7 @@ export default function ArticleDetail({ article, playlists, headerLectures, qnaC
             </div>
           </div>
 
-          <section className="mt-12">
+          {/* <section className="mt-12">
             <h2 className="text-2xl font-bold mb-4">More Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {articles.filter(a => a.id !== article.id).map((relatedArticle) => (
@@ -109,7 +109,7 @@ export default function ArticleDetail({ article, playlists, headerLectures, qnaC
                 </div>
               ))}
             </div>
-          </section>
+          </section> */}
         </div>
       </section>
     </>

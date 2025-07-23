@@ -3,8 +3,8 @@ import { PlusCircle } from 'lucide-react';
 
 export default function AskQuestionCounselling() {
   return (
-    <section className="mx-auto p-6">
-      <div className="container max-w-[1260px] pb-12 grid md:grid-cols-2 gap-12">
+    <section className="mx-auto p-6 pb-6 py-12 sm:py-12">
+      <div className="container max-w-[1260px] pb-6 grid md:grid-cols-2  gap-12">
         <div className="bg-green-50 rounded-lg p-6 shadow-md relative">
           <div className="absolute -top-8 left-20 md:left-20 lg:left-48 w-48 h-24 bg-white rounded shadow-2xl transform -rotate-6 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-green-200"></div>
@@ -36,7 +36,7 @@ export default function AskQuestionCounselling() {
           </div>
         </div>
 
-        
+
         <div className="bg-purple-50 rounded-lg sm:mt-6 p-6 shadow-md relative">
           <div className="absolute -top-8 left-20 md:left-20 lg:left-48 w-48 h-24 bg-white rounded shadow-2xl transform -rotate-6 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-100 to-purple-200"></div>
