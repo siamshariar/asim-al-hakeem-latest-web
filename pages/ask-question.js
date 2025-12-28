@@ -23,7 +23,7 @@ export default function AskAQuestion({ playlists, headerLectures, qna_categories
       <section className="bg-gray-50 min-h-screen py-6 lg:py-12">
         <div className="container max-w-[1260px] mx-auto pb-10 ">
           <div className="bg-white mx-4 shadow-xl lg:mx-0 rounded-2xl overflow-hidden">
-            <div className="p-6 sm:p-10">
+            <div className="p-4 sm:p-10">
               <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Ask a Question</h1>
               
               <div className="space-y-8">
@@ -57,19 +57,15 @@ export default function AskAQuestion({ playlists, headerLectures, qna_categories
                     <span>$100 / Half Hour</span>
                   </div>
                 </div>
-
-                <div className="relative w-full h-[800px] rounded-xl overflow-hidden">
+                <div className="relative w-full h-[30vh] sm:h-[60vh] md:h-[50vh] overflow-hidden">
                   <Image
                     src="/img/counselling-sheikh-assim.png"
-                    alt="Counseling Session"
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
-                    loading="eager"
-                    unoptimized
+                    alt="Marriage Counselling"
+                    fill
+                    className="object-cover object-[left_center]"
+                    priority
                   />
                 </div>
-
                 <div className="bg-yellow-50 p-6 rounded-xl shadow-inner">
                   <h2 className="text-2xl font-semibold mb-4 text-gray-800">Donate for the Needy</h2>
                   <p className="text-gray-600 text-lg mb-4">

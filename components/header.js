@@ -38,21 +38,27 @@ export default function Header({
 	const secondListQ = qna_categories.slice(numQ, numQ * 2);
 	const thirdListQ = qna_categories.slice(numQ * 2, playlists.length);
 
-	useEffect(() => {
-		setDidMount(true);
+    useEffect(() => {
+        setDidMount(true);
+        const handleScroll = () => {
+            setScrollTop(window.pageYOffset || 0);
+        };
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            setDidMount(false);
+        };
+    }, []);
 
-		window.onscroll = () => {
-			setScrollTop(window.pageYOffset);
-		};
-		if (scrollTop > 20) {
-			header.current.classList.add("scroll_up");
-		} else {
-			header.current.classList.remove("scroll_up");
-		}
-		//setLastScrollTop(scrollTop);
-
-		return () => setDidMount(false);
-	}, [scrollTop]);
+    useEffect(() => {
+        if (!header.current) return;
+        if (scrollTop > 20) {
+            header.current.classList.add("scroll_up");
+        } else {
+            header.current.classList.remove("scroll_up");
+        }
+    }, [scrollTop]);
 
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
 	const toggleMobileNav = (open) => (event) => {

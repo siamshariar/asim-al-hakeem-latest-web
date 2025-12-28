@@ -285,10 +285,10 @@ export default function QuestionDetail({ id, data, playlists, headerLectures, qn
                 )}
                 {/* Audio Section */}
                 {audioUrl && (
-                  <div className="audio-wrap-outer px-4 py-4 sm:px-4 sm:py-4 md:px-16 md:py-4 lg:px-16">
+                  <div className="audio-wrap-outer px-2 py-2 sm:px-4 sm:py-2 md:px-4 md:py-2 lg:px-4 lg:py-4">
                     <div className="audio-wrap">
                       <div className="audio-controls">
-                        <button onClick={toggleAudio} className="audio-play-btn w-[150px] h-[150px] lg:w-[250px] lg:h-[200px]">
+                        <button onClick={toggleAudio} className="audio-play-btn w-[100px] h-[100px] lg:w-[150px] lg:h-[150px]">
                           {isPlaying ? <PauseIcon /> : <PlayIcon />}
                         </button>
                         <span className="audio-title">Listen to Answer</span>
@@ -308,7 +308,7 @@ export default function QuestionDetail({ id, data, playlists, headerLectures, qn
                   <div className="row row-r video-title-area">
                     <div className="col col-r s12 l9">
                       <div className="">
-                        <h2 className="margin-bottom-2 !text-[24px] md:!text-[28px] lg:!text-[28px] !font-semibold !leading-snug">
+                        <h2 className="margin-bottom-2 !text-[24px] md:!text-[26px] lg:!text-[28px] !font-medium !leading-snug">
                           {title}
                         </h2>
                       </div>

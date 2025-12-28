@@ -188,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
 .header-fixed {
   width: 100%;
   top: 0;
-  z-index: 20;
+  z-index: 9999;
 }
 
 .mobile-header {

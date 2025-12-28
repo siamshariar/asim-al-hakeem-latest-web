@@ -332,7 +332,7 @@ export default function About({ playlists, headerLectures, qna_categories }) {
 							</div>
 
                             </div>
-                            <div className="p-8">
+                            <div className="p-6">
                                 <h1 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                                     {profile.name}
                                 </h1>
@@ -366,11 +366,11 @@ export default function About({ playlists, headerLectures, qna_categories }) {
                             </div>
                         </div>
                         
-                        <div className="px-8 py-8">
+                        <div className="px-6 py-6">
                             <h2 className="text-[26px] text-[#4a5568] font-bold mb-4">Introduction</h2>
                             <div className="space-y-4">
                                 {profile.about.map((para, index) => (
-                                    <p style={{ fontFamily: "'Inter', Arial, sans-serif" }} className="text-[1rem] text-[#4a5568 !important] mb-4" key={index}>{para}</p>
+                                    <p style={{ fontFamily: "'Inter', Arial, sans-serif" }} className="text-[1rem] text-gray-700 font-medium mb-4" key={index}>{para}</p>
                                 ))}
                             </div>
                         </div>

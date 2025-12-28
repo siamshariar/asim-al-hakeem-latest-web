@@ -77,7 +77,7 @@ useEffect(() => {
 
       <div className="container max-w-[1260px] mx-auto py-6 lg:py-12">
         <div className="px-4 lg:px-0 mx-auto space-y-12">
-          <section className="bg-white rounded-2xl shadow-xl p-8">
+          <section className="bg-white rounded-2xl shadow-md p-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-6">Counselling Session</h1>
             <p className="text-xl text-gray-600 mb-6">One-to-one Live Counseling with Sheikh Assim Al-Hakeem</p>
             <div className="space-y-4">
@@ -91,7 +91,7 @@ useEffect(() => {
             </div>
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl p-8">
+          <section className="bg-white rounded-2xl shadow-md p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">Donate for the Needy</h2>
             <p className="text-gray-700 text-lg mb-4">Want to help a brother/sister in need who cannot afford to consult the Sheikh regarding their Marital Issues, OCD Waswas, and the like?</p>
             <div className="bg-yellow-50 p-6 rounded-xl">
@@ -106,7 +106,7 @@ useEffect(() => {
             </div>
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl p-8">
+          <section className="bg-white rounded-2xl shadow-md p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">Contact Us</h2>
             <p className="text-gray-700 text-lg mb-6">For booking of live counselling sessions, send us an email at{" "}
               <a href="mailto:sheikhassim.bookings@gmail.com" className="text-blue-600 hover:underline">
