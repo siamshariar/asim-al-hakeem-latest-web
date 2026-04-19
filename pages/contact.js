@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { GetStaticProps } from 'next';
 import { getAllPlaylists2, getAllQnaCategory, getHeaderLectures } from '../lib/fetch';
 import Meta from '../components/meta';
 import Header2 from '../components/header1';
