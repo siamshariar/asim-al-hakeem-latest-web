@@ -1,518 +1,349 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import 'remixicon/fonts/remixicon.css';
-import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { useRouter } from "next/router";
-import { Mail } from "lucide-react";
-export default function Header2({
-  playlists,
-  activePlaylistId,
-  activeCatSlug,
-  lectures,
-  qna_categories,
-}) {
-  const headerRef = useRef(null);
-  const desktopNavRef = useRef(null);
-  const mobileNavRef = useRef(null);
-  const [scrollTop, setScrollTop] = useState(0);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [lecturesSubmenuOpen, setLecturesSubmenuOpen] = useState(false);
-  const [isScrollingUp, setIsScrollingUp] = useState(false);
+import Image from "next/image";
+import { 
+  Menu, X, ChevronDown, Search, Phone, Mail, 
+  Facebook, Youtube, Instagram, Twitter, MapPin,
+  PlayCircle, BookOpen, HelpCircle, MessageCircle,
+  Calendar, User, Home, Video, FileText, ExternalLink
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-  const num = playlists && playlists.length ? Math.ceil(playlists.length / 3) : 0;
-  const firstList = playlists ? playlists.slice(0, num) : [];
-  const secondList = playlists ? playlists.slice(num, num * 2.1) : [];
-  const thirdList = playlists ? playlists.slice(num * 1.8, playlists.length) : [];
-
-  const numQ = qna_categories && qna_categories.length ? Math.ceil(qna_categories.length / 3) : 0;
-  const firstListQ = qna_categories ? qna_categories.slice(0, numQ) : [];
-  const secondListQ = qna_categories ? qna_categories.slice(numQ, numQ * 2) : [];
-  const thirdListQ = qna_categories ? qna_categories.slice(numQ * 2, qna_categories.length) : [];
-
+export default function Header2({ playlists, lectures, qna_categories, activePlaylistId }) {
+  const [isSticky, setIsSticky] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const router = useRouter();
-  const isActive = (path) => router.pathname === path;
+  const dropdownTimeout = useRef(null);
+  const searchInputRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollTop = window.pageYOffset;
-      setScrollTop(currentScrollTop);
-
-      if (currentScrollTop > lastScrollTop) {
-        setIsScrollingUp(false);
-      } else if (currentScrollTop < lastScrollTop) {
-        setIsScrollingUp(true);
-      }
-
-      setLastScrollTop(currentScrollTop);
+      setIsSticky(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollTop]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
-    if (headerRef.current) {
-      if (scrollTop > 20) {
-        headerRef.current.classList.add("header-fixed", "header-scroll");
-      } else {
-        headerRef.current.classList.remove("header-fixed", "header-scroll");
-      }
-
-      if (!isScrollingUp && scrollTop > 100) {
-        headerRef.current.classList.add("hide-header");
-        desktopNavRef.current?.classList.add("hide-desktop-nav");
-      } else {
-        headerRef.current.classList.remove("hide-header");
-        desktopNavRef.current?.classList.remove("hide-desktop-nav");
-      }
+    if (searchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
     }
-  }, [scrollTop, isScrollingUp]);
-
-  const toggleMobileNav = () => {
-    setMobileNavOpen((prev) => !prev);
-  };
-
-  const toggleLecturesSubmenu = () => {
-    setLecturesSubmenuOpen((prev) => !prev);
-  };
+  }, [searchOpen]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (mobileNavRef.current && !mobileNavRef.current.contains(event.target)) {
-        setMobileNavOpen(false);
-      }
-    };
-
-    if (mobileNavOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "unset";
     }
-
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "unset";
     };
-  }, [mobileNavOpen]);
+  }, [mobileMenuOpen]);
+
+  const handleDropdownEnter = (menu) => {
+    if (dropdownTimeout.current) {
+      clearTimeout(dropdownTimeout.current);
+    }
+    setActiveDropdown(menu);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimeout.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+      setSearchOpen(false);
+      setMobileSearchOpen(false);
+      setSearchQuery("");
+    }
+  };
+
+  const navLinks = [
+    { name: "Home", href: "/", icon: Home, hasDropdown: false },
+    { 
+      name: "Lectures", 
+      href: "/lectures/UUWsdcrre0WbCWML_PnuzoAg", 
+      icon: Video, 
+      hasDropdown: true,
+      dropdownItems: playlists?.slice(0, 6).map(p => ({ name: p.title, href: `/lectures/${p.id}`, icon: PlayCircle })) || [],
+      viewAllLink: "/lectures",
+      viewAllText: "View All Lectures"
+    },
+    { name: "Books", href: "/books", icon: BookOpen, hasDropdown: false },
+    { name: "Articles", href: "/articles", icon: FileText, hasDropdown: false },
+    { 
+      name: "Q&A", 
+      href: "/qna", 
+      icon: HelpCircle, 
+      hasDropdown: true,
+      dropdownItems: qna_categories?.filter(c => c.slug !== "all").slice(0, 6).map(c => ({ name: c.title, href: `/qna/${c.slug}`, icon: MessageCircle })) || [],
+      viewAllLink: "/qna",
+      viewAllText: "View All Q&A"
+    },
+    { name: "Counselling", href: "/counselling", icon: Calendar, hasDropdown: false },
+    { name: "About", href: "/about", icon: User, hasDropdown: false },
+    { name: "Contact", href: "/contact", icon: Mail, hasDropdown: false },
+  ];
+
+  const socialLinks = [
+    { icon: Facebook, href: "https://www.facebook.com/SheikhAssimAlhakeemTeam/", color: "hover:text-[#1877F2]" },
+    { icon: Youtube, href: "https://www.youtube.com/user/assimalhakeem", color: "hover:text-[#FF0000]" },
+    { icon: Instagram, href: "#", color: "hover:text-[#E4405F]" },
+    { icon: Twitter, href: "#", color: "hover:text-[#1DA1F2]" },
+  ];
+
+  const dropdownVariants = {
+    hidden: { opacity: 0, y: -10, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 300, damping: 20, staggerChildren: 0.05 } },
+    exit: { opacity: 0, y: -10, scale: 0.95, transition: { duration: 0.15 } }
+  };
 
   return (
     <>
-      <header 
-        ref={headerRef} 
-        className="bg-white lg:pt-4 lg:pb-[40px] transition-all duration-500"
-      >
-        <div className="lg:hidden flex justify-start ml-2">
-          <button onClick={toggleMobileNav} className="text-2xl p-3 focus:outline-none">
-            <i className={mobileNavOpen ? "ri-menu-line" : "ri-menu-line"}></i>
-          </button>
-          <div className="flex justify-end mr-6 mb-2 mt-2 md:mb-2 lg:mb-5 items-center w-full lg:w-auto">
-            <Link href="/">
-              <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
-            </Link>
-          </div>
-        </div>
-        
-        <div className="container mx-auto z-30 lg:relative items-center flex flex-col lg:flex-row justify-between gap-y-1 lg:gap-y-0">
-          <div className="flex justify-center sm:hidden lg:block hidden mb-2 md:mb-2 lg:mb-5 items-center w-full lg:w-auto">
-            <Link href="/">
-              <Image src="/img/id/logo.png" alt="Logo" width={125} height={50} />
-            </Link>
-          </div>
-          <div className="flex flex-col items-center justify-center w-full lg:flex-row lg:justify-end">
-          <div className="flex justify-center mb-4 sm:hidden lg:block hidden items-center gap-x-2 lg:justify-normal lg:mr-4 lg:mb-4">
-            <div className="flex items-center gap-x-2">
-            <Mail className="w-6 h-6 text-accent" />
-            <div className="text-secondary">sheikhassim.bookings@gmail.com</div>
+      {/* Top Bar */}
+      <div className="bg-[#1a1f2e] text-white py-2 hidden lg:block">
+        <div className="container max-w-[1260px] mx-auto px-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-6 text-sm">
+              <div className="flex items-center space-x-2">
+                <Phone size={14} className="text-[#10b981]" />
+                <span className="text-gray-300">+966 12 345 6789</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Mail size={14} className="text-[#10b981]" />
+                <span className="text-gray-300">contact@assimalhakeem.com</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MapPin size={14} className="text-[#10b981]" />
+                <span className="text-gray-300">Jeddah, Saudi Arabia</span>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              {socialLinks.map((social, idx) => (
+                <motion.a key={idx} href={social.href} target="_blank" rel="noopener noreferrer"
+                  whileHover={{ scale: 1.15, y: -2 }} whileTap={{ scale: 0.95 }}
+                  className={`transition-colors duration-200 text-gray-300 ${social.color}`}>
+                  <social.icon size={16} />
+                </motion.a>
+              ))}
             </div>
           </div>
-          <button
-            onClick={() => window.location.href = '/counselling'}
-            className="button w-[200px] sm:hidden lg:block hidden h-[48px] mb-4 lg:w-auto lg:mb-4 mx-auto lg:mx-0"
-          >
-            Counselling
-          </button>
         </div>
+      </div>
 
-          <div className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-10 lg:gap-y-0">
-            <nav
-              ref={desktopNavRef}
-              
-              className="bg-white absolute px-[300px] scroll-down w-full left-0 -bottom-[68px] shadow-custom1 h-16 rounded-[10px] hidden lg:flex lg:items-center lg:justify-center transition-all duration-500"
-            >
-              <ul className="flex text-[20px]">
-                <li>
-                  <Link
-                    href="/"
-                    style={{ fontFamily: "'Inter', Arial, sans-serif" }}
-                    className={`border-r-[1px] border-[#DCDCDC] pr-8 text-[#525252] !bg-transparent hover:text-[#665BCB] text-[1.2rem] transition-all duration-300 ${
-                      isActive("/") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    Home
-                  </Link>
-                </li>
-                
-                <li className="relative group">
-                  <Link
-                    href=""
-                    className={`border-r-[1px] border-[#DCDCDC] !bg-transparent flex items-center text-[#525252] text-[20px] hover:text-[#665BCB] transition-all duration-300 ${
-                      router.pathname.startsWith("/lectures") ? "text-accent font-bold" : ""
-                    }`}
-                  >
-                    Lectures
-                    <span className="ml-2 flex items-center transition-transform duration-300 ease-in-out group-hover:rotate-180">
-                      <ExpandMoreIcon />
-                    </span>
-                  </Link>
-                  
-                  <div className="sub-menu absolute bg-white mb-4 p-4 shadow-lg hidden group-hover:block w-[1100px] h-[400px]">
-                    <div className="sub-menu-wrap scrollbar p-0 px-4 py-4 overflow-y-auto h-full flex gap-x-10">
-                      <ul className="flex flex-col w-1/3 p-0 justify-start items-start submenu-links text-[#525252]">
-                        {firstList.map((playlist) => (
-                          <li className="pb-[12px] p-0 tracking-wide" key={playlist.id}>
-                            <Link
-                              href={`/lectures/${playlist.id}`}
-                              className="text-[#525252] hover:bg-transparent underline hover:text-black transition-all duration-300 text-[16px] leading-[2rem] p-0 w-full"
-                            >
-                              {playlist.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                      
-                      <ul className="flex flex-col w-1/3 p-0 justify-start items-start submenu-links text-[#525252]">
-                        {secondList.map((playlist) => (
-                          <li className="mb-3 tracking-wide" key={playlist.id}>
-                            <Link
-                              href={`/lectures/${playlist.id}`}
-                              className="text-[#525252] hover:bg-transparent underline hover:text-black transition-all duration-300 text-[16px] leading-[2rem] p-0 w-full"
-                            >
-                              {playlist.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                      
-                      <ul className="flex flex-col w-1/3 p-0 justify-start submenu-links text-[#525252]">
-                        {thirdList.map((playlist) => (
-                          <li className="mb-3 tracking-wide" key={playlist.id}>
-                            <Link
-                              href={`/lectures/${playlist.id}`}
-                              className="text-[#525252] hover:bg-transparent hover:text-black underline transition-all duration-300 text-[18px] leading-[2rem] p-0 w-full"
-                            >
-                              {playlist.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                
-                <li>
-                  <Link 
-                    href="/articles" 
-                    className={`border-r-[1px] text-[#525252] !bg-transparent border-[#DCDCDC] px-8 text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
-                      isActive("/articles") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    Articles
-                  </Link>
-                </li>
+      {/* Main Header Navigation - FORCE WHITE BACKGROUND */}
+      <header style={{ backgroundColor: '#ffffff' }} className={`transition-all duration-300 ${isSticky ? "fixed top-0 left-0 right-0 shadow-xl z-50" : "relative"}`}>
+        <div className="container max-w-[1260px] mx-auto px-4">
+          <div className="flex items-center justify-between py-2 lg:py-3">
+            {/* Logo */}
+            <Link href="/" className="flex items-center flex-shrink-0">
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="relative">
+                <Image 
+                  src="/img/logo.png" 
+                  alt="Assim Al Hakeem" 
+                  width={isSticky ? 140 : 170}
+                  height={isSticky ? 38 : 46}
+                  className="h-auto w-auto max-h-[38px] lg:max-h-[46px] transition-all duration-300"
+                  priority
+                />
+              </motion.div>
+            </Link>
 
-                
-                <li>
-                  <Link 
-                    href="/books" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
-                      isActive("/books") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    Books
+            {/* Desktop Navigation - FORCE WHITE BACKGROUND */}
+            <nav style={{ backgroundColor: '#ffffff' }} className="hidden lg:flex items-center space-x-1">
+              {navLinks.map((link, idx) => (
+                <div key={idx} className="relative"
+                  onMouseEnter={() => link.hasDropdown && handleDropdownEnter(link.name)}
+                  onMouseLeave={link.hasDropdown ? handleDropdownLeave : undefined}>
+                  <Link href={link.href}
+                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap
+                      ${router.pathname === link.href || (link.href !== "/" && router.pathname.startsWith(link.href))
+                        ? "text-[#10b981] bg-[#10b981]/5" 
+                        : "text-[#1a1f2e] hover:text-[#10b981] hover:bg-gray-50"}`}>
+                    <link.icon size={16} className="mr-1" />
+                    <span>{link.name}</span>
+                    {link.hasDropdown && (
+                      <motion.div animate={{ rotate: activeDropdown === link.name ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                        <ChevronDown size={14} />
+                      </motion.div>
+                    )}
                   </Link>
-                </li>
-                
-                <li>
-                  <Link 
-                    href="/questions" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
-                      isActive("/questions") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    Qna
-                  </Link>
-                </li>
-                
-                <li>
-                  <Link
-                    href="/counselling"
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent  text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
-                      isActive("/counselling") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    Counselling
-                  </Link>
-                </li>
-                
-                <li>
-                  <Link 
-                    href="/ask-question" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
-                      isActive("/ask-question") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    Questions
-                  </Link>
-                </li>
-                
-                <li>
-                  <Link 
-                    href="/contact" 
-                    className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
-                      isActive("/contact") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    Contact
-                  </Link>
-                </li>
-                
-                <li>
-                  <Link 
-                    href="/about" 
-                     className={`border-r-[1px] border-[#DCDCDC] px-8 !bg-transparent text-[#525252] text-[1.2rem] hover:text-[#665BCB] transition-all duration-300 ${
-                      isActive("/about") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    About
-                  </Link>
-                </li>
-              </ul>
+
+                  <AnimatePresence>
+                    {link.hasDropdown && activeDropdown === link.name && (
+                      <motion.div variants={dropdownVariants} initial="hidden" animate="visible" exit="exit"
+                        style={{ backgroundColor: '#ffffff' }}
+                        className="absolute top-full left-0 mt-1 w-72 rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50">
+                        <div className="py-2 max-h-[400px] overflow-y-auto scrollbar-thin">
+                          {link.dropdownItems?.map((item, itemIdx) => (
+                            <motion.div key={itemIdx} variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}>
+                              <Link href={item.href}
+                                className="flex items-center px-4 py-3 text-sm text-[#1a1f2e] hover:bg-[#10b981]/10 hover:text-[#10b981] transition-all duration-200 group">
+                                <item.icon size={16} className="mr-3 text-gray-400 group-hover:text-[#10b981] transition-colors" />
+                                <span className="flex-1 truncate">{item.name}</span>
+                                <motion.span initial={{ x: -10, opacity: 0 }} whileHover={{ x: 0, opacity: 1 }} className="text-[#10b981]">→</motion.span>
+                              </Link>
+                            </motion.div>
+                          ))}
+                          {link.viewAllLink && (
+                            <div className="border-t border-gray-100 mt-2 pt-2">
+                              <Link href={link.viewAllLink}
+                                className="flex items-center justify-between px-4 py-3 text-sm text-[#1a1f2e] hover:bg-[#10b981]/10 hover:text-[#10b981] font-medium transition-all duration-200">
+                                <span>{link.viewAllText}</span>
+                                <ExternalLink size={14} />
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
             </nav>
+
+            {/* Right Actions */}
+            <div className="flex items-center space-x-1 lg:space-x-2">
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                onClick={() => setSearchOpen(!searchOpen)}
+                className="hidden lg:flex p-2 rounded-full hover:bg-gray-100 transition-colors">
+                <Search size={20} className="text-[#1a1f2e]" />
+              </motion.button>
+
+              <motion.button whileTap={{ scale: 0.95 }}
+                onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
+                className="lg:hidden p-2 rounded-full hover:bg-gray-100 transition-colors">
+                <Search size={20} className="text-[#1a1f2e]" />
+              </motion.button>
+
+              <Link href="/ask-question" className="hidden md:block">
+                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                  className="flex items-center space-x-1 bg-gradient-to-r from-[#10b981] to-[#059669] text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg shadow-[#10b981]/25 hover:shadow-xl hover:shadow-[#10b981]/30 transition-all duration-300 whitespace-nowrap">
+                  <HelpCircle size={16} />
+                  <span>Ask Question</span>
+                </motion.button>
+              </Link>
+
+              <motion.button whileTap={{ scale: 0.95 }}
+                onClick={() => setMobileMenuOpen(true)}
+                className="p-2 rounded-full hover:bg-gray-100 lg:hidden transition-colors">
+                <Menu size={22} className="text-[#1a1f2e]" />
+              </motion.button>
+            </div>
           </div>
         </div>
+
+        {/* Desktop Search Bar */}
+        <AnimatePresence>
+          {searchOpen && (
+            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }} className="border-t border-gray-100 bg-gray-50 overflow-hidden">
+              <div className="container max-w-[1260px] mx-auto px-4 py-4">
+                <form onSubmit={handleSearch} className="flex items-center gap-3">
+                  <div className="flex-1 relative">
+                    <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <input ref={searchInputRef} type="text" placeholder="Search lectures, books, articles..."
+                      value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981] transition-all text-[#1a1f2e]" />
+                  </div>
+                  <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit"
+                    className="px-6 py-3 bg-[#10b981] text-white rounded-xl font-medium hover:bg-[#059669] transition-colors whitespace-nowrap">
+                    Search
+                  </motion.button>
+                  <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="button"
+                    onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+                    className="px-4 py-3 text-gray-500 hover:text-gray-700 transition-colors">
+                    Cancel
+                  </motion.button>
+                </form>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Mobile Search Bar */}
+        <AnimatePresence>
+          {mobileSearchOpen && (
+            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }} className="lg:hidden border-t border-gray-100 bg-gray-50 overflow-hidden">
+              <div className="px-4 py-3">
+                <form onSubmit={handleSearch} className="flex items-center gap-2">
+                  <div className="flex-1 relative">
+                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <input type="text" placeholder="Search..."
+                      value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-10 pr-3 py-2.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981] text-sm" />
+                  </div>
+                  <motion.button whileTap={{ scale: 0.95 }} type="submit"
+                    className="px-4 py-2.5 bg-[#10b981] text-white rounded-lg text-sm font-medium">
+                    Go
+                  </motion.button>
+                  <motion.button whileTap={{ scale: 0.95 }} type="button"
+                    onClick={() => { setMobileSearchOpen(false); setSearchQuery(""); }}
+                    className="px-3 py-2.5 text-gray-500 text-sm">
+                    Cancel
+                  </motion.button>
+                </form>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
-      {/* Mobile Navigation */}
-      <div className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-10 lg:gap-y-0">
-        <div className="flex justify-center hide items-center gap-x-2 lg:justify-normal">
-          <i className="ri-map-pin-2-fill text-2xl text-accent"></i>
-          <div className="text-secondary">123 Arling, Miola</div>
-        </div>
-        
-        <div className="flex justify-center hide items-center gap-x-2 lg:justify-normal">
-          <i className="ri-phone-fill text-2xl text-accent"></i>
-          <div className="text-secondary">(+487 384 9452)</div>
-        </div>
+      {isSticky && <div className="h-[60px] lg:h-[70px]" />}
 
-        <nav
-          ref={mobileNavRef}
-          className={`bg-white fixed w-[320px] sm:w-[480px] md:w-[680px] pb-[150px] top-0 h-screen shadow-2xl lg:hidden transition-all z-50 ${
-            mobileNavOpen ? 'left-0' : '-left-[600px] sm:w-[480px] md:-left-[680px]'
-          }`}
-        >
-          <div className="px-2 md:px-6 flex flex-col gap-y-12 h-full">
-            <a href="#">
-              <img src="/img/id/logo.png" className="w-[150px] md:w-[200px] mx-auto" alt="Logo" />
-            </a>
-            
-            <ul className="flex scrollbar-thin scrollbar-thumb-gray-900 flex-col text-[22px]">
-              <div className="flex">
-                <div className="flex items-center">
-                  <i className="ri-home-4-fill text-[28px] text-[#44929C]"></i>
-                  <div>
-                    <Link 
-                      href="/" 
-                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
-                        isActive("/") ? "text-[#665BCB]" : ""
-                      }`}
-                    >
-                      Home 
-                    </Link>
-                  </div>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] lg:hidden" onClick={() => setMobileMenuOpen(false)} />
+            <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30 }} className="fixed top-0 right-0 h-full w-[280px] bg-white z-[101] lg:hidden shadow-2xl">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-between p-4 border-b border-gray-100">
+                  <span className="text-lg font-semibold text-[#1a1f2e]">Menu</span>
+                  <motion.button whileTap={{ scale: 0.95 }} onClick={() => setMobileMenuOpen(false)}
+                    className="p-2 rounded-full hover:bg-gray-100">
+                    <X size={20} className="text-[#1a1f2e]" />
+                  </motion.button>
                 </div>
-              </div>
-              
-              <li className="relative group">
-                <div className="flex">
-                  <div className="flex w-full items-center">
-                    <i className="ri-file-video-fill text-[28px] text-[#44929C]"></i>
-                    <div
-                      onClick={toggleLecturesSubmenu}
-                      className={`flex w-full items-center ml-[15px] justify-between text-[1.2rem] cursor-pointer ${
-                        lecturesSubmenuOpen ? "text-accent" : "text-secondary"
-                      } hover:text-[#665BCB] transition-all duration-1000`}
-                    >
-                      Lectures
-                      <span className={`transition-transform duration-1000 ${lecturesSubmenuOpen ? "rotate-180" : ""}`}>
-                        <ExpandMoreIcon />
-                      </span>
+                <div className="flex-1 overflow-y-auto py-4">
+                  {navLinks.map((link, idx) => (
+                    <div key={idx}>
+                      <Link href={link.href} onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center px-6 py-3 text-[#1a1f2e] hover:bg-[#10b981]/5 hover:text-[#10b981] transition-colors">
+                        <link.icon size={18} className="mr-3" />
+                        <span>{link.name}</span>
+                      </Link>
                     </div>
-                  </div>
+                  ))}
                 </div>
-                
-                {lecturesSubmenuOpen && (
-                  <div className="sub-menu overflow-x-auto bg-white mt-2 h-[430px] sm-h-[400px]">
-                    <ul className="submenu-links ml-2 text-[#525252]">
-                      {firstList.map((playlist) => (
-                        <li key={playlist.id} className="w-full leading-[1.75] mb-4">
-                          <Link
-                            href={`/lectures/${playlist.id}`}
-                            className="text-[#525252] underline text-[17px] hover:text-black transition-all duration-300"
-                          >
-                            {playlist.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <ul className="submenu-links ml-2 text-[#525252]">
-                      {secondList.map((playlist) => (
-                        <li key={playlist.id} className="w-full leading-[1.75] mb-4">
-                          <Link
-                            href={`/lectures/${playlist.id}`}
-                            className="text-[#525252] underline text-[17px] hover:text-black transition-all duration-300"
-                          >
-                            {playlist.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <ul className="submenu-links ml-2 text-[#525252]">
-                      {thirdList.map((playlist) => (
-                        <li key={playlist.id} className="w-full leading-[1.75] mb-4">
-                          <Link
-                            href={`/lectures/${playlist.id}`}
-                            className="text-[#525252] underline text-[1.2rem] hover:text-black transition-all duration-300"
-                          >
-                            {playlist.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </li>
-              
-              {/* Rest of mobile navigation links */}
-              <div className="flex">
-                <div className="flex items-center">
-                  <i className="ri-article-fill text-[28px] text-[#44929C]"></i>
-                  <li>
-                    <Link 
-                      href="/articles" 
-                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
-                        isActive("/articles") ? "text-[#665BCB]" : ""
-                      }`}
-                    >
-                      Articles 
-                    </Link>
-                  </li>
-                </div>
-              </div>
-              
-              <div className="flex">
-                <div className="flex items-center">
-                  <i className="ri-book-shelf-line text-[28px] text-[#44929C]"></i>
-                  <li>
-                    <Link 
-                      href="/books" 
-                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
-                        isActive("/books") ? "text-[#665BCB]" : ""
-                      }`}
-                    >
-                      Books 
-                    </Link>
-                  </li>
-                </div>
-              </div>
-              
-              <div className="flex">
-                <div className="flex items-center">
-                  <i className="ri-question-answer-fill text-[28px] text-[#44929C]"></i>
-                  <li>
-                    <Link 
-                      href="/questions" 
-                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
-                        isActive("/questions") ? "text-[#665BCB]" : ""
-                      }`}
-                    >
-                      Qna 
-                    </Link>
-                  </li>
-                </div>
-              </div>
-              
-              <div className="flex">
-                <div className="flex items-center">
-                  <i className="ri-group-fill text-[28px] text-[#44929C]"></i>
-                  <li>
-                    <Link 
-                      href="/counselling" 
-                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
-                        isActive("/counselling") ? "text-[#665BCB]" : ""
-                      }`}
-                    >
-                      Counselling 
-                    </Link>
-                  </li>
-                </div>
-              </div>
-              
-              <div className="flex">
-                <div className="flex items-center">
-                <i className="ri-questionnaire-fill text-[28px] text-[#44929C]"></i>
-                <li>
-                  <Link 
-                    href="/ask-question" 
-                    className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
-                      isActive("/ask-question") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    Questions 
+                <div className="p-4 border-t border-gray-100">
+                  <Link href="/ask-question" onClick={() => setMobileMenuOpen(false)}>
+                    <motion.button whileTap={{ scale: 0.98 }}
+                      className="w-full bg-gradient-to-r from-[#10b981] to-[#059669] text-white py-3 rounded-xl font-medium flex items-center justify-center gap-2">
+                      <HelpCircle size={18} />
+                      <span>Ask a Question</span>
+                    </motion.button>
                   </Link>
-                </li>
                 </div>
               </div>
-              
-              <div className="flex">
-                <div className="flex items-center">
-                  <i className="ri-contacts-fill text-[28px] text-[#44929C]"></i>
-                  <li>
-                    <Link 
-                      href="/contact" 
-                      className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
-                        isActive("/contact") ? "text-[#665BCB]" : ""
-                      }`}
-                    >
-                      Contact 
-                    </Link>
-                  </li>
-                </div>
-              </div>
-              
-              <div className="flex">
-                <div className="flex items-center">
-                <i className="ri-profile-fill text-[28px] text-[#44929C]"></i>
-                <li>
-                  <Link 
-                    href="/about" 
-                    className={`text-secondary transparent text-[1.2rem] hover:text-[#665BCB] rounded-lg transition-all duration-300 ${
-                      isActive("/about") ? "text-[#665BCB]" : ""
-                    }`}
-                  >
-                    About 
-                  </Link>
-                </li>
-                </div>
-              </div>
-            </ul>
-          </div>
-        </nav>
-      </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

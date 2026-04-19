@@ -1,213 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-    @apply text-secondary font-primary text-[17px] leading-8;
-    font-family: "Inter", Arial, sans-serif;
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        @apply text-secondary font-primary text-[17px] leading-8 antialiased;
+        font-family: "Inter", system-ui, sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply text-primary leading-[120%] font-display;
+    }
+
+    .h1 {
+        @apply text-[36px] xl:text-[64px] font-bold;
+    }
+
+    .h2 {
+        @apply text-[1.75rem] xl:text-[2.25rem] font-bold capitalize tracking-tight;
+    }
+
+    .h3 {
+        @apply text-[20px] xl:text-[26px] font-semibold;
+    }
+
+    .h4 {
+        @apply text-[18px] xl:text-[22px] font-semibold capitalize;
+    }
 }
 
+@layer components {
+    .btn {
+        @apply rounded-full uppercase tracking-[1.02px] flex items-center justify-center transition-all duration-300;
+    }
 
-h1, h2, h3, h4, h5, h6 {
-    @apply text-primary leading-[120%];
-}
+    .btn-sm {
+        @apply h-12 px-8 text-sm;
+    }
 
-.h1 {
-    @apply text-[36px] xl:text-[64px] font-semibold;
-}
+    .btn-lg {
+        @apply h-14 px-10 text-base;
+    }
 
-.h2 {
-    @apply text-[1.5rem] xl:text-[2rem] font-semibold capitalize tracking-[0.44px];
-}
+    .btn-accent {
+        @apply bg-accent text-white hover:bg-accent-secondary shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30;
+    }
 
-.h3 {
-    @apply text-[20px] xl:text-[26px] font-semibold;
-}
-.h4 {
-    @apply text-[20px] xl:text-[26px] font-semibold capitalize;
-}
-.btn {
-    @apply rounded-full uppercase tracking-[1.02px] flex items-center justify-center transition-all;
-}
+    .btn-white {
+        @apply bg-white text-secondary hover:bg-white/90 shadow-lg;
+    }
 
-.btn-sm {
-    @apply h-14 px-10;
-}
+    .btn-outline {
+        @apply bg-transparent border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all duration-300;
+    }
 
-.btn-lg {
-    @apply h-16 px-[50px];
-}
+    .input, .select {
+        @apply w-full rounded-xl h-[56px] outline-none border border-gray-200 text-secondary font-light placeholder:font-light placeholder:text-gray-400 transition-all duration-300 focus:border-accent focus:ring-2 focus:ring-accent/20;
+    }
 
-.btn-accent {
-    @apply bg-accent text-white hover:bg-accent-secondary;
-}
+    .input {
+        @apply px-5;
+    }
 
-.btn-white {
-    @apply bg-white text-secondary hover:bg-white/90;
-}
+    .section {
+        @apply py-16 lg:py-24;
+    }
 
-.btn-outline {
-    @apply bg-transparent border border-[#1CBCCF] text-secondary hover:bg-accent hover:border-transparent hover:text-white;
-}
-
-.input, .select {
-    @apply w-full rounded-[10px] h-[66px] outline-none border border-[#dbdfdf] text-secondary font-light placeholder:font-light placeholder:text-secondary;
-}
-
-.input {
-    @apply px-4;
-}
-
-.section {
-    @apply py-12 xl:py-[100px];
-}
-
-.text-accent {
-  color: #44929C; /* Your accent color */
-}
-.font-bold {
-  font-weight: bold;
-}
-
-/* Regular CSS for Swiper Pagination Styles */
-/* For advanced styles */
-.swiper-pagination-bullet-active {
-    opacity: 0.8;
-    background: linear-gradient(to right, #ff5733, #1cbccf); /* Gradient background */
+    .container-custom {
+        @apply container max-w-[1260px] mx-auto px-4 lg:px-6;
+    }
 }
 
 @layer utilities {
-    .scrollbar-thin {
-      scrollbar-width: thin; /* For Firefox */
+    .text-balance {
+        text-wrap: balance;
     }
-  
-    .scrollbar-thumb-rounded {
-      scrollbar-color: #c1c1c1 transparent; /* Thumb color and track background for Firefox */
+    
+    .scrollbar-thin {
+        scrollbar-width: thin;
     }
   
     .scrollbar-thin::-webkit-scrollbar {
-      height: 6px; /* Horizontal scrollbar height */
-      width: 6px; /* Vertical scrollbar width */
+        height: 6px;
+        width: 6px;
     }
   
     .scrollbar-thin::-webkit-scrollbar-thumb {
-      background-color: #c1c1c1; /* Scrollbar thumb color */
-      border-radius: 3px; /* Optional: Rounded corners */
+        background-color: #d1d5db;
+        border-radius: 10px;
     }
   
     .scrollbar-thin::-webkit-scrollbar-track {
-      background-color: #f1f1f1; /* Scrollbar track color */
+        background-color: #f3f4f6;
     }
-  }
-  
 
-.button {
-    border: 2px solid #1CBCCF;
-    padding: 7px 45px;
-    border-radius: 50px;
-    text-transform: uppercase;
+    .gradient-text {
+        @apply bg-gradient-to-r from-accent to-accent-secondary bg-clip-text text-transparent;
+    }
+
+    .glass-effect {
+        @apply bg-white/80 backdrop-blur-md;
+    }
+
+    .hover-lift {
+        @apply transition-transform duration-300 hover:-translate-y-1;
+    }
 }
 
-.button:hover {
-    border: 2px solid black;
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
 }
 
+.slide-up {
+    animation: slideUp 0.5s ease-out;
+}
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-.custom-button {
-    padding: 10px 20px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .custom-button:hover {
-    cursor: pointer;
-  }
-  
-  .custom-button.active {
-    background-color: #1890ff; /* Ant Design primary color */
-    color: #fff; /* White text */
-  }
-  
-  .custom-button.default {
-    background-color: #fff; /* Default background color */
-    color: #000; /* Default text color */
-  }
-  
-  .custom-button.default:hover {
-    background-color: #f5f5f5; /* Light grey background on hover */
-  }
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Force header navigation to white background */
+header nav,
+nav.header-nav,
+.main-navigation,
+.primary-menu {
+  background-color: #ffffff !important;
+}
 
-  .no-scroll {
+/* Remove any materialize red color overrides */
+nav {
+  background-color: #ffffff !important;
+  color: #1a1f2e !important;
+  box-shadow: none !important;
+}
+
+nav ul a {
+  color: #1a1f2e !important;
+}
+
+nav ul a:hover {
+  background-color: #10b98110 !important;
+  color: #10b981 !important;
+}
+/* Card Hover Effects */
+.card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+}
+
+/* Loading Skeleton Animation */
+.skeleton {
+    @apply bg-gray-200 animate-pulse rounded;
+}
+
+/* Custom Checkbox */
+.custom-checkbox {
+    @apply w-5 h-5 rounded border-2 border-gray-300 text-accent focus:ring-accent focus:ring-offset-0;
+}
+
+/* Custom Radio */
+.custom-radio {
+    @apply w-5 h-5 border-2 border-gray-300 text-accent focus:ring-accent;
+}
+
+/* No Scroll Utility */
+.no-scroll {
     overflow: hidden;
-  }
-  
+    height: 100vh;
+}
 
-  @media (max-width: 768px) {
-    .custom-button {
-      padding: 30px 20px;
-      font-size: 18px;
-      line-height: 20px;
-    }
-  }
-  @media (min-width: 1330px) {
+/* Gradient Backgrounds */
+.bg-gradient-primary {
+    @apply bg-gradient-to-br from-primary via-primary-light to-primary;
+}
+
+.bg-gradient-accent {
+    @apply bg-gradient-to-r from-accent to-accent-secondary;
+}
+
+/* Responsive Container */
+@media (min-width: 1330px) {
     .container {
-      width: 1280px;
+        max-width: 1260px;
     }
-  }
-  @media (min-width: 1330px) {
-    .container2 {
-      width: 1280px;
-    }
-  }
+}
 
+/* Mobile Menu Animation */
+.mobile-menu-enter {
+    opacity: 0;
+    transform: translateX(100%);
+}
 
-  @media (min-width: 960px) {
-    .container {
-      max-width: 1260px;
-    }
-  }
-  @media (min-width: 960px) {
-    .container2 {
-      max-width: 1260px;
-    }
-  }
+.mobile-menu-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 300ms ease-in-out;
+}
 
-  @media (max-width: 1280px) {
+.mobile-menu-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
 
-  
-    .mobile-header {
-      display: flex; /* Show the mobile header */
-    }
-  }
-  
-  .custom-button {
-    padding: 25px 25px !important; /* Adjust as needed */
-  }
+.mobile-menu-exit-active {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 300ms ease-in-out;
+}
 
-  /* Styles for header and navigation */
+/* Sticky Header */
 .header-fixed {
-  width: 100%;
-  top: 0;
-  z-index: 9999;
+    @apply fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-lg;
+    animation: slideDown 0.3s ease-out;
 }
 
-.mobile-header {
-  display: none; 
-}
-
-@media (max-width: 1280px) {
-
-
-  .mobile-header {
-    display: flex; 
-    flex-direction: column;
-  }
-
-  .mobile-nav {
-    display: none; 
-  }
-
-  .mobile-nav.open {
-    display: block; 
-  }
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }

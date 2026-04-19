@@ -1,117 +1,141 @@
 import {
-	getHomeLectures,
-	getOptHomeQuotes,
-	getHomeArticles,
-	getAllPlaylists2,
-	getHomeBooks,
-	getHomeQna,
-	getHeaderLectures,
-	getAllQnaCategory,
+  getHomeLectures,
+  getOptHomeQuotes,
+  getHomeArticles,
+  getAllPlaylists2,
+  getHomeBooks,
+  getHomeQna,
+  getHeaderLectures,
+  getAllQnaCategory,
 } from "../lib/fetch";
 
 import Meta from "../components/meta";
-import Header from "../components/header";
-import HomeRecent from "../components/home/recent";
-// import HomeQuoteSlider from "../components/home2/quote-slider";
-// import HomeBookList from "../components/home2/books";
-// import HomeOrganizations from "../components/home/organizations";
-import HomeBanner from "../components/home/banner";
-import HomeArticles from "../components/home/articles";
-// import HomePostList2 from "../components/home/post-list2";
-import HomeBooks from "../components/home/books";
-// import HomePostList4 from "../components/home/post-list4";
-// import HomeBookList from "../components/home/books";
-// import HomeFeatured from "../components/home2/featured";
-import { server } from "../lib/config";
-import HomeQna from "../components/home/qna";
-import TextContent from "../components/home/text-content";
-import HomeQuoteSlider from "../components/home/quote-slider";
-import QuranSlider from "../components/Slider";
-import Banner from "../components/home/banner1";
 import Header2 from "../components/header1";
-import Articles from "./articles";
-import BookSlider from "./book";
-import TestimonialSlider from "../components/verce";
-import Question from "../components/home/question";
-import BookAppointment from "../components/home/appoinment";
-import Banner2 from "../components/home/banner2";
-import RecentLecture from "../components/home/recent-lectures";
-import BooksSlider from "./book";
-import AskQuestion from "../components/home/askquestion-counselling";
-import AskQuestionCounselling from "../components/home/askquestion-counselling";
-import BookList from "./books";
-
-
+import HeroBanner from "../components/home/hero-banner";
+import RecentLecturesEnhanced from "../components/home/recent-lectures-enhanced";
+import FeaturedBooks from "../components/home/featured-books";
+import ArticlesSection from "../components/home/articles-enhanced";
+import QASection from "../components/home/qa-section";
+import CounsellingCTA from "../components/home/counselling-cta";
+import TestimonialsSection from "../components/home/testimonials-section";
+import NewsletterSection from "../components/home/newsletter-section";
+import StatsSection from "../components/home/stats-section";
+import AboutPreview from "../components/home/about-preview";
 
 export default function Home({
-	lectures,
-	headerLectures,
-	quotes,
-	articles,
-	playlists,
-	books,
-	qna,
-	qna_categories,
+  lectures = null,
+  headerLectures = null,
+  quotes = [],
+  articles = [],
+  playlists = [],
+  books = [],
+  qna = [],
+  qna_categories = [],
 }) {
-	return (
-		<>
-			<Meta
-				title="Official website of Assim Alhakeem"
-				description="Sheikh Assim bin Luqman al-Hakeem was born in 1962 in the city of Al-Khobar, which lies in the east of the Kingdom of Saudi Arabia. He was raised there until the age of 12 before he and his family moved to the Western Province of Saudi Arabia"
-				url={`${server}/contact`}
-				image={`${server}/img/id/default_share.jpeg`}
-				type="website"
-			/>
+  return (
+    <>
+      <Meta
+        title="Sheikh Assim Al Hakeem - Official Website"
+        description="Sheikh Assim bin Luqman al-Hakeem is a prominent Islamic scholar providing authentic Islamic knowledge through lectures, books, articles, and Q&A sessions."
+        url="https://assimalhakeem.com"
+        image="/img/og-image.jpg"
+        type="website"
+      />
 
-			<Header2
-				playlists={playlists}
-				lectures={headerLectures}
-				qna_categories={qna_categories}
-			/>
+      <Header2
+        playlists={playlists}
+        lectures={headerLectures}
+        qna_categories={qna_categories}
+      />
 
-			<div className="opt_home_ctn">
-				<Banner2 />
-				<RecentLecture />
-				<Articles />
-				<TestimonialSlider />
-				<HomeBooks books={books} />
-				<AskQuestionCounselling />
-				<Question />
-				<BookAppointment />
-				
-			</div>
-		</>
-	);
+      <main className="overflow-hidden">
+        {/* Hero Banner - Dark Background */}
+        <HeroBanner />
+
+        {/* Stats Section - White Background */}
+        <StatsSection />
+
+        {/* Recent Lectures - Light Gray Background */}
+        <RecentLecturesEnhanced lectures={lectures} />
+
+        {/* About Preview - White Background */}
+        <AboutPreview />
+
+        {/* Featured Books - Light Gray Background */}
+        <FeaturedBooks books={books} />
+
+        {/* Articles Section - White Background */}
+        <ArticlesSection articles={articles} />
+
+        {/* Q&A and Counselling - Light Gray Background */}
+        <section className="py-16 lg:py-24 bg-gray-50">
+          <div className="container max-w-[1260px] mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8">
+              <QASection qna={qna} />
+              <CounsellingCTA />
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials - White Background */}
+        <TestimonialsSection />
+
+        {/* Newsletter - Accent Gradient Background */}
+        <NewsletterSection />
+      </main>
+    </>
+  );
 }
 
 export async function getStaticProps(context) {
-	// const blogs = await getOptHomeBlogs();
-	const lectures = await getHomeLectures();
-	const headerLectures = await getHeaderLectures();
-	const quotes = await getOptHomeQuotes();
-	// const books = await getOptHomeBooks();
-	// const organizations = await getHomeOrganizations();
-	const articles = await getHomeArticles();
-	const qna = await getHomeQna();
-	// const articles = await getArticles()
-	// const papers = await getHomePapers();
-	// playlists & playlistsTitle
-	const playlists = await getAllPlaylists2();
-	// const posts4 = await getHome3Posts4();
-	// const organizations2 = await getHomeOrganizations();
-	const books = await getHomeBooks();
-	const qna_categories = await getAllQnaCategory();
+  try {
+    const [
+      lectures,
+      headerLectures,
+      quotes,
+      articles,
+      playlistsData,
+      books,
+      qna,
+      qna_categories,
+    ] = await Promise.all([
+      getHomeLectures().catch(() => null),
+      getHeaderLectures().catch(() => null),
+      getOptHomeQuotes().catch(() => []),
+      getHomeArticles().catch(() => []),
+      getAllPlaylists2().catch(() => ({ playlists: [], playlistsTitle: {} })),
+      getHomeBooks().catch(() => []),
+      getHomeQna().catch(() => []),
+      getAllQnaCategory().catch(() => []),
+    ]);
 
-	return {
-		props: {
-			lectures,
-			headerLectures,
-			quotes,
-			articles,
-			playlists: playlists.playlists,
-			books,
-			qna,
-			qna_categories,
-		},
-	};
+    return {
+      props: {
+        lectures: lectures || null,
+        headerLectures: headerLectures || null,
+        quotes: quotes || [],
+        articles: articles || [],
+        playlists: playlistsData?.playlists || [],
+        books: books || [],
+        qna: qna || [],
+        qna_categories: qna_categories || [],
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error("Error in getStaticProps:", error);
+    return {
+      props: {
+        lectures: null,
+        headerLectures: null,
+        quotes: [],
+        articles: [],
+        playlists: [],
+        books: [],
+        qna: [],
+        qna_categories: [],
+      },
+      revalidate: 60,
+    };
+  }
 }
