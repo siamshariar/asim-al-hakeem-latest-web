@@ -53,9 +53,6 @@ export default function ArticlesSection({ articles }) {
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute top-4 left-4 bg-accent text-white text-xs font-medium px-3 py-1 rounded-full">
-                      Featured
-                    </div>
                   </div>
                   <div className="p-6 lg:p-8 flex flex-col justify-center">
                     <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">

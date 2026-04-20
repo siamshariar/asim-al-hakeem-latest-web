@@ -69,7 +69,7 @@ export default function Footer() {
         <footer className="bg-primary text-white">
             {/* Main Footer */}
             <div className="pt-16 pb-12">
-                <div className="container max-w-[1260px] mx-auto">
+                <div className="container max-w-[1440px] mx-auto">
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
                         {/* About Column */}
                         <motion.div {...fadeInUp}>
@@ -77,9 +77,9 @@ export default function Footer() {
                                 <Image 
                                     src="/img/logo-white.png" 
                                     alt="Assim Al Hakeem" 
-                                    width={180}
-                                    height={50}
-                                    className="h-auto"
+                                    width={220}
+                                    height={60}
+                                    className="h-auto w-auto max-h-[42px] sm:max-h-[52px] md:max-h-[60px] lg:max-h-[70px]"
                                 />
                             </Link>
                             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -106,7 +106,7 @@ export default function Footer() {
 
                         {/* Quick Links */}
                         <motion.div {...fadeInUp} transition={{ delay: 0.1 }}>
-                            <h3 className="text-xl font-semibold mb-6 relative inline-block">
+                            <h3 className="text-xl text-white font-semibold mb-6 relative inline-block">
                                 Quick Links
                                 <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-accent"></span>
                             </h3>
@@ -131,7 +131,7 @@ export default function Footer() {
 
                         {/* Resources */}
                         <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
-                            <h3 className="text-xl font-semibold mb-6 relative inline-block">
+                            <h3 className="text-xl text-white font-semibold mb-6 relative inline-block">
                                 Resources
                                 <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-accent"></span>
                             </h3>
@@ -156,7 +156,7 @@ export default function Footer() {
 
                         {/* Newsletter & Contact */}
                         <motion.div {...fadeInUp} transition={{ delay: 0.3 }}>
-                            <h3 className="text-xl font-semibold mb-6 relative inline-block">
+                            <h3 className="text-xl text-white font-semibold mb-6 relative inline-block">
                                 Stay Connected
                                 <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-accent"></span>
                             </h3>

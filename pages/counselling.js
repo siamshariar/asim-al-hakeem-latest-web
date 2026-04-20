@@ -162,7 +162,7 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
                 className="bg-gradient-to-br from-[#10b981] to-[#059669] rounded-2xl shadow-lg p-6 text-white">
                 <div className="flex items-center gap-2 mb-3">
                   <Heart size={24} className="text-white" />
-                  <h2 className="text-xl font-bold">Donate for the Needy</h2>
+                  <h2 className="text-white text-xl font-bold">Donate for the Needy</h2>
                 </div>
                 <p className="text-white/90 text-sm mb-4">
                   Help a brother/sister in need who cannot afford counseling for marital issues, OCD, Waswas, and more.
@@ -196,9 +196,9 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
                       <div className="relative">
-                        <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                        {/* <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" /> */}
                         <input type="text" name="fullname" value={formValues.fullname} onChange={handleChange}
-                          className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all
+                          className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all
                             ${errors.fullname ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`}
                           placeholder="Your full name" />
                       </div>
@@ -207,9 +207,9 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
                       <div className="relative">
-                        <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                        {/* <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" /> */}
                         <input type="email" name="email" value={formValues.email} onChange={handleChange}
-                          className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all
+                          className={`w-full pl-14 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all
                             ${errors.email ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`}
                           placeholder="your@email.com" />
                       </div>
@@ -220,7 +220,7 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Phone (Optional)</label>
                     <div className="relative">
-                      <Phone size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                      {/* <Phone size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" /> */}
                       <input type="tel" name="phone" value={formValues.phone} onChange={handleChange}
                         className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981]"
                         placeholder="+966 XX XXX XXXX" />
@@ -231,7 +231,7 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Date *</label>
                       <div className="relative">
-                        <Calendar size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                        {/* <Calendar size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" /> */}
                         <input type="date" name="date" ref={dateInputRef} value={formValues.date} onChange={handleChange}
                           className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all cursor-pointer
                             ${errors.date ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`} />
@@ -241,7 +241,7 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Time *</label>
                       <div className="relative">
-                        <Clock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                        {/* <Clock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" /> */}
                         <input type="time" name="time" ref={timeInputRef} value={formValues.time} onChange={handleChange}
                           className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all cursor-pointer
                             ${errors.time ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`} />

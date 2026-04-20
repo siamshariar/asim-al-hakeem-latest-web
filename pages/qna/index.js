@@ -39,21 +39,21 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, qnaI
         <div className="container max-w-[1260px] mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-4 items-center">
             <div className="relative w-full lg:w-80">
-              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+              {/* <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" /> */}
               <input type="text" placeholder="Search questions..." value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-12 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981]" />
             </div>
             <div className="flex gap-2 overflow-x-auto w-full lg:w-auto pb-2 lg:pb-0 scrollbar-thin">
               <button onClick={() => setSelectedCategory("all")}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all
-                  ${selectedCategory === "all" ? "bg-[#10b981] text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all focus:outline-none focus:ring-0
+                  ${selectedCategory === "all" ? "bg-[#10b981] text-white focus:bg-[#10b981]" : "bg-gray-100 text-gray-700 hover:bg-gray-200 focus:bg-gray-100"}`}>
                 All Categories
               </button>
               {qnaCategories?.filter(c => c.slug !== "all").map(cat => (
                 <button key={cat.id} onClick={() => setSelectedCategory(cat.slug)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all
-                    ${selectedCategory === cat.slug ? "bg-[#10b981] text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all focus:outline-none focus:ring-0
+                    ${selectedCategory === cat.slug ? "bg-[#10b981] text-white focus:bg-[#10b981]" : "bg-gray-100 text-gray-700 hover:bg-gray-200 focus:bg-gray-100"}`}>
                   {cat.title}
                 </button>
               ))}
@@ -75,7 +75,7 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, qnaI
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-[#1a1f2e] mb-2">{item.question}</h3>
                       <p className="text-gray-600 text-sm line-clamp-3">{item.answer}</p>
-                      <Link href={`/qna/${item.id}`} className="inline-flex items-center gap-1 text-[#10b981] text-sm font-medium mt-3 hover:gap-2 transition-all">
+                      <Link href={`/qna/answer/${item.id}`} className="inline-flex items-center gap-1 text-[#10b981] text-sm font-medium mt-3 hover:gap-2 transition-all">
                         Read Full Answer <ChevronRight size={14} />
                       </Link>
                     </div>
