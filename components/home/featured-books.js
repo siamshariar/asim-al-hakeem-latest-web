@@ -72,7 +72,7 @@ export default function FeaturedBooks({ books }) {
     if (!featuredBooks.length) return null;
 
     return (
-        <section className="py-16 lg:py-20 bg-white">
+        <section className="py-16 lg:py-20 bg-gradient-to-br from-[#ecfdf5] via-[#f8fafc] to-white">
             <div className="container max-w-[1260px] mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
