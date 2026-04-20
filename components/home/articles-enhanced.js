@@ -140,4 +140,5 @@ export default function ArticlesSection({ articles }) {
       </div>
     </section>
   );
+  
 }

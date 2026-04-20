@@ -49,7 +49,7 @@ export default function PostCardVideo2({ item, statistics, videoId, playlistId, 
 
     return (
         <div className="card card-r pc-video" onClick={handleClick}> 
-            <div className="card-image">
+            <div className="card-image ">
                 <a  className="image-r"
                   href={getVideoUrl(item.slug, pathname, urlParams)}
                   onClick={(e) => {

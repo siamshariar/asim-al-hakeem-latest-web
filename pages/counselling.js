@@ -91,31 +91,31 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
       <Header2 playlists={playlists} lectures={headerLectures} qna_categories={qna_categories} />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#1a1f2e] to-[#2a3142] py-12 lg:py-16">
+      <section className="bg-gradient-to-br from-[#1a1f2e] to-[#2a3142] py-8 sm:py-10 lg:py-14">
         <div className="container max-w-[1260px] mx-auto px-4 text-center">
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Calendar size={48} className="text-[#10b981] mx-auto mb-4" />
-            <h1 className="text-3xl lg:text-4xl font-bold text-white mb-3">Counselling Session</h1>
-            <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+            <Calendar size={36} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#10b981] mx-auto mb-3 sm:mb-4" />
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3">Counselling Session</h1>
+            <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto px-4">
               One-to-one Live Counseling with Sheikh Assim Al-Hakeem via Skype, FaceTime, or Phone Call
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-12 lg:py-16 bg-gray-50">
+      <section className="py-8 sm:py-10 lg:py-14 bg-gray-50">
         <div className="container max-w-[1260px] mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Left Column - Info Cards */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="lg:col-span-1 space-y-4 sm:space-y-5 lg:space-y-6">
               {/* About Session */}
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}
-                className="bg-white rounded-2xl shadow-lg p-6">
-                <div className="w-12 h-12 bg-[#10b981]/10 rounded-xl flex items-center justify-center mb-4">
-                  <User size={24} className="text-[#10b981]" />
+                className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 lg:p-6">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#10b981]/10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                  <User size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#10b981]" />
                 </div>
-                <h2 className="text-xl font-bold text-[#1a1f2e] mb-3">About the Session</h2>
-                <p className="text-gray-600 leading-relaxed">
+                <h2 className="text-lg sm:text-xl font-bold text-[#1a1f2e] mb-2 sm:mb-3">About the Session</h2>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Need Marriage Counseling? Or any other one-to-one Live Counseling with Sheikh Assim Al-Hakeem? 
                   Get personalized Islamic guidance from one of the most trusted scholars.
                 </p>
@@ -123,22 +123,22 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
 
               {/* Session Details */}
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}
-                className="bg-white rounded-2xl shadow-lg p-6">
-                <div className="w-12 h-12 bg-[#10b981]/10 rounded-xl flex items-center justify-center mb-4">
-                  <Clock size={24} className="text-[#10b981]" />
+                className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 lg:p-6">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#10b981]/10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                  <Clock size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#10b981]" />
                 </div>
-                <h2 className="text-xl font-bold text-[#1a1f2e] mb-3">Session Details</h2>
-                <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-center gap-2">
-                    <Clock size={16} className="text-[#10b981]" />
+                <h2 className="text-lg sm:text-xl font-bold text-[#1a1f2e] mb-2 sm:mb-3">Session Details</h2>
+                <ul className="space-y-2 sm:space-y-3 text-gray-600">
+                  <li className="flex items-center gap-2 text-xs sm:text-sm">
+                    <Clock size={14} className="sm:w-4 sm:h-4 text-[#10b981] flex-shrink-0" />
                     <span>Duration: 30 Minutes</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <DollarSign size={16} className="text-[#10b981]" />
+                  <li className="flex items-center gap-2 text-xs sm:text-sm">
+                    <DollarSign size={14} className="sm:w-4 sm:h-4 text-[#10b981] flex-shrink-0" />
                     <span>Fee: $100 / Half Hour</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <Calendar size={16} className="text-[#10b981]" />
+                  <li className="flex items-center gap-2 text-xs sm:text-sm">
+                    <Calendar size={14} className="sm:w-4 sm:h-4 text-[#10b981] flex-shrink-0" />
                     <span>Flexible Scheduling</span>
                   </li>
                 </ul>
@@ -146,33 +146,33 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
 
               {/* Contact Info */}
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}
-                className="bg-white rounded-2xl shadow-lg p-6">
-                <div className="w-12 h-12 bg-[#10b981]/10 rounded-xl flex items-center justify-center mb-4">
-                  <Mail size={24} className="text-[#10b981]" />
+                className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 lg:p-6">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#10b981]/10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
+                  <Mail size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#10b981]" />
                 </div>
-                <h2 className="text-xl font-bold text-[#1a1f2e] mb-3">Contact</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-[#1a1f2e] mb-2 sm:mb-3">Contact</h2>
                 <a href="mailto:sheikhassim.bookings@gmail.com" 
-                  className="text-[#10b981] hover:underline break-all">
+                  className="text-[#10b981] hover:underline break-all text-xs sm:text-sm">
                   sheikhassim.bookings@gmail.com
                 </a>
               </motion.div>
 
               {/* Donation Card */}
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}
-                className="bg-gradient-to-br from-[#10b981] to-[#059669] rounded-2xl shadow-lg p-6 text-white">
-                <div className="flex items-center gap-2 mb-3">
-                  <Heart size={24} className="text-white" />
-                  <h2 className="text-white text-xl font-bold">Donate for the Needy</h2>
+                className="bg-gradient-to-br from-[#10b981] to-[#059669] rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 lg:p-6 text-white">
+                <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                  <Heart size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
+                  <h2 className="text-white text-lg sm:text-xl font-bold">Donate for the Needy</h2>
                 </div>
-                <p className="text-white/90 text-sm mb-4">
+                <p className="text-white/90 text-xs sm:text-sm mb-3 sm:mb-4">
                   Help a brother/sister in need who cannot afford counseling for marital issues, OCD, Waswas, and more.
                 </p>
-                <div className="bg-white/10 rounded-lg p-3 text-sm space-y-1">
+                <div className="bg-white/10 rounded-lg p-2.5 sm:p-3 text-xs sm:text-sm space-y-1">
                   <p className="font-medium">Assim Lugman Alhakeem</p>
                   <p>A/c: 164128664188</p>
                   <p>Maybank Investment Berhad</p>
                   <p>Bangsar, KL Malaysia</p>
-                  <p>Swift: MBBEMYKLXXX</p>
+                  <p className="break-all">Swift: MBBEMYKLXXX</p>
                 </div>
               </motion.div>
             </div>
@@ -180,105 +180,90 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
             {/* Right Column - Booking Form */}
             <div className="lg:col-span-2">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-                className="bg-white rounded-2xl shadow-xl p-6 lg:p-8">
-                <h2 className="text-2xl lg:text-3xl font-bold text-[#1a1f2e] mb-6">Book Your Session</h2>
+                className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 lg:p-8">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#1a1f2e] mb-4 sm:mb-6">Book Your Session</h2>
                 
                 {submissionSuccess && (
                   <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-                    className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3 text-green-700">
-                    <CheckCircle size={20} />
+                    className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-50 border border-green-200 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3 text-green-700 text-xs sm:text-sm">
+                    <CheckCircle size={16} className="sm:w-[18px] sm:h-[18px] flex-shrink-0" />
                     <span>Your booking request has been submitted! We'll contact you shortly.</span>
                   </motion.div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-                      <div className="relative">
-                        {/* <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" /> */}
-                        <input type="text" name="fullname" value={formValues.fullname} onChange={handleChange}
-                          className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all
-                            ${errors.fullname ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`}
-                          placeholder="Your full name" />
-                      </div>
-                      {errors.fullname && <p className="text-red-500 text-sm mt-1">{errors.fullname}</p>}
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                      <input type="text" name="fullname" value={formValues.fullname} onChange={handleChange}
+                        className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 transition-all text-sm
+                          ${errors.fullname ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`}
+                        placeholder="Your full name" />
+                      {errors.fullname && <p className="text-red-500 text-xs mt-1">{errors.fullname}</p>}
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                      <div className="relative">
-                        {/* <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" /> */}
-                        <input type="email" name="email" value={formValues.email} onChange={handleChange}
-                          className={`w-full pl-14 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all
-                            ${errors.email ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`}
-                          placeholder="your@email.com" />
-                      </div>
-                      {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email *</label>
+                      <input type="email" name="email" value={formValues.email} onChange={handleChange}
+                        className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 transition-all text-sm
+                          ${errors.email ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`}
+                        placeholder="your@email.com" />
+                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone (Optional)</label>
-                    <div className="relative">
-                      {/* <Phone size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" /> */}
-                      <input type="tel" name="phone" value={formValues.phone} onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981]"
-                        placeholder="+966 XX XXX XXXX" />
-                    </div>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Phone (Optional)</label>
+                    <input type="tel" name="phone" value={formValues.phone} onChange={handleChange}
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981] text-sm"
+                      placeholder="+966 XX XXX XXXX" />
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Date *</label>
-                      <div className="relative">
-                        {/* <Calendar size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" /> */}
-                        <input type="date" name="date" ref={dateInputRef} value={formValues.date} onChange={handleChange}
-                          className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all cursor-pointer
-                            ${errors.date ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`} />
-                      </div>
-                      {errors.date && <p className="text-red-500 text-sm mt-1">{errors.date}</p>}
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Preferred Date *</label>
+                      <input type="date" name="date" ref={dateInputRef} value={formValues.date} onChange={handleChange}
+                        className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 transition-all cursor-pointer text-sm
+                          ${errors.date ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`} />
+                      {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date}</p>}
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Time *</label>
-                      <div className="relative">
-                        {/* <Clock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" /> */}
-                        <input type="time" name="time" ref={timeInputRef} value={formValues.time} onChange={handleChange}
-                          className={`w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all cursor-pointer
-                            ${errors.time ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`} />
-                      </div>
-                      {errors.time && <p className="text-red-500 text-sm mt-1">{errors.time}</p>}
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Preferred Time *</label>
+                      <input type="time" name="time" ref={timeInputRef} value={formValues.time} onChange={handleChange}
+                        className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 transition-all cursor-pointer text-sm
+                          ${errors.time ? 'border-red-300 focus:ring-red-200' : 'border-gray-200 focus:ring-[#10b981]/20 focus:border-[#10b981]'}`} />
+                      {errors.time && <p className="text-red-500 text-xs mt-1">{errors.time}</p>}
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
-                    <textarea name="message" value={formValues.message} onChange={handleChange} rows="4"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981] resize-none"
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
+                    <textarea name="message" value={formValues.message} onChange={handleChange} rows="3"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981] resize-none text-sm"
                       placeholder="Briefly describe what you'd like to discuss..." />
                   </div>
 
-                  <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit"
-                    className="w-full py-4 bg-gradient-to-r from-[#10b981] to-[#059669] text-white rounded-xl font-medium shadow-lg shadow-[#10b981]/25 hover:shadow-xl hover:shadow-[#10b981]/30 transition-all flex items-center justify-center gap-2">
-                    <Send size={18} />
+                  <motion.button whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }} type="submit"
+                    className="w-full py-3 sm:py-4 bg-gradient-to-r from-[#10b981] to-[#059669] text-white rounded-lg sm:rounded-xl text-sm sm:text-base font-medium shadow-lg shadow-[#10b981]/25 hover:shadow-xl hover:shadow-[#10b981]/30 transition-all flex items-center justify-center gap-2">
+                    <Send size={16} className="sm:w-[18px] sm:h-[18px]" />
                     <span>Submit Booking Request</span>
                   </motion.button>
                 </form>
 
                 {/* Share Section */}
-                <div className="mt-8 pt-6 border-t border-gray-100">
-                  <p className="text-sm text-gray-500 mb-3">Share this page</p>
-                  <div className="flex gap-3">
+                <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-100">
+                  <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">Share this page</p>
+                  <div className="flex gap-2 sm:gap-3">
                     <button onClick={() => window.open(`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank')}
-                      className="p-2 bg-[#1877F2] text-white rounded-lg hover:bg-[#1877F2]/90 transition-colors">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                      className="p-2 sm:p-2.5 bg-[#1877F2] text-white rounded-lg hover:bg-[#1877F2]/90 transition-colors">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </button>
                     <button onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`, '_blank')}
-                      className="p-2 bg-[#1DA1F2] text-white rounded-lg hover:bg-[#1DA1F2]/90 transition-colors">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                      className="p-2 sm:p-2.5 bg-[#1DA1F2] text-white rounded-lg hover:bg-[#1DA1F2]/90 transition-colors">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
                     </button>
                     <button onClick={() => navigator.clipboard.writeText(shareUrl)}
-                      className="p-2 bg-[#10b981] text-white rounded-lg hover:bg-[#059669] transition-colors">
-                      <Share2 size={20} />
+                      className="p-2 sm:p-2.5 bg-[#10b981] text-white rounded-lg hover:bg-[#059669] transition-colors">
+                      <Share2 size={16} className="sm:w-[18px] sm:h-[18px]" />
                     </button>
                   </div>
                 </div>

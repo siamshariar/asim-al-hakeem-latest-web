@@ -10,16 +10,20 @@ module.exports = {
       center: true,
       padding: {
         DEFAULT: '1rem',
-        sm: '1rem',
+        xs: '1rem',
+        sm: '1.5rem',
+        md: '2rem',
         lg: '2rem',
         xl: '2rem',
+        '2xl': '2rem',
       },
     },
     screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
+      'xs': '480px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
       '2xl': '1536px',
     },
     extend: {
@@ -60,6 +64,7 @@ module.exports = {
       },
       fontSize: {
         'fs-4': 'calc(1.275rem + 0.3vw)',
+        'xxs': '0.625rem',
       },
       fontFamily: {
         primary: ['Inter', 'system-ui', 'sans-serif'],

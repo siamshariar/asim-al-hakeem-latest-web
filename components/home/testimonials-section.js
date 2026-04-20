@@ -48,39 +48,30 @@ export default function TestimonialsSection() {
   };
 
   const variants = {
-    enter: (direction) => ({
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction) => ({
-      x: direction > 0 ? -300 : 300,
-      opacity: 0,
-    }),
+    enter: (direction) => ({ x: direction > 0 ? 300 : -300, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (direction) => ({ x: direction > 0 ? -300 : 300, opacity: 0 }),
   };
 
   return (
-    <section className="py-16 lg:py-20 bg-gradient-to-br from-[#1a1f2e]/5 via-white to-[#10b981]/5">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-[#1a1f2e]/5 via-white to-[#10b981]/5">
       <div className="container max-w-[1260px] mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-8 sm:mb-10"
         >
-          <span className="text-[#10b981] font-semibold uppercase tracking-wider text-sm">Testimonials</span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1a1f2e] mt-2 mb-3">What People Say</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <span className="text-[#10b981] font-semibold uppercase tracking-wider text-xs sm:text-sm">Testimonials</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1a1f2e] mt-1 sm:mt-2 mb-2 sm:mb-3">What People Say</h2>
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-4">
             Hear from those who have benefited from Sheikh Assim's guidance and teachings
           </p>
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto px-2 sm:px-4">
-          <div className="overflow-hidden rounded-3xl bg-white shadow-xl">
-            <div className="relative min-h-[380px] sm:min-h-[350px] lg:min-h-[320px]">
+          <div className="overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-lg sm:shadow-xl">
+            <div className="relative min-h-[350px] xs:min-h-[320px] sm:min-h-[300px] lg:min-h-[280px]">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={currentIndex}
@@ -90,22 +81,22 @@ export default function TestimonialsSection() {
                   animate="center"
                   exit="exit"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="absolute inset-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-center"
+                  className="absolute inset-0 p-5 xs:p-6 sm:p-8 lg:p-10 flex flex-col justify-center"
                 >
-                  <Quote size={40} className="text-[#10b981]/20 mb-4" />
-                  <p className="text-base sm:text-lg lg:text-xl text-gray-700 mb-6 leading-relaxed italic">
+                  <Quote size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#10b981]/20 mb-3 sm:mb-4" />
+                  <p className="text-sm xs:text-base sm:text-lg lg:text-xl text-gray-700 mb-4 sm:mb-6 leading-relaxed italic">
                     "{testimonials[currentIndex].text}"
                   </p>
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-2 xs:gap-3">
                     <div>
-                      <h4 className="text-lg font-semibold text-[#1a1f2e]">
+                      <h4 className="text-base sm:text-lg font-semibold text-[#1a1f2e]">
                         {testimonials[currentIndex].name}
                       </h4>
-                      <p className="text-gray-500 text-sm">{testimonials[currentIndex].location}</p>
+                      <p className="text-xs sm:text-sm text-gray-500">{testimonials[currentIndex].location}</p>
                     </div>
-                    <div className="flex gap-1">
+                    <div className="flex gap-0.5 sm:gap-1">
                       {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                        <Star key={i} size={18} className="text-yellow-400 fill-yellow-400" />
+                        <Star key={i} size={16} className="sm:w-[18px] sm:h-[18px] text-yellow-400 fill-yellow-400" />
                       ))}
                     </div>
                   </div>
@@ -114,24 +105,24 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Navigation Buttons - Mobile Friendly */}
+          {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 sm:left-2 lg:-left-14 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300 border border-gray-100"
+            className="absolute left-0 xs:left-1 sm:left-2 lg:-left-12 xl:-left-16 top-1/2 -translate-y-1/2 w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-full shadow-md sm:shadow-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300 border border-gray-100"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
+            <ChevronLeft size={18} className="xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-0 sm:right-2 lg:-right-14 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300 border border-gray-100"
+            className="absolute right-0 xs:right-1 sm:right-2 lg:-right-12 xl:-right-16 top-1/2 -translate-y-1/2 w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-full shadow-md sm:shadow-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300 border border-gray-100"
             aria-label="Next testimonial"
           >
-            <ChevronRight size={20} className="sm:w-6 sm:h-6" />
+            <ChevronRight size={18} className="xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
           </button>
 
           {/* Dots */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-1.5 sm:gap-2 mt-5 sm:mt-6">
             {testimonials.map((_, idx) => (
               <button
                 key={idx}
@@ -141,7 +132,7 @@ export default function TestimonialsSection() {
                 }}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   idx === currentIndex 
-                    ? "w-8 bg-[#10b981]" 
+                    ? "w-6 sm:w-8 bg-[#10b981]" 
                     : "w-2 bg-gray-300 hover:bg-gray-400"
                 }`}
                 aria-label={`Go to testimonial ${idx + 1}`}

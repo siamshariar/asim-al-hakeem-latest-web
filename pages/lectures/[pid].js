@@ -9,8 +9,9 @@ import Header2 from "../../components/header1";
 import fetcher from "../../lib/lecturesFetcher";
 import useOnScreen from "../../hooks/useOnScreen";
 import useSWRInfinite from "swr/infinite";
-import { motion } from "framer-motion";
-import { Video, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Video, ChevronDown, List, X, Check } from "lucide-react";
+import { useRouter } from "next/router";
 
 const getKey = (pageIndex, previousPageData, playlistId) => {
   let pageToken = "";
@@ -32,11 +33,14 @@ const parseVParam = (slug) => {
 };
 
 export default function LectureList({ initialVideos, initPlaylistId, playlists, qna_categories }) {
+  const router = useRouter();
   const ref = useRef();
-  const catRef = useRef();
+  const dropdownRef = useRef();
   const isVisible = useOnScreen(ref);
   const pageTitle = playlists?.playlistsTitle?.[initPlaylistId] || "Video Lectures";
-  const [catOpen, setCatOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedPlaylist, setSelectedPlaylist] = useState(initPlaylistId);
 
   const { data, error, size, setSize, isValidating } = useSWRInfinite(
     (...args) => getKey(...args, initPlaylistId),
@@ -54,7 +58,13 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [modalTitle, setModalTitle] = useState("");
 
-  const handleCatOpen = () => setCatOpen(!catOpen);
+  // Filter playlists based on search
+  const filteredPlaylists = playlists?.playlists?.filter(p => 
+    p.title?.toLowerCase().includes(searchTerm.toLowerCase())
+  ) || [];
+
+  // Get current playlist title
+  const currentPlaylistTitle = playlists?.playlistsTitle?.[selectedPlaylist] || "Video Lectures";
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -65,6 +75,24 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
       setSelectedVideo({ id: videoID, title: videoTitle });
     }
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+        setSearchTerm("");
+      }
+    };
+    document.body.addEventListener("mousedown", handleClickOutside);
+    return () => document.body.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handlePlaylistChange = (playlistId) => {
+    setSelectedPlaylist(playlistId);
+    setDropdownOpen(false);
+    setSearchTerm("");
+    router.push(`/lectures/${playlistId}`);
+  };
 
   const openModal = (item) => {
     const id = item?.snippet?.resourceId?.videoId || item?.id;
@@ -92,16 +120,6 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
   };
 
   useEffect(() => {
-    const handler = (e) => {
-      if (catRef.current != null && !catRef.current.contains(e.target)) {
-        setCatOpen(false);
-      }
-    };
-    document.body.addEventListener("mousedown", handler);
-    return () => document.body.removeEventListener("mousedown", handler);
-  }, []);
-
-  useEffect(() => {
     if (isVisible && !isReachingEnd && !isLoadingMore) {
       setSize(size + 1);
     }
@@ -125,41 +143,130 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
       />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#1a1f2e] to-[#2a3142] py-10 lg:py-14">
+      <section className="bg-gradient-to-br from-[#1a1f2e] to-[#2a3142] py-6 sm:py-8 lg:py-10">
         <div className="container max-w-[1260px] mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="flex items-center gap-3 mb-2">
-              <Video size={32} className="text-[#10b981]" />
-              <h1 className="text-2xl lg:text-3xl font-bold text-white">{pageTitle}</h1>
+            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <Video size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#10b981]" />
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">{pageTitle}</h1>
             </div>
+            
+            {/* Playlist Selector Dropdown - Pushes content down when open */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center justify-between w-full sm:w-auto min-w-[250px] sm:min-w-[300px] lg:min-w-[350px] px-4 sm:px-5 py-2.5 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg sm:rounded-xl text-white hover:bg-white/20 transition-all group"
+              >
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <List size={16} className="sm:w-[18px] sm:h-[18px] text-[#10b981]" />
+                  <span className="text-sm sm:text-base font-medium truncate max-w-[180px] sm:max-w-[250px]">
+                    {currentPlaylistTitle}
+                  </span>
+                </div>
+                <motion.div
+                  animate={{ rotate: dropdownOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown size={18} className="sm:w-5 sm:h-5 text-white/70 group-hover:text-white" />
+                </motion.div>
+              </button>
+
+              {/* Dropdown Menu - Appears below button and pushes content */}
+              <AnimatePresence>
+                {dropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-full sm:w-[350px] lg:w-[400px] bg-white rounded-lg sm:rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
+                  >
+                    {/* Search Input */}
+                    <div className="p-3 border-b border-gray-100 sticky top-0 bg-white">
+                      <div className="relative">
+                        <input
+                          type="text"
+                          placeholder="Search playlists..."
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className="w-full px-3 sm:px-4 py-2 sm:py-2.5 pr-8 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981]"
+                          autoFocus
+                        />
+                        {searchTerm && (
+                          <button
+                            onClick={() => setSearchTerm("")}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600"
+                          >
+                            <X size={14} />
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Playlist List */}
+                    <div className="max-h-[300px] overflow-y-auto">
+                      {filteredPlaylists.length > 0 ? (
+                        filteredPlaylists.map((playlist) => (
+                          <button
+                            key={playlist.id}
+                            onClick={() => handlePlaylistChange(playlist.id)}
+                            className={`w-full flex items-center justify-between px-4 py-3 text-left text-sm hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0 ${
+                              playlist.id === selectedPlaylist ? 'bg-[#10b981]/5' : ''
+                            }`}
+                          >
+                            <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                              <Video size={14} className={`flex-shrink-0 ${playlist.id === selectedPlaylist ? 'text-[#10b981]' : 'text-gray-400'}`} />
+                              <span className={`truncate ${playlist.id === selectedPlaylist ? 'text-[#10b981] font-medium' : 'text-[#1a1f2e]'}`}>
+                                {playlist.title}
+                              </span>
+                            </div>
+                            {playlist.id === selectedPlaylist && (
+                              <Check size={16} className="text-[#10b981] flex-shrink-0" />
+                            )}
+                          </button>
+                        ))
+                      ) : (
+                        <div className="px-4 py-8 text-center text-gray-500 text-sm">
+                          No playlists found
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Spacer div that expands when dropdown is open to push content down */}
+            <AnimatePresence>
+              {dropdownOpen && (
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{ height: "auto" }}
+                  exit={{ height: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-full sm:w-[350px] lg:w-[400px]"
+                  style={{ marginTop: '0.5rem' }}
+                >
+                  <div style={{ height: '300px' }}></div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </section>
 
-      {/* Category Dropdown - Mobile */}
-      <div className="lg:hidden bg-white border-b border-gray-100 py-3 px-4" ref={catRef}>
-        <button onClick={handleCatOpen}
-          className="w-full flex items-center justify-between px-4 py-2 bg-gray-50 rounded-lg text-[#1a1f2e]">
-          <span className="font-medium">Select Playlist</span>
-          <ChevronDown size={18} className={`transition-transform ${catOpen ? 'rotate-180' : ''}`} />
-        </button>
-        {catOpen && (
-          <div className="mt-2 bg-white rounded-lg shadow-lg border border-gray-100 max-h-60 overflow-y-auto">
-            {playlists?.playlists?.map((p) => (
-              <a key={p.id} href={`/lectures/${p.id}`}
-                className={`block px-4 py-3 text-sm hover:bg-gray-50 ${p.id === initPlaylistId ? 'text-[#10b981] font-medium' : 'text-[#1a1f2e]'}`}>
-                {p.title}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-
       {/* Videos Grid */}
-      <section className="py-8 lg:py-12 bg-gray-50 min-h-[60vh]">
+      <section className="py-6 sm:py-8 lg:py-10 bg-gray-50 min-h-[60vh]">
         <div className="container max-w-[1260px] mx-auto px-4">
+          {/* Results Count */}
+          {/* <div className="mb-4 sm:mb-5">
+            <p className="text-sm text-gray-500">
+              {datas[0]?.videoLists?.videos?.length || 0} videos in this playlist
+            </p>
+          </div> */}
+
           {datas.length > 0 && datas[0]?.videoLists?.videos?.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5">
+            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
               {datas.map((data) =>
                 data.videoLists.videos.map((video) => (
                   <motion.div
@@ -180,20 +287,20 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
               )}
             </div>
           ) : isLoadingInitialData ? (
-            <div className="flex justify-center py-12">
+            <div className="flex justify-center py-12 sm:py-16">
               <Loader />
             </div>
           ) : (
-            <div className="text-center py-16">
-              <Video size={48} className="text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-500">No videos found in this playlist.</p>
+            <div className="text-center py-12 sm:py-16">
+              <Video size={40} className="sm:w-12 sm:h-12 text-gray-300 mx-auto mb-3 sm:mb-4" />
+              <p className="text-sm sm:text-base text-gray-500">No videos found in this playlist.</p>
             </div>
           )}
 
           {/* Load More Trigger */}
-          <div ref={ref} className="mt-8">
+          <div ref={ref} className="mt-6 sm:mt-8">
             {isLoadingMore && !isLoadingInitialData && (
-              <div className="flex justify-center py-8">
+              <div className="flex justify-center py-6 sm:py-8">
                 <Loader />
               </div>
             )}
@@ -201,11 +308,11 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
 
           {/* Load More Button */}
           {!isReachingEnd && !isLoadingMore && datas.length > 0 && (
-            <div className="text-center mt-8">
+            <div className="text-center mt-6 sm:mt-8">
               <button
                 onClick={() => setSize(size + 1)}
                 disabled={isRefreshing}
-                className="px-6 py-3 bg-[#10b981] text-white rounded-full font-medium hover:bg-[#059669] transition-colors shadow-lg shadow-[#10b981]/25"
+                className="px-5 sm:px-6 py-2.5 sm:py-3 bg-[#10b981] text-white rounded-full text-sm sm:text-base font-medium hover:bg-[#059669] transition-colors shadow-lg shadow-[#10b981]/25"
               >
                 Load More Videos
               </button>
