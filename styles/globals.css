@@ -244,3 +244,54 @@ nav ul a:hover {
 .text-primary {
     color: #1a1f2e !important;
 }
+
+/* Mobile Responsive Utilities */
+@layer utilities {
+    .safe-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    
+    .safe-top {
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    .touch-target {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Mobile Footer Accordion */
+@media (max-width: 640px) {
+    .footer-accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+    
+    .footer-accordion-content.open {
+        max-height: 300px;
+    }
+}
+
+/* Fix for mobile tap highlight */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Better mobile scrolling */
+.overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive image fixes */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile menu safe area */
+.mobile-menu-safe {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}

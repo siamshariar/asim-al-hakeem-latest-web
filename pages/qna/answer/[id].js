@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { server } from "../../../lib/config";
-import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory, getAnsById } from "../../../lib/fetch";
+import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory } from "../../../lib/fetch";
 import Meta from "../../../components/meta";
 import Header2 from "../../../components/header1";
 import Link from "next/link";
@@ -13,10 +13,10 @@ export default function QnaAnswerDetail({ answer, playlists, headerLectures, qna
 
   if (router.isFallback) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-[#10b981] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-500">Loading...</p>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center px-4">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 border-4 border-[#10b981] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-sm sm:text-base text-gray-500">Loading...</p>
         </div>
       </div>
     );
@@ -26,12 +26,12 @@ export default function QnaAnswerDetail({ answer, playlists, headerLectures, qna
     return (
       <>
         <Header2 playlists={playlists} lectures={headerLectures} qna_categories={qnaCategories} />
-        <section className="min-h-[60vh] flex items-center justify-center bg-gray-50">
+        <section className="min-h-[60vh] flex items-center justify-center bg-gray-50 px-4">
           <div className="text-center">
-            <MessageCircle size={48} className="text-gray-300 mx-auto mb-4" />
-            <h1 className="text-2xl font-bold text-[#1a1f2e] mb-2">Answer Not Found</h1>
-            <p className="text-gray-500 mb-6">The answer you're looking for doesn't exist or has been removed.</p>
-            <Link href="/qna" className="inline-block px-6 py-3 bg-[#10b981] text-white rounded-full font-medium hover:bg-[#059669] transition-colors">
+            <MessageCircle size={40} className="sm:w-12 sm:h-12 text-gray-300 mx-auto mb-4" />
+            <h1 className="text-xl sm:text-2xl font-bold text-[#1a1f2e] mb-2">Answer Not Found</h1>
+            <p className="text-sm sm:text-base text-gray-500 mb-6">The answer you're looking for doesn't exist or has been removed.</p>
+            <Link href="/qna" className="inline-block px-5 sm:px-6 py-2.5 sm:py-3 bg-[#10b981] text-white rounded-full text-sm sm:text-base font-medium hover:bg-[#059669] transition-colors">
               Back to Q&A
             </Link>
           </div>
@@ -59,36 +59,42 @@ export default function QnaAnswerDetail({ answer, playlists, headerLectures, qna
       <Header2 playlists={playlists} lectures={headerLectures} qna_categories={qnaCategories} />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#1a1f2e] to-[#2a3142] py-10 lg:py-14">
+      <section className="bg-gradient-to-br from-[#1a1f2e] to-[#2a3142] py-8 sm:py-10 lg:py-12">
         <div className="container max-w-[1000px] mx-auto px-4">
-          <Link href="/qna" className="inline-flex items-center gap-2 text-gray-300 hover:text-white mb-4 transition-colors">
-            <ArrowLeft size={18} /> Back to Q&A
+          <Link href="/qna" className="inline-flex items-center gap-1.5 sm:gap-2 text-gray-300 hover:text-white mb-3 sm:mb-4 transition-colors text-sm sm:text-base">
+            <ArrowLeft size={16} className="sm:w-[18px] sm:h-[18px]" /> Back to Q&A
           </Link>
           {category && (
-            <div className="flex items-center gap-2 text-sm mb-4">
+            <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm mb-3 sm:mb-4 flex-wrap">
               <Link href="/qna" className="text-gray-400 hover:text-white">Q&A</Link>
-              <ChevronRight size={14} className="text-gray-500" />
+              <ChevronRight size={12} className="sm:w-3.5 sm:h-3.5 text-gray-500" />
               <Link href={`/qna/${category.slug}`} className="text-[#10b981] hover:text-[#34d399]">{category.title}</Link>
             </div>
           )}
-          <motion.h1 initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-            className="text-2xl lg:text-3xl font-bold text-white leading-tight">
+          <motion.h1 
+            initial={{ opacity: 0, y: -10 }} 
+            animate={{ opacity: 1, y: 0 }}
+            className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight"
+          >
             {answer.question}
           </motion.h1>
         </div>
       </section>
 
       {/* Answer Content */}
-      <section className="py-12 lg:py-16 bg-gray-50">
+      <section className="py-8 sm:py-10 lg:py-14 bg-gray-50">
         <div className="container max-w-[1000px] mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="p-6 lg:p-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden"
+              >
+                <div className="p-5 sm:p-6 lg:p-8">
                   {/* Meta Info */}
-                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-6 pb-4 border-b border-gray-100">
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500 mb-5 sm:mb-6 pb-4 border-b border-gray-100">
                     <span className="flex items-center gap-1">
                       <Folder size={14} className="text-[#10b981]" />
                       {category?.title || 'General'}
@@ -100,58 +106,64 @@ export default function QnaAnswerDetail({ answer, playlists, headerLectures, qna
                   </div>
 
                   {/* Question */}
-                  <div className="mb-8">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-[#10b981]/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                        <MessageCircle size={16} className="text-[#10b981]" />
+                  <div className="mb-6 sm:mb-8">
+                    <div className="flex items-start gap-2 sm:gap-3">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-[#10b981]/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <MessageCircle size={14} className="sm:w-4 sm:h-4 text-[#10b981]" />
                       </div>
                       <div>
-                        <h2 className="text-lg font-semibold text-[#1a1f2e] mb-2">Question:</h2>
-                        <p className="text-gray-700 leading-relaxed">{answer.question}</p>
+                        <h2 className="text-base sm:text-lg font-semibold text-[#1a1f2e] mb-2">Question:</h2>
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{answer.question}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Answer */}
                   <div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-[#059669] rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-sm font-bold">A</span>
+                    <div className="flex items-start gap-2 sm:gap-3">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-[#059669] rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-white text-xs sm:text-sm font-bold">A</span>
                       </div>
                       <div>
-                        <h2 className="text-lg font-semibold text-[#1a1f2e] mb-2">Answer:</h2>
-                        <div className="prose prose-lg max-w-none">
-                          <p className="text-gray-700 leading-relaxed whitespace-pre-line">{answer.answer}</p>
+                        <h2 className="text-base sm:text-lg font-semibold text-[#1a1f2e] mb-2">Answer:</h2>
+                        <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
+                          <p className="text-sm sm:text-base text-gray-700 leading-relaxed whitespace-pre-line">{answer.answer}</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Share */}
-                  <div className="mt-8 pt-6 border-t border-gray-100">
-                    <p className="text-sm text-gray-500 mb-3">Share this answer</p>
-                    <div className="flex gap-3">
+                  <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-gray-100">
+                    <p className="text-xs sm:text-sm text-gray-500 mb-3">Share this answer</p>
+                    <div className="flex gap-2 sm:gap-3">
                       <button 
                         onClick={() => window.open(`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank')}
-                        className="p-2 bg-[#1877F2] text-white rounded-lg hover:bg-[#1877F2]/90 transition-colors"
+                        className="p-2 sm:p-2.5 bg-[#1877F2] text-white rounded-lg hover:bg-[#1877F2]/90 transition-colors"
+                        aria-label="Share on Facebook"
                       >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
                         </svg>
                       </button>
                       <button 
                         onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(answer.question)}`, '_blank')}
-                        className="p-2 bg-[#1DA1F2] text-white rounded-lg hover:bg-[#1DA1F2]/90 transition-colors"
+                        className="p-2 sm:p-2.5 bg-[#1DA1F2] text-white rounded-lg hover:bg-[#1DA1F2]/90 transition-colors"
+                        aria-label="Share on Twitter"
                       >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
                         </svg>
                       </button>
                       <button 
-                        onClick={() => navigator.clipboard.writeText(shareUrl)}
-                        className="p-2 bg-[#10b981] text-white rounded-lg hover:bg-[#059669] transition-colors"
+                        onClick={() => {
+                          navigator.clipboard.writeText(shareUrl);
+                          alert('Link copied to clipboard!');
+                        }}
+                        className="p-2 sm:p-2.5 bg-[#10b981] text-white rounded-lg hover:bg-[#059669] transition-colors"
+                        aria-label="Copy link"
                       >
-                        <Share2 size={20} />
+                        <Share2 size={16} className="sm:w-[18px] sm:h-[18px]" />
                       </button>
                     </div>
                   </div>
@@ -161,18 +173,24 @@ export default function QnaAnswerDetail({ answer, playlists, headerLectures, qna
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}
-                className="space-y-6">
-                
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }} 
+                animate={{ opacity: 1, x: 0 }} 
+                transition={{ delay: 0.1 }}
+                className="space-y-5 sm:space-y-6"
+              >
                 {/* Related Questions */}
                 {relatedQuestions.length > 0 && (
-                  <div className="bg-white rounded-2xl shadow-lg p-6">
-                    <h3 className="text-lg font-bold text-[#1a1f2e] mb-4">Related Questions</h3>
-                    <div className="space-y-3">
+                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-5 sm:p-6">
+                    <h3 className="text-base sm:text-lg font-bold text-[#1a1f2e] mb-3 sm:mb-4">Related Questions</h3>
+                    <div className="space-y-2 sm:space-y-3">
                       {relatedQuestions.map((q) => (
-                        <Link key={q.id} href={`/qna/answer/${q.id}`}
-                          className="block p-3 rounded-lg hover:bg-gray-50 transition-colors group">
-                          <p className="text-sm text-[#1a1f2e] group-hover:text-[#10b981] line-clamp-2 transition-colors">
+                        <Link 
+                          key={q.id} 
+                          href={`/qna/answer/${q.id}`}
+                          className="block p-2.5 sm:p-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                        >
+                          <p className="text-xs sm:text-sm text-[#1a1f2e] group-hover:text-[#10b981] line-clamp-2 transition-colors">
                             {q.question}
                           </p>
                         </Link>
@@ -182,33 +200,40 @@ export default function QnaAnswerDetail({ answer, playlists, headerLectures, qna
                 )}
 
                 {/* Ask Question CTA */}
-                <div className="bg-gradient-to-br from-[#10b981] to-[#059669] rounded-2xl shadow-lg p-6 text-white">
-                  <h3 className="text-white text-lg font-bold mb-2">Have a Question?</h3>
-                  <p className="text-white/90 text-sm mb-4">
+                <div className="bg-gradient-to-br from-[#10b981] to-[#059669] rounded-xl sm:rounded-2xl shadow-lg p-5 sm:p-6 text-white">
+                  <h3 className="text-white text-base sm:text-lg font-bold mb-2">Have a Question?</h3>
+                  <p className="text-white/90 text-xs sm:text-sm mb-4">
                     Submit your question to get authentic Islamic guidance from Sheikh Assim Al Hakeem.
                   </p>
-                  <Link href="/ask-question"
-                    className="inline-block w-full text-center py-2.5 bg-white text-[#10b981] rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                  <Link 
+                    href="/ask-question"
+                    className="inline-block w-full text-center py-2 sm:py-2.5 bg-white text-[#10b981] rounded-lg text-sm sm:text-base font-medium hover:bg-gray-50 transition-colors"
+                  >
                     Ask a Question
                   </Link>
                 </div>
 
                 {/* Categories */}
-                <div className="bg-white rounded-2xl shadow-lg p-6">
-                  <h3 className="text-lg font-bold text-[#1a1f2e] mb-4">Categories</h3>
-                  <div className="space-y-2">
+                <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-5 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-bold text-[#1a1f2e] mb-3 sm:mb-4">Categories</h3>
+                  <div className="space-y-1.5 sm:space-y-2">
                     {qnCat.slice(0, 5).map((cat) => (
-                      <Link key={cat.id} href={`/qna/${cat.slug}`}
-                        className={`block p-2 rounded-lg text-sm transition-colors ${
+                      <Link 
+                        key={cat.id} 
+                        href={`/qna/${cat.slug}`}
+                        className={`block p-2 rounded-lg text-xs sm:text-sm transition-colors ${
                           cat.slug === answer.cat_slug 
                             ? 'bg-[#10b981]/10 text-[#10b981] font-medium' 
                             : 'text-gray-600 hover:bg-gray-50 hover:text-[#10b981]'
-                        }`}>
+                        }`}
+                      >
                         {cat.title}
                       </Link>
                     ))}
-                    <Link href="/qna"
-                      className="block p-2 rounded-lg text-sm text-[#10b981] font-medium hover:bg-[#10b981]/5 transition-colors">
+                    <Link 
+                      href="/qna"
+                      className="block p-2 rounded-lg text-xs sm:text-sm text-[#10b981] font-medium hover:bg-[#10b981]/5 transition-colors"
+                    >
                       View All Categories →
                     </Link>
                   </div>
@@ -224,9 +249,7 @@ export default function QnaAnswerDetail({ answer, playlists, headerLectures, qna
 
 export async function getStaticProps({ params }) {
   const { id } = params;
-  
   const answer = qna.find(item => item.id === parseInt(id)) || null;
-  
   const playlists = await getAllPlaylists2();
   const headerLectures = await getHeaderLectures();
   const qnaCategories = await getAllQnaCategory();

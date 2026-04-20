@@ -1,12 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Play, Eye, Calendar, ArrowRight } from 'lucide-react';
 import VideoModal from '../modal/VideoModalRecent';
 import { date as formatDate } from '../../lib/format';
-
-const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 
 export const generateVParam = (videoID, title) => {
   const formattedTitle = encodeURIComponent((title || "").split(" ").join("=$"));
@@ -27,9 +24,9 @@ export default function RecentLecturesEnhanced({ lectures }) {
   const [modalTitle, setModalTitle] = useState("");
 
   useEffect(() => {
-    if (lectures?.videoLists) {
-      // Use provided lectures or fetch new ones
-      const videoData = lectures.videoLists.map(video => ({
+    // Use the lectures data passed from props (from getStaticProps)
+    if (lectures?.videoLists && Array.isArray(lectures.videoLists)) {
+      const videoData = lectures.videoLists.slice(0, 4).map(video => ({
         id: video.id,
         title: video.title,
         image: video.image,
@@ -37,55 +34,24 @@ export default function RecentLecturesEnhanced({ lectures }) {
         views: lectures.videoStats?.[video.id] || 0,
         description: video.description,
       }));
-      setVideos(videoData.slice(0, 4));
+      setVideos(videoData);
+      setLoading(false);
+    } else if (lectures?.videoLists?.videos) {
+      // Handle nested structure if needed
+      const videoData = lectures.videoLists.videos.slice(0, 4).map(video => ({
+        id: video.id,
+        title: video.title,
+        image: video.image,
+        date: formatDate(video.date),
+        views: lectures.videoStats?.[video.id] || 0,
+        description: video.description,
+      }));
+      setVideos(videoData);
       setLoading(false);
     } else {
-      fetchLatestVideos();
+      setLoading(false);
     }
   }, [lectures]);
-
-  const fetchLatestVideos = async () => {
-    try {
-      const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&type=video&maxResults=4`
-      );
-      const data = await response.json();
-      if (data?.items?.length > 0) {
-        const videoData = data.items.map((item) => ({
-          id: item.id.videoId,
-          title: item.snippet.title,
-          image: item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url,
-          date: formatDate(item.snippet.publishedAt),
-          views: 0,
-          description: item.snippet.description,
-        }));
-        await fetchVideoViews(videoData);
-      }
-    } catch (error) {
-      console.error('Error fetching videos:', error);
-      setLoading(false);
-    }
-  };
-
-  const fetchVideoViews = async (videos) => {
-    const videoIds = videos.map((video) => video.id).join(',');
-    try {
-      const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds}&part=statistics`
-      );
-      const data = await response.json();
-      const updatedVideos = videos.map((video, index) => ({
-        ...video,
-        views: data.items[index]?.statistics.viewCount || 0,
-      }));
-      setVideos(updatedVideos);
-    } catch (error) {
-      console.error('Error fetching video views:', error);
-      setVideos(videos);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -122,10 +88,7 @@ export default function RecentLecturesEnhanced({ lectures }) {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
   const itemVariants = {
@@ -135,19 +98,21 @@ export default function RecentLecturesEnhanced({ lectures }) {
 
   if (loading) {
     return (
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-white via-[#f8fbff] to-[#eff6ff]">
-        <div className="container max-w-[1260px] mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <div className="h-8 w-48 bg-gray-200 rounded animate-pulse"></div>
-            <div className="h-6 w-24 bg-gray-200 rounded animate-pulse"></div>
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-[#f8fafc] via-[#eff6ff] to-[#f0f9ff] border border-[#bfdbfe] shadow-sm rounded-[28px]">
+        <div className="container max-w-[1260px] mx-auto px-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6 sm:mb-8">
+            <div>
+              <div className="h-6 w-32 bg-gray-200 rounded animate-pulse mb-2"></div>
+              <div className="h-8 w-48 bg-gray-200 rounded animate-pulse"></div>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div className="h-48 bg-gray-200 animate-pulse"></div>
-                <div className="p-4 space-y-3">
-                  <div className="h-5 bg-gray-200 rounded animate-pulse"></div>
-                  <div className="h-4 w-2/3 bg-gray-200 rounded animate-pulse"></div>
+              <div key={i} className="bg-white rounded-xl shadow-md overflow-hidden">
+                <div className="h-40 sm:h-44 lg:h-48 bg-gray-200 animate-pulse"></div>
+                <div className="p-3 sm:p-4 space-y-2">
+                  <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                  <div className="h-3 w-2/3 bg-gray-200 rounded animate-pulse"></div>
                 </div>
               </div>
             ))}
@@ -157,26 +122,30 @@ export default function RecentLecturesEnhanced({ lectures }) {
     );
   }
 
+  if (videos.length === 0) {
+    return null; // Don't show section if no videos
+  }
+
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-white via-[#f8fbff] to-[#eff6ff]">
-      <div className="container max-w-[1260px] mx-auto">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-[#f8fafc] via-[#eff6ff] to-[#f0f9ff] border border-[#bfdbfe] shadow-sm rounded-[28px]">
+      <div className="container max-w-[1260px] mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex justify-between items-center mb-8"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6 sm:mb-8"
         >
           <div>
-            <span className="text-accent font-semibold uppercase tracking-wider text-sm">Latest Content</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary mt-2">Recent Lectures</h2>
+            <span className="text-[#10b981] font-semibold uppercase tracking-wider text-xs sm:text-sm">Latest Content</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1a1f2e] mt-1 sm:mt-2">Recent Lectures</h2>
           </div>
           <Link href="/lectures/UUWsdcrre0WbCWML_PnuzoAg">
             <motion.button
               whileHover={{ x: 5 }}
-              className="flex items-center gap-2 text-accent font-medium hover:text-accent-secondary transition-colors"
+              className="flex items-center gap-1.5 sm:gap-2 text-[#10b981] font-medium hover:text-[#059669] transition-colors text-sm sm:text-base"
             >
               <span>View All Lectures</span>
-              <ArrowRight size={18} />
+              <ArrowRight size={16} className="sm:w-[18px] sm:h-[18px]" />
             </motion.button>
           </Link>
         </motion.div>
@@ -186,17 +155,17 @@ export default function RecentLecturesEnhanced({ lectures }) {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6"
         >
           {videos.map((video) => (
             <motion.div
               key={video.id}
               variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
+              whileHover={{ y: -5 }}
+              className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
               onClick={() => openModal(video)}
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-40 sm:h-44 lg:h-48 overflow-hidden">
                 <img
                   src={video.image || `/img/post/youtube-default.jpg`}
                   alt={video.title}
@@ -205,22 +174,22 @@ export default function RecentLecturesEnhanced({ lectures }) {
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
-                    className="w-14 h-14 bg-accent rounded-full flex items-center justify-center shadow-lg"
+                    className="w-10 h-10 sm:w-12 sm:h-12 bg-[#10b981] rounded-full flex items-center justify-center shadow-lg"
                   >
-                    <Play size={24} className="text-white ml-0.5" fill="white" />
+                    <Play size={18} className="sm:w-5 sm:h-5 text-white ml-0.5" fill="white" />
                   </motion.div>
                 </div>
-                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
-                  <Eye size={12} />
+                <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex items-center gap-0.5 sm:gap-1">
+                  <Eye size={10} className="sm:w-3 sm:h-3" />
                   <span>{video.views?.toLocaleString() || 0}</span>
                 </div>
               </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-primary mb-2 line-clamp-2 group-hover:text-accent transition-colors">
+              <div className="p-3 sm:p-4">
+                <h3 className="font-semibold text-[#1a1f2e] text-sm sm:text-base mb-1.5 sm:mb-2 line-clamp-2 group-hover:text-[#10b981] transition-colors">
                   {video.title}
                 </h3>
-                <div className="flex items-center text-sm text-gray-500">
-                  <Calendar size={14} className="mr-1" />
+                <div className="flex items-center text-xs sm:text-sm text-gray-500">
+                  <Calendar size={12} className="sm:w-3.5 sm:h-3.5 mr-1" />
                   <span>{video.date}</span>
                 </div>
               </div>
