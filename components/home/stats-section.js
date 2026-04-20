@@ -21,7 +21,7 @@ export default function StatsSection() {
   };
 
   return (
-    <section className="py-8 sm:py-10 lg:py-12 bg-gradient-to-br from-[#eff6ff] via-[#f8fbff] to-[#ffffff] border border-[#dbeafe] shadow-sm">
+    <section className="py-8 sm:py-10 lg:py-12 bg-gradient-to-br from-[#eff6ff] via-[#f8fbff] to-[#ffffff]">
       <div className="container max-w-[1260px] mx-auto px-4">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>

@@ -48,7 +48,7 @@ export default function Home({
         qna_categories={qna_categories}
       />
 
-      <main className="overflow-hidden">
+      <main className="overflow-x-hidden">
         {/* Hero Banner - Dark Background */}
         <HeroBanner />
 

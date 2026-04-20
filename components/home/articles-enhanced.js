@@ -18,7 +18,7 @@ export default function ArticlesSection({ articles }) {
 
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-[#eff6ff] via-[#f8fbff] to-white">
-      <div className="container max-w-[1260px] mx-auto">
+      <div className="container max-w-[1260px] mx-auto px-4 sm:px-6">
         <motion.div
           {...fadeInUp}
           className="flex justify-between items-end mb-10"
