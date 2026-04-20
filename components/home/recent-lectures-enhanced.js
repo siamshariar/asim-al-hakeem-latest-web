@@ -135,7 +135,7 @@ export default function RecentLecturesEnhanced({ lectures }) {
 
   if (loading) {
     return (
-      <section className="py-16 lg:py-24 bg-gray-50">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-white via-[#f8fbff] to-[#eff6ff]">
         <div className="container max-w-[1260px] mx-auto">
           <div className="flex justify-between items-center mb-8">
             <div className="h-8 w-48 bg-gray-200 rounded animate-pulse"></div>
@@ -158,7 +158,7 @@ export default function RecentLecturesEnhanced({ lectures }) {
   }
 
   return (
-    <section className="py-16 lg:py-24 bg-gray-50">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-white via-[#f8fbff] to-[#eff6ff]">
       <div className="container max-w-[1260px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
