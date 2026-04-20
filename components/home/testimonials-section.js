@@ -63,24 +63,24 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/5 via-white to-primary/5">
-      <div className="container max-w-[1260px] mx-auto">
+    <section className="py-16 lg:py-20 bg-gradient-to-br from-[#1a1f2e]/5 via-white to-[#10b981]/5">
+      <div className="container max-w-[1260px] mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <span className="text-accent font-semibold uppercase tracking-wider text-sm">Testimonials</span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-primary mt-2 mb-4">What People Say</h2>
+          <span className="text-[#10b981] font-semibold uppercase tracking-wider text-sm">Testimonials</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1a1f2e] mt-2 mb-3">What People Say</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Hear from those who have benefited from Sheikh Assim's guidance and teachings
           </p>
         </motion.div>
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-4xl mx-auto px-2 sm:px-4">
           <div className="overflow-hidden rounded-3xl bg-white shadow-xl">
-            <div className="relative h-[400px] lg:h-[350px]">
+            <div className="relative min-h-[380px] sm:min-h-[350px] lg:min-h-[320px]">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={currentIndex}
@@ -90,22 +90,22 @@ export default function TestimonialsSection() {
                   animate="center"
                   exit="exit"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="absolute inset-0 p-8 lg:p-12 flex flex-col justify-center"
+                  className="absolute inset-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-center"
                 >
-                  <Quote size={48} className="text-accent/20 mb-6" />
-                  <p className="text-lg lg:text-xl text-gray-700 mb-8 leading-relaxed italic">
+                  <Quote size={40} className="text-[#10b981]/20 mb-4" />
+                  <p className="text-base sm:text-lg lg:text-xl text-gray-700 mb-6 leading-relaxed italic">
                     "{testimonials[currentIndex].text}"
                   </p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div>
-                      <h4 className="text-xl font-semibold text-primary">
+                      <h4 className="text-lg font-semibold text-[#1a1f2e]">
                         {testimonials[currentIndex].name}
                       </h4>
-                      <p className="text-gray-500">{testimonials[currentIndex].location}</p>
+                      <p className="text-gray-500 text-sm">{testimonials[currentIndex].location}</p>
                     </div>
                     <div className="flex gap-1">
                       {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                        <Star key={i} size={20} className="text-yellow-400 fill-yellow-400" />
+                        <Star key={i} size={18} className="text-yellow-400 fill-yellow-400" />
                       ))}
                     </div>
                   </div>
@@ -114,24 +114,24 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Navigation Buttons */}
+          {/* Navigation Buttons - Mobile Friendly */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 lg:-left-16 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-300"
+            className="absolute left-0 sm:left-2 lg:-left-14 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300 border border-gray-100"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 lg:-right-16 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-300"
+            className="absolute right-0 sm:right-2 lg:-right-14 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300 border border-gray-100"
             aria-label="Next testimonial"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={20} className="sm:w-6 sm:h-6" />
           </button>
 
           {/* Dots */}
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-2 mt-6">
             {testimonials.map((_, idx) => (
               <button
                 key={idx}
@@ -139,10 +139,10 @@ export default function TestimonialsSection() {
                   setDirection(idx > currentIndex ? 1 : -1);
                   setCurrentIndex(idx);
                 }}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                className={`h-2 rounded-full transition-all duration-300 ${
                   idx === currentIndex 
-                    ? "w-8 bg-accent" 
-                    : "bg-gray-300 hover:bg-gray-400"
+                    ? "w-8 bg-[#10b981]" 
+                    : "w-2 bg-gray-300 hover:bg-gray-400"
                 }`}
                 aria-label={`Go to testimonial ${idx + 1}`}
               />

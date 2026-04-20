@@ -146,7 +146,7 @@ export default function RecentLecture() {
       <div className="bg-services bg-cover bg-no-repeat max-w-[1466px] mx-4 xl:mx-auto rounded-[20px] xl:pt-[70px] px-6 xl:px-0 relative h-[368px] flex items-center xl:items-start z-10">
         <div className="container mx-auto">
           <div className="services__top flex items-center flex-row justify-between xl:flex-row xl:mb-[60px]">
-            <h2 className="h2 text-white flex-1 xl:mb-0 xl:text-left">
+            <h2 className="h2 flex-1 xl:mb-0 xl:text-left">
               Recent Lectures
             </h2>
             <Link href="/lectures/UUWsdcrre0WbCWML_PnuzoAg">

@@ -99,7 +99,7 @@ export default function AskAQuestion({ playlists, headerLectures, qna_categories
               {/* Donation Info */}
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}
                 className="bg-gradient-to-br from-[#10b981] to-[#059669] rounded-xl shadow-md p-6 text-white">
-                <h3 className="text-lg font-bold mb-3">Donate for the Needy</h3>
+                <h3 className="text-white text-lg font-bold mb-3">Donate for the Needy</h3>
                 <p className="text-white/90 text-sm mb-4">
                   Help a brother/sister in need who cannot afford counseling for marital issues.
                 </p>

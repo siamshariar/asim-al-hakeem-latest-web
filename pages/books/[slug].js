@@ -41,9 +41,9 @@ export default function BookDetail({ detail, playlists, headerLectures, qnaCateg
             <div className="grid lg:grid-cols-2 gap-0">
               {/* Book Image */}
               <div className="bg-gradient-to-br from-[#10b981]/10 to-[#10b981]/5 p-8 lg:p-12 flex items-center justify-center">
-                <div className="relative w-full max-w-sm aspect-[3/4]">
+                <div className="relative w-full max-w-md aspect-[3/4] overflow-hidden rounded-[32px] shadow-2xl">
                   <Image src={detail.imageSrc || "/img/books/default.jpg"} alt={detail.bookName} fill
-                    className="object-contain rounded-lg shadow-2xl" />
+                    className="object-cover rounded-[32px]" />
                 </div>
               </div>
 

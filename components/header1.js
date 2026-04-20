@@ -144,7 +144,7 @@ export default function Header2({ playlists, lectures, qna_categories, activePla
 
       {/* Main Header Navigation - FORCE WHITE BACKGROUND */}
       <header style={{ backgroundColor: '#ffffff' }} className={`transition-all duration-300 ${isSticky ? "fixed top-0 left-0 right-0 shadow-xl z-50" : "relative"}`}>
-        <div className="container max-w-[1260px] mx-auto px-4">
+        <div className="container max-w-[1440px] mx-auto px-4">
           <div className="flex items-center justify-between py-2 lg:py-3">
             {/* Logo */}
             <Link href="/" className="flex items-center flex-shrink-0">
@@ -152,9 +152,9 @@ export default function Header2({ playlists, lectures, qna_categories, activePla
                 <Image 
                   src="/img/logo.png" 
                   alt="Assim Al Hakeem" 
-                  width={isSticky ? 140 : 170}
-                  height={isSticky ? 38 : 46}
-                  className="h-auto w-auto max-h-[38px] lg:max-h-[46px] transition-all duration-300"
+                  width={isSticky ? 160 : 200}
+                  height={isSticky ? 42 : 52}
+                  className="h-auto w-auto max-h-[42px] sm:max-h-[48px] md:max-h-[56px] lg:max-h-[64px] transition-all duration-300"
                   priority
                 />
               </motion.div>
@@ -252,7 +252,7 @@ export default function Header2({ playlists, lectures, qna_categories, activePla
               <div className="container max-w-[1260px] mx-auto px-4 py-4">
                 <form onSubmit={handleSearch} className="flex items-center gap-3">
                   <div className="flex-1 relative">
-                    <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                    {/* <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" /> */}
                     <input ref={searchInputRef} type="text" placeholder="Search lectures, books, articles..."
                       value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981] transition-all text-[#1a1f2e]" />
@@ -280,7 +280,7 @@ export default function Header2({ playlists, lectures, qna_categories, activePla
               <div className="px-4 py-3">
                 <form onSubmit={handleSearch} className="flex items-center gap-2">
                   <div className="flex-1 relative">
-                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                    {/* <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" /> */}
                     <input type="text" placeholder="Search..."
                       value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full pl-10 pr-3 py-2.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981] text-sm" />

@@ -50,7 +50,7 @@ export default function Articles({ playlists, headerLectures, qnaCategories }) {
       <section className="py-6 bg-white border-b border-gray-100 sticky top-[60px] lg:top-[70px] z-30">
         <div className="container max-w-[1260px] mx-auto px-4">
           <div className="relative max-w-md">
-            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+            {/* <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" /> */}
             <input
               type="text"
               placeholder="Search articles..."
