@@ -49,7 +49,7 @@ export default function StatsSection() {
   };
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-gradient-to-br from-[#f8fafc] via-white to-[#eff6ff]">
       <div className="container max-w-[1260px] mx-auto">
         <motion.div
           variants={containerVariants}
