@@ -98,7 +98,7 @@ export default function RecentLecturesEnhanced({ lectures }) {
 
   if (loading) {
     return (
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-[#f8fafc] via-[#eff6ff] to-[#f0f9ff] border border-[#bfdbfe] shadow-sm rounded-[28px]">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-[#f8fafc] via-[#eff6ff] to-[#f0f9ff]">
         <div className="container max-w-[1260px] mx-auto px-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6 sm:mb-8">
             <div>
@@ -127,7 +127,7 @@ export default function RecentLecturesEnhanced({ lectures }) {
   }
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-[#f8fafc] via-[#eff6ff] to-[#f0f9ff] border border-[#bfdbfe] shadow-sm rounded-[28px]">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-[#f8fafc] via-[#eff6ff] to-[#f0f9ff] shadow-sm">
       <div className="container max-w-[1260px] mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

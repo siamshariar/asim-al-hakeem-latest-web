@@ -12,9 +12,9 @@ function HomeBookCard({ book }) {
             whileHover={{ y: -5 }}
             className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 h-full"
         >
-            <Link href={`/books/${bookSlug}`} className="flex flex-row h-full">
+            <Link href={`/books/${bookSlug}`} className="flex flex-col md:flex-row h-full">
                 {/* Left Side - Full Cover Image (No padding, No background) */}
-                <div className="w-2/5 relative overflow-hidden flex-shrink-0">
+                <div className="w-full md:w-2/5 relative overflow-hidden flex-shrink-0 min-h-[260px] md:min-h-0">
                     <Image
                         src={imageSrc || "/img/books/default.jpg"}
                         alt={bookName}
@@ -26,7 +26,7 @@ function HomeBookCard({ book }) {
                 </div>
                 
                 {/* Right Side - Content with padding */}
-                <div className="w-3/5 p-4 lg:p-5 flex flex-col bg-white">
+                <div className="w-full md:w-3/5 p-4 lg:p-5 flex flex-col bg-white">
                     <div className="flex items-center gap-1.5 text-[#10b981] mb-2">
                         <BookOpen size={14} />
                         <span className="text-xs font-medium uppercase tracking-wider">Featured Book</span>
