@@ -7,15 +7,15 @@ import {
   getHomeQna,
   getHeaderLectures,
   getAllQnaCategory,
-} from "../lib/fetch";
+} from "../../lib/fetch";
 
-import Meta from "../components/meta";
-import Header2 from "../components/header1";
+import Meta from "../../components/meta";
+import Header2 from "../../components/header1";
 import { motion } from "framer-motion";
 import { HelpCircle, Calendar, ArrowRight, Calendar as CalendarIcon } from "lucide-react";
 import Link from "next/link";
-import RecentLecturesEnhanced from "../components/home/recent-lectures-enhanced";
-import FeaturedBooks from "../components/home/featured-books";
+import RecentLecturesEnhanced from "../../components/home/recent-lectures-enhanced";
+import FeaturedBooks from "../../components/home/featured-books";
 
 // Hero Banner Component
 function HeroBanner() {
