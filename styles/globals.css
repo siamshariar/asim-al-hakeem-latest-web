@@ -7,11 +7,13 @@
 @layer base {
     html {
         scroll-behavior: smooth;
+        overflow-x: hidden;
     }
     
     body {
         @apply text-secondary font-primary text-[17px] leading-8 antialiased;
         font-family: "Inter", system-ui, sans-serif;
+        overflow-x: hidden;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -197,10 +199,57 @@ nav ul a:hover {
 }
 
 /* Responsive Container */
-@media (min-width: 1330px) {
-    .container {
-        max-width: 1260px;
-    }
+body .container {
+  width: 90% !important;
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding-left: 0.3125rem !important;
+  padding-right: 0.3125rem !important;
+  box-sizing: border-box !important;
+}
+
+@media only screen and (min-width: 601px) {
+  body .container {
+    width: 85% !important;
+  }
+}
+
+@media (min-width: 640px) {
+  body .container {
+    padding-left: 0.625rem !important;
+    padding-right: 0.625rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  body .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  body .container {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  body .container {
+    max-width: 1260px !important;
+  }
+}
+
+/* Force header navigation visibility on all screens */
+nav.hidden.lg\:flex {
+  display: flex !important;
+}
+
+@media (max-width: 1023px) {
+  nav.hidden.lg\:flex {
+    display: none !important;
+  }
 }
 
 /* Mobile Menu Animation */
