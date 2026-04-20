@@ -17,7 +17,7 @@ export default function ArticlesSection({ articles }) {
   if (!articles?.length) return null;
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-[#eff6ff] via-[#f8fbff] to-white">
       <div className="container max-w-[1260px] mx-auto">
         <motion.div
           {...fadeInUp}
