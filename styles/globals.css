@@ -200,19 +200,19 @@ nav ul a:hover {
 
 /* Responsive Container */
 body .container {
-  width: 90% !important;
+  width: 100% !important;
   max-width: 1280px !important;
   margin: 0 auto !important;
-  padding-left: 0.3125rem !important;
-  padding-right: 0.3125rem !important;
+  padding-left: 0.5125rem !important;
+  padding-right: 0.5125rem !important;
   box-sizing: border-box !important;
 }
 
-@media only screen and (min-width: 601px) {
+/* @media only screen and (min-width: 601px) {
   body .container {
     width: 85% !important;
   }
-}
+} */
 
 @media (min-width: 640px) {
   body .container {
