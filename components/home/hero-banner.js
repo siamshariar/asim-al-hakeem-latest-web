@@ -102,7 +102,7 @@ export default function HeroBanner() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.4 + idx * 0.1 }}
-                                    className="text-center"
+                                    className="text-center lg:text-left"
                                 >
                                     <div className="text-2xl lg:text-3xl font-bold text-white">{stat.value}</div>
                                     <div className="text-xs lg:text-sm text-gray-400">{stat.label}</div>

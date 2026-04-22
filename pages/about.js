@@ -42,7 +42,7 @@ export default function About({ playlists, headerLectures, qna_categories }) {
       <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
         <div className="container max-w-[1260px] mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-xl overflow-hidden">
+            className="bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-lg overflow-hidden">
             <div className="grid lg:grid-cols-2">
               <div className="relative h-[250px] sm:h-[300px] lg:h-full">
                 <Image src={profile.imageSrc} alt={profile.name} fill className="object-cover" />

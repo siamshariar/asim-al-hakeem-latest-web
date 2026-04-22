@@ -72,7 +72,7 @@ export default function TestimonialsSection() {
         <div className="relative max-w-4xl mx-auto px-2 sm:px-4">
           <div className="overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-lg sm:shadow-xl">
             <div className="relative min-h-[350px] xs:min-h-[320px] sm:min-h-[300px] lg:min-h-[280px]">
-              <AnimatePresence mode="wait" custom={direction}>
+              <AnimatePresence mode="sync" custom={direction}>
                 <motion.div
                   key={currentIndex}
                   custom={direction}
@@ -80,8 +80,8 @@ export default function TestimonialsSection() {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="absolute inset-0 p-5 xs:p-6 sm:p-8 lg:p-10 flex flex-col justify-center"
+                  transition={{ type: "spring", stiffness: 300, damping: 30, duration: 0.3 }}
+                  className="absolute inset-0 p-10 md:p-12 lg:p-6 flex flex-col justify-center"
                 >
                   <Quote size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#10b981]/20 mb-3 sm:mb-4" />
                   <p className="text-sm xs:text-base sm:text-lg lg:text-xl text-gray-700 mb-4 sm:mb-6 leading-relaxed italic">

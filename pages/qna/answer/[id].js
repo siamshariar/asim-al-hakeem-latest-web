@@ -61,14 +61,14 @@ export default function QnaAnswerDetail({ answer, playlists, headerLectures, qna
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#1a1f2e] to-[#2a3142] py-8 sm:py-10 lg:py-12">
         <div className="container max-w-[1000px] mx-auto px-4">
-          <Link href="/qna" className="inline-flex items-center gap-1.5 sm:gap-2 text-gray-300 hover:text-white mb-3 sm:mb-4 transition-colors text-sm sm:text-base">
+          <Link href={`/qna?category=${answer?.cat_slug || 'all'}`} className="inline-flex items-center gap-1.5 sm:gap-2 text-gray-300 hover:text-white mb-3 sm:mb-4 transition-colors text-sm sm:text-base">
             <ArrowLeft size={16} className="sm:w-[18px] sm:h-[18px]" /> Back to Q&A
           </Link>
           {category && (
             <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm mb-3 sm:mb-4 flex-wrap">
-              <Link href="/qna" className="text-gray-400 hover:text-white">Q&A</Link>
+              <Link href={`/qna?category=all`} className="text-gray-400 hover:text-white">Q&A</Link>
               <ChevronRight size={12} className="sm:w-3.5 sm:h-3.5 text-gray-500" />
-              <Link href={`/qna/${category.slug}`} className="text-[#10b981] hover:text-[#34d399]">{category.title}</Link>
+              <Link href={`/qna?category=${category.slug}`} className="text-[#10b981] hover:text-[#34d399]">{category.title}</Link>
             </div>
           )}
           <motion.h1 

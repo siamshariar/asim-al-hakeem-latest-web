@@ -79,7 +79,7 @@ export default function Footer() {
     return (
         <footer className="bg-[#1a1f2e] text-white">
             {/* Main Footer */}
-            <div className="pt-10 sm:pt-12 lg:pt-16 pb-8 sm:pb-10 lg:pb-12">
+            <div className="hidden sm:block pt-10 sm:pt-12 lg:pt-16 pb-8 sm:pb-10 lg:pb-12">
                 <div className="container max-w-[1260px] mx-auto px-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
                         {/* About Column */}

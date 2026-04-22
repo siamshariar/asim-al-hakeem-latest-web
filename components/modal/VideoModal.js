@@ -7,118 +7,63 @@ import { generateVParam } from '../../pages/lectures/[pid]';
 
 export default function VideoModal({ isOpen, onClose, videoId, title, playlistId, description }) {
     useEffect(() => {
+        // Disable background scrolling when the modal is open
         if (isOpen) {
             document.body.style.overflow = 'hidden';
-            document.documentElement.style.overflow = 'hidden';
-            document.body.style.position = 'fixed';
-            document.body.style.width = '100%';
         } else {
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
+            document.body.style.overflow = 'auto';
         }
 
-        const handleEscKey = (e) => {
-            if (e.key === 'Escape' && isOpen) {
-                onClose();
-            }
-        };
-
-        document.addEventListener('keydown', handleEscKey);
         return () => {
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
-            document.removeEventListener('keydown', handleEscKey);
+            document.body.style.overflow = 'auto'; // Cleanup scroll behavior
         };
-    }, [isOpen, onClose]);
+    }, [isOpen]);
 
-    if (!isOpen) return null;
+    if (!isOpen) return null; // Render nothing if the modal is closed
 
-    const handleOverlayClick = (e) => {
+    const handleCloseModal = (e) => {
+        // Prevent the modal from closing if the content is clicked
         e.stopPropagation();
+        onClose(); // Close modal when close button is clicked
     };
 
     const videoUrl = `/lectures/${playlistId}?v=${generateVParam(videoId, title)}`;
 
-    const YouTubeIcon = () => (
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-        </svg>
-    );
-
     return (
         <>
             <Meta
-                title={title || 'Video'}
-                description={description || 'Watch this video from Sheikh Assim Al Hakeem.'}
-                url={`${server}/lectures/${playlistId}?v=${videoId}`}
-                image={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
-                type="video.other"
+                title={title || 'Video Modal'}
+                description={description || 'Watch this amazing video.'}
+                url={`${server}/videos?v=${videoId}`}
+                type="article"
             />
             
-            <section className={styles.modalWrapper} onClick={handleOverlayClick}>
-                {/* Mobile Close Button - Fixed to screen */}
-                <span 
-                    className={styles.closeMobile} 
-                    onClick={onClose}
-                    role="button"
-                    tabIndex={0}
-                    aria-label="Close video"
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            onClose();
-                        }
-                    }}
-                />
-                
+            <section className={styles.modalWrapper}>
+                {/* Removed onClick from the overlay to prevent modal close on overlay click */}
                 <div className={styles.overlay}>
                     <div
                         className={styles.content}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => e.stopPropagation()} // Prevent modal from closing when content is clicked
                     >
-                        {/* Desktop Close Button - Half inside/outside iframe */}
-                        <span 
-                            className={styles.closeDesktop} 
-                            onClick={onClose}
-                            role="button"
-                            tabIndex={0}
-                            aria-label="Close video"
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                    e.preventDefault();
-                                    onClose();
-                                }
-                            }}
-                        />
+                        {/* Close icon button with direct onClick */}
+                        <span className={styles.close} onClick={onClose}></span>
                         
                         <div className={styles.iframeContainer}>
                             <iframe
                                 className={styles.iframe}
-                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&rel=0&modestbranding=1&controls=1&disablekb=1&enablejsapi=0&iv_load_policy=3`}
+                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`}
                                 title={title}
                                 frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen={false}
-                                loading="eager"
-                                sandbox="allow-scripts allow-same-origin allow-presentation"
-                            />
-                            
-                            {/* <div className={styles.youtubeIndicator}>
-                                <YouTubeIcon />
-                                <span>YouTube</span>
-                            </div> */}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
                         </div>
-                        
                         <div className={styles.details}>
                             <h2 className={styles.title}>{title}</h2>
                             <div className={styles.share}>
                                 <Share
                                     urlWeb={videoUrl}
-                                    urlMobile={videoUrl}
+                                    urlMobile={videoUrl} // Share URL for mobile
                                     title={title}
                                 />
                             </div>

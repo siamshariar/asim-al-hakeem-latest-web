@@ -1,8 +1,8 @@
 import { server, youtube, constants } from "../../lib/config";
 import { getAllPlaylists2, getYoutubeVideoListByUrl, getAllQnaCategory } from "../../lib/fetch";
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import Meta from "../../components/meta";
-import PostCardVideo2 from "../../components/card/post-card-video2";
+import VideoCardEnhanced from "../../components/card/video-card-enhanced";
 import Loader from "../../components/loader";
 import VideoModal from "../../components/modal/VideoModal";
 import Header2 from "../../components/header1";
@@ -55,16 +55,15 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
   const isReachingEnd = size === numberOfPages;
   const isRefreshing = isValidating && data && data.length === size;
   
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedVideoId, setSelectedVideoId] = useState(null);
-  const [selectedVideoTitle, setSelectedVideoTitle] = useState("");
-  const [selectedVideoDescription, setSelectedVideoDescription] = useState("");
-  const [selectedVideoPlaylistId, setSelectedVideoPlaylistId] = useState(initPlaylistId);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [modalTitle, setModalTitle] = useState("");
 
+  // Filter playlists based on search
   const filteredPlaylists = playlists?.playlists?.filter(p => 
     p.title?.toLowerCase().includes(searchTerm.toLowerCase())
   ) || [];
 
+  // Get current playlist title
   const currentPlaylistTitle = playlists?.playlistsTitle?.[selectedPlaylist] || "Video Lectures";
 
   useEffect(() => {
@@ -72,9 +71,8 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
     const v = params.get("v");
     if (v) {
       const { videoID, videoTitle } = parseVParam(v);
-      setSelectedVideoId(videoID);
-      setSelectedVideoTitle(videoTitle);
-      setModalOpen(true);
+      setModalTitle(videoTitle);
+      setSelectedVideo({ id: videoID, title: videoTitle });
     }
   }, []);
 
@@ -96,48 +94,36 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
     router.push(`/lectures/${playlistId}`);
   };
 
-  const openModal = useCallback((item) => {
+  const openModal = (item) => {
     const id = item?.snippet?.resourceId?.videoId || item?.id;
     const title = item?.snippet?.title || item?.title || "Untitled";
     const description = item?.snippet?.description || item?.description || "";
     
     if (!id) return;
     
-    setSelectedVideoId(id);
-    setSelectedVideoTitle(title);
-    setSelectedVideoDescription(description);
-    setSelectedVideoPlaylistId(initPlaylistId);
-    setModalOpen(true);
+    setSelectedVideo({ id, title, description, playlistId: initPlaylistId });
+    setModalTitle(title);
     
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("v", generateVParam(id, title));
     const updatedUrl = `${window.location.pathname}?${urlParams.toString()}`;
     window.history.replaceState(null, "", updatedUrl);
-  }, [initPlaylistId]);
+  };
 
-  const closeModal = useCallback(() => {
-    setModalOpen(false);
-    
+  const closeModal = () => {
+    setSelectedVideo(null);
+    setModalTitle("");
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete("v");
     const updatedUrl = `${window.location.pathname}${urlParams.toString() ? `?${urlParams.toString()}` : ''}`;
     window.history.replaceState(null, "", updatedUrl);
-  }, []);
+  };
 
   useEffect(() => {
     if (isVisible && !isReachingEnd && !isLoadingMore) {
       setSize(size + 1);
     }
   }, [isVisible, isReachingEnd, isLoadingMore, size, setSize]);
-
-  const modalProps = useMemo(() => ({
-    isOpen: modalOpen,
-    onClose: closeModal,
-    videoId: selectedVideoId,
-    title: selectedVideoTitle,
-    description: selectedVideoDescription,
-    playlistId: selectedVideoPlaylistId
-  }), [modalOpen, closeModal, selectedVideoId, selectedVideoTitle, selectedVideoDescription, selectedVideoPlaylistId]);
 
   return (
     <>
@@ -156,6 +142,7 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
         qna_categories={qna_categories || []}
       />
 
+      {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#1a1f2e] to-[#2a3142] py-6 sm:py-8 lg:py-10">
         <div className="container max-w-[1260px] mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
@@ -164,6 +151,7 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">{pageTitle}</h1>
             </div>
             
+            {/* Playlist Selector Dropdown - Pushes content down when open */}
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -183,15 +171,17 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
                 </motion.div>
               </button>
 
+              {/* Dropdown Menu - Appears below button and pushes content */}
               <AnimatePresence>
                 {dropdownOpen && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 mt-2 w-full sm:w-[350px] lg:w-[400px] bg-white rounded-lg sm:rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
+                    transition={{ duration: 0.2 }}
+                    className="relative mt-4 w-full sm:w-[350px] lg:w-[400px] bg-white rounded-lg sm:rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
                   >
+                    {/* Search Input */}
                     <div className="p-3 border-b border-gray-100 sticky top-0 bg-white">
                       <div className="relative">
                         <input
@@ -213,6 +203,7 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
                       </div>
                     </div>
 
+                    {/* Playlist List */}
                     <div className="max-h-[300px] overflow-y-auto">
                       {filteredPlaylists.length > 0 ? (
                         filteredPlaylists.map((playlist) => (
@@ -244,27 +235,20 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
                 )}
               </AnimatePresence>
             </div>
-
-            <AnimatePresence>
-              {dropdownOpen && (
-                <motion.div
-                  initial={{ height: 0 }}
-                  animate={{ height: "auto" }}
-                  exit={{ height: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="w-full sm:w-[350px] lg:w-[400px]"
-                  style={{ marginTop: '0.5rem' }}
-                >
-                  <div style={{ height: '300px' }}></div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </motion.div>
         </div>
       </section>
 
+      {/* Videos Grid */}
       <section className="py-6 sm:py-8 lg:py-10 bg-gray-50 min-h-[60vh]">
         <div className="container max-w-[1260px] mx-auto px-4">
+          {/* Results Count */}
+          {/* <div className="mb-4 sm:mb-5">
+            <p className="text-sm text-gray-500">
+              {datas[0]?.videoLists?.videos?.length || 0} videos in this playlist
+            </p>
+          </div> */}
+
           {datas.length > 0 && datas[0]?.videoLists?.videos?.length > 0 ? (
             <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
               {datas.map((data) =>
@@ -274,14 +258,18 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     whileHover={{ y: -4 }}
-                    className="cursor-pointer"
-                    onClick={() => openModal(video)}
+
                   >
-                    <PostCardVideo2 
-                      item={video} 
-                      statistics={data.videoLists.videoStats} 
-                      playlistId={initPlaylistId} 
-                    />
+                    <VideoCardEnhanced
+                    video={{
+                      id: video.id,
+                      title: video.title,
+                      image: video.image,
+                      date: video.date,
+                    }}
+                    views={data.videoLists.videoStats?.[video.id]}
+                    onClick={() => openModal(video)}
+                  />
                   </motion.div>
                 ))
               )}
@@ -297,6 +285,7 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
             </div>
           )}
 
+          {/* Load More Trigger */}
           <div ref={ref} className="mt-6 sm:mt-8">
             {isLoadingMore && !isLoadingInitialData && (
               <div className="flex justify-center py-6 sm:py-8">
@@ -305,6 +294,7 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
             )}
           </div>
 
+          {/* Load More Button */}
           {!isReachingEnd && !isLoadingMore && datas.length > 0 && (
             <div className="text-center mt-6 sm:mt-8">
               <button
@@ -319,7 +309,17 @@ export default function LectureList({ initialVideos, initPlaylistId, playlists, 
         </div>
       </section>
 
-      <VideoModal {...modalProps} />
+      {/* Video Modal */}
+      {selectedVideo && (
+        <VideoModal
+          isOpen={!!selectedVideo}
+          onClose={closeModal}
+          videoId={selectedVideo.id}
+          title={modalTitle}
+          description={selectedVideo.description}
+          playlistId={selectedVideo.playlistId}
+        />
+      )}
     </>
   );
 }

@@ -133,16 +133,16 @@ export default function RecentLecturesEnhanced({ lectures }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6 sm:mb-8"
+            className="flex flex-wrap justify-between items-center gap-3 mb-6 sm:mb-8"
           >
-            <div>
+            <div className="min-w-0">
               <span className="text-[#10b981] font-semibold uppercase tracking-wider text-xs sm:text-sm">Latest Content</span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1a1f2e] mt-1 sm:mt-2">Recent Lectures</h2>
             </div>
-            <Link href="/lectures/UUWsdcrre0WbCWML_PnuzoAg">
+            <Link href="/lectures/UUWsdcrre0WbCWML_PnuzoAg" className="ml-auto">
               <motion.button
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-1.5 sm:gap-2 text-[#10b981] font-medium hover:text-[#059669] transition-colors text-sm sm:text-base"
+                className="flex items-center gap-1.5 sm:gap-2 text-[#10b981] font-medium hover:text-[#059669] transition-colors text-sm"
               >
                 <span>View All Lectures</span>
                 <ArrowRight size={16} className="sm:w-[18px] sm:h-[18px]" />
@@ -180,17 +180,15 @@ export default function RecentLecturesEnhanced({ lectures }) {
                       <Play size={18} className="sm:w-5 sm:h-5 text-white ml-0.5" fill="white" />
                     </motion.div>
                   </div>
-                  <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex items-center gap-0.5 sm:gap-1">
-                    <Eye size={10} className="sm:w-3 sm:h-3" />
-                    <span>{video.views?.toLocaleString() || 0}</span>
-                  </div>
                 </div>
                 <div className="p-3 sm:p-4">
-                  <h3 className="font-semibold text-[#1a1f2e] text-sm sm:text-base mb-1.5 sm:mb-2 line-clamp-2 group-hover:text-[#10b981] transition-colors">
-                    {video.title}
-                  </h3>
-                  <div className="flex items-center text-xs sm:text-sm text-gray-500">
-                    <Calendar size={12} className="sm:w-3.5 sm:h-3.5 mr-1" />
+                  <div className="mb-3">
+                    <h3 className="font-semibold text-[#1a1f2e] text-sm sm:text-base line-clamp-2 group-hover:text-[#10b981] transition-colors text-left">
+                      {video.title}
+                    </h3>
+                  </div>
+                  <div className="flex justify-between items-center text-xs sm:text-sm text-gray-500">
+                    <span>{video.views?.toLocaleString() || 0} views</span>
                     <span>{video.date}</span>
                   </div>
                 </div>

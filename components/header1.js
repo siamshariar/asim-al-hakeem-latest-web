@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header2({ playlists, lectures, qna_categories, activePlaylistId }) {
   const [isSticky, setIsSticky] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -20,12 +21,23 @@ export default function Header2({ playlists, lectures, qna_categories, activePla
   const router = useRouter();
   const dropdownTimeout = useRef(null);
   const searchInputRef = useRef(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      setIsSticky(currentScrollY > 50);
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -143,7 +155,7 @@ export default function Header2({ playlists, lectures, qna_categories, activePla
       </div>
 
       {/* Main Header */}
-      <header className={`bg-white transition-all duration-300 ${isSticky ? "fixed top-0 left-0 right-0 shadow-xl z-50" : "relative"}`}>
+      <header className={`bg-white transition-all duration-300 ${isSticky ? "fixed top-0 left-0 right-0 shadow-xl z-[9998]" : "relative z-[9998]"} ${showHeader ? "translate-y-0" : "-translate-y-full"}`}>
         <div className="max-w-[1260px] mx-auto px-3 sm:px-4 lg:px-5 xl:px-8">
           <div className="flex items-center justify-between py-2 lg:py-2.5">
             {/* Logo */}
@@ -153,8 +165,8 @@ export default function Header2({ playlists, lectures, qna_categories, activePla
                   src="/img/logo.png" 
                   alt="Assim Al Hakeem" 
                   width={isSticky ? 130 : 150}
-                  height={isSticky ? 35 : 40}
-                  className="h-auto w-auto max-h-[32px] sm:max-h-[35px] md:max-h-[38px] lg:max-h-[42px] xl:max-h-[46px] transition-all duration-300"
+                  height={isSticky ? 38 : 42}
+                  className="h-auto w-auto max-h-[38px] sm:max-h-[42px] lg:max-h-[46px] xl:max-h-[50px] transition-all duration-300"
                   priority
                 />
               </motion.div>
@@ -167,6 +179,12 @@ export default function Header2({ playlists, lectures, qna_categories, activePla
                   onMouseEnter={() => link.hasDropdown && handleDropdownEnter(link.name)}
                   onMouseLeave={link.hasDropdown ? handleDropdownLeave : undefined}>
                   <Link href={link.href}
+                    onClick={(e) => {
+                      if (link.hasDropdown) {
+                        e.preventDefault();
+                        setActiveDropdown((prev) => (prev === link.name ? null : link.name));
+                      }
+                    }}
                     className={`flex items-center space-x-0.5 px-2 lg:px-2.5 xl:px-3 py-1.5 lg:py-2 rounded-lg text-xs lg:text-sm font-medium transition-all duration-200 whitespace-nowrap
                       ${router.pathname === link.href || (link.href !== "/" && router.pathname.startsWith(link.href))
                         ? "text-[#10b981] bg-[#10b981]/5" 
@@ -183,7 +201,7 @@ export default function Header2({ playlists, lectures, qna_categories, activePla
                   <AnimatePresence>
                     {link.hasDropdown && activeDropdown === link.name && (
                       <motion.div variants={dropdownVariants} initial="hidden" animate="visible" exit="exit"
-                        className="absolute top-full left-0 mt-1 w-60 lg:w-64 xl:w-72 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50">
+                        className="absolute top-full left-0 mt-1 w-60 lg:w-64 xl:w-72 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-[9999]">
                         <div className="py-2 max-h-[350px] overflow-y-auto scrollbar-thin">
                           {link.dropdownItems?.map((item, itemIdx) => (
                             <motion.div key={itemIdx} variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}>

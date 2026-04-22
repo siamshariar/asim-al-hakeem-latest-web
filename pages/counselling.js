@@ -111,10 +111,12 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
               {/* About Session */}
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}
                 className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 lg:p-6">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#10b981]/10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
-                  <User size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#10b981]" />
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#10b981]/10 rounded-lg sm:rounded-xl flex items-center justify-center">
+                    <User size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#10b981]" />
+                  </div>
+                  <h2 className="text-lg sm:text-xl font-bold text-[#1a1f2e]">About the Session</h2>
                 </div>
-                <h2 className="text-lg sm:text-xl font-bold text-[#1a1f2e] mb-2 sm:mb-3">About the Session</h2>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Need Marriage Counseling? Or any other one-to-one Live Counseling with Sheikh Assim Al-Hakeem? 
                   Get personalized Islamic guidance from one of the most trusted scholars.
@@ -124,10 +126,12 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
               {/* Session Details */}
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}
                 className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 lg:p-6">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#10b981]/10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
-                  <Clock size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#10b981]" />
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#10b981]/10 rounded-lg sm:rounded-xl flex items-center justify-center">
+                    <Clock size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#10b981]" />
+                  </div>
+                  <h2 className="text-lg sm:text-xl font-bold text-[#1a1f2e]">Session Details</h2>
                 </div>
-                <h2 className="text-lg sm:text-xl font-bold text-[#1a1f2e] mb-2 sm:mb-3">Session Details</h2>
                 <ul className="space-y-2 sm:space-y-3 text-gray-600">
                   <li className="flex items-center gap-2 text-xs sm:text-sm">
                     <Clock size={14} className="sm:w-4 sm:h-4 text-[#10b981] flex-shrink-0" />
@@ -147,10 +151,12 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
               {/* Contact Info */}
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}
                 className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 lg:p-6">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#10b981]/10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4">
-                  <Mail size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#10b981]" />
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#10b981]/10 rounded-lg sm:rounded-xl flex items-center justify-center">
+                    <Mail size={20} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#10b981]" />
+                  </div>
+                  <h2 className="text-lg sm:text-xl font-bold text-[#1a1f2e]">Contact</h2>
                 </div>
-                <h2 className="text-lg sm:text-xl font-bold text-[#1a1f2e] mb-2 sm:mb-3">Contact</h2>
                 <a href="mailto:sheikhassim.bookings@gmail.com" 
                   className="text-[#10b981] hover:underline break-all text-xs sm:text-sm">
                   sheikhassim.bookings@gmail.com
@@ -167,12 +173,12 @@ export default function CounsellingSession({ playlists, headerLectures, qna_cate
                 <p className="text-white/90 text-xs sm:text-sm mb-3 sm:mb-4">
                   Help a brother/sister in need who cannot afford counseling for marital issues, OCD, Waswas, and more.
                 </p>
-                <div className="bg-white/10 rounded-lg p-2.5 sm:p-3 text-xs sm:text-sm space-y-1">
-                  <p className="font-medium">Assim Lugman Alhakeem</p>
-                  <p>A/c: 164128664188</p>
-                  <p>Maybank Investment Berhad</p>
-                  <p>Bangsar, KL Malaysia</p>
-                  <p className="break-all">Swift: MBBEMYKLXXX</p>
+                <div className="bg-white/10 text-white rounded-lg p-2.5 sm:p-3 text-xs sm:text-sm space-y-1">
+                  <p className="font-medium text-white">Assim Lugman Alhakeem</p>
+                  <p className="text-white">A/c: 164128664188</p>
+                  <p className="text-white">Maybank Investment Berhad</p>
+                  <p className="text-white">Bangsar, KL Malaysia</p>
+                  <p className="text-white break-all">Swift: MBBEMYKLXXX</p>
                 </div>
               </motion.div>
             </div>

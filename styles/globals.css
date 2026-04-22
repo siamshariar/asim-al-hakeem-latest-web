@@ -6,18 +6,39 @@
 
 @layer base {
     html {
+        font-size: clamp(15px, 1vw + 0.25rem, 18px);
         scroll-behavior: smooth;
         overflow-x: hidden;
     }
     
     body {
-        @apply text-secondary font-primary text-[17px] leading-8 antialiased;
+        @apply text-secondary font-primary text-base leading-7 antialiased;
         font-family: "Inter", system-ui, sans-serif;
         overflow-x: hidden;
     }
 
+    p {
+        @apply text-base leading-7;
+    }
+
     h1, h2, h3, h4, h5, h6 {
         @apply text-primary leading-[120%] font-display;
+    }
+
+    h1 {
+        font-size: clamp(2.5rem, 2.5vw, 4rem);
+    }
+
+    h2 {
+        font-size: clamp(2rem, 2vw, 3rem);
+    }
+
+    h3 {
+        font-size: clamp(1.4rem, 1.6vw, 2.25rem);
+    }
+
+    h4 {
+        font-size: clamp(1.15rem, 1.2vw, 1.75rem);
     }
 
     .h1 {
@@ -43,11 +64,11 @@
     }
 
     .btn-sm {
-        @apply h-12 px-8 text-sm;
+        @apply h-12 px-6 text-sm sm:text-base;
     }
 
     .btn-lg {
-        @apply h-14 px-10 text-base;
+        @apply h-14 px-8 text-base sm:text-lg;
     }
 
     .btn-accent {

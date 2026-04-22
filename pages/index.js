@@ -53,7 +53,7 @@ export default function Home({
         <HeroBanner />
 
         {/* Stats Section - White Background */}
-        <StatsSection />
+        {/* <StatsSection /> */}
 
         {/* Recent Lectures - Light Gray Background */}
         <RecentLecturesEnhanced lectures={lectures} />

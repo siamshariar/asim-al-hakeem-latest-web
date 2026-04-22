@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { server } from "../../lib/config";
 import { getAllPlaylists2, getHeaderLectures, getAllQnaCategory, getQnaByLimit } from "../../lib/fetch";
 import Meta from "../../components/meta";
@@ -8,9 +9,20 @@ import { motion } from "framer-motion";
 import { HelpCircle, ChevronRight, Search, FolderOpen, MessageCircle, X } from "lucide-react";
 
 export default function QnaPage({ playlists, headerLectures, qnaCategories, qnaItems }) {
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    const category = router.query.category;
+    if (typeof category === 'string' && category.trim()) {
+      const normalized = category.trim();
+      const isValid = normalized === "all" || qnaCategories?.some(c => c.slug === normalized);
+      setSelectedCategory(isValid ? normalized : "all");
+    }
+  }, [router.isReady, router.query.category, qnaCategories]);
 
   const filteredQna = qnaItems?.filter(item => {
     const matchesSearch = item.question?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -42,7 +54,7 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, qnaI
       </section>
 
       {/* Search and Filter Section */}
-      <section className="py-2.5 xs:py-3 sm:py-4 lg:py-6 bg-white border-b border-gray-100 sticky top-[50px] xs:top-[52px] sm:top-[56px] lg:top-[60px] z-30">
+      <section className="py-2.5 xs:py-3 sm:py-4 lg:py-6 bg-white border-b border-gray-100">
         <div className="max-w-[1260px] mx-auto px-3 xs:px-4 sm:px-5 lg:px-6 xl:px-8">
           <div className="flex flex-col lg:flex-row gap-2.5 xs:gap-3 lg:gap-4 items-start lg:items-center">
             {/* Search Input */}
@@ -78,7 +90,7 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, qnaI
             <div className="hidden lg:flex gap-1.5 lg:gap-2 overflow-x-auto w-full lg:w-auto pb-1 scrollbar-thin">
               <button 
                 onClick={() => setSelectedCategory("all")}
-                className={`px-3 lg:px-4 py-1.5 lg:py-2 rounded-full text-xs lg:text-sm font-medium whitespace-nowrap transition-all focus:outline-none focus:ring-0
+                className={`px-3 lg:px-4 py-1.5 lg:py-2 rounded-full text-xs lg:text-sm font-medium whitespace-nowrap transition-all focus:outline-none focus-visible:outline-none focus:ring-0 focus:border-transparent
                   ${selectedCategory === "all" 
                     ? "bg-[#10b981] text-white hover:bg-[#10b981] focus:bg-[#10b981] focus:text-white" 
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200 focus:bg-gray-200"}`}
@@ -89,7 +101,7 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, qnaI
                 <button 
                   key={cat.id} 
                   onClick={() => setSelectedCategory(cat.slug)}
-                  className={`px-3 lg:px-4 py-1.5 lg:py-2 rounded-full text-xs lg:text-sm font-medium whitespace-nowrap transition-all focus:outline-none focus:ring-0
+                  className={`px-3 lg:px-4 py-1.5 lg:py-2 rounded-full text-xs lg:text-sm font-medium whitespace-nowrap transition-all focus:outline-none focus-visible:outline-none focus:ring-0 focus:border-transparent
                     ${selectedCategory === cat.slug 
                       ? "bg-[#10b981] text-white hover:bg-[#10b981] focus:bg-[#10b981] focus:text-white" 
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200 focus:bg-gray-200"}`}
@@ -116,7 +128,7 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, qnaI
               <div className="flex flex-wrap gap-1 xs:gap-1.5 sm:gap-2">
                 <button 
                   onClick={() => { setSelectedCategory("all"); setShowMobileFilters(false); }}
-                  className={`px-2.5 xs:px-3 py-1.5 rounded-full text-xs xs:text-sm font-medium transition-all focus:outline-none focus:ring-0
+                  className={`px-2.5 xs:px-3 py-1.5 rounded-full text-xs xs:text-sm font-medium transition-all focus:outline-none focus-visible:outline-none focus:ring-0 focus:border-transparent
                     ${selectedCategory === "all" 
                       ? "bg-[#10b981] text-white hover:bg-[#10b981] focus:bg-[#10b981] focus:text-white" 
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200 focus:bg-gray-200"}`}
@@ -127,7 +139,7 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, qnaI
                   <button 
                     key={cat.id} 
                     onClick={() => { setSelectedCategory(cat.slug); setShowMobileFilters(false); }}
-                    className={`px-2.5 xs:px-3 py-1.5 rounded-full text-xs xs:text-sm font-medium transition-all focus:outline-none focus:ring-0
+                    className={`px-2.5 xs:px-3 py-1.5 rounded-full text-xs xs:text-sm font-medium transition-all focus:outline-none focus-visible:outline-none focus:ring-0 focus:border-transparent
                       ${selectedCategory === cat.slug 
                         ? "bg-[#10b981] text-white hover:bg-[#10b981] focus:bg-[#10b981] focus:text-white" 
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200 focus:bg-gray-200"}`}
@@ -145,7 +157,7 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, qnaI
       </section>
 
       {/* Q&A List */}
-      <section className="py-6 xs:py-8 sm:py-10 lg:py-14 bg-gray-50 min-h-[60vh]">
+      <section className="py-6 xs:py-8 sm:py-10 lg:py-4 bg-gray-50 min-h-[60vh]">
         <div className="max-w-[1000px] mx-auto px-3 xs:px-4 sm:px-5 lg:px-6 xl:px-8">
           {filteredQna.length > 0 ? (
             <div className="space-y-2.5 xs:space-y-3 sm:space-y-4">

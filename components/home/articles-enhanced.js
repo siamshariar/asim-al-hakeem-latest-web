@@ -17,25 +17,27 @@ export default function ArticlesSection({ articles }) {
   if (!articles?.length) return null;
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-[#eff6ff] via-[#f8fbff] to-white">
+    <section className="py-12 lg:py-24 bg-gradient-to-br from-[#eff6ff] via-[#f8fbff] to-white">
       <div className="container max-w-[1260px] mx-auto px-4 sm:px-6">
         <motion.div
           {...fadeInUp}
-          className="flex justify-between items-end mb-10"
+          className="flex flex-wrap justify-between items-center gap-4 mb-10"
         >
-          <div>
+          <div className="min-w-0">
             <span className="text-accent font-semibold uppercase tracking-wider text-sm">Insights & Knowledge</span>
             <h2 className="text-3xl lg:text-4xl font-bold text-primary mt-2">Latest Articles</h2>
           </div>
-          <Link href="/articles">
-            <motion.button
-              whileHover={{ x: 5 }}
-              className="hidden sm:flex items-center gap-2 text-accent font-medium hover:text-accent-secondary transition-colors"
-            >
-              <span>View All Articles</span>
-              <ArrowRight size={18} />
-            </motion.button>
-          </Link>
+          <div className="flex-shrink-0 ml-auto">
+            <Link href="/articles">
+              <motion.button
+                whileHover={{ x: 5 }}
+                className="inline-flex items-center gap-2 text-accent font-medium hover:text-accent-secondary transition-colors text-sm"
+              >
+                <span>View All Articles</span>
+                <ArrowRight size={16} />
+              </motion.button>
+            </Link>
+          </div>
         </motion.div>
 
         {featuredArticle && (
@@ -88,7 +90,7 @@ export default function ArticlesSection({ articles }) {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="grid md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
           >
             {otherArticles.map((article, idx) => (
               <motion.div
@@ -127,16 +129,6 @@ export default function ArticlesSection({ articles }) {
           </motion.div>
         )}
 
-        <div className="text-center mt-8 sm:hidden">
-          <Link href="/articles">
-            <motion.button
-              whileTap={{ scale: 0.98 }}
-              className="px-6 py-3 bg-accent text-white rounded-full font-medium shadow-lg shadow-accent/25"
-            >
-              View All Articles
-            </motion.button>
-          </Link>
-        </div>
       </div>
     </section>
   );

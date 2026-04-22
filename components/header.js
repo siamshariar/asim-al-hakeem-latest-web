@@ -162,6 +162,7 @@ export default function Header({
                                     alt=""
                                     width={150}
                                     height={70}
+                                    className="h-auto w-auto max-h-[38px] sm:max-h-[42px] transition-all duration-300"
                                     objectFit="contain"
                                     objectPosition="left center"
                                     loading="eager"
