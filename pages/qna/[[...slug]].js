@@ -277,7 +277,8 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
     }
 
     const url = slug === "all" ? "/qna" : `/qna/${slug}`;
-    router.push(url, undefined, { shallow: false });
+    // Use shallow routing to avoid full remount; allows client fetch to update UI instantly
+    router.push(url, undefined, { shallow: true });
 
     try {
       const res = await fetch(`/api/qna?currentPage=1&cat_slug=${slug}&pageSize=${PAGE_SIZE}`);
