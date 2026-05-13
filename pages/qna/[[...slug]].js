@@ -319,9 +319,19 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
 
     const url = slug === "all" ? "/qna" : `/qna/${slug}`;
 
-    // Navigate to the category page so Next.js SSR/getStaticProps provides the data
-    // (avoid client-side /api/qna fetch which can fail on Vercel serverless runtime)
-    router.push(url);
+    // Try to prefetch the page data so client navigation is instant (matches local behaviour)
+    // If prefetch fails (network or server issue), fall back to a full reload to ensure SSR
+    try {
+      if (router && typeof router.prefetch === 'function') {
+        await router.prefetch(url);
+      }
+      router.push(url);
+    } catch (e) {
+      // As a last resort do a full navigation so the server renders the page
+      if (typeof window !== 'undefined') {
+        window.location.href = url;
+      }
+    }
     return;
   }, [selectedCategory, router, scrollToTopInstantly]);
 
