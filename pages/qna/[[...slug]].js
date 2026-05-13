@@ -255,7 +255,7 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
 
     scrollToTopInstantly();
     
-    // Update UI immediately
+    // Update UI state but keep existing loaded pages visible until new data arrives.
     setSelectedCategory(slug);
     previousCategoryRef.current = slug;
     setShowMobileFilters(false);
@@ -263,12 +263,8 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
     setCategorySearchTerm("");
     fetchingRef.current = false;
     scrollAttemptRef.current = 0;
-    
-    // Clear old data and show loading
-    setLoadedPages([]);
-    setCurrentPage(1);
-    setTotalPages(1);
-    loadedIdsRef.current = new Set();
+
+    // Show loading indicator / switching state without clearing current list
     setIsLoadingInitial(true);
     setIsSwitchingCategory(true);
 
@@ -287,27 +283,29 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
       // Only update if this is still the current category and component is mounted
       if (currentCategoryRef.current === slug && isMountedRef.current) {
         if (data?.qaItems?.length) {
+          // Replace displayed pages with fetched data
           setLoadedPages([data.qaItems]);
           setCurrentPage(data.currentPage || 1);
           setTotalPages(data.numberOfPages || 1);
-          // Track loaded IDs
+          // Track loaded IDs (reset first)
+          loadedIdsRef.current = new Set();
           data.qaItems.forEach(item => {
             if (item?.id) loadedIdsRef.current.add(item.id);
           });
         } else {
+          // No items for this category: clear list
           setLoadedPages([]);
           setCurrentPage(1);
           setTotalPages(1);
+          loadedIdsRef.current = new Set();
         }
         setIsLoadingInitial(false);
         setIsSwitchingCategory(false);
       }
     } catch (error) {
       console.error("Error fetching category data:", error);
+      // Keep existing list visible on error; just stop loading state
       if (currentCategoryRef.current === slug && isMountedRef.current) {
-        setLoadedPages([]);
-        setCurrentPage(1);
-        setTotalPages(1);
         setIsLoadingInitial(false);
         setIsSwitchingCategory(false);
       }
