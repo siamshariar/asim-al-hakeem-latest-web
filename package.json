@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
+		"split-qna": "node scripts/split-qna.js 2000",
 		"export": "next export",
 		"start": "next start"
 	},
