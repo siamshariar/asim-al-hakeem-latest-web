@@ -43,6 +43,7 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
   const initialDataLoadedRef = useRef(false);
   const previousCategoryRef = useRef(initialCategory || "all");
   const loadMoreRetryRef = useRef(null);
+  const categoryRequestIdRef = useRef(0);
   const isMountedRef = useRef(true);
   const lastScrollY = useRef(0);
   const backToTopRef = useRef(null);
@@ -66,36 +67,8 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
       previousCategoryRef.current = initialCategory || "all";
       setIsLoadingInitial(false);
       initialDataLoadedRef.current = true;
-      // cache initial category page for instant switching
-      try {
-        if (typeof window !== 'undefined' && initialQnaPage?.qaItems?.length) {
-          writeCategoryCache(initialCategory || 'all', initialQnaPage);
-        }
-      } catch (e) {
-        // ignore
-      }
     }
   }, [initialQnaPage, initialCategory]);
-
-  // Simple client-side cache helpers (sessionStorage) to show category data instantly
-  const getCategoryCacheKey = (slug) => `qna_cat_${slug}`;
-  const readCategoryCache = (slug) => {
-    if (typeof window === 'undefined') return null;
-    try {
-      const v = window.sessionStorage.getItem(getCategoryCacheKey(slug));
-      return v ? JSON.parse(v) : null;
-    } catch (e) {
-      return null;
-    }
-  };
-  const writeCategoryCache = (slug, data) => {
-    if (typeof window === 'undefined') return;
-    try {
-      window.sessionStorage.setItem(getCategoryCacheKey(slug), JSON.stringify(data));
-    } catch (e) {
-      // ignore
-    }
-  };
 
   // Track mounted state
   useEffect(() => {
@@ -271,6 +244,8 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
       return;
     }
 
+    const requestId = ++categoryRequestIdRef.current;
+
     // Clear any pending timeouts and fetches
     if (loadingTimeoutRef.current) {
       clearTimeout(loadingTimeoutRef.current);
@@ -283,7 +258,8 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
 
     scrollToTopInstantly();
     
-    // Update UI state but keep existing loaded pages visible until new data arrives.
+    // Update UI immediately
+    currentCategoryRef.current = slug;
     setSelectedCategory(slug);
     previousCategoryRef.current = slug;
     setShowMobileFilters(false);
@@ -291,48 +267,56 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
     setCategorySearchTerm("");
     fetchingRef.current = false;
     scrollAttemptRef.current = 0;
-
-    // Show loading indicator / switching state without clearing current list
+    
+    // Clear old data and show loading
+    setLoadedPages([]);
+    setCurrentPage(1);
+    setTotalPages(1);
+    loadedIdsRef.current = new Set();
     setIsLoadingInitial(true);
     setIsSwitchingCategory(true);
-
-    // If we have a cached page for this category, show it instantly while we fetch fresh data
-    try {
-      if (typeof window !== 'undefined') {
-        const cached = readCategoryCache(slug);
-        if (cached && Array.isArray(cached.qaItems) && cached.qaItems.length) {
-          setLoadedPages([cached.qaItems]);
-          setCurrentPage(cached.currentPage || 1);
-          setTotalPages(cached.numberOfPages || 1);
-          loadedIdsRef.current = new Set((cached.qaItems || []).map(i => i?.id).filter(Boolean));
-          // We already showed something so stop the initial loading state visually
-          setIsLoadingInitial(false);
-        }
-      }
-    } catch (e) {
-      // ignore cache read errors
-    }
 
     if (typeof window !== "undefined") {
       window.sessionStorage.setItem(LAST_QNA_CATEGORY_KEY, slug);
     }
 
-    const url = slug === "all" ? "/qna" : `/qna/${slug}`;
-
-    // Try to prefetch the page data so client navigation is instant (matches local behaviour)
-    // If prefetch fails (network or server issue), fall back to a full reload to ensure SSR
     try {
-      if (router && typeof router.prefetch === 'function') {
-        await router.prefetch(url);
+      const res = await fetch(`/api/qna?currentPage=1&cat_slug=${slug}&pageSize=${PAGE_SIZE}`);
+      const data = await res.json();
+      
+      // Only update if this is still the current category and component is mounted
+      if (requestId === categoryRequestIdRef.current && currentCategoryRef.current === slug && isMountedRef.current) {
+        if (data?.qaItems?.length) {
+          setLoadedPages([data.qaItems]);
+          setCurrentPage(data.currentPage || 1);
+          setTotalPages(data.numberOfPages || 1);
+          // Track loaded IDs
+          data.qaItems.forEach(item => {
+            if (item?.id) loadedIdsRef.current.add(item.id);
+          });
+        } else {
+          setLoadedPages([]);
+          setCurrentPage(1);
+          setTotalPages(1);
+        }
+        setIsLoadingInitial(false);
+        setIsSwitchingCategory(false);
+
+        const url = slug === "all" ? "/qna" : `/qna/${slug}`;
+        router.replace(url, undefined, { shallow: true, scroll: false });
       }
-      router.push(url);
-    } catch (e) {
-      // As a last resort do a full navigation so the server renders the page
-      if (typeof window !== 'undefined') {
-        window.location.href = url;
+    } catch (error) {
+      console.error("Error fetching category data:", error);
+      if (requestId === categoryRequestIdRef.current && currentCategoryRef.current === slug && isMountedRef.current) {
+        setLoadedPages([]);
+        setCurrentPage(1);
+        setTotalPages(1);
+        setIsLoadingInitial(false);
+        setIsSwitchingCategory(false);
+        const url = slug === "all" ? "/qna" : `/qna/${slug}`;
+        router.replace(url, undefined, { shallow: true, scroll: false });
       }
     }
-    return;
   }, [selectedCategory, router, scrollToTopInstantly]);
 
   // Infinite scroll effect with fixed 1s loading and guaranteed next data
