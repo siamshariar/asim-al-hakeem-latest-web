@@ -66,8 +66,36 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
       previousCategoryRef.current = initialCategory || "all";
       setIsLoadingInitial(false);
       initialDataLoadedRef.current = true;
+      // cache initial category page for instant switching
+      try {
+        if (typeof window !== 'undefined' && initialQnaPage?.qaItems?.length) {
+          writeCategoryCache(initialCategory || 'all', initialQnaPage);
+        }
+      } catch (e) {
+        // ignore
+      }
     }
   }, [initialQnaPage, initialCategory]);
+
+  // Simple client-side cache helpers (sessionStorage) to show category data instantly
+  const getCategoryCacheKey = (slug) => `qna_cat_${slug}`;
+  const readCategoryCache = (slug) => {
+    if (typeof window === 'undefined') return null;
+    try {
+      const v = window.sessionStorage.getItem(getCategoryCacheKey(slug));
+      return v ? JSON.parse(v) : null;
+    } catch (e) {
+      return null;
+    }
+  };
+  const writeCategoryCache = (slug, data) => {
+    if (typeof window === 'undefined') return;
+    try {
+      window.sessionStorage.setItem(getCategoryCacheKey(slug), JSON.stringify(data));
+    } catch (e) {
+      // ignore
+    }
+  };
 
   // Track mounted state
   useEffect(() => {
@@ -268,6 +296,23 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
     setIsLoadingInitial(true);
     setIsSwitchingCategory(true);
 
+    // If we have a cached page for this category, show it instantly while we fetch fresh data
+    try {
+      if (typeof window !== 'undefined') {
+        const cached = readCategoryCache(slug);
+        if (cached && Array.isArray(cached.qaItems) && cached.qaItems.length) {
+          setLoadedPages([cached.qaItems]);
+          setCurrentPage(cached.currentPage || 1);
+          setTotalPages(cached.numberOfPages || 1);
+          loadedIdsRef.current = new Set((cached.qaItems || []).map(i => i?.id).filter(Boolean));
+          // We already showed something so stop the initial loading state visually
+          setIsLoadingInitial(false);
+        }
+      }
+    } catch (e) {
+      // ignore cache read errors
+    }
+
     if (typeof window !== "undefined") {
       window.sessionStorage.setItem(LAST_QNA_CATEGORY_KEY, slug);
     }
@@ -292,6 +337,8 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
           data.qaItems.forEach(item => {
             if (item?.id) loadedIdsRef.current.add(item.id);
           });
+          // update client cache for this category
+          try { writeCategoryCache(slug, data); } catch (e) { /* ignore */ }
         } else {
           // No items for this category: clear list
           setLoadedPages([]);
