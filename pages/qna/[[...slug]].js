@@ -318,45 +318,11 @@ export default function QnaPage({ playlists, headerLectures, qnaCategories, init
     }
 
     const url = slug === "all" ? "/qna" : `/qna/${slug}`;
-    // Use shallow routing to avoid full remount; allows client fetch to update UI instantly
-    router.push(url, undefined, { shallow: true });
 
-    try {
-      const res = await fetch(`/api/qna?currentPage=1&cat_slug=${slug}&pageSize=${PAGE_SIZE}`);
-      const data = await res.json();
-      
-      // Only update if this is still the current category and component is mounted
-      if (currentCategoryRef.current === slug && isMountedRef.current) {
-        if (data?.qaItems?.length) {
-          // Replace displayed pages with fetched data
-          setLoadedPages([data.qaItems]);
-          setCurrentPage(data.currentPage || 1);
-          setTotalPages(data.numberOfPages || 1);
-          // Track loaded IDs (reset first)
-          loadedIdsRef.current = new Set();
-          data.qaItems.forEach(item => {
-            if (item?.id) loadedIdsRef.current.add(item.id);
-          });
-          // update client cache for this category
-          try { writeCategoryCache(slug, data); } catch (e) { /* ignore */ }
-        } else {
-          // No items for this category: clear list
-          setLoadedPages([]);
-          setCurrentPage(1);
-          setTotalPages(1);
-          loadedIdsRef.current = new Set();
-        }
-        setIsLoadingInitial(false);
-        setIsSwitchingCategory(false);
-      }
-    } catch (error) {
-      console.error("Error fetching category data:", error);
-      // Keep existing list visible on error; just stop loading state
-      if (currentCategoryRef.current === slug && isMountedRef.current) {
-        setIsLoadingInitial(false);
-        setIsSwitchingCategory(false);
-      }
-    }
+    // Navigate to the category page so Next.js SSR/getStaticProps provides the data
+    // (avoid client-side /api/qna fetch which can fail on Vercel serverless runtime)
+    router.push(url);
+    return;
   }, [selectedCategory, router, scrollToTopInstantly]);
 
   // Infinite scroll effect with fixed 1s loading and guaranteed next data
